@@ -310,6 +310,33 @@ def test_two_matching_markets_is_not_guessed():
     assert not mb.placed and bot.state["doubles"]["n1"]["status"] == "skipped"
 
 
+def test_matchbook_style_names_are_found():
+    # Names as Matchbook's app shows them: full club names, "at" for US sports,
+    # full player names for tennis.
+    evs = [event(11, "RC Lens vs Olympique Lyonnais", T0.replace(hour=11, minute=30),
+                 {"RC Lens": (2.4, 500), "Olympique Lyonnais": (2.9, 500), "Draw": (3.4, 500)}),
+           event(12, "Atlanta Dream at New York Liberty", T0.replace(hour=12),
+                 {"Atlanta Dream": (2.6, 500), "New York Liberty": (1.5, 500)}, market="Moneyline"),
+           event(13, "Jiri Lehecka vs Nuno Borges", T0.replace(hour=13),
+                 {"Jiri Lehecka": (1.6, 500), "Nuno Borges": (2.3, 500)}, market="Moneyline")]
+    mb = FakeMB(evs, {})
+    for pick_event, runner, market, hour, expect in (
+            ("Lens vs Lyon", "Lyon", "Match Odds", "11:30", 1101),
+            ("Dream vs Liberty", "Dream", WINNER_NAMES, "12:00", 1200),
+            ("Lehecka vs Borges", "Borges", WINNER_NAMES, "13:00", 1301)):
+        leg = {"event": pick_event, "runner": runner, "market": market,
+               "kickoff": f"2026-10-10T{hour}:00Z"}
+        info, why = B.resolve_leg(mb, leg)
+        assert why is None and info["runner_id"] == expect, (pick_event, why, info)
+
+
+def test_short_words_do_not_prefix_match():
+    assert B.covers({"manchester", "city"}, {"city"})
+    assert not B.covers({"manchester", "city"}, {"man"})        # under 4 letters: exact only
+    assert not B.covers({"lens"}, {"lensing"})                  # the pick is never the longer word
+    assert not B.covers({"arsenal"}, set())
+
+
 def test_picks_url_must_be_https():
     try:
         B.http_get("http://example.com/picks.json")

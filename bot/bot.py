@@ -97,6 +97,15 @@ def words(text):
     return {w for w in cleaned.split() if w not in IGNORED_WORDS}
 
 
+def covers(name_words, wanted_words):
+    """True if every wanted word is in the name. A wanted word of 4+ letters
+    also matches the start of a longer word, so a pick of "Lyon" finds
+    Matchbook's "Olympique Lyonnais"."""
+    return bool(wanted_words) and all(
+        any(n == w or (len(w) >= 4 and n.startswith(w)) for n in name_words)
+        for w in wanted_words)
+
+
 def split_teams(event_text):
     low = " " + str(event_text) + " "
     for sep in (" vs. ", " vs ", " v ", " @ ", " - "):
@@ -269,7 +278,7 @@ def resolve_leg(mb, leg):
         matched = []
         for ev in events:
             name = words(ev.get("name", ""))
-            if not all(t and t <= name for t in teams):
+            if not all(covers(name, t) for t in teams):
                 continue
             if ev.get("start") and abs(parse_time(ev["start"]) - kickoff) > timedelta(hours=3):
                 continue
@@ -306,7 +315,7 @@ def resolve_leg(mb, leg):
         runners = [r for r in runners if str(r.get("id")) == str(leg["runner_id"])]
     else:
         wanted = words(leg["runner"])
-        runners = [r for r in runners if wanted and wanted <= words(r.get("name", ""))]
+        runners = [r for r in runners if covers(words(r.get("name", "")), wanted)]
     if len(runners) != 1:
         return None, f"{len(runners)} runners match '{leg.get('runner')}' in {ev.get('name')}"
     runner = runners[0]
@@ -712,7 +721,7 @@ def cmd_find(mb, text, days=3):
     wanted = words(text)
     shown = 0
     for ev in mb.events(after=now, before=now + timedelta(days=days)):
-        if not wanted <= words(ev.get("name", "")):
+        if not covers(words(ev.get("name", "")), wanted):
             continue
         shown += 1
         print(f"\n{ev.get('name')}   start {ev.get('start')}   event_id {ev.get('id')}")

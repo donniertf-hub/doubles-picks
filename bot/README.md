@@ -60,7 +60,9 @@ A leg looks like this:
       "kickoff": "2026-10-10T11:30:00Z" }
 
 - `kickoff` is in UTC (one hour behind UK time in summer).
-- Use short team names. Every word must appear in Matchbook's own name.
+- Use short team names with no abbreviations. Every word must appear in
+  Matchbook's own name, or be the start of a word there (4 letters or more),
+  so "Lyon" finds "Olympique Lyonnais" but "QPR" finds nothing.
 - If a leg matches no event, or more than one, the bot skips the double. It never guesses.
 - `market` can be a list of names, for sports where the winner market might be
   called "Moneyline", "Match Winner" and so on. Exactly one must match.
