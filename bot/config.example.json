@@ -1,0 +1,22 @@
+{
+  "dry_run": false,
+  "bankroll_start": 30.0,
+  "stake_base": 10.0,
+  "stake_step": 10.0,
+  "stake_step_every": 100.0,
+  "max_bet": 500.0,
+  "max_doubles_per_day": 4,
+  "min_combined_odds": 2.0,
+  "restart_check_hours": 48,
+  "picks_url": "https://raw.githubusercontent.com/donniertf-hub/doubles-picks/main/picks.json",
+  "picks_refresh_minutes": 15,
+  "place_minutes_before": 90,
+  "match_wait_seconds": 180,
+  "min_gap_minutes": 150,
+  "settle_after_minutes": 100,
+  "settle_poll_seconds": 300,
+  "poll_seconds": 120,
+  "inplay": {
+    "enabled": false
+  }
+}

@@ -1,0 +1,9 @@
+# Private or machine-specific files. Never commit these.
+config.json
+picks.json
+state.json
+state.json.tmp
+ledger.csv
+bot.log
+STOP
+__pycache__/

@@ -1,0 +1,22 @@
+{
+  "doubles": [
+    {
+      "id": "2026-10-10-a",
+      "legs": [
+        { "event": "Arsenal vs Leeds", "market": "Match Odds", "runner": "Arsenal",
+          "kickoff": "2026-10-10T11:30:00Z", "confidence": 68 },
+        { "event": "Lille vs Le Havre", "market": "Match Odds", "runner": "Lille",
+          "kickoff": "2026-10-10T15:15:00Z", "confidence": 69 }
+      ]
+    },
+    {
+      "id": "2026-10-09-a",
+      "legs": [
+        { "event": "Dortmund vs Bremen", "market": "Match Odds", "runner": "Dortmund",
+          "kickoff": "2026-10-09T18:30:00Z", "confidence": 72 },
+        { "event": "Monaco vs Toulouse", "market": "Match Odds", "runner": "Monaco",
+          "kickoff": "2026-10-10T18:45:00Z", "confidence": 62 }
+      ]
+    }
+  ]
+}
