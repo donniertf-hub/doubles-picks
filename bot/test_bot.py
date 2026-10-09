@@ -364,6 +364,40 @@ def test_two_possible_winner_markets_is_not_guessed():
     assert info is None and "2 markets" in why, why
 
 
+def arsenal_leeds_full():
+    """Arsenal vs Leeds with the markets Matchbook's app shows before kick-off."""
+    def market(mid, name, runners, mtype="other"):
+        return {"id": mid, "name": name, "market-type": mtype, "status": "open",
+                "runners": [{"id": mid * 10 + n, "name": rn,
+                             "prices": [{"side": "back", "decimal-odds": o, "available-amount": 200}]}
+                            for n, (rn, o) in enumerate(runners)]}
+    return {"id": 20, "name": "Arsenal vs Leeds United", "in-running-flag": False,
+            "start": B.iso(T0.replace(hour=11, minute=30)), "markets": [
+                market(201, "Match Odds", [("Arsenal", 1.45), ("Leeds United", 9.0), ("Draw", 5.2)], "one_x_two"),
+                market(202, "Both Teams To Score", [("Yes", 2.2), ("No", 1.8)]),
+                market(203, "Draw No Bet", [("Arsenal", 1.15), ("Leeds United", 6.5)]),
+                market(204, "Double Chance", [("Arsenal or Draw", 1.08), ("Arsenal or Leeds United", 1.2),
+                                              ("Draw or Leeds United", 3.4)]),
+                market(205, "Arsenal To Win To Nil", [("Yes", 2.3), ("No", 1.72)]),
+                market(206, "Leeds United To Win To Nil", [("Yes", 15.5), ("No", 1.06)])]}
+
+
+def test_other_football_bet_types_resolve():
+    mb = FakeMB([arsenal_leeds_full()], {})
+    for market, runner, expect in (
+            ("Match Odds", "Arsenal", 2010),
+            ("Both Teams To Score", "Yes", 2020),
+            ("Both Teams To Score", "No", 2021),
+            ("Draw No Bet", "Arsenal", 2030),
+            ("Double Chance", "Arsenal Draw", 2040),
+            ("Double Chance", "Leeds Draw", 2042),
+            ("Arsenal To Win To Nil", "Yes", 2050)):
+        leg = {"event": "Arsenal vs Leeds", "market": market, "runner": runner,
+               "kickoff": "2026-10-10T11:30:00Z"}
+        info, why = B.resolve_leg(mb, leg)
+        assert why is None and info["runner_id"] == expect, (market, runner, why, info)
+
+
 def test_short_words_do_not_prefix_match():
     assert B.covers({"manchester", "city"}, {"city"})
     assert not B.covers({"manchester", "city"}, {"man"})        # under 4 letters: exact only
