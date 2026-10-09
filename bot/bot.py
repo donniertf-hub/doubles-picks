@@ -65,6 +65,8 @@ DEFAULTS = {
 }
 
 FINAL = ("won", "lost", "void", "skipped", "banked", "dry_run")
+FOOTBALL_WINNER_NAMES = ("Match Result", "Full Time Result", "1X2", "Match Betting",
+                         "Moneyline", "Money Line")
 
 
 # ---------------------------------------------------------------- helpers
@@ -304,7 +306,15 @@ def resolve_leg(mb, leg):
         names = leg.get("market") or "Match Odds"
         names = [names] if isinstance(names, str) else list(names)
         wanted = [words(n) for n in names]
-        markets = [m for m in markets if words(m.get("name", "")) in wanted]
+        exact = [m for m in markets if words(m.get("name", "")) in wanted]
+        if not exact and words("Match Odds") in wanted:
+            # Matchbook's app shows the football win-draw-win market with no
+            # title, so its real name is unconfirmed. If nothing is called
+            # "Match Odds", accept the usual alternatives.
+            others = [words(n) for n in FOOTBALL_WINNER_NAMES]
+            exact = [m for m in markets if words(m.get("name", "")) in others
+                     or m.get("market-type") == "one_x_two"]
+        markets = exact
     if len(markets) != 1:
         return None, (f"{len(markets)} markets match {leg.get('market', 'Match Odds')!r} "
                       f"in {ev.get('name')}")

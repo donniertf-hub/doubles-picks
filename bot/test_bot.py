@@ -330,6 +330,40 @@ def test_matchbook_style_names_are_found():
         assert why is None and info["runner_id"] == expect, (pick_event, why, info)
 
 
+def football_event(market_name, market_type):
+    ev = event(14, "RC Lens vs Olympique Lyonnais", T0.replace(hour=11, minute=30),
+               {"RC Lens": (2.4, 500), "Olympique Lyonnais": (2.9, 500), "Draw": (3.4, 500)},
+               market=market_name)
+    ev["markets"][0]["market-type"] = market_type
+    return ev
+
+
+LYON = {"event": "Lens vs Lyon", "runner": "Lyon", "market": "Match Odds",
+        "kickoff": "2026-10-10T11:30:00Z"}
+
+
+def test_football_winner_market_under_another_name():
+    for name, mtype in (("Match Result", "other"), ("Some New Name", "one_x_two")):
+        info, why = B.resolve_leg(FakeMB([football_event(name, mtype)], {}), LYON)
+        assert why is None and info["runner_id"] == 1401, (name, why)
+
+
+def test_exact_match_odds_wins_over_lookalikes():
+    ev = football_event("Match Odds", "one_x_two")
+    half = dict(ev["markets"][0], id=142, name="Half Time Result")
+    dnb = dict(ev["markets"][0], id=143, name="Draw No Bet", **{"market-type": "other"})
+    ev["markets"] += [half, dnb]
+    info, why = B.resolve_leg(FakeMB([ev], {}), LYON)
+    assert why is None and info["market"] == "Match Odds", why
+
+
+def test_two_possible_winner_markets_is_not_guessed():
+    ev = football_event("Full Time Result", "one_x_two")
+    ev["markets"].append(dict(ev["markets"][0], id=142, name="Half Time Result"))
+    info, why = B.resolve_leg(FakeMB([ev], {}), LYON)
+    assert info is None and "2 markets" in why, why
+
+
 def test_short_words_do_not_prefix_match():
     assert B.covers({"manchester", "city"}, {"city"})
     assert not B.covers({"manchester", "city"}, {"man"})        # under 4 letters: exact only
