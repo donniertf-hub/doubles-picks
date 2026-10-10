@@ -1,15 +1,6 @@
 {
-  "generated": "2026-10-09T17:30:00Z",
+  "generated": "2026-10-10T08:15:43Z",
   "doubles": [
-    {
-      "id": "2026-10-09-a",
-      "legs": [
-        { "event": "Dortmund vs Bremen", "market": "Match Odds", "runner": "Dortmund",
-          "kickoff": "2026-10-09T18:30:00Z", "confidence": 72, "odds_seen": 1.39 },
-        { "event": "Monaco vs Toulouse", "market": "Match Odds", "runner": "Monaco",
-          "kickoff": "2026-10-10T18:45:00Z", "confidence": 62, "odds_seen": 1.61 }
-      ]
-    },
     {
       "id": "2026-10-10-a",
       "legs": [
@@ -17,6 +8,24 @@
           "kickoff": "2026-10-10T11:30:00Z", "confidence": 68, "odds_seen": 1.45 },
         { "event": "Lille vs Le Havre", "market": "Match Odds", "runner": "Lille",
           "kickoff": "2026-10-10T15:15:00Z", "confidence": 69, "odds_seen": 1.46 }
+      ]
+    },
+    {
+      "id": "2026-10-10-b",
+      "legs": [
+        { "sport": "football", "event": "Real Madrid vs Villarreal", "market": "Match Odds", "runner": "Real Madrid",
+          "kickoff": "2026-10-10T19:00:00Z", "confidence": 65, "odds_seen": 1.44 },
+        { "sport": "football", "event": "Freiburg vs Schalke", "market": "Match Odds", "runner": "Freiburg",
+          "kickoff": "2026-10-11T15:30:00Z", "confidence": 63, "odds_seen": 1.67 }
+      ]
+    },
+    {
+      "id": "2026-10-10-c",
+      "legs": [
+        { "sport": "football", "event": "Augsburg vs Bayern", "market": "Match Odds", "runner": "Bayern",
+          "kickoff": "2026-10-10T13:30:00Z", "confidence": 77, "odds_seen": 1.2 },
+        { "sport": "football", "event": "Manchester United vs Tottenham", "market": "Match Odds", "runner": "Manchester United",
+          "kickoff": "2026-10-10T16:30:00Z", "confidence": 56, "odds_seen": 1.75 }
       ]
     }
   ]
