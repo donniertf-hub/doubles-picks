@@ -245,7 +245,7 @@ def make(picks, bf, **overrides):
     folder = tempfile.mkdtemp()
     with open(os.path.join(folder, "picks.json"), "w") as fh:
         json.dump({"doubles": picks}, fh)
-    cfg = dict(B.DEFAULTS, **dict({"dry_run": False}, **overrides))
+    cfg = dict(B.DEFAULTS, **dict({"dry_run": False, "fallback_singles": False}, **overrides))
     clock = Clock()
     return B.Bot(cfg, bf, folder=folder, clock=clock), clock, folder
 

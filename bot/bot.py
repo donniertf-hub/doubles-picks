@@ -69,6 +69,12 @@ DEFAULTS = {
     "settle_poll_seconds": 300,
     "poll_seconds": 120,
     "inplay": {"enabled": False},  # not built yet, see inplay_tick()
+    "max_drift_percent": 15.0,     # skip a leg whose price is this much above the price the
+                                   #   pick was made at (usually bad team news); 0 = off
+    "max_singles_per_day": 4,
+    "singles_profit_only": True,   # a single may only use money above bankroll_start
+    "fallback_singles": True,      # if leg 1 loses, bet leg 2 as a single instead
+    "log_closing_price": True,     # note the price at kick-off, to compare with ours
 }
 
 FINAL = ("won", "lost", "void", "skipped", "banked", "dry_run")
@@ -830,12 +836,17 @@ class Bot:
         except ValueError as err:
             self.log(f"picks.json could not be read: {err}")
             return
-        for pick in picks.get("doubles", []):
+        entries = [(p, False) for p in picks.get("doubles", [])] + \
+                  [(p, True) for p in picks.get("singles", [])]
+        for pick, is_single in entries:
             pid = str(pick.get("id", ""))
             if not pid or pid in self.state["doubles"]:
                 continue
             d = {"id": pid, "legs": pick.get("legs", []), "status": "pending", "leg": 0,
                  "held": 0, "bets": [], "note": "", "placed": False}
+            if is_single:
+                d["single"] = True
+                d["legs"] = d["legs"][:1]
             self.state["doubles"][pid] = d
             problem = self.check_pick(d)
             if problem:
@@ -903,12 +914,21 @@ class Bot:
         if self.stopped():
             return self.note(d, "STOP file present, not betting")
 
+        single = bool(d.get("single"))
         if first:
             placed_today = sum(1 for x in self.state["doubles"].values()
-                               if x is not d and x.get("placed") and x.get("date") == d.get("date"))
-            if placed_today >= c["max_doubles_per_day"]:
-                return self.finish(d, "skipped", "daily limit of doubles reached")
+                               if x is not d and x.get("placed") and x.get("date") == d.get("date")
+                               and bool(x.get("single")) == single)
+            limit = c["max_singles_per_day"] if single else c["max_doubles_per_day"]
+            if placed_today >= limit:
+                return self.finish(d, "skipped",
+                                   f"daily limit of {'singles' if single else 'doubles'} reached")
             money = self.stake_size()
+            if single and c["singles_profit_only"] and not d.get("fallback"):
+                profit = self.pot_total() - float(c["bankroll_start"])
+                if profit + 1e-9 < money:
+                    return self.note(d, f"no profit to stake yet (up {max(profit, 0):.2f}, "
+                                        f"a single needs {money:.2f})")
             if self.state["bankroll"] + 1e-9 < money:
                 return self.note(d, f"pot of {self.state['bankroll']:.2f} is below the {money:.2f} stake")
         else:
@@ -923,10 +943,15 @@ class Bot:
         if not priced:
             return self.note(d, f"not enough money on offer for {info['runner']}")
         odds, best = priced
-        if odds < float(leg.get("min_odds", 1.01)):
+        if odds < float(leg.get("min_odds") or 1.01):
             return self.note(d, f"{info['runner']} is {odds}, below the pick's minimum")
+        seen = leg.get("odds_seen")
+        drift_limit = float(c.get("max_drift_percent") or 0)
+        if seen and drift_limit > 0 and odds > float(seen) * (1 + drift_limit / 100):
+            return self.note(d, f"{info['runner']} has drifted to {odds} from {seen} "
+                                f"(over {drift_limit:g}% out), team news perhaps, not betting")
 
-        if first:
+        if first and not single:
             combined = odds
             for later in d["legs"][1:]:
                 other, why = resolve_leg(self.mb, later)
@@ -949,7 +974,7 @@ class Bot:
             self.ledger(d, "DRY RUN", leg=i, odds=odds, stake=f"{money:.2f}")
             return self.finish(d, "dry_run",
                                f"would back {info['runner']} at {odds} for {money:.2f}"
-                               + (f", double pays {d['combined_at_entry']}" if first else ""))
+                               + (f", double pays {d['combined_at_entry']}" if first and not single else ""))
 
         funds = floor2(self.mb.free_funds())
         if funds + 1e-9 < money:
@@ -973,7 +998,9 @@ class Bot:
         d["status"] = "open"
         d["note"] = ""
         self.log(f"[{d['id']}] leg {i + 1}: backed {info['runner']} at {odds} for {money:.2f}")
-        self.ledger(d, "PLACED", leg=i, odds=odds, stake=f"{money:.2f}")
+        self.ledger(d, "PLACED", leg=i, odds=odds, stake=f"{money:.2f}",
+                    note=(f"pick price {seen}, bet {odds} ({(odds / float(seen) - 1) * 100:+.0f}%)"
+                          if seen else ""))
         self.apply_offer(d, offer)
 
     def apply_offer(self, d, offer):
@@ -1045,10 +1072,49 @@ class Bot:
         self.note(d, "bet was not matched, will retry")
         self.step_pending(d)
 
+    def log_closing(self, d, bet, leg):
+        """Note the exchange price just before kick-off. If our price was usually
+        longer than this, the picks are ahead of the market."""
+        try:
+            info, why = resolve_leg(self.mb, leg)
+            top = price_for_stake(info["prices"], 0.01) if info else None
+            if not top:
+                return
+            bet["closing_odds"] = top[1]
+            asked = float(bet.get("asked_odds") or 0)
+            self.ledger(d, "CLOSING", leg=d["leg"], odds=top[1],
+                        note=f"we backed at {asked}" if asked else "")
+        except Exception as err:      # a missing closing price must never stop the bot
+            self.log(f"[{d['id']}] could not read the closing price: {err}")
+
+    def spawn_fallback(self, d, i):
+        """Leg 1 lost, so there are no winnings to roll. If leg 2 has not started,
+        bet it as a single instead, still subject to its minimum price."""
+        if not self.cfg["fallback_singles"] or d.get("single") or i + 1 >= len(d["legs"]):
+            return
+        nxt = d["legs"][i + 1]
+        try:
+            kick = parse_time(nxt["kickoff"])
+        except (KeyError, ValueError):
+            return
+        pid = d["id"] + "-s"
+        if self.clock() >= kick or pid in self.state["doubles"]:
+            return
+        self.state["doubles"][pid] = {
+            "id": pid, "legs": [nxt], "status": "pending", "leg": 0, "held": 0, "bets": [],
+            "note": "", "placed": False, "single": True, "fallback": True,
+            "date": kick.strftime("%Y-%m-%d")}
+        self.log(f"[{pid}] leg 2 of {d['id']} will be bet on its own as a single: {nxt.get('runner')}")
+
     def step_matched(self, d):
         c, now, i = self.cfg, self.clock(), d["leg"]
         bet = d["bets"][-1]
         kickoff = parse_time(d["legs"][i]["kickoff"])
+        if (c["log_closing_price"] and not bet.get("closing_checked")
+                and now >= kickoff - timedelta(minutes=3)):
+            bet["closing_checked"] = True
+            if now <= kickoff + timedelta(minutes=1):
+                self.log_closing(d, bet, d["legs"][i])
         if now < kickoff + timedelta(minutes=c["settle_after_minutes"]):
             return
         last = d.get("last_settle_check")
@@ -1068,7 +1134,8 @@ class Bot:
         self.ledger(d, "SETTLED", leg=i, odds=bet.get("odds", ""), stake=f"{bet['matched']:.2f}",
                     result=label, returns=f"{returns:.2f}")
         if net < -1e-9:
-            return self.finish(d, "lost", f"leg {i + 1} lost")
+            self.finish(d, "lost", f"leg {i + 1} lost")
+            return self.spawn_fallback(d, i)
         if i + 1 < len(d["legs"]):
             d["leg"] += 1
             d["status"] = "pending"

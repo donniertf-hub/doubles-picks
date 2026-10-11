@@ -114,7 +114,7 @@ def make(picks, mb, **overrides):
     folder = tempfile.mkdtemp()
     with open(os.path.join(folder, "picks.json"), "w") as fh:
         json.dump({"doubles": picks}, fh)
-    cfg = dict(B.DEFAULTS, **dict({"dry_run": False}, **overrides))
+    cfg = dict(B.DEFAULTS, **dict({"dry_run": False, "fallback_singles": False}, **overrides))
     clock = Clock()
     return B.Bot(cfg, mb, folder=folder, clock=clock), clock, folder
 
@@ -565,6 +565,169 @@ def test_price_ladder():
     assert B.price_for_stake(prices, 3) == (1.50, 1.50)
     assert B.price_for_stake(prices, 10) == (1.45, 1.50)
     assert B.price_for_stake(prices, 100) is None
+
+
+# ---- price drift, closing price, singles and the fallback single
+
+def with_odds_seen(pick, first=None, second=None):
+    pick = json.loads(json.dumps(pick))
+    if first is not None:
+        pick["legs"][0]["odds_seen"] = first
+    if second is not None:
+        pick["legs"][1]["odds_seen"] = second
+    return pick
+
+
+def put_singles(folder, singles):
+    path = os.path.join(folder, "picks.json")
+    data = json.load(open(path))
+    data["singles"] = singles
+    json.dump(data, open(path, "w"))
+
+
+def lille_single(pid="s1", **extra):
+    leg = {"event": "Lille vs Le Havre", "runner": "Lille", "kickoff": "2026-10-10T15:15:00Z"}
+    leg.update(extra)
+    return {"id": pid, "legs": [leg]}
+
+
+def test_drifted_first_leg_is_not_bet():
+    mb = FakeMB(fixtures(), {ARS: "WIN", LIL: "WIN"})            # Arsenal is 1.45
+    bot, clock, _ = make([with_odds_seen(double(), first=1.20)], mb)   # +21%
+    play_through(bot, clock)
+    d = bot.state["doubles"]["d1"]
+    assert d["status"] == "skipped" and not mb.placed and "drifted" in d["note"], d
+
+
+def test_small_drift_is_fine():
+    mb = FakeMB(fixtures(), {ARS: "WIN", LIL: "WIN"})
+    bot, clock, _ = make([with_odds_seen(double(), first=1.40, second=1.40)], mb)   # +4%
+    play_through(bot, clock)
+    assert bot.state["doubles"]["d1"]["status"] == "won" and len(mb.placed) == 2
+
+
+def test_drifted_second_leg_banks_the_winnings():
+    mb = FakeMB(fixtures(), {ARS: "WIN", LIL: "WIN"})            # Lille is 1.46
+    bot, clock, _ = make([with_odds_seen(double(), first=1.45, second=1.10)], mb)
+    play_through(bot, clock)
+    d = bot.state["doubles"]["d1"]
+    leg1 = B.floor2(10 + 10 * 0.45 * 0.98)
+    assert d["status"] == "banked" and len(mb.placed) == 1, d
+    assert close(bot.state["bankroll"], 20 + leg1), bot.state["bankroll"]
+
+
+def test_drift_check_can_be_switched_off():
+    mb = FakeMB(fixtures(), {ARS: "LOSE"})
+    bot, clock, _ = make([with_odds_seen(double(), first=1.20)], mb, max_drift_percent=0)
+    play_through(bot, clock)
+    assert len(mb.placed) == 1
+
+
+def test_closing_price_is_recorded():
+    mb = FakeMB(fixtures(), {ARS: "WIN", LIL: "WIN"})
+    bot, clock, folder = make([double()], mb)
+    play_through(bot, clock)
+    bets = bot.state["doubles"]["d1"]["bets"]
+    assert bets[0].get("closing_odds") == 1.45, bets      # the 10-minute test clock misses leg 2's window
+    assert "CLOSING" in open(os.path.join(folder, "ledger.csv")).read()
+
+
+def test_single_needs_profit_first():
+    mb = FakeMB(fixtures(), {LIL: "WIN"})
+    bot, clock, folder = make([], mb)
+    put_singles(folder, [lille_single()])
+    play_through(bot, clock)
+    d = bot.state["doubles"]["s1"]
+    assert d["status"] == "skipped" and not mb.placed and "profit" in d["note"], d
+
+
+def test_single_uses_profit_only():
+    mb = FakeMB(fixtures(), {LIL: "WIN"})
+    bot, clock, folder = make([], mb, bankroll_start=20.0)        # pot of 30 = 10 up
+    bot.state["bankroll"] = 30.0
+    put_singles(folder, [lille_single()])
+    play_through(bot, clock)
+    d = bot.state["doubles"]["s1"]
+    assert d["status"] == "won" and len(mb.placed) == 1 and close(mb.placed[0][2], 10.0), d
+    assert close(bot.state["bankroll"], 30 + 10 * 0.46 * 0.98)
+
+
+def test_single_can_pay_under_evens():
+    mb = FakeMB(fixtures(lil=1.46), {LIL: "WIN"})
+    bot, clock, folder = make([], mb, singles_profit_only=False)
+    put_singles(folder, [lille_single()])
+    play_through(bot, clock)
+    assert bot.state["doubles"]["s1"]["status"] == "won"
+
+
+def test_single_respects_minimum_price():
+    mb = FakeMB(fixtures(lil=1.46), {LIL: "WIN"})
+    bot, clock, folder = make([], mb, singles_profit_only=False)
+    put_singles(folder, [lille_single(min_odds=1.60)])
+    play_through(bot, clock)
+    assert bot.state["doubles"]["s1"]["status"] == "skipped" and not mb.placed
+
+
+def test_single_daily_limit_is_separate_from_doubles():
+    picks = [double("a")]
+    mb = FakeMB(fixtures(), {ARS: "LOSE", LIL: "WIN"}, funds=500)
+    bot, clock, folder = make(picks, mb, max_doubles_per_day=1, singles_profit_only=False,
+                              max_singles_per_day=1)
+    put_singles(folder, [lille_single("s1"), lille_single("s2")])
+    play_through(bot, clock)
+    st = {k: v["status"] for k, v in bot.state["doubles"].items()}
+    assert st["a"] == "lost" and sorted([st["s1"], st["s2"]]) == ["skipped", "won"], st
+
+
+def test_single_dry_run():
+    mb = FakeMB(fixtures(), {})
+    bot, clock, folder = make([], mb, dry_run=True, singles_profit_only=False)
+    put_singles(folder, [lille_single()])
+    play_through(bot, clock)
+    assert bot.state["doubles"]["s1"]["status"] == "dry_run" and not mb.placed
+
+
+def test_lost_first_leg_leaves_second_as_a_single():
+    mb = FakeMB(fixtures(), {ARS: "LOSE", LIL: "WIN"})
+    bot, clock, _ = make([double()], mb, fallback_singles=True)
+    play_through(bot, clock)
+    d, s = bot.state["doubles"]["d1"], bot.state["doubles"]["d1-s"]
+    assert d["status"] == "lost" and s["status"] == "won", (d, s)
+    assert len(mb.placed) == 2 and close(mb.placed[1][2], 10.0)
+    assert close(bot.state["bankroll"], 10 + 10 + 10 * 0.46 * 0.98), bot.state["bankroll"]
+
+
+def test_fallback_single_loses_cleanly():
+    mb = FakeMB(fixtures(), {ARS: "LOSE", LIL: "LOSE"})
+    bot, clock, _ = make([double()], mb, fallback_singles=True)
+    play_through(bot, clock)
+    assert bot.state["doubles"]["d1-s"]["status"] == "lost" and close(bot.state["bankroll"], 10.0)
+
+
+def test_fallback_is_off_when_switched_off():
+    mb = FakeMB(fixtures(), {ARS: "LOSE", LIL: "WIN"})
+    bot, clock, _ = make([double()], mb, fallback_singles=False)
+    play_through(bot, clock)
+    assert "d1-s" not in bot.state["doubles"] and len(mb.placed) == 1
+
+
+def test_fallback_respects_minimum_price():
+    pick = double()
+    pick["legs"][1]["min_odds"] = 1.80
+    mb = FakeMB(fixtures(), {ARS: "LOSE", LIL: "WIN"})
+    bot, clock, _ = make([pick], mb, fallback_singles=True)
+    play_through(bot, clock)
+    assert bot.state["doubles"]["d1-s"]["status"] == "skipped" and len(mb.placed) == 1
+
+
+def test_no_fallback_if_second_leg_already_started():
+    mb = FakeMB(fixtures(), {ARS: "LOSE", LIL: "WIN"})
+    bot, clock, _ = make([double()], mb, fallback_singles=True)
+    d = {"id": "x", "legs": double()["legs"], "bets": [], "held": 0, "status": "matched",
+         "leg": 0, "note": "", "placed": True}
+    clock.at(16, 0)
+    bot.spawn_fallback(d, 0)
+    assert "x-s" not in bot.state["doubles"]
 
 
 if __name__ == "__main__":
