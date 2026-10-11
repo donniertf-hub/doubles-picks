@@ -108,6 +108,21 @@ def covers(name_words, wanted_words):
         for w in wanted_words)
 
 
+def plain(text):
+    """Lower-case text with punctuation turned into single spaces."""
+    text = unicodedata.normalize("NFKD", str(text)).encode("ascii", "ignore").decode()
+    return " ".join("".join(c.lower() if c.isalnum() else " " for c in text).split())
+
+
+def runner_matches(runner_name, wanted):
+    """A runner with a number in it is a goals line ("OVER 2.5"), and must match
+    exactly so that "OVER 2.5" never picks up "OVER 2.5/3.0". Other runners
+    match word by word."""
+    if any(c.isdigit() for c in str(wanted)):
+        return plain(runner_name) == plain(wanted)
+    return covers(words(runner_name), words(wanted))
+
+
 def split_teams(event_text):
     low = " " + str(event_text) + " "
     for sep in (" vs. ", " vs ", " v ", " @ ", " - "):
@@ -315,6 +330,14 @@ def resolve_leg(mb, leg):
             exact = [m for m in markets if words(m.get("name", "")) in others
                      or m.get("market-type") == "one_x_two"]
         markets = exact
+    if len(markets) > 1 and leg.get("runner") and not leg.get("runner_id"):
+        # Several markets share the name (Matchbook lists one "Total" per goals
+        # line). Keep those that actually hold the runner asked for.
+        holding = [m for m in markets
+                   if sum(runner_matches(r.get("name", ""), leg["runner"])
+                          for r in m.get("runners", []) or []) == 1]
+        if len(holding) == 1:
+            markets = holding
     if len(markets) != 1:
         return None, (f"{len(markets)} markets match {leg.get('market', 'Match Odds')!r} "
                       f"in {ev.get('name')}")
@@ -324,8 +347,7 @@ def resolve_leg(mb, leg):
     if leg.get("runner_id"):
         runners = [r for r in runners if str(r.get("id")) == str(leg["runner_id"])]
     else:
-        wanted = words(leg["runner"])
-        runners = [r for r in runners if covers(words(r.get("name", "")), wanted)]
+        runners = [r for r in runners if runner_matches(r.get("name", ""), leg["runner"])]
     if len(runners) != 1:
         return None, f"{len(runners)} runners match '{leg.get('runner')}' in {ev.get('name')}"
     runner = runners[0]

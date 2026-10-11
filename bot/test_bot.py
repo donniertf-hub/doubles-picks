@@ -398,6 +398,53 @@ def test_other_football_bet_types_resolve():
         assert why is None and info["runner_id"] == expect, (market, runner, why, info)
 
 
+TOTAL_NAMES = ["Total", "Totals", "Total Goals", "Over/Under 2.5", "Over/Under 2.5 Goals",
+               "Goals Over/Under", "Over/Under"]
+
+
+def totals_event(lines, name="Total"):
+    """A match with one goals market per line, all sharing a name, plus look-alikes."""
+    ev = arsenal_leeds_full()
+    mid = 300
+    for line in lines:
+        mid += 1
+        ev["markets"].append({"id": mid, "name": name, "market-type": "total", "status": "open",
+                              "runners": [{"id": mid * 10 + n, "name": f"{side} {line}",
+                                           "prices": [{"side": "back", "decimal-odds": 1.9,
+                                                       "available-amount": 200}]}
+                                          for n, side in enumerate(("OVER", "UNDER"))]})
+    ev["markets"].append({"id": 390, "name": "Leeds United Goals Over / Under", "market-type": "other",
+                          "status": "open",
+                          "runners": [{"id": 3900, "name": "OVER 2.5", "prices": []},
+                                      {"id": 3901, "name": "UNDER 2.5", "prices": []}]})
+    return ev
+
+
+def goals_leg(runner):
+    return {"event": "Arsenal vs Leeds", "market": TOTAL_NAMES, "runner": runner,
+            "kickoff": "2026-10-10T11:30:00Z"}
+
+
+def test_goals_line_is_found_among_several_totals_markets():
+    mb = FakeMB([totals_event(["1.5", "2.5", "3.5", "2.5/3.0"])], {})
+    info, why = B.resolve_leg(mb, goals_leg("Over 2.5"))
+    assert why is None and info["runner_id"] == 3020 and info["runner"] == "OVER 2.5", (why, info)
+    info, why = B.resolve_leg(mb, goals_leg("Under 2.5"))
+    assert why is None and info["runner_id"] == 3021, (why, info)
+
+
+def test_goals_line_not_offered_is_skipped():
+    mb = FakeMB([totals_event(["1.5", "3.5", "2.5/3.0"])], {})
+    info, why = B.resolve_leg(mb, goals_leg("Over 2.5"))
+    assert info is None, info                      # never falls back to 2.5/3.0 or the team market
+
+
+def test_goals_line_listed_twice_is_not_guessed():
+    mb = FakeMB([totals_event(["2.5", "2.5"])], {})
+    info, why = B.resolve_leg(mb, goals_leg("Over 2.5"))
+    assert info is None, info
+
+
 def test_short_words_do_not_prefix_match():
     assert B.covers({"manchester", "city"}, {"city"})
     assert not B.covers({"manchester", "city"}, {"man"})        # under 4 letters: exact only
