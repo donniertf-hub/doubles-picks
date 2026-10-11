@@ -1,0 +1,13 @@
+{
+  "about": "Scoreboard for Don's betting bot. Every selection is recorded as a level 10 single so the two sources can be compared fairly: 'rules' are Don's two rules (both teams to score, and over/under 2.5 goals), 'confidence' are Claude's own most confident picks. 'in_picks' says whether the selection also went into picks.json for the bot. result is null until settled, then won, lost or void.",
+  "stake_per_selection": 10,
+  "selections": [
+    { "date": "2026-10-11", "track": "rules", "rule": "btts", "league": "Italy Serie A", "event": "Como vs Roma", "market": "Both Teams To Score", "runner": "Yes", "kickoff": "2026-10-11T10:30:00Z", "odds": 1.5, "in_picks": false, "result": null, "note": "qualified, but found after kick-off so not in a double" },
+    { "date": "2026-10-11", "track": "rules", "rule": "btts", "league": "Italy Serie A", "event": "Sassuolo vs Milan", "market": "Both Teams To Score", "runner": "Yes", "kickoff": "2026-10-11T16:00:00Z", "odds": 1.65, "in_picks": false, "result": null, "note": "paper double A leg 2" },
+    { "date": "2026-10-11", "track": "rules", "rule": "goals", "league": "France Ligue 1", "event": "Rennes vs Auxerre", "market": "Over/Under 2.5 Goals", "runner": "Over 2.5", "kickoff": "2026-10-11T15:15:00Z", "odds": 1.47, "in_picks": false, "result": null, "note": "paper double B leg 1" },
+    { "date": "2026-10-11", "track": "rules", "rule": "goals", "league": "Italy Serie A", "event": "Cagliari vs Juventus", "market": "Over/Under 2.5 Goals", "runner": "Under 2.5", "kickoff": "2026-10-11T18:45:00Z", "odds": 1.82, "in_picks": false, "result": null, "note": "paper double B leg 2" },
+    { "date": "2026-10-11", "track": "confidence", "confidence": 66, "league": "Italy Serie A", "event": "Lazio vs Monza", "market": "Match Odds", "runner": "Lazio", "kickoff": "2026-10-11T13:00:00Z", "odds": 1.65, "in_picks": false, "result": null, "note": "paper double A leg 1" },
+    { "date": "2026-10-11", "track": "confidence", "confidence": 67, "league": "Spain La Liga", "event": "Betis vs Osasuna", "market": "Match Odds", "runner": "Betis", "kickoff": "2026-10-11T16:30:00Z", "odds": 1.53, "in_picks": false, "result": null, "note": "paper double C leg 1" },
+    { "date": "2026-10-11", "track": "confidence", "confidence": 62, "league": "NFL", "event": "Cardinals vs Lions", "market": "Moneyline", "runner": "Lions", "kickoff": "2026-10-11T20:25:00Z", "odds": 1.42, "in_picks": false, "result": null, "note": "paper double C leg 2" }
+  ]
+}
