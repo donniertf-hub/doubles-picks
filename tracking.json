@@ -292,7 +292,7 @@
       "runner": "Yes",
       "kickoff": "2026-10-11T15:30:00Z",
       "odds": 1.67,
-      "in_picks": false,
+      "in_picks": true,
       "result": null,
       "note": "added at Don's request before kick-off; qualifies on his reading of the rule (total goals in each team's games), not on goals scored per team"
     },
@@ -306,7 +306,7 @@
       "runner": "Yes",
       "kickoff": "2026-10-11T15:30:00Z",
       "odds": 1.53,
-      "in_picks": false,
+      "in_picks": true,
       "result": null,
       "note": "added at Don's request before kick-off; qualifies on his reading of the rule (total goals in each team's games), not on goals scored per team"
     }
