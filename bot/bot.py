@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Matchbook rolling-doubles bot.
+Rolling-doubles bot for a betting exchange (Betfair by default, or Matchbook).
 
 What it does
   - Reads the day's picks from picks.json (each pick is a "double": two legs).
@@ -9,10 +9,10 @@ What it does
   - Stakes 10 from a 30 pot, plus 10 for every 100 in the pot (100 -> 20,
     200 -> 30 and so on). All in config.json.
   - Never stakes more than its own pot, and keeps a ledger in ledger.csv.
-  - When the pot is spent it stops, then checks the Matchbook balance 48 hours
+  - When the pot is spent it stops, then checks the exchange balance 48 hours
     later and restarts with whatever funds are there.
   - A pick with one leg is placed as a plain single (for example a combined
-    "result and both teams to score" market, if Matchbook lists one).
+    "result and both teams to score" market, if the exchange lists one).
 
 Commands
   python3 bot.py find arsenal   list matching events, markets, runners, prices
@@ -27,9 +27,11 @@ Safety
 Uses only the Python standard library.
 """
 import csv
+import hashlib
 import json
 import math
 import os
+import ssl
 import sys
 import time
 import unicodedata
@@ -42,8 +44,13 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 API = "https://api.matchbook.com"
 
 DEFAULTS = {
-    "username": "",                # or set the MB_USERNAME environment variable
-    "password": "",                # or set the MB_PASSWORD environment variable
+    "exchange": "betfair",         # "betfair" or "matchbook"
+    "username": "",                # or set BF_USERNAME (Matchbook: MB_USERNAME)
+    "password": "",                # or set BF_PASSWORD (Matchbook: MB_PASSWORD)
+    "app_key": "",                 # Betfair application key, or set BF_APP_KEY
+    "cert_file": "",               # Betfair only, optional: certificate login
+    "key_file": "",                #   (needed if 2-step verification is on)
+    "commission_rate": 0.05,       # used only if the exchange does not report commission
     "dry_run": True,               # True = place nothing, only log
     "bankroll_start": 30.0,        # the pot the bot is allowed to use
     "stake_base": 10.0,            # stake per double while the pot is under stake_step_every
@@ -91,21 +98,36 @@ def floor2(x):
 
 
 IGNORED_WORDS = {"fc", "afc", "cf", "sc", "ac", "the"}
+# Short forms an exchange uses in team names, mapped to the full word, so that
+# Betfair's "Man Utd" and a pick of "Manchester United" compare as equal.
+ALIASES = {"utd": "united", "man": "manchester", "nottm": "nottingham",
+           "sheff": "sheffield", "wed": "wednesday", "wolves": "wolverhampton",
+           "spurs": "tottenham", "st": "saint", "mgladbach": "monchengladbach",
+           "gladbach": "monchengladbach", "koln": "cologne", "ath": "athletic",
+           "atl": "atletico", "dep": "deportivo"}
 
 
 def words(text):
     text = unicodedata.normalize("NFKD", str(text)).encode("ascii", "ignore").decode()
     cleaned = "".join(c.lower() if c.isalnum() else " " for c in text)
-    return {w for w in cleaned.split() if w not in IGNORED_WORDS}
+    return {ALIASES.get(w, w) for w in cleaned.split() if w not in IGNORED_WORDS}
 
 
-def covers(name_words, wanted_words):
-    """True if every wanted word is in the name. A wanted word of 4+ letters
-    also matches the start of a longer word, so a pick of "Lyon" finds
-    Matchbook's "Olympique Lyonnais"."""
+def covers(name_words, wanted_words, loose=True):
+    """True if every wanted word is in the name. With loose matching, a wanted
+    word of 4+ letters also matches the start of a longer word, so a pick of
+    "Lyon" finds "Olympique Lyonnais"."""
+    def same(n, w):
+        return n == w or (loose and len(w) >= 4 and n.startswith(w))
     return bool(wanted_words) and all(
-        any(n == w or (len(w) >= 4 and n.startswith(w)) for n in name_words)
-        for w in wanted_words)
+        any(same(n, w) for n in name_words) for w in wanted_words)
+
+
+def narrow(items, test):
+    """Pick the items that pass test(item, loose). Exact word matches win over
+    loose ones, so "Bayern" picks "Bayern Munich" and not "Bayer Leverkusen"."""
+    exact = [x for x in items if test(x, False)]
+    return exact if exact else [x for x in items if test(x, True)]
 
 
 def plain(text):
@@ -114,13 +136,13 @@ def plain(text):
     return " ".join("".join(c.lower() if c.isalnum() else " " for c in text).split())
 
 
-def runner_matches(runner_name, wanted):
+def runner_matches(runner_name, wanted, loose=True):
     """A runner with a number in it is a goals line ("OVER 2.5"), and must match
     exactly so that "OVER 2.5" never picks up "OVER 2.5/3.0". Other runners
     match word by word."""
     if any(c.isdigit() for c in str(wanted)):
         return plain(runner_name) == plain(wanted)
-    return covers(words(runner_name), words(wanted))
+    return covers(words(runner_name), words(wanted), loose)
 
 
 def split_teams(event_text):
@@ -167,12 +189,16 @@ def price_for_stake(prices, stake):
 
 # ---------------------------------------------------------------- Matchbook
 
-class MatchbookError(Exception):
+class ExchangeError(Exception):
     pass
+
+
+MatchbookError = ExchangeError   # older name, kept so nothing else has to change
 
 
 class Matchbook:
     """Thin client for the Matchbook REST API (developers.matchbook.com)."""
+    name = "Matchbook"
 
     def __init__(self, username, password):
         self.username, self.password = username, password
@@ -260,8 +286,314 @@ class Matchbook:
                           {"per-page": 100, "after": iso(after)})
 
 
+# ---------------------------------------------------------------- Betfair
+
+BF_LOGIN = "https://identitysso.betfair.com/api/login"
+BF_CERT_LOGIN = "https://identitysso-cert.betfair.com/api/certlogin"
+BF_API = "https://api.betfair.com/exchange"
+BF_SKIP_SPORTS = ("horse racing", "greyhound")   # not head-to-head, and very many events
+BF_LADDER = ((200, 1), (300, 2), (400, 5), (600, 10), (1000, 20), (2000, 50),
+             (3000, 100), (5000, 200), (10000, 500), (100000, 1000))
+
+
+def bf_tick(price):
+    """Round a price down onto Betfair's price ladder (1.01-2 in 0.01 steps,
+    2-3 in 0.02, 3-4 in 0.05 and so on). Asking for less than the price on show
+    is safe for a back bet: Betfair still matches it at the best price."""
+    cents = int(math.floor(float(price) * 100 + 1e-6))
+    cents = max(101, min(cents, 100000))
+    for top, step in BF_LADDER:
+        if cents <= top:
+            base = top - ((top - cents + step - 1) // step) * step
+            return round(max(base, 101) / 100, 2)
+    return 1000.0
+
+
+class Betfair:
+    """Client for the Betfair Exchange API. It answers in the same shapes as the
+    Matchbook client above, so the rest of the bot does not care which exchange
+    it is talking to.
+
+    Offer ids are "<market id>|<bet id>" and runner ids are
+    "<market id>|<selection id>", because Betfair needs the market id as well."""
+    name = "Betfair"
+
+    def __init__(self, username, password, app_key, cert_file="", key_file="",
+                 commission_rate=0.05):
+        self.username, self.password, self.app_key = username, password, app_key
+        self.cert_file, self.key_file = cert_file, key_file
+        self.commission_rate = float(commission_rate)
+        self.token, self.login_at, self.sports = None, 0.0, None
+
+    # ---- transport
+
+    def _post(self, url, data, headers, context=None):
+        req = urllib.request.Request(url, data=data, method="POST")
+        for key, value in headers.items():
+            req.add_header(key, value)
+        req.add_header("User-Agent", "doubles-bot/1.0")
+        try:
+            with urllib.request.urlopen(req, timeout=30, context=context) as resp:
+                return resp.status, resp.read().decode()
+        except urllib.error.HTTPError as err:
+            return err.code, err.read().decode(errors="replace")
+        except (urllib.error.URLError, TimeoutError, OSError) as err:
+            raise ExchangeError(f"could not reach Betfair: {err}")
+
+    def login(self):
+        if not self.username or not self.password:
+            raise ExchangeError("No Betfair login set (BF_USERNAME / BF_PASSWORD).")
+        if not self.app_key:
+            raise ExchangeError("No Betfair application key set (BF_APP_KEY).")
+        body = urllib.parse.urlencode({"username": self.username,
+                                       "password": self.password}).encode()
+        headers = {"Accept": "application/json", "X-Application": self.app_key,
+                   "Content-Type": "application/x-www-form-urlencoded"}
+        if self.cert_file:
+            context = ssl.create_default_context()
+            try:
+                context.load_cert_chain(self.cert_file, self.key_file or None)
+            except (OSError, ssl.SSLError) as err:
+                raise ExchangeError(f"could not load the Betfair certificate: {err}")
+            code, raw = self._post(BF_CERT_LOGIN, body, headers, context)
+        else:
+            code, raw = self._post(BF_LOGIN, body, headers)
+        try:
+            data = json.loads(raw)
+        except ValueError:
+            raise ExchangeError(f"Betfair login failed: HTTP {code} {raw[:200]}")
+        token = data.get("token") or data.get("sessionToken")
+        status = data.get("status") or data.get("loginStatus")
+        if status != "SUCCESS" or not token:
+            reason = data.get("error") or status
+            hint = ""
+            if "STRONG" in str(reason):
+                hint = (" (2-step verification is on: turn it off for this account, "
+                        "or set up certificate login, see README)")
+            raise ExchangeError(f"Betfair login failed: {reason}{hint}")
+        self.token, self.login_at = token, time.time()
+
+    def _call(self, api, operation, body, retry=True):
+        """POST one operation. api is "betting" or "account"."""
+        if not self.token or time.time() - self.login_at > 6 * 3600:
+            self.login()
+        headers = {"Accept": "application/json", "Content-Type": "application/json",
+                   "X-Application": self.app_key, "X-Authentication": self.token}
+        code, raw = self._post(f"{BF_API}/{api}/rest/v1.0/{operation}/",
+                               json.dumps(body).encode(), headers)
+        try:
+            data = json.loads(raw) if raw.strip() else {}
+        except ValueError:
+            raise ExchangeError(f"{operation} failed: HTTP {code} {raw[:200]}")
+        if code == 200:
+            return data
+        detail = data.get("detail", {}) if isinstance(data, dict) else {}
+        fault = detail.get("APINGException") or detail.get("AccountAPINGException") or {}
+        error = fault.get("errorCode") or (data.get("faultstring") if isinstance(data, dict) else "")
+        if error in ("INVALID_SESSION_INFORMATION", "NO_SESSION") and retry:
+            self.token = None
+            return self._call(api, operation, body, retry=False)
+        raise ExchangeError(f"{operation} failed: HTTP {code} {error or raw[:200]}")
+
+    # ---- account
+
+    def free_funds(self):
+        data = self._call("account", "getAccountFunds", {})
+        return float(data.get("availableToBetBalance", 0) or 0)
+
+    # ---- events, markets, prices
+
+    def sport_ids(self):
+        if self.sports is None:
+            rows = self._call("betting", "listEventTypes", {"filter": {}})
+            self.sports = [str(r["eventType"]["id"]) for r in rows
+                           if not any(skip in str(r["eventType"].get("name", "")).lower()
+                                      for skip in BF_SKIP_SPORTS)]
+        return self.sports
+
+    def events(self, after=None, before=None, ids=None):
+        """Events without their markets. load_markets() and load_prices() fill
+        those in for the one event the bot is interested in."""
+        flt = {}
+        if ids:
+            flt["eventIds"] = [x for x in str(ids).split(",") if x]
+        else:
+            flt["eventTypeIds"] = self.sport_ids()
+            window = {}
+            if after:
+                window["from"] = iso(after)
+            if before:
+                window["to"] = iso(before)
+            if window:
+                flt["marketStartTime"] = window
+        rows = self._call("betting", "listEvents", {"filter": flt})
+        out = []
+        for row in rows:
+            ev = row.get("event", {})
+            start = ev.get("openDate")
+            if not ids and start:
+                when = parse_time(start)
+                if (after and when < after) or (before and when > before):
+                    continue
+            out.append({"id": ev.get("id"), "name": ev.get("name"), "start": start})
+        return out
+
+    def load_markets(self, ev, limit=200):
+        """Attach the event's markets and runners (no prices yet)."""
+        rows = self._call("betting", "listMarketCatalogue", {
+            "filter": {"eventIds": [str(ev["id"])]},
+            "marketProjection": ["MARKET_DESCRIPTION", "RUNNER_DESCRIPTION", "MARKET_START_TIME"],
+            "sort": "MAXIMUM_TRADED", "maxResults": limit})
+        sides = split_teams(str(ev.get("name", "")))
+        markets = []
+        for row in rows:
+            kind = (row.get("description") or {}).get("marketType", "")
+            runners = []
+            for r in row.get("runners", []) or []:
+                name = str(r.get("runnerName", ""))
+                if kind == "DOUBLE_CHANCE" and len(sides) == 2:
+                    # Betfair says "Home or Draw"; show the team names instead
+                    name = (" " + name + " ").replace(" Home ", f" {sides[0].strip()} ") \
+                                             .replace(" Away ", f" {sides[1].strip()} ").strip()
+                elif kind.startswith("OVER_UNDER") and name.lower().endswith(" goals"):
+                    name = name[:-6]           # "Over 2.5 Goals" -> "Over 2.5"
+                runners.append({"id": f"{row['marketId']}|{r.get('selectionId')}",
+                                "name": name, "selection": r.get("selectionId")})
+            markets.append({"id": row["marketId"], "name": row.get("marketName"),
+                            "market-type": kind, "status": "open", "runners": runners})
+        ev["markets"] = markets
+        return ev
+
+    def load_prices(self, markets):
+        """Attach back prices, market status and the in-play flag."""
+        by_id = {m["id"]: m for m in markets}
+        ids = list(by_id)
+        for i in range(0, len(ids), 40):          # 40 markets is the data limit per call
+            books = self._call("betting", "listMarketBook", {
+                "marketIds": ids[i:i + 40],
+                "priceProjection": {"priceData": ["EX_BEST_OFFERS"], "virtualise": True}})
+            for book in books:
+                market = by_id.get(book.get("marketId"))
+                if not market:
+                    continue
+                market["status"] = str(book.get("status", "")).lower() or "unknown"
+                market["in-play"] = bool(book.get("inplay"))
+                offers = {r.get("selectionId"): r for r in book.get("runners", []) or []}
+                for runner in market["runners"]:
+                    row = offers.get(runner["selection"], {})
+                    active = str(row.get("status", "ACTIVE")).upper() == "ACTIVE"
+                    backs = (row.get("ex") or {}).get("availableToBack", []) or []
+                    runner["prices"] = [{"side": "back", "decimal-odds": b.get("price"),
+                                         "available-amount": b.get("size")}
+                                        for b in backs] if active else []
+        for market in markets:                     # anything Betfair did not return
+            if any("prices" not in r for r in market["runners"]):
+                market["status"] = "missing"
+                for r in market["runners"]:
+                    r.setdefault("prices", [])
+
+    # ---- bets
+
+    @staticmethod
+    def _split(compound):
+        market_id, _, other = str(compound).partition("|")
+        if not market_id or not other:
+            raise ExchangeError(f"not a Betfair id: {compound}")
+        return market_id, other
+
+    def submit_offer(self, runner_id, odds, stake):
+        market_id, selection = self._split(runner_id)
+        size = floor2(stake)
+        # The same bet sent twice within a minute is refused by Betfair.
+        ref = hashlib.sha1(f"{runner_id}:{size}:{int(time.time() // 60)}".encode()).hexdigest()[:32]
+        data = self._call("betting", "placeOrders", {
+            "marketId": market_id, "customerRef": ref,
+            "instructions": [{"selectionId": int(selection), "handicap": 0, "side": "BACK",
+                              "orderType": "LIMIT",
+                              "limitOrder": {"size": size, "price": bf_tick(odds),
+                                             "persistenceType": "LAPSE"}}]})
+        report = (data.get("instructionReports") or [{}])[0]
+        if data.get("status") != "SUCCESS" or report.get("status") != "SUCCESS" \
+                or not report.get("betId"):
+            return {"status": "failed",
+                    "error": report.get("errorCode") or data.get("errorCode") or data.get("status")}
+        matched = float(report.get("sizeMatched", 0) or 0)
+        return {"id": f"{market_id}|{report['betId']}", "stake": size,
+                "remaining": max(0.0, round(size - matched, 2)),
+                "status": "matched" if matched + 0.005 >= size else "open",
+                "matched-bets": ([{"decimal-odds": report.get("averagePriceMatched"),
+                                   "stake": matched}] if matched > 0 else [])}
+
+    def _cleared(self, status, **flt):
+        body = dict({"betStatus": status}, **flt)
+        return self._call("betting", "listClearedOrders", body).get("clearedOrders", []) or []
+
+    def get_offer(self, offer_id):
+        market_id, bet_id = self._split(offer_id)
+        current = self._call("betting", "listCurrentOrders",
+                             {"betIds": [bet_id]}).get("currentOrders", []) or []
+        if current:
+            o = current[0]
+            size = float((o.get("priceSize") or {}).get("size", 0) or 0)
+            matched = float(o.get("sizeMatched", 0) or 0)
+            left = float(o.get("sizeRemaining", 0) or 0)
+            if left > 0.004:
+                status = "open"
+            elif matched + 0.005 >= size:
+                status = "matched"
+            else:
+                status = "cancelled"       # the rest lapsed or was cancelled
+            return {"id": offer_id, "stake": size, "status": status,
+                    "remaining": max(0.0, round(size - matched, 2)),
+                    "matched-bets": ([{"decimal-odds": o.get("averagePriceMatched"),
+                                       "stake": matched}] if matched > 0 else [])}
+        # Not a live order any more: it has been settled, voided, lapsed or cancelled.
+        for status in ("SETTLED", "VOIDED"):
+            rows = self._cleared(status, betIds=[bet_id])
+            if rows:
+                size = sum(float(r.get("sizeSettled", 0) or 0) for r in rows)
+                offer = {"id": offer_id, "status": "matched", "remaining": 0}
+                if size > 0:
+                    offer["stake"] = size
+                    offer["matched-bets"] = [{"decimal-odds": rows[0].get("priceMatched"),
+                                              "stake": size}]
+                return offer
+        for status in ("LAPSED", "CANCELLED"):
+            if self._cleared(status, betIds=[bet_id]):
+                return {"id": offer_id, "status": "cancelled", "all_unmatched": True}
+        raise ExchangeError(f"bet {bet_id} is not listed by Betfair yet")
+
+    def cancel_offer(self, offer_id):
+        market_id, bet_id = self._split(offer_id)
+        data = self._call("betting", "cancelOrders",
+                          {"marketId": market_id, "instructions": [{"betId": bet_id}]})
+        return data
+
+    def settled_bet(self, offer_id, after=None):
+        """(result, net profit, stake) once Betfair has settled the bet, else None."""
+        market_id, bet_id = self._split(offer_id)
+        rows = self._cleared("SETTLED", betIds=[bet_id])
+        if rows:
+            profit = sum(float(r.get("profit", 0) or 0) for r in rows)
+            stake = sum(float(r.get("sizeSettled", 0) or 0) for r in rows)
+            if profit > 0:
+                # Commission is charged on the market, not on the bet.
+                by_market = self._cleared("SETTLED", marketIds=[market_id], groupBy="MARKET")
+                commission = sum(float(r.get("commission", 0) or 0) for r in by_market)
+                if commission <= 0 or commission > profit:
+                    commission = profit * self.commission_rate
+                return "WIN", profit - commission, stake
+            return ("LOSE" if profit < 0 else "PUSH"), profit, stake
+        rows = self._cleared("VOIDED", betIds=[bet_id])
+        if rows:
+            return "PUSH", 0.0, sum(float(r.get("sizeSettled", 0) or 0) for r in rows)
+        return None
+
+
 def settled_result(mb, offer_id, after):
     """Return (result, net profit, stake) for a settled offer, or None."""
+    if hasattr(mb, "settled_bet"):
+        return mb.settled_bet(offer_id, after)
     data = mb.settled(after)
     found, net, stake, labels = False, 0.0, 0.0, set()
     for market in data.get("markets", []) or []:
@@ -281,8 +613,12 @@ def settled_result(mb, offer_id, after):
 
 # ---------------------------------------------------------------- matching picks
 
+def exchange_name(mb):
+    return getattr(mb, "name", "the exchange")
+
+
 def resolve_leg(mb, leg):
-    """Find the Matchbook runner for one leg of a pick.
+    """Find the exchange runner for one leg of a pick.
     Returns (info, None) or (None, reason). It never guesses: no match or more
     than one match is a failure."""
     kickoff = parse_time(leg["kickoff"])
@@ -292,22 +628,19 @@ def resolve_leg(mb, leg):
         events = mb.events(after=kickoff - timedelta(hours=3),
                            before=kickoff + timedelta(hours=3))
         teams = [words(t) for t in split_teams(leg["event"])]
-        matched = []
-        for ev in events:
-            name = words(ev.get("name", ""))
-            if not all(covers(name, t) for t in teams):
-                continue
-            if ev.get("start") and abs(parse_time(ev["start"]) - kickoff) > timedelta(hours=3):
-                continue
-            matched.append(ev)
-        events = matched
+        in_time = [ev for ev in events if not ev.get("start")
+                   or abs(parse_time(ev["start"]) - kickoff) <= timedelta(hours=3)]
+        events = narrow(in_time, lambda ev, loose: all(
+            covers(words(ev.get("name", "")), t, loose) for t in teams))
     if not events:
-        return None, f"event not found on Matchbook: {leg.get('event')}"
+        return None, f"event not found on {exchange_name(mb)}: {leg.get('event')}"
     if len(events) > 1:
         return None, f"more than one event matches: {leg.get('event')}"
     ev = events[0]
     if ev.get("in-running-flag"):
         return None, f"{ev.get('name')} is already in play"
+    if "markets" not in ev and hasattr(mb, "load_markets"):
+        mb.load_markets(ev)      # Betfair lists an event's markets separately
 
     markets = [m for m in ev.get("markets", []) or []
                if str(m.get("status", "open")).lower() == "open"]
@@ -334,8 +667,8 @@ def resolve_leg(mb, leg):
         # Several markets share the name (Matchbook lists one "Total" per goals
         # line). Keep those that actually hold the runner asked for.
         holding = [m for m in markets
-                   if sum(runner_matches(r.get("name", ""), leg["runner"])
-                          for r in m.get("runners", []) or []) == 1]
+                   if len(narrow(m.get("runners", []) or [], lambda r, loose:
+                                 runner_matches(r.get("name", ""), leg["runner"], loose))) == 1]
         if len(holding) == 1:
             markets = holding
     if len(markets) != 1:
@@ -347,10 +680,17 @@ def resolve_leg(mb, leg):
     if leg.get("runner_id"):
         runners = [r for r in runners if str(r.get("id")) == str(leg["runner_id"])]
     else:
-        runners = [r for r in runners if runner_matches(r.get("name", ""), leg["runner"])]
+        runners = narrow(runners, lambda r, loose:
+                         runner_matches(r.get("name", ""), leg["runner"], loose))
     if len(runners) != 1:
         return None, f"{len(runners)} runners match '{leg.get('runner')}' in {ev.get('name')}"
     runner = runners[0]
+    if "prices" not in runner and hasattr(mb, "load_prices"):
+        mb.load_prices([market])  # Betfair gives prices and market status separately
+        if str(market.get("status", "open")).lower() != "open":
+            return None, f"{market.get('name')} in {ev.get('name')} is {market.get('status')}"
+        if market.get("in-play"):
+            return None, f"{ev.get('name')} is already in play"
     return {"event_id": ev.get("id"), "event": ev.get("name"),
             "market": market.get("name"), "runner_id": runner.get("id"),
             "runner": runner.get("name"), "prices": runner.get("prices", []) or []}, None
@@ -421,7 +761,7 @@ class Bot:
 
     def check_restart(self):
         """When the pot can no longer cover a stake, pause. After
-        restart_check_hours, look at the Matchbook balance: if money has been
+        restart_check_hours, look at the exchange balance: if money has been
         added, restart with it, otherwise look again after the same wait."""
         c, now = self.cfg, self.clock()
         if c["dry_run"]:
@@ -431,14 +771,15 @@ class Bot:
             if in_play <= 0 and self.state["bankroll"] + 1e-9 < c["stake_base"]:
                 self.state["bust_at"] = iso(now)
                 self.log(f"Pot is down to {self.state['bankroll']:.2f}, below the stake. "
-                         f"Will check Matchbook for new funds in {c['restart_check_hours']} hours.")
+                         f"Will check {exchange_name(self.mb)} for new funds in "
+                         f"{c['restart_check_hours']} hours.")
             return
         if (now - parse_time(self.state["bust_at"])).total_seconds() < c["restart_check_hours"] * 3600:
             return
         try:
             funds = floor2(self.mb.free_funds())
         except MatchbookError as err:
-            return self.log(f"Could not read the Matchbook balance, will retry: {err}")
+            return self.log(f"Could not read the {exchange_name(self.mb)} balance, will retry: {err}")
         if funds + 1e-9 >= c["stake_base"]:
             self.state["bankroll"] = funds
             self.state.pop("bust_at")
@@ -532,7 +873,7 @@ class Bot:
             try:
                 self.step(d)
             except MatchbookError as err:
-                self.log(f"[{d['id']}] Matchbook error, will retry: {err}")
+                self.log(f"[{d['id']}] {exchange_name(self.mb)} error, will retry: {err}")
         if self.cfg.get("inplay", {}).get("enabled"):
             inplay_tick(self)
         self.save()
@@ -610,11 +951,19 @@ class Bot:
                                f"would back {info['runner']} at {odds} for {money:.2f}"
                                + (f", double pays {d['combined_at_entry']}" if first else ""))
 
-        if self.mb.free_funds() + 1e-9 < money:
-            return self.note(d, "Matchbook balance is lower than the bet")
+        funds = floor2(self.mb.free_funds())
+        if funds + 1e-9 < money:
+            # A rolled stake can be pennies above the real balance when the
+            # commission taken differs from the bot's sum. Bet what is there.
+            if not first and funds >= money * 0.9:
+                money = funds
+                d["held"] = bet["stake"] = money
+            else:
+                return self.note(d, f"{exchange_name(self.mb)} balance is lower than the bet")
         offer = self.mb.submit_offer(info["runner_id"], odds, money)
         if str(offer.get("status", "")).lower() == "failed":
-            return self.note(d, f"Matchbook refused the bet: {json.dumps(offer)[:200]}")
+            return self.note(d, f"{exchange_name(self.mb)} refused the bet: "
+                                f"{json.dumps(offer)[:200]}")
         bet["offer_id"] = offer.get("id")
         d["bets"].append(bet)
         if first:
@@ -628,10 +977,12 @@ class Bot:
         self.apply_offer(d, offer)
 
     def apply_offer(self, d, offer):
-        """Update a bet from an offer as returned by Matchbook."""
+        """Update a bet from an offer as returned by the exchange."""
         bet = d["bets"][-1]
         stake = float(offer.get("stake", bet["stake"]) or 0)
         remaining = float(offer.get("remaining", 0) or 0)
+        if offer.get("all_unmatched"):   # cancelled or lapsed with nothing matched
+            remaining = stake
         status = str(offer.get("status", "")).lower()
         matched = max(0.0, stake - remaining)
         parts = offer.get("matched-bets") or []
@@ -669,6 +1020,12 @@ class Bot:
             return
         if not dead:
             self.mb.cancel_offer(bet["offer_id"])
+            # Read it again: part may have been matched just before the cancel.
+            status, matched, remaining = self.apply_offer(d, self.mb.get_offer(bet["offer_id"]))
+            if d["status"] == "matched" and bet.get("matched", 0) + 0.005 >= bet["stake"]:
+                return
+            d["status"] = "open"
+            remaining = max(0.0, bet["stake"] - matched)
         unmatched = floor2(remaining)
         self.state["bankroll"] = floor2(self.state["bankroll"] + unmatched)
         d["held"] = floor2(d["held"] - unmatched)
@@ -726,9 +1083,9 @@ def inplay_tick(bot):
     """In-play betting is not connected yet.
 
     The trigger rules exist and are tested in triggers.py. Still missing:
-      1. A live stats feed this bot can poll about once a minute. Matchbook
+      1. A live stats feed this bot can poll about once a minute. The exchange
          gives prices and whether a game is in play, but not shots, cards or xG.
-      2. Code here to turn each trigger into a Matchbook bet.
+      2. Code here to turn each trigger into an exchange bet.
     """
     if not bot.state.get("inplay_warned"):
         bot.state["inplay_warned"] = True
@@ -743,9 +1100,22 @@ def load_config(folder=HERE):
     if os.path.exists(path):
         with open(path) as fh:
             cfg.update(json.load(fh))
-    cfg["username"] = os.environ.get("MB_USERNAME", cfg["username"])
-    cfg["password"] = os.environ.get("MB_PASSWORD", cfg["password"])
+    cfg["exchange"] = str(cfg.get("exchange", "betfair")).lower()
+    prefix = "MB" if cfg["exchange"] == "matchbook" else "BF"
+    cfg["username"] = os.environ.get(prefix + "_USERNAME", cfg["username"])
+    cfg["password"] = os.environ.get(prefix + "_PASSWORD", cfg["password"])
+    cfg["app_key"] = os.environ.get("BF_APP_KEY", cfg.get("app_key", ""))
     return cfg
+
+
+def make_exchange(cfg):
+    if cfg["exchange"] == "matchbook":
+        return Matchbook(cfg["username"], cfg["password"])
+    if cfg["exchange"] == "betfair":
+        return Betfair(cfg["username"], cfg["password"], cfg["app_key"],
+                       cfg.get("cert_file", ""), cfg.get("key_file", ""),
+                       cfg.get("commission_rate", 0.05))
+    raise ExchangeError(f"Unknown exchange in config.json: {cfg['exchange']}")
 
 
 def cmd_find(mb, text, days=3):
@@ -756,6 +1126,9 @@ def cmd_find(mb, text, days=3):
         if not covers(words(ev.get("name", "")), wanted):
             continue
         shown += 1
+        if "markets" not in ev and hasattr(mb, "load_markets"):
+            mb.load_markets(ev, limit=25)          # the 25 most traded markets
+            mb.load_prices(ev["markets"])
         print(f"\n{ev.get('name')}   start {ev.get('start')}   event_id {ev.get('id')}")
         for m in ev.get("markets", []) or []:
             print(f"  market: {m.get('name')}   type {m.get('market-type')}   market_id {m.get('id')}")
@@ -780,7 +1153,7 @@ def main(argv):
         print(__doc__)
         return 0
     cfg = load_config()
-    mb = Matchbook(cfg["username"], cfg["password"])
+    mb = make_exchange(cfg)
     if command == "find":
         if len(argv) < 3:
             print("Usage: python3 bot.py find <team or event name>")
@@ -791,13 +1164,14 @@ def main(argv):
     if command == "status":
         cmd_status(bot)
         return 0
-    bot.log(f"Starting ({'DRY RUN, no bets placed' if cfg['dry_run'] else 'LIVE'}). "
+    bot.log(f"Starting on {exchange_name(mb)} "
+            f"({'DRY RUN, no bets placed' if cfg['dry_run'] else 'LIVE'}). "
             f"Pot {bot.state['bankroll']:.2f}")
     while True:
         try:
             bot.tick()
-        except MatchbookError as err:
-            bot.log(f"Matchbook error: {err}")
+        except ExchangeError as err:
+            bot.log(f"{exchange_name(mb)} error: {err}")
         if command == "once":
             return 0
         time.sleep(cfg["poll_seconds"])
@@ -806,8 +1180,8 @@ def main(argv):
 if __name__ == "__main__":
     try:
         sys.exit(main(sys.argv))
-    except MatchbookError as err:
-        print(f"Matchbook error: {err}")
+    except ExchangeError as err:
+        print(f"Exchange error: {err}")
         sys.exit(1)
     except KeyboardInterrupt:
         print("\nStopped.")

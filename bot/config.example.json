@@ -1,4 +1,6 @@
 {
+  "exchange": "betfair",
+  "app_key": "",
   "dry_run": false,
   "bankroll_start": 30.0,
   "stake_base": 10.0,
@@ -18,5 +20,6 @@
   "poll_seconds": 120,
   "inplay": {
     "enabled": false
-  }
+  },
+  "commission_rate": 0.05
 }

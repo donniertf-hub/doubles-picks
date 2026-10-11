@@ -7,3 +7,6 @@ ledger.csv
 bot.log
 STOP
 __pycache__/
+*.crt
+*.key
+*.pem
