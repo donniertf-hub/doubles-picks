@@ -825,6 +825,262 @@
       "in_picks": true,
       "result": null,
       "note": "pre-written 12 Oct from FootyStats league tables; no goals-market price found, bot checks min_odds against Betfair"
+    },
+    {
+      "date": "2026-10-13",
+      "track": "confidence",
+      "confidence": 66,
+      "gap": null,
+      "league": "Champions League",
+      "league_goals": null,
+      "played": [
+        6,
+        8
+      ],
+      "scored": [
+        1.83,
+        2.5
+      ],
+      "conceded": [
+        1.67,
+        1.12
+      ],
+      "over25": [
+        83,
+        75
+      ],
+      "event": "Lens vs Sporting",
+      "market": "Both Teams To Score",
+      "runner": "Yes",
+      "kickoff": "2026-10-13T16:45:00Z",
+      "odds": null,
+      "in_picks": true,
+      "result": null,
+      "note": "pre-written 12 Oct from FootyStats league tables; no goals-market price found, bot checks min_odds on Betfair"
+    },
+    {
+      "date": "2026-10-13",
+      "track": "confidence",
+      "confidence": 78,
+      "gap": null,
+      "league": "Champions League",
+      "league_goals": null,
+      "played": [
+        22,
+        5
+      ],
+      "scored": [
+        2.55,
+        3.2
+      ],
+      "conceded": [
+        0.91,
+        0.8
+      ],
+      "over25": [
+        73,
+        80
+      ],
+      "event": "Viking vs Bayern Munich",
+      "market": "Over/Under 2.5 Goals",
+      "runner": "Over 2.5",
+      "kickoff": "2026-10-13T19:00:00Z",
+      "odds": null,
+      "in_picks": true,
+      "result": null,
+      "note": "pre-written 12 Oct from FootyStats league tables; no goals-market price found, bot checks min_odds on Betfair"
+    },
+    {
+      "date": "2026-10-13",
+      "track": "confidence",
+      "confidence": 78,
+      "gap": null,
+      "league": "Champions League",
+      "league_goals": null,
+      "played": [
+        7,
+        8
+      ],
+      "scored": [
+        2.29,
+        4.25
+      ],
+      "conceded": [
+        1.57,
+        0.88
+      ],
+      "over25": [
+        86,
+        88
+      ],
+      "event": "Galatasaray vs Barcelona",
+      "market": "Over/Under 2.5 Goals",
+      "runner": "Over 2.5",
+      "kickoff": "2026-10-13T19:00:00Z",
+      "odds": null,
+      "in_picks": true,
+      "result": null,
+      "note": "pre-written 12 Oct from FootyStats league tables; no goals-market price found, bot checks min_odds on Betfair"
+    },
+    {
+      "date": "2026-10-14",
+      "track": "confidence",
+      "confidence": 68,
+      "gap": null,
+      "league": "Champions League",
+      "league_goals": null,
+      "played": [
+        8,
+        6
+      ],
+      "scored": [
+        3.38,
+        1.5
+      ],
+      "conceded": [
+        0.88,
+        1.0
+      ],
+      "over25": [
+        75,
+        50
+      ],
+      "event": "Feyenoord vs Como",
+      "market": "Over/Under 2.5 Goals",
+      "runner": "Over 2.5",
+      "kickoff": "2026-10-14T16:45:00Z",
+      "odds": null,
+      "in_picks": true,
+      "result": null,
+      "note": "pre-written 12 Oct from FootyStats league tables; no goals-market price found, bot checks min_odds on Betfair"
+    },
+    {
+      "date": "2026-10-14",
+      "track": "confidence",
+      "confidence": 70,
+      "gap": null,
+      "league": "Champions League",
+      "league_goals": null,
+      "played": [
+        6,
+        6
+      ],
+      "scored": [
+        2.67,
+        1.83
+      ],
+      "conceded": [
+        0.83,
+        1.33
+      ],
+      "over25": [
+        67,
+        83
+      ],
+      "event": "Manchester City vs Paris",
+      "market": "Over/Under 2.5 Goals",
+      "runner": "Over 2.5",
+      "kickoff": "2026-10-14T19:00:00Z",
+      "odds": null,
+      "in_picks": true,
+      "result": null,
+      "note": "pre-written 12 Oct from FootyStats league tables; no goals-market price found, bot checks min_odds on Betfair"
+    },
+    {
+      "date": "2026-10-14",
+      "track": "confidence",
+      "confidence": 66,
+      "gap": null,
+      "league": "Champions League",
+      "league_goals": null,
+      "played": [
+        22,
+        5
+      ],
+      "scored": [
+        2.55,
+        2.2
+      ],
+      "conceded": [
+        0.91,
+        0.8
+      ],
+      "over25": [
+        77,
+        60
+      ],
+      "event": "Bodo Glimt vs Dortmund",
+      "market": "Over/Under 2.5 Goals",
+      "runner": "Over 2.5",
+      "kickoff": "2026-10-14T19:00:00Z",
+      "odds": null,
+      "in_picks": true,
+      "result": null,
+      "note": "pre-written 12 Oct from FootyStats league tables; no goals-market price found, bot checks min_odds on Betfair"
+    },
+    {
+      "date": "2026-10-15",
+      "track": "confidence",
+      "confidence": 68,
+      "gap": null,
+      "league": "Europa League",
+      "league_goals": null,
+      "played": [
+        9,
+        5
+      ],
+      "scored": [
+        2.33,
+        2.8
+      ],
+      "conceded": [
+        0.89,
+        1.6
+      ],
+      "over25": [
+        78,
+        80
+      ],
+      "event": "Lech Poznan vs Leverkusen",
+      "market": "Over/Under 2.5 Goals",
+      "runner": "Over 2.5",
+      "kickoff": "2026-10-15T16:45:00Z",
+      "odds": null,
+      "in_picks": true,
+      "result": null,
+      "note": "pre-written 12 Oct from FootyStats league tables; no goals-market price found, bot checks min_odds on Betfair"
+    },
+    {
+      "date": "2026-10-15",
+      "track": "confidence",
+      "confidence": 72,
+      "gap": null,
+      "league": "Europa League",
+      "league_goals": null,
+      "played": [
+        5,
+        7
+      ],
+      "scored": [
+        1.8,
+        2.29
+      ],
+      "conceded": [
+        2.6,
+        1.14
+      ],
+      "over25": [
+        100,
+        71
+      ],
+      "event": "Hoffenheim vs Besiktas",
+      "market": "Over/Under 2.5 Goals",
+      "runner": "Over 2.5",
+      "kickoff": "2026-10-15T19:00:00Z",
+      "odds": null,
+      "in_picks": true,
+      "result": null,
+      "note": "pre-written 12 Oct from FootyStats league tables; no goals-market price found, bot checks min_odds on Betfair"
     }
   ]
 }

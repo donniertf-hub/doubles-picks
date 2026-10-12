@@ -1,5 +1,5 @@
 {
-  "generated": "2026-10-12T17:44:23Z",
+  "generated": "2026-10-12T20:14:37Z",
   "doubles": [
     {
       "id": "2026-10-12-a",
@@ -156,6 +156,141 @@
           "kickoff": "2026-10-17T19:00:00Z",
           "confidence": 72,
           "min_odds": 1.45,
+          "track": "confidence"
+        }
+      ]
+    },
+    {
+      "id": "2026-10-13-a",
+      "legs": [
+        {
+          "sport": "football",
+          "event": "Lens vs Sporting",
+          "market": "Both Teams To Score",
+          "runner": "Yes",
+          "kickoff": "2026-10-13T16:45:00Z",
+          "confidence": 66,
+          "min_odds": 1.59,
+          "track": "confidence"
+        },
+        {
+          "sport": "football",
+          "event": "Viking vs Bayern Munich",
+          "market": [
+            "Over/Under 2.5 Goals",
+            "Over/Under 2.5",
+            "Total Goals",
+            "Total"
+          ],
+          "runner": "Over 2.5",
+          "kickoff": "2026-10-13T19:00:00Z",
+          "confidence": 78,
+          "min_odds": 1.34,
+          "track": "confidence"
+        }
+      ]
+    },
+    {
+      "id": "2026-10-13-b",
+      "legs": [
+        {
+          "sport": "football",
+          "event": "Galatasaray vs Barcelona",
+          "market": [
+            "Over/Under 2.5 Goals",
+            "Over/Under 2.5",
+            "Total Goals",
+            "Total"
+          ],
+          "runner": "Over 2.5",
+          "kickoff": "2026-10-13T19:00:00Z",
+          "confidence": 78,
+          "min_odds": 1.34,
+          "track": "confidence"
+        },
+        {
+          "sport": "football",
+          "event": "Feyenoord vs Como",
+          "market": [
+            "Over/Under 2.5 Goals",
+            "Over/Under 2.5",
+            "Total Goals",
+            "Total"
+          ],
+          "runner": "Over 2.5",
+          "kickoff": "2026-10-14T16:45:00Z",
+          "confidence": 68,
+          "min_odds": 1.54,
+          "track": "confidence"
+        }
+      ]
+    },
+    {
+      "id": "2026-10-14-a",
+      "legs": [
+        {
+          "sport": "football",
+          "event": "Manchester City vs Paris",
+          "market": [
+            "Over/Under 2.5 Goals",
+            "Over/Under 2.5",
+            "Total Goals",
+            "Total"
+          ],
+          "runner": "Over 2.5",
+          "kickoff": "2026-10-14T19:00:00Z",
+          "confidence": 70,
+          "min_odds": 1.5,
+          "track": "confidence"
+        },
+        {
+          "sport": "football",
+          "event": "Hoffenheim vs Besiktas",
+          "market": [
+            "Over/Under 2.5 Goals",
+            "Over/Under 2.5",
+            "Total Goals",
+            "Total"
+          ],
+          "runner": "Over 2.5",
+          "kickoff": "2026-10-15T19:00:00Z",
+          "confidence": 72,
+          "min_odds": 1.45,
+          "track": "confidence"
+        }
+      ]
+    },
+    {
+      "id": "2026-10-14-b",
+      "legs": [
+        {
+          "sport": "football",
+          "event": "Bodo Glimt vs Dortmund",
+          "market": [
+            "Over/Under 2.5 Goals",
+            "Over/Under 2.5",
+            "Total Goals",
+            "Total"
+          ],
+          "runner": "Over 2.5",
+          "kickoff": "2026-10-14T19:00:00Z",
+          "confidence": 66,
+          "min_odds": 1.59,
+          "track": "confidence"
+        },
+        {
+          "sport": "football",
+          "event": "Lech Poznan vs Leverkusen",
+          "market": [
+            "Over/Under 2.5 Goals",
+            "Over/Under 2.5",
+            "Total Goals",
+            "Total"
+          ],
+          "runner": "Over 2.5",
+          "kickoff": "2026-10-15T16:45:00Z",
+          "confidence": 68,
+          "min_odds": 1.54,
           "track": "confidence"
         }
       ]
