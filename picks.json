@@ -1,5 +1,5 @@
 {
-  "generated": "2026-10-12T08:17:45Z",
+  "generated": "2026-10-12T16:19:31Z",
   "doubles": [
     {
       "id": "2026-10-12-a",
@@ -34,6 +34,38 @@
           "confidence": 57,
           "odds_seen": 1.9,
           "min_odds": 1.86,
+          "track": "confidence"
+        }
+      ]
+    },
+    {
+      "id": "2026-10-12-b",
+      "legs": [
+        {
+          "sport": "football",
+          "event": "Pyramids vs Ceramica",
+          "market": [
+            "Over/Under 2.5 Goals",
+            "Over/Under 2.5",
+            "Total Goals",
+            "Total"
+          ],
+          "runner": "Under 2.5",
+          "kickoff": "2026-10-12T17:00:00Z",
+          "confidence": 57,
+          "odds_seen": 1.9,
+          "min_odds": 1.86,
+          "track": "confidence"
+        },
+        {
+          "sport": "football",
+          "event": "Arsenal vs Lille",
+          "market": "Match Odds",
+          "runner": "Arsenal",
+          "kickoff": "2026-10-13T19:00:00Z",
+          "confidence": 84,
+          "odds_seen": 1.22,
+          "min_odds": 1.24,
           "track": "confidence"
         }
       ]

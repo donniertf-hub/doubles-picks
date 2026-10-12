@@ -618,6 +618,21 @@
       "odds": 2.25,
       "in_picks": false,
       "result": null
+    },
+    {
+      "date": "2026-10-12",
+      "track": "confidence",
+      "confidence": 84,
+      "gap": 2.2,
+      "league": "UEFA Champions League",
+      "event": "Arsenal vs Lille",
+      "market": "Match Odds",
+      "runner": "Arsenal",
+      "kickoff": "2026-10-13T19:00:00Z",
+      "odds": 1.22,
+      "in_picks": true,
+      "result": null,
+      "note": "added by hand at 17:20 as leg 2 after Burgos lost; gap vs bookmaker price is under 3, bot min_odds 1.24 enforces the value rule"
     }
   ]
 }
