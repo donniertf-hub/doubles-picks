@@ -27,7 +27,7 @@
       "kickoff": "2026-10-11T16:00:00Z",
       "odds": 1.65,
       "in_picks": false,
-      "result": null,
+      "result": "won",
       "note": "paper double A leg 2"
     },
     {
@@ -41,7 +41,7 @@
       "kickoff": "2026-10-11T15:15:00Z",
       "odds": 1.47,
       "in_picks": false,
-      "result": null,
+      "result": "won",
       "note": "paper double B leg 1"
     },
     {
@@ -55,7 +55,7 @@
       "kickoff": "2026-10-11T18:45:00Z",
       "odds": 1.82,
       "in_picks": true,
-      "result": null,
+      "result": "won",
       "note": "paper double B leg 2; now in picks.json double"
     },
     {
@@ -69,7 +69,7 @@
       "kickoff": "2026-10-11T13:00:00Z",
       "odds": 1.65,
       "in_picks": false,
-      "result": null,
+      "result": "won",
       "note": "paper double A leg 1"
     },
     {
@@ -83,7 +83,7 @@
       "kickoff": "2026-10-11T16:30:00Z",
       "odds": 1.53,
       "in_picks": true,
-      "result": null,
+      "result": "won",
       "note": "paper double C leg 1; now in picks.json double"
     },
     {
@@ -97,7 +97,7 @@
       "kickoff": "2026-10-11T20:25:00Z",
       "odds": 1.42,
       "in_picks": true,
-      "result": null,
+      "result": "won",
       "note": "paper double C leg 2; now in picks.json double"
     },
     {
@@ -127,7 +127,7 @@
       "kickoff": "2026-10-11T13:00:00Z",
       "odds": null,
       "in_picks": false,
-      "result": null,
+      "result": "won",
       "note": "qualified, but found after kick-off so not in a double and no price recorded"
     },
     {
@@ -142,7 +142,7 @@
       "kickoff": "2026-10-11T14:30:00Z",
       "odds": 1.3,
       "in_picks": false,
-      "result": null
+      "result": "lost"
     },
     {
       "date": "2026-10-11",
@@ -156,7 +156,7 @@
       "kickoff": "2026-10-11T14:45:00Z",
       "odds": 1.5,
       "in_picks": false,
-      "result": null
+      "result": "won"
     },
     {
       "date": "2026-10-11",
@@ -170,7 +170,7 @@
       "kickoff": "2026-10-11T14:45:00Z",
       "odds": 1.45,
       "in_picks": false,
-      "result": null
+      "result": "won"
     },
     {
       "date": "2026-10-11",
@@ -184,7 +184,7 @@
       "kickoff": "2026-10-11T14:45:00Z",
       "odds": 1.55,
       "in_picks": false,
-      "result": null
+      "result": "won"
     },
     {
       "date": "2026-10-11",
@@ -198,7 +198,7 @@
       "kickoff": "2026-10-11T16:30:00Z",
       "odds": null,
       "in_picks": false,
-      "result": null
+      "result": "won"
     },
     {
       "date": "2026-10-11",
@@ -212,7 +212,7 @@
       "kickoff": "2026-10-11T17:00:00Z",
       "odds": null,
       "in_picks": false,
-      "result": null
+      "result": "lost"
     },
     {
       "date": "2026-10-11",
@@ -226,7 +226,7 @@
       "kickoff": "2026-10-11T17:00:00Z",
       "odds": null,
       "in_picks": false,
-      "result": null
+      "result": "won"
     },
     {
       "date": "2026-10-11",
@@ -240,7 +240,7 @@
       "kickoff": "2026-10-11T17:30:00Z",
       "odds": 1.78,
       "in_picks": true,
-      "result": null
+      "result": "won"
     },
     {
       "date": "2026-10-11",
@@ -254,7 +254,7 @@
       "kickoff": "2026-10-11T18:15:00Z",
       "odds": 1.55,
       "in_picks": false,
-      "result": null
+      "result": "lost"
     },
     {
       "date": "2026-10-11",
@@ -293,7 +293,7 @@
       "kickoff": "2026-10-11T15:30:00Z",
       "odds": 1.67,
       "in_picks": true,
-      "result": null,
+      "result": "won",
       "note": "added at Don's request before kick-off; qualifies on his reading of the rule (total goals in each team's games), not on goals scored per team"
     },
     {
@@ -307,8 +307,317 @@
       "kickoff": "2026-10-11T15:30:00Z",
       "odds": 1.53,
       "in_picks": true,
-      "result": null,
+      "result": "lost",
       "note": "added at Don's request before kick-off; qualifies on his reading of the rule (total goals in each team's games), not on goals scored per team"
+    },
+    {
+      "date": "2026-10-12",
+      "track": "rules",
+      "rule": "btts",
+      "confidence": 66,
+      "gap": -3.4,
+      "league": "Poland Ekstraklasa",
+      "league_goals": 2.99,
+      "played": [
+        9,
+        9
+      ],
+      "scored": [
+        2.22,
+        1.56
+      ],
+      "conceded": [
+        1.56,
+        1.89
+      ],
+      "over25": [
+        89,
+        67
+      ],
+      "event": "GKS Katowice vs Wieczysta Krakow",
+      "market": "Both Teams To Score",
+      "runner": "Yes",
+      "kickoff": "2026-10-12T18:30:00Z",
+      "odds": 1.44,
+      "in_picks": false,
+      "result": null
+    },
+    {
+      "date": "2026-10-12",
+      "track": "rules",
+      "rule": "btts",
+      "confidence": 58,
+      "gap": -3.7,
+      "league": "Ireland Premier Division",
+      "league_goals": 2.8,
+      "played": [
+        32,
+        32
+      ],
+      "scored": [
+        1.62,
+        1.78
+      ],
+      "conceded": [
+        1.0,
+        1.19
+      ],
+      "over25": [
+        47,
+        63
+      ],
+      "event": "Shamrock Rovers vs Bohemians",
+      "market": "Both Teams To Score",
+      "runner": "Yes",
+      "kickoff": "2026-10-12T19:00:00Z",
+      "odds": 1.62,
+      "in_picks": false,
+      "result": null
+    },
+    {
+      "date": "2026-10-12",
+      "track": "rules",
+      "rule": "btts",
+      "confidence": 42,
+      "gap": -10.4,
+      "league": "Egypt Premier League",
+      "league_goals": 2.06,
+      "played": [
+        5,
+        5
+      ],
+      "scored": [
+        1.8,
+        2.0
+      ],
+      "conceded": [
+        0.2,
+        0.6
+      ],
+      "over25": [
+        40,
+        40
+      ],
+      "event": "Pyramids vs Ceramica Cleopatra",
+      "market": "Both Teams To Score",
+      "runner": "Yes",
+      "kickoff": "2026-10-12T17:00:00Z",
+      "odds": 1.91,
+      "in_picks": false,
+      "result": null
+    },
+    {
+      "date": "2026-10-12",
+      "track": "rules",
+      "rule": "btts",
+      "confidence": 57,
+      "gap": -7.5,
+      "league": "Canada Premier League",
+      "league_goals": 3.11,
+      "played": [
+        25,
+        25
+      ],
+      "scored": [
+        1.52,
+        2.04
+      ],
+      "conceded": [
+        1.68,
+        0.76
+      ],
+      "over25": [
+        56,
+        52
+      ],
+      "event": "HFX Wanderers vs Cavalry",
+      "market": "Both Teams To Score",
+      "runner": "Yes",
+      "kickoff": "2026-10-12T20:00:00Z",
+      "odds": 1.55,
+      "in_picks": false,
+      "result": null
+    },
+    {
+      "date": "2026-10-12",
+      "track": "confidence",
+      "confidence": 85,
+      "gap": -8.5,
+      "league": "Brazil Serie B",
+      "played": [
+        32,
+        32
+      ],
+      "scored": [
+        1.69,
+        0.53
+      ],
+      "conceded": [
+        0.84,
+        2.13
+      ],
+      "event": "Novorizontino vs Ponte Preta",
+      "market": "Match Odds",
+      "runner": "Novorizontino",
+      "kickoff": "2026-10-12T22:00:00Z",
+      "odds": 1.07,
+      "in_picks": false,
+      "result": null
+    },
+    {
+      "date": "2026-10-12",
+      "track": "confidence",
+      "confidence": 78,
+      "gap": -4.6,
+      "league": "Greece Super League",
+      "league_goals": 2.54,
+      "played": [
+        5,
+        5
+      ],
+      "scored": [
+        2.4,
+        1.2
+      ],
+      "conceded": [
+        1.0,
+        1.6
+      ],
+      "over25": [
+        80,
+        40
+      ],
+      "event": "PAOK vs Kalamata",
+      "market": "Match Odds",
+      "runner": "PAOK",
+      "kickoff": "2026-10-12T15:00:00Z",
+      "odds": 1.21,
+      "in_picks": false,
+      "result": null
+    },
+    {
+      "date": "2026-10-12",
+      "track": "confidence",
+      "confidence": 70,
+      "gap": 2.0,
+      "league": "Poland Ekstraklasa",
+      "league_goals": 2.99,
+      "played": [
+        9,
+        9
+      ],
+      "scored": [
+        2.22,
+        1.56
+      ],
+      "conceded": [
+        1.56,
+        1.89
+      ],
+      "over25": [
+        89,
+        67
+      ],
+      "event": "GKS Katowice vs Wieczysta Krakow",
+      "market": "Over/Under 2.5 Goals",
+      "runner": "Over 2.5",
+      "kickoff": "2026-10-12T18:30:00Z",
+      "odds": 1.47,
+      "in_picks": false,
+      "result": null
+    },
+    {
+      "date": "2026-10-12",
+      "track": "confidence",
+      "confidence": 57,
+      "gap": 4.4,
+      "league": "Egypt Premier League",
+      "league_goals": 2.06,
+      "played": [
+        5,
+        5
+      ],
+      "scored": [
+        1.8,
+        2.0
+      ],
+      "conceded": [
+        0.2,
+        0.6
+      ],
+      "over25": [
+        40,
+        40
+      ],
+      "event": "Pyramids vs Ceramica Cleopatra",
+      "market": "Over/Under 2.5 Goals",
+      "runner": "Under 2.5",
+      "kickoff": "2026-10-12T17:00:00Z",
+      "odds": 1.9,
+      "in_picks": true,
+      "result": null
+    },
+    {
+      "date": "2026-10-12",
+      "track": "confidence",
+      "confidence": 55,
+      "gap": 8.5,
+      "league": "Spain Segunda Division",
+      "league_goals": 2.63,
+      "played": [
+        8,
+        8
+      ],
+      "scored": [
+        1.5,
+        1.62
+      ],
+      "conceded": [
+        1.12,
+        1.62
+      ],
+      "over25": [
+        63,
+        63
+      ],
+      "event": "Burgos vs Granada",
+      "market": "Over/Under 2.5 Goals",
+      "runner": "Over 2.5",
+      "kickoff": "2026-10-12T14:15:00Z",
+      "odds": 2.15,
+      "in_picks": true,
+      "result": null
+    },
+    {
+      "date": "2026-10-12",
+      "track": "confidence",
+      "confidence": 49,
+      "gap": 4.6,
+      "league": "England Premier League",
+      "league_goals": 2.92,
+      "played": [
+        5,
+        5
+      ],
+      "scored": [
+        0.2,
+        1.8
+      ],
+      "conceded": [
+        2.0,
+        1.8
+      ],
+      "over25": [
+        40,
+        80
+      ],
+      "event": "Coventry vs Newcastle",
+      "market": "Match Odds",
+      "runner": "Newcastle",
+      "kickoff": "2026-10-12T19:00:00Z",
+      "odds": 2.25,
+      "in_picks": false,
+      "result": null
     }
   ]
 }
