@@ -633,6 +633,198 @@
       "in_picks": true,
       "result": null,
       "note": "added by hand at 17:20 as leg 2 after Burgos lost; gap vs bookmaker price is under 3, bot min_odds 1.24 enforces the value rule"
+    },
+    {
+      "date": "2026-10-16",
+      "track": "confidence",
+      "confidence": 68,
+      "gap": null,
+      "league": "Germany 2. Bundesliga",
+      "league_goals": 3.22,
+      "played": [
+        7,
+        7
+      ],
+      "scored": [
+        2.14,
+        2.86
+      ],
+      "conceded": [
+        2.29,
+        1.43
+      ],
+      "over25": [
+        86,
+        86
+      ],
+      "event": "Energie Cottbus vs Nurnberg",
+      "market": "Over/Under 2.5 Goals",
+      "runner": "Over 2.5",
+      "kickoff": "2026-10-16T16:30:00Z",
+      "odds": null,
+      "in_picks": true,
+      "result": null,
+      "note": "pre-written 12 Oct from FootyStats league tables; no goals-market price found, bot checks min_odds against Betfair"
+    },
+    {
+      "date": "2026-10-16",
+      "track": "confidence",
+      "confidence": 62,
+      "gap": null,
+      "league": "England Championship",
+      "league_goals": 2.83,
+      "played": [
+        9,
+        8
+      ],
+      "scored": [
+        1.44,
+        1.88
+      ],
+      "conceded": [
+        1.89,
+        1.38
+      ],
+      "over25": [
+        67,
+        63
+      ],
+      "event": "Burnley vs Wolverhampton",
+      "market": "Both Teams To Score",
+      "runner": "Yes",
+      "kickoff": "2026-10-16T19:00:00Z",
+      "odds": null,
+      "in_picks": true,
+      "result": null,
+      "note": "pre-written 12 Oct from FootyStats league tables; no goals-market price found, bot checks min_odds against Betfair"
+    },
+    {
+      "date": "2026-10-16",
+      "track": "confidence",
+      "confidence": 66,
+      "gap": null,
+      "league": "Germany Bundesliga",
+      "league_goals": 3.82,
+      "played": [
+        5,
+        5
+      ],
+      "scored": [
+        1.8,
+        1.6
+      ],
+      "conceded": [
+        3.2,
+        2.0
+      ],
+      "over25": [
+        100,
+        80
+      ],
+      "event": "Eintracht Frankfurt vs Koln",
+      "market": "Over/Under 2.5 Goals",
+      "runner": "Over 2.5",
+      "kickoff": "2026-10-16T18:30:00Z",
+      "odds": null,
+      "in_picks": true,
+      "result": null,
+      "note": "pre-written 12 Oct from FootyStats league tables; no goals-market price found, bot checks min_odds against Betfair"
+    },
+    {
+      "date": "2026-10-17",
+      "track": "confidence",
+      "confidence": 63,
+      "gap": null,
+      "league": "Germany Bundesliga",
+      "league_goals": 3.82,
+      "played": [
+        5,
+        5
+      ],
+      "scored": [
+        1.6,
+        2.6
+      ],
+      "conceded": [
+        1.6,
+        1.6
+      ],
+      "over25": [
+        60,
+        100
+      ],
+      "event": "Elversberg vs Augsburg",
+      "market": "Both Teams To Score",
+      "runner": "Yes",
+      "kickoff": "2026-10-17T13:30:00Z",
+      "odds": null,
+      "in_picks": true,
+      "result": null,
+      "note": "pre-written 12 Oct from FootyStats league tables; no goals-market price found, bot checks min_odds against Betfair"
+    },
+    {
+      "date": "2026-10-17",
+      "track": "confidence",
+      "confidence": 62,
+      "gap": null,
+      "league": "Germany 2. Bundesliga",
+      "league_goals": 3.22,
+      "played": [
+        7,
+        7
+      ],
+      "scored": [
+        2.71,
+        2.0
+      ],
+      "conceded": [
+        1.71,
+        1.71
+      ],
+      "over25": [
+        57,
+        57
+      ],
+      "event": "Wolfsburg vs Heidenheim",
+      "market": "Both Teams To Score",
+      "runner": "Yes",
+      "kickoff": "2026-10-17T11:00:00Z",
+      "odds": null,
+      "in_picks": true,
+      "result": null,
+      "note": "pre-written 12 Oct from FootyStats league tables; no goals-market price found, bot checks min_odds against Betfair"
+    },
+    {
+      "date": "2026-10-17",
+      "track": "confidence",
+      "confidence": 72,
+      "gap": null,
+      "league": "Netherlands Eredivisie",
+      "league_goals": 3.74,
+      "played": [
+        8,
+        8
+      ],
+      "scored": [
+        1.62,
+        0.88
+      ],
+      "conceded": [
+        2.5,
+        2.88
+      ],
+      "over25": [
+        88,
+        75
+      ],
+      "event": "Sparta Rotterdam vs Willem II",
+      "market": "Over/Under 2.5 Goals",
+      "runner": "Over 2.5",
+      "kickoff": "2026-10-17T19:00:00Z",
+      "odds": null,
+      "in_picks": true,
+      "result": null,
+      "note": "pre-written 12 Oct from FootyStats league tables; no goals-market price found, bot checks min_odds against Betfair"
     }
   ]
 }

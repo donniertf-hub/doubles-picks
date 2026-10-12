@@ -1,5 +1,5 @@
 {
-  "generated": "2026-10-12T16:19:31Z",
+  "generated": "2026-10-12T17:44:23Z",
   "doubles": [
     {
       "id": "2026-10-12-a",
@@ -66,6 +66,96 @@
           "confidence": 84,
           "odds_seen": 1.22,
           "min_odds": 1.24,
+          "track": "confidence"
+        }
+      ]
+    },
+    {
+      "id": "2026-10-16-a",
+      "legs": [
+        {
+          "sport": "football",
+          "event": "Cottbus vs Nurnberg",
+          "market": [
+            "Over/Under 2.5 Goals",
+            "Over/Under 2.5",
+            "Total Goals",
+            "Total"
+          ],
+          "runner": "Over 2.5",
+          "kickoff": "2026-10-16T16:30:00Z",
+          "confidence": 68,
+          "min_odds": 1.54,
+          "track": "confidence"
+        },
+        {
+          "sport": "football",
+          "event": "Burnley vs Wolves",
+          "market": "Both Teams To Score",
+          "runner": "Yes",
+          "kickoff": "2026-10-16T19:00:00Z",
+          "confidence": 62,
+          "min_odds": 1.7,
+          "track": "confidence"
+        }
+      ]
+    },
+    {
+      "id": "2026-10-16-b",
+      "legs": [
+        {
+          "sport": "football",
+          "event": "Frankfurt vs Koln",
+          "market": [
+            "Over/Under 2.5 Goals",
+            "Over/Under 2.5",
+            "Total Goals",
+            "Total"
+          ],
+          "runner": "Over 2.5",
+          "kickoff": "2026-10-16T18:30:00Z",
+          "confidence": 66,
+          "min_odds": 1.59,
+          "track": "confidence"
+        },
+        {
+          "sport": "football",
+          "event": "Elversberg vs Augsburg",
+          "market": "Both Teams To Score",
+          "runner": "Yes",
+          "kickoff": "2026-10-17T13:30:00Z",
+          "confidence": 63,
+          "min_odds": 1.67,
+          "track": "confidence"
+        }
+      ]
+    },
+    {
+      "id": "2026-10-17-a",
+      "legs": [
+        {
+          "sport": "football",
+          "event": "Wolfsburg vs Heidenheim",
+          "market": "Both Teams To Score",
+          "runner": "Yes",
+          "kickoff": "2026-10-17T11:00:00Z",
+          "confidence": 62,
+          "min_odds": 1.7,
+          "track": "confidence"
+        },
+        {
+          "sport": "football",
+          "event": "Sparta vs Willem",
+          "market": [
+            "Over/Under 2.5 Goals",
+            "Over/Under 2.5",
+            "Total Goals",
+            "Total"
+          ],
+          "runner": "Over 2.5",
+          "kickoff": "2026-10-17T19:00:00Z",
+          "confidence": 72,
+          "min_odds": 1.45,
           "track": "confidence"
         }
       ]
