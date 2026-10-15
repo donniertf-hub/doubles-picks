@@ -1,0 +1,8 @@
+{
+  "note": "Tracked (paper) pot from Fri 16 Oct 2026. Assumes the bot placed every double in picks.json at its own rules; prices are odds_seen or min_odds, 5% commission. The bot's real figures: python3 bot.py status.",
+  "start_date": "2026-10-16",
+  "starting_pot": 50.0,
+  "pot": 50.0,
+  "updated": "2026-10-15T12:15:16Z",
+  "settled": []
+}
