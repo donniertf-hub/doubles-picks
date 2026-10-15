@@ -1081,6 +1081,138 @@
       "in_picks": true,
       "result": null,
       "note": "pre-written 12 Oct from FootyStats league tables; no goals-market price found, bot checks min_odds on Betfair"
+    },
+    {
+      "date": "2026-10-15",
+      "track": "rules",
+      "rule": "goals",
+      "confidence": 66,
+      "gap": null,
+      "league": "Ligue 1",
+      "league_goals": null,
+      "played": [
+        6,
+        6
+      ],
+      "scored": [
+        1.83,
+        1.83
+      ],
+      "conceded": [
+        2.0,
+        1.33
+      ],
+      "over25": [
+        83,
+        83
+      ],
+      "event": "Strasbourg vs Paris",
+      "market": "Over/Under 2.5 Goals",
+      "runner": "Over 2.5",
+      "kickoff": "2026-10-17T15:15:00Z",
+      "odds": null,
+      "in_picks": true,
+      "result": null,
+      "note": "pre-written 15 Oct from 12 Oct FootyStats league tables; both teams over 2.5 in 80%+ of matches; no goals-market price found, bot checks min_odds on Betfair"
+    },
+    {
+      "date": "2026-10-15",
+      "track": "rules",
+      "rule": "goals",
+      "confidence": 70,
+      "gap": null,
+      "league": "Bundesliga",
+      "league_goals": null,
+      "played": [
+        5,
+        5
+      ],
+      "scored": [
+        1.4,
+        1.8
+      ],
+      "conceded": [
+        3.6,
+        2.6
+      ],
+      "over25": [
+        100,
+        100
+      ],
+      "event": "Mgladbach vs Hoffenheim",
+      "market": "Over/Under 2.5 Goals",
+      "runner": "Over 2.5",
+      "kickoff": "2026-10-18T15:30:00Z",
+      "odds": null,
+      "in_picks": true,
+      "result": null,
+      "note": "pre-written 15 Oct from 12 Oct FootyStats league tables; both teams over 2.5 in 80%+ of matches; no goals-market price found, bot checks min_odds on Betfair"
+    },
+    {
+      "date": "2026-10-15",
+      "track": "rules",
+      "rule": "goals",
+      "confidence": 64,
+      "gap": null,
+      "league": "Bundesliga",
+      "league_goals": null,
+      "played": [
+        5,
+        5
+      ],
+      "scored": [
+        3.2,
+        3.0
+      ],
+      "conceded": [
+        0.8,
+        1.0
+      ],
+      "over25": [
+        80,
+        80
+      ],
+      "event": "Bayern Munich vs Leipzig",
+      "market": "Over/Under 2.5 Goals",
+      "runner": "Over 2.5",
+      "kickoff": "2026-10-17T16:30:00Z",
+      "odds": null,
+      "in_picks": true,
+      "result": null,
+      "note": "pre-written 15 Oct from 12 Oct FootyStats league tables; both teams over 2.5 in 80%+ of matches; no goals-market price found, bot checks min_odds on Betfair"
+    },
+    {
+      "date": "2026-10-15",
+      "track": "rules",
+      "rule": "goals",
+      "confidence": 66,
+      "gap": null,
+      "league": "Bundesliga",
+      "league_goals": null,
+      "played": [
+        5,
+        5
+      ],
+      "scored": [
+        2.8,
+        2.8
+      ],
+      "conceded": [
+        1.6,
+        0.8
+      ],
+      "over25": [
+        80,
+        80
+      ],
+      "event": "Leverkusen vs Freiburg",
+      "market": "Over/Under 2.5 Goals",
+      "runner": "Over 2.5",
+      "kickoff": "2026-10-18T13:30:00Z",
+      "odds": null,
+      "in_picks": true,
+      "result": null,
+      "note": "pre-written 15 Oct from 12 Oct FootyStats league tables; both teams over 2.5 in 80%+ of matches; no goals-market price found, bot checks min_odds on Betfair"
     }
   ]
 }

@@ -294,6 +294,80 @@
           "track": "confidence"
         }
       ]
+    },
+    {
+      "id": "2026-10-17-b",
+      "legs": [
+        {
+          "sport": "football",
+          "event": "Strasbourg vs Paris",
+          "market": [
+            "Over/Under 2.5 Goals",
+            "Over/Under 2.5",
+            "Total Goals",
+            "Total"
+          ],
+          "runner": "Over 2.5",
+          "kickoff": "2026-10-17T15:15:00Z",
+          "confidence": 66,
+          "min_odds": 1.59,
+          "track": "rules",
+          "rule": "goals"
+        },
+        {
+          "sport": "football",
+          "event": "Mgladbach vs Hoffenheim",
+          "market": [
+            "Over/Under 2.5 Goals",
+            "Over/Under 2.5",
+            "Total Goals",
+            "Total"
+          ],
+          "runner": "Over 2.5",
+          "kickoff": "2026-10-18T15:30:00Z",
+          "confidence": 70,
+          "min_odds": 1.5,
+          "track": "rules",
+          "rule": "goals"
+        }
+      ]
+    },
+    {
+      "id": "2026-10-17-c",
+      "legs": [
+        {
+          "sport": "football",
+          "event": "Bayern Munich vs Leipzig",
+          "market": [
+            "Over/Under 2.5 Goals",
+            "Over/Under 2.5",
+            "Total Goals",
+            "Total"
+          ],
+          "runner": "Over 2.5",
+          "kickoff": "2026-10-17T16:30:00Z",
+          "confidence": 64,
+          "min_odds": 1.64,
+          "track": "rules",
+          "rule": "goals"
+        },
+        {
+          "sport": "football",
+          "event": "Leverkusen vs Freiburg",
+          "market": [
+            "Over/Under 2.5 Goals",
+            "Over/Under 2.5",
+            "Total Goals",
+            "Total"
+          ],
+          "runner": "Over 2.5",
+          "kickoff": "2026-10-18T13:30:00Z",
+          "confidence": 66,
+          "min_odds": 1.59,
+          "track": "rules",
+          "rule": "goals"
+        }
+      ]
     }
   ],
   "singles": []
