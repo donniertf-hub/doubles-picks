@@ -63,6 +63,7 @@ DEFAULTS = {
     "picks_refresh_minutes": 15,
     "restart_check_hours": 48,     # once the pot is spent, look for new funds this often
     "max_doubles_per_day": 4,
+    "min_odds_slack_percent": 2.0, # take a price up to 2% under a leg's min_odds (1.67 passes a 1.70 minimum)
     "min_combined_odds": 2.0,      # a double must pay evens or better
     "place_minutes_before": 90,    # start trying this long before kick-off
     "match_wait_seconds": 180,     # cancel an unmatched bet after this and retry
@@ -951,7 +952,8 @@ class Bot:
         if not priced:
             return self.note(d, f"not enough money on offer for {info['runner']}")
         odds, best = priced
-        if odds < float(leg.get("min_odds") or 1.01):
+        floor = float(leg.get("min_odds") or 1.01) * (1 - float(c.get("min_odds_slack_percent") or 0) / 100)
+        if odds + 1e-9 < floor:
             return self.note(d, f"{info['runner']} is {odds}, below the pick's minimum")
         seen = leg.get("odds_seen")
         drift_limit = float(c.get("max_drift_percent") or 0)
