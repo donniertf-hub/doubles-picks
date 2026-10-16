@@ -2,7 +2,47 @@
   "note": "Tracked (paper) pot from Fri 16 Oct 2026. Assumes the bot placed every double in picks.json at its own rules; prices are odds_seen or min_odds, 5% commission. The bot's real figures: python3 bot.py status.",
   "start_date": "2026-10-16",
   "starting_pot": 50.0,
-  "pot": 50.0,
-  "updated": "2026-10-16T04:20:38Z",
-  "settled": []
+  "pot": 48.22,
+  "updated": "2026-10-16T21:42:03Z",
+  "settled": [
+    {
+      "id": "2026-10-16-c",
+      "settled_on": "2026-10-16",
+      "stake": 5.0,
+      "legs": "Wieczysta v Rakow BTTS 1-2 won > Ayr v Partick Under 2.5 0-1 won",
+      "prices": [
+        1.41,
+        1.95
+      ],
+      "result": "won",
+      "pl": 8.22,
+      "pot_after": 58.22
+    },
+    {
+      "id": "2026-10-16-a",
+      "settled_on": "2026-10-16",
+      "stake": 5.0,
+      "legs": "Cottbus v Nurnberg Over 2.5 1-1 lost",
+      "prices": [
+        1.54,
+        1.7
+      ],
+      "result": "lost",
+      "pl": -5.0,
+      "pot_after": 53.22
+    },
+    {
+      "id": "2026-10-16-b",
+      "settled_on": "2026-10-16",
+      "stake": 5.0,
+      "legs": "Frankfurt v Koln Over 2.5 1-0 lost",
+      "prices": [
+        1.59,
+        1.67
+      ],
+      "result": "lost",
+      "pl": -5.0,
+      "pot_after": 48.22
+    }
+  ]
 }
