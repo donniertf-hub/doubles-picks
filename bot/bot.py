@@ -57,6 +57,7 @@ DEFAULTS = {
     "stake_step": 10.0,            # added to the stake...
     "stake_step_every": 100.0,     # ...for every this much in the pot (100 -> 20, 200 -> 30)
     "stake_per_step_only": False,  # True: stake = stake_step x steps (50 -> 5, 100 -> 10), never below stake_base
+    "stake_max": 0.0,              # stake never goes above this (0 = no cap)
     "max_bet": 500.0,              # hard ceiling on any single bet, rolled or not
     "picks_url": "",               # optional https address to download picks.json from
     "picks_refresh_minutes": 15,
@@ -752,8 +753,12 @@ class Bot:
         c = self.cfg
         steps = math.floor((self.pot_total() + 1e-6) / c["stake_step_every"])
         if c.get("stake_per_step_only"):
-            return float(max(c["stake_base"], c["stake_step"] * steps))
-        return float(c["stake_base"] + c["stake_step"] * steps)
+            stake = float(max(c["stake_base"], c["stake_step"] * steps))
+        else:
+            stake = float(c["stake_base"] + c["stake_step"] * steps)
+        if c.get("stake_max"):
+            stake = min(stake, float(c["stake_max"]))
+        return stake
 
     def note(self, d, text):
         if d.get("note") != text:
