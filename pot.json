@@ -1,9 +1,9 @@
 {
-  "note": "Tracked (paper) pot from Fri 16 Oct 2026. Assumes the bot placed every double in picks.json at its own rules; prices are odds_seen or min_odds, 5% commission. The bot's real figures: python3 bot.py status.",
+  "note": "Pot from Fri 16 Oct 2026 (start 50). Reset on 17 Oct to the real record: only bets the bot actually placed count. Ids in 'skipped' were never bet. When bot_status.json is fresh it is the source.",
   "start_date": "2026-10-16",
   "starting_pot": 50.0,
-  "pot": 46.55,
-  "updated": "2026-10-17T04:16:32Z",
+  "pot": 60.16,
+  "updated": "2026-10-17T15:58:00Z",
   "settled": [
     {
       "id": "2026-10-16-c",
@@ -15,34 +15,9 @@
         1.95
       ],
       "result": "won",
-      "pl": 8.22,
-      "pot_after": 58.22
-    },
-    {
-      "id": "2026-10-16-a",
-      "settled_on": "2026-10-16",
-      "stake": 5.0,
-      "legs": "Cottbus v Nurnberg Over 2.5 1-1 lost",
-      "prices": [
-        1.54,
-        1.7
-      ],
-      "result": "lost",
-      "pl": -5.0,
-      "pot_after": 53.22
-    },
-    {
-      "id": "2026-10-16-b",
-      "settled_on": "2026-10-16",
-      "stake": 5.0,
-      "legs": "Frankfurt v Koln Over 2.5 1-0 lost",
-      "prices": [
-        1.59,
-        1.67
-      ],
-      "result": "lost",
-      "pl": -5.0,
-      "pot_after": 48.22
+      "pl": 11.27,
+      "pot_after": 61.27,
+      "source": "bot: returned 16.27 from a 5.00 stake"
     },
     {
       "id": "2026-10-16-d",
@@ -55,19 +30,26 @@
       ],
       "result": "lost",
       "pl": -5.0,
-      "pot_after": 43.22
+      "pot_after": 56.27,
+      "source": "bot: leg 2 lost"
     },
     {
-      "id": "2026-10-16-a-s",
+      "id": "balance-check-2026-10-17",
       "settled_on": "2026-10-16",
-      "stake": 5.0,
-      "legs": "Burnley v Wolves BTTS 1-2 won (on its own after leg 1 lost)",
-      "prices": [
-        1.7
-      ],
-      "result": "won",
-      "pl": 3.33,
-      "pot_after": 46.55
+      "stake": 0.0,
+      "legs": "Matched to the Betfair balance Don reported (60.16)",
+      "prices": [],
+      "result": "adjustment",
+      "pl": 3.89,
+      "pot_after": 60.16,
+      "source": "Don's Betfair app balance; the bot's own record shows +6.27"
     }
+  ],
+  "skipped": [
+    "2026-10-16-a",
+    "2026-10-16-b",
+    "2026-10-17-a",
+    "2026-10-17-b",
+    "2026-10-17-c"
   ]
 }
