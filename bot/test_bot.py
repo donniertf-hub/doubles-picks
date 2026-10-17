@@ -814,6 +814,81 @@ def test_one_reserve_covers_one_skipped_double_only():
     assert sorted(c for c in covers if c) == ["d1", "d2"], covers
 
 
+def conf_double(c1, c2, pid="d1"):
+    p = double(pid)
+    p["legs"][0]["confidence"], p["legs"][1]["confidence"] = c1, c2
+    p["legs"][0]["min_odds"] = p["legs"][1]["min_odds"] = 1.90   # ignored by the whole check
+    return p
+
+
+def test_whole_double_bets_when_whole_bet_has_edge():
+    mb = FakeMB(fixtures(), {ARS: "WIN", LIL: "WIN"})               # 1.45 x 1.46 = 2.12
+    bot, clock, _ = make([conf_double(75, 75)], mb, bet_check="whole")   # 56% x 2.12 = 1.19
+    play_through(bot, clock)
+    assert bot.state["doubles"]["d1"]["status"] == "won" and len(mb.placed) == 2
+
+
+def test_whole_double_skipped_without_edge():
+    mb = FakeMB(fixtures(), {ARS: "WIN", LIL: "WIN"})
+    bot, clock, _ = make([conf_double(65, 65)], mb, bet_check="whole")   # 42% x 2.12 = 0.89
+    play_through(bot, clock)
+    d = bot.state["doubles"]["d1"]
+    assert d["status"] == "skipped" and not mb.placed and "edge" in d["note"], d
+
+
+def test_whole_double_still_needs_evens():
+    mb = FakeMB(fixtures(ars=1.30, lil=1.40), {ARS: "WIN", LIL: "WIN"})  # 1.82
+    bot, clock, _ = make([conf_double(90, 90)], mb, bet_check="whole")
+    play_through(bot, clock)
+    assert bot.state["doubles"]["d1"]["status"] == "skipped" and not mb.placed
+
+
+def test_whole_leg_two_too_short_keeps_winnings():
+    evs = fixtures()
+    mb = FakeMB(evs, {ARS: "WIN", LIL: "WIN"})
+    bot, clock, _ = make([conf_double(75, 75)], mb, bet_check="whole")
+    clock.at(9, 0)
+    while clock.now <= T0.replace(hour=13, minute=30):
+        bot.tick()
+        clock.now += B.timedelta(minutes=10)
+    for e in evs:                                   # Lille shortens to 1.20 before leg 2
+        for m in e["markets"]:
+            for r in m["runners"]:
+                if r["id"] == LIL:
+                    r["prices"][0]["decimal-odds"] = 1.20
+    while clock.now <= T0.replace(hour=23):
+        bot.tick()
+        clock.now += B.timedelta(minutes=10)
+    d = bot.state["doubles"]["d1"]
+    assert d["status"] == "banked" and len(mb.placed) == 1, d
+    assert bot.state["bankroll"] > 30, bot.state["bankroll"]
+
+
+def test_whole_single_needs_evens():
+    mb = FakeMB(fixtures(lil=1.46), {LIL: "WIN"})
+    bot, clock, folder = make([], mb, bet_check="whole", singles_profit_only=False)
+    put_singles(folder, [lille_single(confidence=80)])
+    play_through(bot, clock)
+    d = bot.state["doubles"]["s1"]
+    assert d["status"] == "skipped" and not mb.placed and "2.0 or more" in d["note"], d
+
+
+def test_whole_single_at_evens_with_edge_is_bet():
+    mb = FakeMB(fixtures(lil=2.10), {LIL: "WIN"})
+    bot, clock, folder = make([], mb, bet_check="whole", singles_profit_only=False)
+    put_singles(folder, [lille_single(confidence=55)])                 # 2.10 x 55% = 1.16
+    play_through(bot, clock)
+    assert bot.state["doubles"]["s1"]["status"] == "won" and len(mb.placed) == 1
+
+
+def test_whole_single_without_edge_is_skipped():
+    mb = FakeMB(fixtures(lil=2.10), {LIL: "WIN"})
+    bot, clock, folder = make([], mb, bet_check="whole", singles_profit_only=False)
+    put_singles(folder, [lille_single(confidence=45)])                 # 2.10 x 45% = 0.95
+    play_through(bot, clock)
+    assert bot.state["doubles"]["s1"]["status"] == "skipped" and not mb.placed
+
+
 if __name__ == "__main__":
     tests = [v for k, v in sorted(globals().items()) if k.startswith("test_")]
     for t in tests:

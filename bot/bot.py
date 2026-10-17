@@ -79,6 +79,14 @@ DEFAULTS = {
     "singles_profit_only": True,   # a single may only use money above bankroll_start
     "fallback_singles": True,      # if leg 1 loses, bet leg 2 as a single instead
     "log_closing_price": True,     # note the price at kick-off, to compare with ours
+    "bet_check": "leg",            # "leg": every leg must reach its own min_odds.
+                                   # "whole": judge the whole bet (Don's rule, see step_pending):
+                                   #   a single must pay single_min_odds or more, a double's
+                                   #   combined price must reach min_combined_odds, and the
+                                   #   price x the chance of winning must reach min_edge.
+    "single_min_odds": 2.0,        # "whole" only: a single must pay evens or more
+    "min_edge": 1.05,              # "whole" only: price x chance of winning (from the legs'
+                                   #   confidence) must be at least this (5% edge, pays commission)
     "status_file": "../bot_status.json",  # written after every pass; "" = off
     "status_push": False,          # True: commit and push the status file to GitHub
     "status_push_minutes": 15,     # push at most this often, and only when it changed
@@ -984,9 +992,25 @@ class Bot:
         if not priced:
             return self.note(d, f"not enough money on offer for {info['runner']}")
         odds, best = priced
-        floor = float(leg.get("min_odds") or 1.01) * (1 - float(c.get("min_odds_slack_percent") or 0) / 100)
-        if odds + 1e-9 < floor:
-            return self.note(d, f"{info['runner']} is {odds}, below the pick's minimum")
+        whole = c.get("bet_check") == "whole" and all(
+            l.get("confidence") is not None for l in d["legs"])
+        if whole:
+            chance = float(leg["confidence"]) / 100
+            if single:
+                if odds + 1e-9 < float(c["single_min_odds"]):
+                    return self.note(d, f"{info['runner']} is {odds}, a single must pay "
+                                        f"{c['single_min_odds']} or more")
+                if odds * chance + 1e-9 < float(c["min_edge"]):
+                    return self.note(d, f"{info['runner']} is {odds}, too short for a "
+                                        f"{leg['confidence']}% pick")
+            elif not first and odds * chance + 1e-9 < 1.0:
+                # Leg 1 has won: the rolled bet must still be worth more than it costs.
+                return self.note(d, f"{info['runner']} is {odds}, too short for a "
+                                    f"{leg['confidence']}% pick, winnings kept if it stays there")
+        else:
+            floor = float(leg.get("min_odds") or 1.01) * (1 - float(c.get("min_odds_slack_percent") or 0) / 100)
+            if odds + 1e-9 < floor:
+                return self.note(d, f"{info['runner']} is {odds}, below the pick's minimum")
         seen = leg.get("odds_seen")
         drift_limit = float(c.get("max_drift_percent") or 0)
         if seen and drift_limit > 0 and odds > float(seen) * (1 + drift_limit / 100):
@@ -1005,6 +1029,13 @@ class Bot:
                 combined *= other_price[1]
             if combined + 1e-9 < c["min_combined_odds"]:
                 return self.note(d, f"pays {combined:.2f}, under the {c['min_combined_odds']:.2f} minimum")
+            if whole:
+                chance = 1.0
+                for l in d["legs"]:
+                    chance *= float(l["confidence"]) / 100
+                if combined * chance + 1e-9 < float(c["min_edge"]):
+                    return self.note(d, f"pays {combined:.2f} for a {chance * 100:.0f}% chance, "
+                                        f"not enough edge")
             d["combined_at_entry"] = round(combined, 3)
 
         bet = {"event": info["event"], "market": info["market"], "runner": info["runner"],
