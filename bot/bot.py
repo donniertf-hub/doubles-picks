@@ -81,7 +81,7 @@ DEFAULTS = {
     "log_closing_price": True,     # note the price at kick-off, to compare with ours
     "status_file": "../bot_status.json",  # written after every pass; "" = off
     "status_push": False,          # True: commit and push the status file to GitHub
-    "status_push_minutes": 5,      # push at most this often, and only when it changed
+    "status_push_minutes": 15,     # push at most this often, and only when it changed
     "status_balance_minutes": 10,  # read the exchange balance at most this often
 }
 
@@ -773,6 +773,7 @@ class Bot:
 
     def finish(self, d, status, text):
         d["returned"] = floor2(d.get("held", 0))
+        d["finished_at"] = iso(self.clock())
         self.state["bankroll"] = floor2(self.state["bankroll"] + d.get("held", 0))
         d["held"] = 0
         d["status"] = status
@@ -1232,6 +1233,7 @@ class Bot:
                          "fallback": bool(d.get("fallback")), "date": d.get("date"),
                          "stake": stake, "in_play": d.get("held", 0) if not final else 0,
                          "returned": returned, "pl": pl, "note": d.get("note", ""),
+                         "finished_at": d.get("finished_at"),
                          "legs": legs})
         return {"bot_pot_free": self.state["bankroll"], "bot_pot_total": round(self.pot_total(), 2),
                 "bankroll_start": self.cfg["bankroll_start"],
@@ -1245,13 +1247,16 @@ class Bot:
         snap = self.status_snapshot()
         body = json.dumps(snap, indent=1, sort_keys=True)
         digest = hash(body)
-        if digest != self.state.get("status_digest") or not os.path.exists(path):
+        last = self.state.get("status_written")
+        stale = not last or (self.clock() - parse_time(last)).total_seconds() >= 3600
+        if digest != self.state.get("status_digest") or stale or not os.path.exists(path):
             snap["updated"] = iso(self.clock())
             tmp = path + ".tmp"
             with open(tmp, "w") as fh:
                 json.dump(snap, fh, indent=1, sort_keys=True)
             os.replace(tmp, path)
             self.state["status_digest"] = digest
+            self.state["status_written"] = snap["updated"]
             self.state["status_dirty"] = True
         if c.get("status_push") and self.state.get("status_dirty"):
             now, last = self.clock(), self.state.get("status_pushed")

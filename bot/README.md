@@ -145,3 +145,17 @@ Each bet fires once per game. The two BTTS triggers make one bet between them.
 - **Closing price** (`log_closing_price`): just before kick-off the bot notes the exchange price and writes a CLOSING line in `ledger.csv` next to the PLACED line, which also shows the price the pick was made at. If the closing price is usually shorter than the price we backed at, the picks are ahead of the market.
 - **Singles**: `picks.json` may have a `"singles"` list, each with an `id` and one leg. A single may pay under evens and is limited by `max_singles_per_day`. With `singles_profit_only` (default true) a single is only bet when the stake fits inside the profit, that is the pot's total above `bankroll_start`.
 - **Fallback single** (`fallback_singles`, default true): if leg 1 of a double loses and leg 2 has not started, leg 2 is bet as a single (id ends in `-s`), from free money in the pot, still subject to its minimum price and the drift check.
+
+## Status file (bot_status.json) and reserve doubles
+
+- After every pass the bot writes `../bot_status.json` (the top of the repository):
+  the bot's pot, the Betfair balance, and one row per pick with what really
+  happened (placed price and stake, skipped and why, won or lost, returns,
+  profit or loss, settle time). It is rewritten at least once an hour.
+- With `"status_push": true` in `config.json` the bot commits and pushes that one
+  file to GitHub (at most every 15 minutes, only when it changed), so the daily
+  reports and posts can use the real figures. Pushing needs a GitHub token for
+  this repository saved on the computer; see the setup notes from Claude.
+- A pick marked `"reserve": true` is only bet if a main double of the same day was
+  never bet because its price did not reach the minimum by kick-off. One reserve
+  covers one skipped double; an unused reserve ends as "reserve not needed".

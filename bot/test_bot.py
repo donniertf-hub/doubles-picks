@@ -740,6 +740,12 @@ def test_status_file_records_real_results():
     assert row["legs"][0]["result"] == "WIN" or row["legs"][0].get("returns"), row
     assert row["pl"] > 0 and close(row["stake"], 10.0), row
     assert "exchange_balance" in snap and snap["bot_pot_total"] > 30
+    assert row["finished_at"] and row["finished_at"].startswith("2026-10-10"), row
+    # the file is rewritten at least hourly even when nothing changes
+    first = snap["updated"]
+    clock.now += B.timedelta(hours=2)
+    bot.tick()
+    assert json.load(open(os.path.join(folder, "status.json")))["updated"] != first
 
 
 def test_status_file_shows_skipped_and_lost():
