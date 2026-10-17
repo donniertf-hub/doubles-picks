@@ -663,7 +663,7 @@
       "kickoff": "2026-10-16T16:30:00Z",
       "odds": 1.3,
       "in_picks": true,
-      "result": null,
+      "result": "lost",
       "note": "pre-written 12 Oct from FootyStats league tables; no goals-market price found, bot checks min_odds against Betfair"
     },
     {
@@ -695,7 +695,7 @@
       "kickoff": "2026-10-16T19:00:00Z",
       "odds": 1.62,
       "in_picks": true,
-      "result": null,
+      "result": "won",
       "note": "pre-written 12 Oct from FootyStats league tables; no goals-market price found, bot checks min_odds against Betfair"
     },
     {
@@ -727,7 +727,7 @@
       "kickoff": "2026-10-16T18:30:00Z",
       "odds": 1.33,
       "in_picks": true,
-      "result": null,
+      "result": "lost",
       "note": "pre-written 12 Oct from FootyStats league tables; no goals-market price found, bot checks min_odds against Betfair"
     },
     {
@@ -1244,7 +1244,7 @@
       "kickoff": "2026-10-16T18:30:00Z",
       "odds": 1.33,
       "in_picks": false,
-      "result": null
+      "result": "lost"
     },
     {
       "date": "2026-10-16",
@@ -1276,7 +1276,7 @@
       "kickoff": "2026-10-16T18:30:00Z",
       "odds": 1.33,
       "in_picks": true,
-      "result": null
+      "result": "lost"
     },
     {
       "date": "2026-10-16",
@@ -1308,7 +1308,7 @@
       "kickoff": "2026-10-16T16:30:00Z",
       "odds": 1.3,
       "in_picks": false,
-      "result": null
+      "result": "won"
     },
     {
       "date": "2026-10-16",
@@ -1340,7 +1340,7 @@
       "kickoff": "2026-10-16T16:30:00Z",
       "odds": 1.3,
       "in_picks": true,
-      "result": null
+      "result": "lost"
     },
     {
       "date": "2026-10-16",
@@ -1372,7 +1372,7 @@
       "kickoff": "2026-10-16T18:00:00Z",
       "odds": 1.66,
       "in_picks": true,
-      "result": null
+      "result": "won"
     },
     {
       "date": "2026-10-16",
@@ -1404,7 +1404,7 @@
       "kickoff": "2026-10-16T18:00:00Z",
       "odds": 1.47,
       "in_picks": true,
-      "result": null
+      "result": "lost"
     },
     {
       "date": "2026-10-16",
@@ -1436,7 +1436,7 @@
       "kickoff": "2026-10-16T18:00:00Z",
       "odds": 1.28,
       "in_picks": false,
-      "result": null
+      "result": "won"
     },
     {
       "date": "2026-10-16",
@@ -1467,7 +1467,7 @@
       "kickoff": "2026-10-16T18:00:00Z",
       "odds": 1.31,
       "in_picks": true,
-      "result": null
+      "result": "won"
     },
     {
       "date": "2026-10-16",
@@ -1498,7 +1498,7 @@
       "kickoff": "2026-10-16T18:00:00Z",
       "odds": 1.47,
       "in_picks": true,
-      "result": null
+      "result": "lost"
     },
     {
       "date": "2026-10-16",
@@ -1529,7 +1529,7 @@
       "kickoff": "2026-10-16T16:00:00Z",
       "odds": 1.41,
       "in_picks": true,
-      "result": null
+      "result": "won"
     },
     {
       "date": "2026-10-16",
@@ -1560,7 +1560,7 @@
       "kickoff": "2026-10-16T18:30:00Z",
       "odds": 1.95,
       "in_picks": true,
-      "result": null
+      "result": "won"
     },
     {
       "date": "2026-10-16",
@@ -1591,7 +1591,7 @@
       "kickoff": "2026-10-16T18:00:00Z",
       "odds": 1.57,
       "in_picks": true,
-      "result": null
+      "result": "won"
     },
     {
       "date": "2026-10-16",
@@ -1621,6 +1621,292 @@
       "runner": "Yes",
       "kickoff": "2026-10-16T23:00:00Z",
       "odds": 1.7,
+      "in_picks": true,
+      "result": "lost"
+    },
+    {
+      "date": "2026-10-17",
+      "track": "rules",
+      "rule": "btts",
+      "confidence": 55,
+      "gap": -11.7,
+      "league": "England Championship",
+      "league_goals": 2.92,
+      "played": [
+        10,
+        10
+      ],
+      "scored": [
+        2.0,
+        1.6
+      ],
+      "conceded": [
+        1.4,
+        1.5
+      ],
+      "over25": [
+        70,
+        60
+      ],
+      "event": "Middlesbrough vs Cardiff",
+      "market": "Both Teams To Score",
+      "runner": "Yes",
+      "kickoff": "2026-10-17T11:30:00Z",
+      "odds": 1.5,
+      "in_picks": false,
+      "result": null
+    },
+    {
+      "date": "2026-10-17",
+      "track": "rules",
+      "rule": "btts",
+      "confidence": 57,
+      "gap": -4.7,
+      "league": "England Championship",
+      "league_goals": 2.92,
+      "played": [
+        10,
+        10
+      ],
+      "scored": [
+        1.6,
+        2.9
+      ],
+      "conceded": [
+        0.7,
+        1.2
+      ],
+      "over25": [
+        60,
+        80
+      ],
+      "event": "Swansea vs West Ham",
+      "market": "Both Teams To Score",
+      "runner": "Yes",
+      "kickoff": "2026-10-17T14:00:00Z",
+      "odds": 1.62,
+      "in_picks": false,
+      "result": null
+    },
+    {
+      "date": "2026-10-17",
+      "track": "rules",
+      "rule": "btts",
+      "confidence": 60,
+      "gap": null,
+      "league": "Germany 2. Bundesliga",
+      "league_goals": 3.15,
+      "played": [
+        7,
+        7
+      ],
+      "scored": [
+        2.71,
+        2.0
+      ],
+      "conceded": [
+        1.71,
+        1.71
+      ],
+      "over25": [
+        57,
+        57
+      ],
+      "event": "Wolfsburg vs Heidenheim",
+      "market": "Both Teams To Score",
+      "runner": "Yes",
+      "kickoff": "2026-10-17T11:00:00Z",
+      "odds": null,
+      "in_picks": true,
+      "result": null
+    },
+    {
+      "date": "2026-10-17",
+      "track": "rules",
+      "rule": "btts",
+      "confidence": 63,
+      "gap": -8.4,
+      "league": "Germany Bundesliga",
+      "league_goals": 3.76,
+      "played": [
+        5,
+        5
+      ],
+      "scored": [
+        1.6,
+        2.6
+      ],
+      "conceded": [
+        1.6,
+        1.6
+      ],
+      "over25": [
+        60,
+        100
+      ],
+      "event": "Elversberg vs Augsburg",
+      "market": "Both Teams To Score",
+      "runner": "Yes",
+      "kickoff": "2026-10-17T13:30:00Z",
+      "odds": 1.4,
+      "in_picks": false,
+      "result": null
+    },
+    {
+      "date": "2026-10-17",
+      "track": "rules",
+      "rule": "btts",
+      "confidence": 62,
+      "gap": null,
+      "league": "Italy Serie B",
+      "league_goals": 2.7,
+      "played": [
+        6,
+        6
+      ],
+      "scored": [
+        2.17,
+        2.33
+      ],
+      "conceded": [
+        1.0,
+        1.17
+      ],
+      "over25": [
+        67,
+        67
+      ],
+      "event": "Mantova vs Palermo",
+      "market": "Both Teams To Score",
+      "runner": "Yes",
+      "kickoff": "2026-10-17T15:15:00Z",
+      "odds": null,
+      "in_picks": false,
+      "result": null
+    },
+    {
+      "date": "2026-10-17",
+      "track": "rules",
+      "rule": "btts",
+      "confidence": 68,
+      "gap": null,
+      "league": "Iceland Urvalsdeild",
+      "league_goals": 3.87,
+      "played": [
+        25,
+        25
+      ],
+      "scored": [
+        1.88,
+        1.64
+      ],
+      "conceded": [
+        2.08,
+        2.04
+      ],
+      "over25": [
+        72,
+        72
+      ],
+      "event": "Valur vs KA Akureyri",
+      "market": "Both Teams To Score",
+      "runner": "Yes",
+      "kickoff": "2026-10-17T14:00:00Z",
+      "odds": null,
+      "in_picks": false,
+      "result": null
+    },
+    {
+      "date": "2026-10-17",
+      "track": "rules",
+      "rule": "btts",
+      "confidence": 52,
+      "gap": null,
+      "league": "Netherlands Eerste Divisie",
+      "league_goals": 3.52,
+      "played": [
+        10,
+        10
+      ],
+      "scored": [
+        2.2,
+        2.2
+      ],
+      "conceded": [
+        1.8,
+        0.7
+      ],
+      "over25": [
+        70,
+        60
+      ],
+      "event": "Emmen vs Almere City",
+      "market": "Both Teams To Score",
+      "runner": "Yes",
+      "kickoff": "2026-10-17T11:30:00Z",
+      "odds": null,
+      "in_picks": false,
+      "result": null
+    },
+    {
+      "date": "2026-10-17",
+      "track": "confidence",
+      "confidence": 70,
+      "gap": 17.6,
+      "league": "Scotland Championship",
+      "league_goals": 2.06,
+      "played": [
+        9,
+        10
+      ],
+      "scored": [
+        1.33,
+        1.5
+      ],
+      "conceded": [
+        0.44,
+        0.6
+      ],
+      "over25": [
+        11,
+        30
+      ],
+      "event": "Stenhousemuir vs Raith Rovers",
+      "market": "Both Teams To Score",
+      "runner": "No",
+      "kickoff": "2026-10-17T14:00:00Z",
+      "odds": 1.91,
+      "in_picks": true,
+      "result": null
+    },
+    {
+      "date": "2026-10-17",
+      "track": "confidence",
+      "confidence": 66,
+      "gap": 22.5,
+      "league": "Scotland Championship",
+      "league_goals": 2.06,
+      "played": [
+        8,
+        10
+      ],
+      "scored": [
+        0.88,
+        1.4
+      ],
+      "conceded": [
+        0.63,
+        1.1
+      ],
+      "over25": [
+        0,
+        40
+      ],
+      "event": "Dunfermline vs Livingston",
+      "market": "Both Teams To Score",
+      "runner": "No",
+      "kickoff": "2026-10-17T14:00:00Z",
+      "odds": 2.3,
       "in_picks": true,
       "result": null
     }

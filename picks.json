@@ -1,66 +1,6 @@
 {
-  "generated": "2026-10-16T04:20:29Z",
+  "generated": "2026-10-17T04:16:23Z",
   "doubles": [
-    {
-      "id": "2026-10-16-a",
-      "legs": [
-        {
-          "sport": "football",
-          "event": "Cottbus vs Nurnberg",
-          "market": [
-            "Over/Under 2.5 Goals",
-            "Over/Under 2.5",
-            "Total Goals",
-            "Total"
-          ],
-          "runner": "Over 2.5",
-          "kickoff": "2026-10-16T16:30:00Z",
-          "confidence": 68,
-          "min_odds": 1.54,
-          "track": "confidence"
-        },
-        {
-          "sport": "football",
-          "event": "Burnley vs Wolves",
-          "market": "Both Teams To Score",
-          "runner": "Yes",
-          "kickoff": "2026-10-16T19:00:00Z",
-          "confidence": 62,
-          "min_odds": 1.7,
-          "track": "confidence"
-        }
-      ]
-    },
-    {
-      "id": "2026-10-16-b",
-      "legs": [
-        {
-          "sport": "football",
-          "event": "Frankfurt vs Koln",
-          "market": [
-            "Over/Under 2.5 Goals",
-            "Over/Under 2.5",
-            "Total Goals",
-            "Total"
-          ],
-          "runner": "Over 2.5",
-          "kickoff": "2026-10-16T18:30:00Z",
-          "confidence": 66,
-          "min_odds": 1.59,
-          "track": "confidence"
-        },
-        {
-          "sport": "football",
-          "event": "Elversberg vs Augsburg",
-          "market": "Both Teams To Score",
-          "runner": "Yes",
-          "kickoff": "2026-10-17T13:30:00Z",
-          "confidence": 63,
-          "min_odds": 1.67,
-          "track": "confidence"
-        }
-      ]
-    },
     {
       "id": "2026-10-17-a",
       "legs": [
@@ -164,124 +104,37 @@
           "rule": "goals"
         }
       ]
-    },
-    {
-      "id": "2026-10-16-c",
-      "legs": [
-        {
-          "sport": "football",
-          "event": "Wieczysta vs Rakow",
-          "market": "Both Teams To Score",
-          "runner": "Yes",
-          "kickoff": "2026-10-16T16:00:00Z",
-          "confidence": 75,
-          "odds_seen": 1.41,
-          "min_odds": 1.39,
-          "track": "confidence"
-        },
-        {
-          "sport": "football",
-          "event": "Ayr vs Partick",
-          "market": [
-            "Over/Under 2.5 Goals",
-            "Over/Under 2.5",
-            "Total Goals",
-            "Total"
-          ],
-          "runner": "Under 2.5",
-          "kickoff": "2026-10-16T18:30:00Z",
-          "confidence": 72,
-          "odds_seen": 1.95,
-          "min_odds": 1.45,
-          "track": "confidence"
-        }
-      ]
-    },
-    {
-      "id": "2026-10-16-d",
-      "legs": [
-        {
-          "sport": "football",
-          "event": "Reims vs Dijon",
-          "market": "Both Teams To Score",
-          "runner": "Yes",
-          "kickoff": "2026-10-16T18:00:00Z",
-          "confidence": 67,
-          "odds_seen": 1.66,
-          "min_odds": 1.57,
-          "track": "rules",
-          "rule": "btts"
-        },
-        {
-          "sport": "football",
-          "event": "Mirassol vs Internacional",
-          "market": "Both Teams To Score",
-          "runner": "Yes",
-          "kickoff": "2026-10-16T23:00:00Z",
-          "confidence": 63,
-          "odds_seen": 1.7,
-          "min_odds": 1.67,
-          "track": "confidence"
-        }
-      ]
     }
   ],
   "singles": [
     {
-      "id": "2026-10-16-s1",
+      "id": "2026-10-17-s1",
       "legs": [
         {
           "sport": "football",
-          "event": "Helmond vs Breda",
+          "event": "Stenhousemuir vs Raith",
           "market": "Both Teams To Score",
-          "runner": "Yes",
-          "kickoff": "2026-10-16T18:00:00Z",
-          "confidence": 76,
-          "odds_seen": 1.47,
-          "min_odds": 1.37,
-          "track": "rules",
-          "rule": "btts"
-        }
-      ]
-    },
-    {
-      "id": "2026-10-16-s2",
-      "legs": [
-        {
-          "sport": "football",
-          "event": "Venlo vs Jong",
-          "market": [
-            "Over/Under 2.5 Goals",
-            "Over/Under 2.5",
-            "Total Goals",
-            "Total"
-          ],
-          "runner": "Over 2.5",
-          "kickoff": "2026-10-16T18:00:00Z",
-          "confidence": 82,
-          "odds_seen": 1.31,
-          "min_odds": 1.27,
+          "runner": "No",
+          "kickoff": "2026-10-17T14:00:00Z",
+          "confidence": 70,
+          "odds_seen": 1.91,
+          "min_odds": 1.5,
           "track": "confidence"
         }
       ]
     },
     {
-      "id": "2026-10-16-s3",
+      "id": "2026-10-17-s2",
       "legs": [
         {
           "sport": "football",
-          "event": "Grenoble vs Boulogne",
-          "market": [
-            "Over/Under 2.5 Goals",
-            "Over/Under 2.5",
-            "Total Goals",
-            "Total"
-          ],
-          "runner": "Under 2.5",
-          "kickoff": "2026-10-16T18:00:00Z",
-          "confidence": 70,
-          "odds_seen": 1.57,
-          "min_odds": 1.5,
+          "event": "Dunfermline vs Livingston",
+          "market": "Both Teams To Score",
+          "runner": "No",
+          "kickoff": "2026-10-17T14:00:00Z",
+          "confidence": 66,
+          "odds_seen": 2.3,
+          "min_odds": 1.59,
           "track": "confidence"
         }
       ]
