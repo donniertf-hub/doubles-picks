@@ -21,7 +21,7 @@
     },
     {
       "id": "2026-10-16-d",
-      "settled_on": "2026-10-17",
+      "settled_on": "2026-10-16",
       "stake": 5.0,
       "legs": "Reims v Dijon BTTS 4-2 won > Mirassol v Internacional BTTS 2-0 lost",
       "prices": [
@@ -31,7 +31,8 @@
       "result": "lost",
       "pl": -5.0,
       "pot_after": 56.27,
-      "source": "bot: leg 2 lost"
+      "source": "bot: leg 2 lost",
+      "note": "leg 2 kicked off late Friday (Brazil); counted on Friday as in the 11am post"
     },
     {
       "id": "balance-check-2026-10-17",
