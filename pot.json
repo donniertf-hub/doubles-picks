@@ -1,9 +1,9 @@
 {
-  "note": "Pot from Fri 16 Oct 2026 (start 50). Reset on 17 Oct to the real record: only bets the bot actually placed count. Ids in 'skipped' were never bet. When bot_status.json is fresh it is the source.",
+  "note": "Pot from Fri 16 Oct 2026 (start 50). Reset on 17 Oct to the real record: only bets the bot actually placed count. Ids in 'skipped' were never bet. When bot_status.json is fresh it is the source. 17 Oct: Don confirmed 2026-10-17-b and -c count as placed (5 each, both leg 1 won, leg 2 on Sun 18 Oct, still open); 2026-10-17-a was not bet.",
   "start_date": "2026-10-16",
   "starting_pot": 50.0,
   "pot": 60.16,
-  "updated": "2026-10-17T15:58:00Z",
+  "updated": "2026-10-17T21:55:00Z",
   "settled": [
     {
       "id": "2026-10-16-c",
@@ -49,8 +49,6 @@
   "skipped": [
     "2026-10-16-a",
     "2026-10-16-b",
-    "2026-10-17-a",
-    "2026-10-17-b",
-    "2026-10-17-c"
+    "2026-10-17-a"
   ]
 }
