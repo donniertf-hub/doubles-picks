@@ -37,6 +37,7 @@ import time
 import unicodedata
 import urllib.error
 import urllib.parse
+import subprocess
 import urllib.request
 from datetime import datetime, timedelta, timezone
 
@@ -78,6 +79,10 @@ DEFAULTS = {
     "singles_profit_only": True,   # a single may only use money above bankroll_start
     "fallback_singles": True,      # if leg 1 loses, bet leg 2 as a single instead
     "log_closing_price": True,     # note the price at kick-off, to compare with ours
+    "status_file": "../bot_status.json",  # written after every pass; "" = off
+    "status_push": False,          # True: commit and push the status file to GitHub
+    "status_push_minutes": 5,      # push at most this often, and only when it changed
+    "status_balance_minutes": 10,  # read the exchange balance at most this often
 }
 
 FINAL = ("won", "lost", "void", "skipped", "banked", "dry_run")
@@ -767,6 +772,7 @@ class Bot:
             self.log(f"[{d['id']}] {text}")
 
     def finish(self, d, status, text):
+        d["returned"] = floor2(d.get("held", 0))
         self.state["bankroll"] = floor2(self.state["bankroll"] + d.get("held", 0))
         d["held"] = 0
         d["status"] = status
@@ -853,6 +859,8 @@ class Bot:
                 continue
             d = {"id": pid, "legs": pick.get("legs", []), "status": "pending", "leg": 0,
                  "held": 0, "bets": [], "note": "", "placed": False}
+            if pick.get("reserve") and not is_single:
+                d["reserve"] = True
             if is_single:
                 d["single"] = True
                 d["legs"] = d["legs"][:1]
@@ -897,8 +905,31 @@ class Bot:
         if self.cfg.get("inplay", {}).get("enabled"):
             inplay_tick(self)
         self.save()
+        self.export_status()
+
+    def reserve_cover(self, d):
+        """A reserve double is used only when a main double of the same day was
+        never bet because its price was not reached by kick-off. Each skipped
+        double is covered by one reserve."""
+        taken = {x.get("covers") for x in self.state["doubles"].values() if x is not d}
+        for x in self.state["doubles"].values():
+            if (x is not d and not x.get("reserve") and not x.get("single")
+                    and x["status"] == "skipped" and not x.get("placed")
+                    and str(x.get("note", "")).startswith("missed kick-off")
+                    and x.get("date") == d.get("date") and x["id"] not in taken):
+                return x["id"]
+        return None
 
     def step(self, d):
+        if d.get("reserve") and d["status"] == "pending" and d["leg"] == 0 and not d.get("covers"):
+            cover = self.reserve_cover(d)
+            if cover:
+                d["covers"] = cover
+                self.log(f"[{d['id']}] reserve in use, covering skipped {cover}")
+            elif self.clock() >= parse_time(d["legs"][0]["kickoff"]):
+                return self.finish(d, "skipped", "reserve not needed")
+            else:
+                return
         if d["status"] == "pending":
             self.step_pending(d)
         if d["status"] == "open":
@@ -1154,6 +1185,102 @@ class Bot:
         if returns > d.get("stake", 0) + 1e-9:
             return self.finish(d, "won", f"returned {returns:.2f} from a {d['stake']:.2f} stake")
         self.finish(d, "void", "stake returned")
+
+
+    # ---- status file for the daily reports
+
+    def exchange_balance(self):
+        now, last = self.clock(), self.state.get("balance_read")
+        if last and (now - parse_time(last)).total_seconds() < self.cfg["status_balance_minutes"] * 60:
+            return self.state.get("balance")
+        try:
+            self.state["balance"] = floor2(self.mb.free_funds())
+            self.state["balance_read"] = iso(now)
+        except Exception as err:        # a balance problem must never stop the bot
+            self.log(f"could not read the balance for the status file: {err}")
+        return self.state.get("balance")
+
+    def status_snapshot(self):
+        rows = []
+        for d in self.state["doubles"].values():
+            bets = d.get("bets", [])
+            legs = []
+            for n, leg in enumerate(d["legs"]):
+                row = {"event": leg.get("event"), "runner": leg.get("runner"),
+                       "kickoff": leg.get("kickoff"), "min_odds": leg.get("min_odds")}
+                if n < len(bets):
+                    b = bets[n]
+                    for k_from, k_to in (("odds", "odds"), ("asked_odds", "asked_odds"),
+                                         ("matched", "stake"), ("result", "result"),
+                                         ("returns", "returns")):
+                        if b.get(k_from) is not None:
+                            row[k_to] = b[k_from]
+                legs.append(row)
+            final = d["status"] in FINAL
+            returned = d.get("returned")
+            if returned is None and final and bets:
+                returned = bets[-1].get("returns")
+            stake = d.get("stake")
+            pl = None
+            if final and d.get("placed") and stake is not None and returned is not None:
+                pl = floor2(float(returned) - float(stake))
+            elif final and not d.get("placed"):
+                pl = 0.0
+            rows.append({"id": d["id"], "status": d["status"], "placed": bool(d.get("placed")),
+                         "kind": ("single" if d.get("single") else "double"),
+                         "reserve": bool(d.get("reserve")), "covers": d.get("covers"),
+                         "fallback": bool(d.get("fallback")), "date": d.get("date"),
+                         "stake": stake, "in_play": d.get("held", 0) if not final else 0,
+                         "returned": returned, "pl": pl, "note": d.get("note", ""),
+                         "legs": legs})
+        return {"bot_pot_free": self.state["bankroll"], "bot_pot_total": round(self.pot_total(), 2),
+                "bankroll_start": self.cfg["bankroll_start"],
+                "exchange_balance": self.exchange_balance(), "doubles": rows}
+
+    def export_status(self):
+        c = self.cfg
+        if not c.get("status_file"):
+            return
+        path = os.path.normpath(os.path.join(self.folder, c["status_file"]))
+        snap = self.status_snapshot()
+        body = json.dumps(snap, indent=1, sort_keys=True)
+        digest = hash(body)
+        if digest != self.state.get("status_digest") or not os.path.exists(path):
+            snap["updated"] = iso(self.clock())
+            tmp = path + ".tmp"
+            with open(tmp, "w") as fh:
+                json.dump(snap, fh, indent=1, sort_keys=True)
+            os.replace(tmp, path)
+            self.state["status_digest"] = digest
+            self.state["status_dirty"] = True
+        if c.get("status_push") and self.state.get("status_dirty"):
+            now, last = self.clock(), self.state.get("status_pushed")
+            if last and (now - parse_time(last)).total_seconds() < c["status_push_minutes"] * 60:
+                return
+            self.state["status_pushed"] = iso(now)
+            self.push_status(path)
+
+    def push_status(self, path):
+        repo, name = os.path.dirname(path), os.path.basename(path)
+
+        def git(*args):
+            return subprocess.run(["git", "-C", repo, *args], capture_output=True,
+                                  text=True, timeout=90)
+        try:
+            git("add", name)
+            commit = git("commit", "-m", "Bot status", "--", name)
+            if commit.returncode not in (0, 1):
+                raise OSError(commit.stderr.strip() or commit.stdout.strip())
+            git("pull", "--rebase", "--autostash", "-q")
+            out = git("push", "-q")
+            if out.returncode != 0:
+                raise OSError(out.stderr.strip()[:200])
+            self.state["status_dirty"] = False
+            self.state.pop("push_error", None)
+        except (OSError, subprocess.SubprocessError) as err:
+            if self.state.get("push_error") != str(err):
+                self.state["push_error"] = str(err)
+                self.log(f"could not push the status file, will retry: {err}")
 
 
 def inplay_tick(bot):

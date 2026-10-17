@@ -730,6 +730,84 @@ def test_no_fallback_if_second_leg_already_started():
     assert "x-s" not in bot.state["doubles"]
 
 
+def test_status_file_records_real_results():
+    mb = FakeMB(fixtures(), {ARS: "WIN", LIL: "WIN"}, funds=30.0)
+    bot, clock, folder = make([double()], mb, status_file="status.json")
+    play_through(bot, clock)
+    snap = json.load(open(os.path.join(folder, "status.json")))
+    row = snap["doubles"][0]
+    assert row["id"] == "d1" and row["status"] == "won" and row["placed"], row
+    assert row["legs"][0]["result"] == "WIN" or row["legs"][0].get("returns"), row
+    assert row["pl"] > 0 and close(row["stake"], 10.0), row
+    assert "exchange_balance" in snap and snap["bot_pot_total"] > 30
+
+
+def test_status_file_shows_skipped_and_lost():
+    pick = double("d2")
+    pick["legs"][0]["min_odds"] = 2.0
+    mb = FakeMB(fixtures(), {ARS: "LOSE", LIL: "WIN"})
+    bot, clock, folder = make([pick, double("d3")], mb, status_file="status.json")
+    play_through(bot, clock)
+    snap = {r["id"]: r for r in json.load(open(os.path.join(folder, "status.json")))["doubles"]}
+    assert snap["d2"]["status"] == "skipped" and snap["d2"]["placed"] is False and snap["d2"]["pl"] == 0.0
+    assert "below the pick" in snap["d2"]["note"] or "missed" in snap["d2"]["note"]
+
+
+def test_status_file_off_when_blank():
+    mb = FakeMB(fixtures(), {ARS: "WIN", LIL: "WIN"})
+    bot, clock, folder = make([double()], mb, status_file="")
+    play_through(bot, clock)
+    assert not os.path.exists(os.path.join(folder, "status.json"))
+
+
+def reserve(pid="r1"):
+    p = {"id": pid, "reserve": True, "legs": [
+        {"event": "Monaco vs Toulouse", "runner": "Monaco", "kickoff": "2026-10-10T18:45:00Z"},
+        {"event": "Monaco vs Toulouse", "runner": "Monaco", "kickoff": "2026-10-11T18:45:00Z"}]}
+    return p
+
+
+def reserve_pick():
+    p = reserve()
+    p["legs"] = [{"event": "Lille vs Le Havre", "runner": "Lille", "kickoff": "2026-10-10T15:15:00Z"},
+                 {"event": "Monaco vs Toulouse", "runner": "Monaco", "kickoff": "2026-10-10T18:45:00Z"}]
+    return p
+
+
+def test_reserve_unused_when_main_is_bet():
+    mb = FakeMB(fixtures(), {ARS: "WIN", LIL: "WIN", DOR: "WIN"})
+    bot, clock, folder = make([double(), reserve_pick()], mb)
+    play_through(bot, clock)
+    r = bot.state["doubles"]["r1"]
+    assert r["status"] == "skipped" and r["note"] == "reserve not needed" and not r["placed"]
+    assert len(mb.placed) >= 2 and len(mb.placed) == 2
+
+
+def test_reserve_used_when_main_missed_on_price():
+    main = double("d1")
+    main["legs"][0]["min_odds"] = 2.5          # price 1.45 never reaches it
+    mb = FakeMB(fixtures(), {ARS: "WIN", LIL: "WIN", DOR: "WIN"})
+    bot, clock, folder = make([main, reserve_pick()], mb)
+    play_through(bot, clock)
+    d, r = bot.state["doubles"]["d1"], bot.state["doubles"]["r1"]
+    assert d["status"] == "skipped" and d["note"].startswith("missed kick-off"), d
+    assert r.get("covers") == "d1" and r["placed"], r
+    assert any(p[0] == LIL for p in mb.placed)
+
+
+def test_one_reserve_covers_one_skipped_double_only():
+    m1, m2 = double("d1"), double("d2")
+    for m in (m1, m2):
+        m["legs"][0]["min_odds"] = 2.5
+    mb = FakeMB(fixtures(), {ARS: "WIN", LIL: "WIN", DOR: "WIN", MON: "WIN"})
+    r1, r2 = reserve_pick(), reserve_pick()
+    r2["id"] = "r2"
+    bot, clock, folder = make([m1, m2, r1, r2], mb)
+    play_through(bot, clock)
+    covers = [bot.state["doubles"][x].get("covers") for x in ("r1", "r2")]
+    assert sorted(c for c in covers if c) == ["d1", "d2"], covers
+
+
 if __name__ == "__main__":
     tests = [v for k, v in sorted(globals().items()) if k.startswith("test_")]
     for t in tests:
