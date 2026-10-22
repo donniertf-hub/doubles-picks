@@ -2,8 +2,8 @@
   "note": "Pot from Fri 16 Oct 2026 (start 50). Reset on 17 Oct to the real record: only bets the bot actually placed count. Ids in 'skipped' were never bet. When bot_status.json is fresh it is the source. 17 Oct: Don confirmed 2026-10-17-b and -c count as placed (5 each, both leg 1 won, leg 2 on Sun 18 Oct, still open); 2026-10-17-a was not bet.",
   "start_date": "2026-10-16",
   "starting_pot": 50.0,
-  "pot": 60.16,
-  "updated": "2026-10-18T04:30:28Z",
+  "pot": 74.22,
+  "updated": "2026-10-22T21:42:32Z",
   "settled": [
     {
       "id": "2026-10-16-c",
@@ -44,6 +44,34 @@
       "pl": 3.89,
       "pot_after": 60.16,
       "source": "Don's Betfair app balance; the bot's own record shows +6.27"
+    },
+    {
+      "id": "2026-10-17-b",
+      "settled_on": "2026-10-18",
+      "stake": 5.0,
+      "legs": "Strasbourg v Paris Over 2.5 won > Mgladbach v Hoffenheim Over 2.5 1-2 won",
+      "prices": [
+        1.59,
+        1.5
+      ],
+      "result": "won",
+      "pl": 6.51,
+      "pot_after": 66.67,
+      "source": "paper: min_odds used; leg 1 won per Don's 17 Oct note"
+    },
+    {
+      "id": "2026-10-17-c",
+      "settled_on": "2026-10-18",
+      "stake": 5.0,
+      "legs": "Bayern v Leipzig Over 2.5 won > Leverkusen v Freiburg Over 2.5 2-1 won",
+      "prices": [
+        1.64,
+        1.59
+      ],
+      "result": "won",
+      "pl": 7.55,
+      "pot_after": 74.22,
+      "source": "paper: min_odds used; leg 1 won per Don's 17 Oct note"
     }
   ],
   "skipped": [
