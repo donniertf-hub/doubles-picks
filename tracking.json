@@ -2447,6 +2447,47 @@
       "odds": 2.25,
       "in_picks": true,
       "result": "won"
+    },
+    {
+      "date": "2026-10-23",
+      "track": "confidence",
+      "confidence": 74,
+      "gap": -3.5,
+      "league": "Germany Bundesliga",
+      "league_goals": 3.69,
+      "played": [
+        6,
+        6
+      ],
+      "scored": [
+        1.33,
+        1.33
+      ],
+      "conceded": [
+        1.67,
+        3.33
+      ],
+      "event": "Stuttgart vs Monchengladbach",
+      "market": "Over/Under 2.5 Goals",
+      "runner": "Over 2.5",
+      "kickoff": "2026-10-23T18:30:00Z",
+      "odds": 1.29,
+      "in_picks": false,
+      "result": null
+    },
+    {
+      "date": "2026-10-23",
+      "track": "confidence",
+      "confidence": 55,
+      "gap": -8.7,
+      "league": "England Premier League",
+      "event": "Ipswich vs Nottingham Forest",
+      "market": "Both Teams To Score",
+      "runner": "Yes",
+      "kickoff": "2026-10-23T19:00:00Z",
+      "odds": 1.57,
+      "in_picks": false,
+      "result": null
     }
   ]
 }
