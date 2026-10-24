@@ -2,8 +2,8 @@
   "note": "Pot from Fri 16 Oct 2026 (start 50). Reset on 17 Oct to the real record: only bets the bot actually placed count. Ids in 'skipped' were never bet. When bot_status.json is fresh it is the source. 17 Oct: Don confirmed 2026-10-17-b and -c count as placed (5 each, both leg 1 won, leg 2 on Sun 18 Oct, still open); 2026-10-17-a was not bet. 24 Oct: Don set the pot to 91.18 free with 2026-10-24-a (5.00, Porto leg) the only open bet; stored pot 96.18 includes that 5.00 stake. Second legs of 24-b/c/d are not tracked.",
   "start_date": "2026-10-16",
   "starting_pot": 50.0,
-  "pot": 96.18,
-  "updated": "2026-10-24T19:45:00Z",
+  "pot": 102.75,
+  "updated": "2026-10-24T21:41:54Z",
   "settled": [
     {
       "id": "2026-10-16-c",
@@ -174,6 +174,20 @@
       "result": "lost",
       "pl": -5.0,
       "pot_after": 96.18
+    },
+    {
+      "id": "2026-10-24-a",
+      "settled_on": "2026-10-24",
+      "stake": 5.0,
+      "legs": "Eyupspor v Kasimpasa Kasimpasa to win 0-1 won > Gil Vicente v Porto Porto to win 0-1 won",
+      "prices": [
+        1.62,
+        1.48
+      ],
+      "result": "won",
+      "pl": 6.57,
+      "pot_after": 102.75,
+      "source": "paper: odds_seen used"
     }
   ],
   "skipped": [
