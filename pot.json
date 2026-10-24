@@ -1,9 +1,9 @@
 {
-  "note": "Pot from Fri 16 Oct 2026 (start 50). Reset on 17 Oct to the real record: only bets the bot actually placed count. Ids in 'skipped' were never bet. When bot_status.json is fresh it is the source. 17 Oct: Don confirmed 2026-10-17-b and -c count as placed (5 each, both leg 1 won, leg 2 on Sun 18 Oct, still open); 2026-10-17-a was not bet. 24 Oct: Don set the pot to 91.18 free with 2026-10-24-a (5.00, Porto leg) the only open bet; stored pot 96.18 includes that 5.00 stake. Second legs of 24-b/c/d are not tracked.",
+  "note": "Pot from Fri 16 Oct 2026 (start 50). Reset on 17 Oct to the real record: only bets the bot actually placed count. Ids in 'skipped' were never bet. When bot_status.json is fresh it is the source. 17 Oct: Don confirmed 2026-10-17-b and -c count as placed (5 each, both leg 1 won, leg 2 on Sun 18 Oct, still open); 2026-10-17-a was not bet. 24 Oct: Don set the pot to 91.18 free with 2026-10-24-a (5.00, Porto leg) the only open bet; stored pot 96.18 includes that 5.00 stake. 25 Oct: Don confirmed 24-b and 24-d won, 24-c lost (Heidenheim drew); Rangers was not bet on its own.",
   "start_date": "2026-10-16",
   "starting_pot": 50.0,
   "pot": 102.75,
-  "updated": "2026-10-24T21:41:54Z",
+  "updated": "2026-10-24T23:35:00Z",
   "settled": [
     {
       "id": "2026-10-16-c",
@@ -133,46 +133,46 @@
       "legs": "Matched to the pot Don reported on 24 Oct (91.18 free plus 5.00 riding on 2026-10-24-a)",
       "prices": [],
       "result": "adjustment",
-      "pl": 23.71,
-      "pot_after": 111.18
+      "pl": 0.28,
+      "pot_after": 87.75
     },
     {
       "id": "2026-10-24-b",
       "settled_on": "2026-10-24",
       "stake": 5.0,
-      "legs": "Hertha v Bielefeld Hertha to win lost > Wolves v Watford not reached",
+      "legs": "Hertha v Bielefeld Hertha to win won > Wolves v Watford Wolves to win won",
       "prices": [
         1.83,
         1.36
       ],
-      "result": "lost",
-      "pl": -5.0,
-      "pot_after": 106.18
+      "result": "won",
+      "pl": 7.0,
+      "pot_after": 94.75
     },
     {
       "id": "2026-10-24-c",
       "settled_on": "2026-10-24",
       "stake": 5.0,
-      "legs": "Heidenheim v Cottbus Heidenheim to win lost > Rangers v St Johnstone not reached",
+      "legs": "Heidenheim v Cottbus Heidenheim to win drew, lost > Rangers v St Johnstone Rangers to win won (not bet on its own)",
       "prices": [
         1.73,
         1.25
       ],
       "result": "lost",
       "pl": -5.0,
-      "pot_after": 101.18
+      "pot_after": 89.75
     },
     {
       "id": "2026-10-24-d",
       "settled_on": "2026-10-24",
       "stake": 5.0,
-      "legs": "Magdeburg v Karlsruhe Magdeburg to win lost > Zurich v Luzern Over 2.5 not reached",
+      "legs": "Magdeburg v Karlsruhe Magdeburg to win won > Zurich v Luzern Over 2.5 won",
       "prices": [
         1.78,
         1.33
       ],
-      "result": "lost",
-      "pl": -5.0,
+      "result": "won",
+      "pl": 6.43,
       "pot_after": 96.18
     },
     {
