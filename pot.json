@@ -1,9 +1,9 @@
 {
-  "note": "Pot from Fri 16 Oct 2026 (start 50). Reset on 17 Oct to the real record: only bets the bot actually placed count. Ids in 'skipped' were never bet. When bot_status.json is fresh it is the source. 17 Oct: Don confirmed 2026-10-17-b and -c count as placed (5 each, both leg 1 won, leg 2 on Sun 18 Oct, still open); 2026-10-17-a was not bet.",
+  "note": "Pot from Fri 16 Oct 2026 (start 50). Reset on 17 Oct to the real record: only bets the bot actually placed count. Ids in 'skipped' were never bet. When bot_status.json is fresh it is the source. 17 Oct: Don confirmed 2026-10-17-b and -c count as placed (5 each, both leg 1 won, leg 2 on Sun 18 Oct, still open); 2026-10-17-a was not bet. 24 Oct: Don set the pot to 91.18 free with 2026-10-24-a (5.00, Porto leg) the only open bet; stored pot 96.18 includes that 5.00 stake. Second legs of 24-b/c/d are not tracked.",
   "start_date": "2026-10-16",
   "starting_pot": 50.0,
-  "pot": 87.47,
-  "updated": "2026-10-24T04:02:21Z",
+  "pot": 96.18,
+  "updated": "2026-10-24T19:45:00Z",
   "settled": [
     {
       "id": "2026-10-16-c",
@@ -125,11 +125,63 @@
       "pl": 7.13,
       "pot_after": 87.47,
       "source": "paper: odds_seen used"
+    },
+    {
+      "id": "balance-check-2026-10-24",
+      "settled_on": "2026-10-23",
+      "stake": 0.0,
+      "legs": "Matched to the pot Don reported on 24 Oct (91.18 free plus 5.00 riding on 2026-10-24-a)",
+      "prices": [],
+      "result": "adjustment",
+      "pl": 23.71,
+      "pot_after": 111.18
+    },
+    {
+      "id": "2026-10-24-b",
+      "settled_on": "2026-10-24",
+      "stake": 5.0,
+      "legs": "Hertha v Bielefeld Hertha to win lost > Wolves v Watford not reached",
+      "prices": [
+        1.83,
+        1.36
+      ],
+      "result": "lost",
+      "pl": -5.0,
+      "pot_after": 106.18
+    },
+    {
+      "id": "2026-10-24-c",
+      "settled_on": "2026-10-24",
+      "stake": 5.0,
+      "legs": "Heidenheim v Cottbus Heidenheim to win lost > Rangers v St Johnstone not reached",
+      "prices": [
+        1.73,
+        1.25
+      ],
+      "result": "lost",
+      "pl": -5.0,
+      "pot_after": 101.18
+    },
+    {
+      "id": "2026-10-24-d",
+      "settled_on": "2026-10-24",
+      "stake": 5.0,
+      "legs": "Magdeburg v Karlsruhe Magdeburg to win lost > Zurich v Luzern Over 2.5 not reached",
+      "prices": [
+        1.78,
+        1.33
+      ],
+      "result": "lost",
+      "pl": -5.0,
+      "pot_after": 96.18
     }
   ],
   "skipped": [
     "2026-10-16-a",
     "2026-10-16-b",
-    "2026-10-17-a"
+    "2026-10-17-a",
+    "2026-10-24-b-s",
+    "2026-10-24-c-s",
+    "2026-10-24-d-s"
   ]
 }
