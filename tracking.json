@@ -2473,7 +2473,7 @@
       "kickoff": "2026-10-23T18:30:00Z",
       "odds": 1.29,
       "in_picks": false,
-      "result": null
+      "result": "won"
     },
     {
       "date": "2026-10-23",
@@ -2487,6 +2487,84 @@
       "kickoff": "2026-10-23T19:00:00Z",
       "odds": 1.57,
       "in_picks": false,
+      "result": "won"
+    },
+    {
+      "date": "2026-10-24",
+      "track": "confidence",
+      "confidence": 80,
+      "gap": 0.0,
+      "event": "Rangers vs Johnstone",
+      "market": "Match Odds",
+      "runner": "Rangers",
+      "kickoff": "2026-10-24T14:00:00Z",
+      "odds": 1.25,
+      "in_picks": true,
+      "result": null
+    },
+    {
+      "date": "2026-10-24",
+      "track": "confidence",
+      "confidence": 75,
+      "gap": 1.5,
+      "event": "Wolves vs Watford",
+      "market": "Match Odds",
+      "runner": "Wolves",
+      "kickoff": "2026-10-24T14:00:00Z",
+      "odds": 1.36,
+      "in_picks": true,
+      "result": null
+    },
+    {
+      "date": "2026-10-24",
+      "track": "confidence",
+      "confidence": 72,
+      "gap": 4.4,
+      "event": "Vicente vs Porto",
+      "market": "Match Odds",
+      "runner": "Porto",
+      "kickoff": "2026-10-24T19:30:00Z",
+      "odds": 1.48,
+      "in_picks": true,
+      "result": null
+    },
+    {
+      "date": "2026-10-24",
+      "track": "confidence",
+      "confidence": 72,
+      "gap": -3.2,
+      "event": "Zurich vs Luzern",
+      "market": "Over/Under 2.5 Goals",
+      "runner": "Over 2.5",
+      "kickoff": "2026-10-24T16:00:00Z",
+      "odds": 1.33,
+      "in_picks": true,
+      "result": null
+    },
+    {
+      "date": "2026-10-24",
+      "track": "confidence",
+      "confidence": 68,
+      "gap": 6.3,
+      "event": "Eyupspor vs Kasimpasa",
+      "market": "Match Odds",
+      "runner": "Kasimpasa",
+      "kickoff": "2026-10-24T10:30:00Z",
+      "odds": 1.62,
+      "in_picks": true,
+      "result": null
+    },
+    {
+      "date": "2026-10-24",
+      "track": "confidence",
+      "confidence": 60,
+      "gap": 5.4,
+      "event": "Hertha vs Bielefeld",
+      "market": "Match Odds",
+      "runner": "Hertha",
+      "kickoff": "2026-10-24T11:00:00Z",
+      "odds": 1.83,
+      "in_picks": true,
       "result": null
     }
   ]
