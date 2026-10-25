@@ -1,7 +1,7 @@
 {
  "bankroll_start": 50,
- "bot_pot_free": 67.55,
- "bot_pot_total": 89.34,
+ "bot_pot_free": 90.97,
+ "bot_pot_total": 90.97,
  "doubles": [
   {
    "covers": null,
@@ -953,9 +953,9 @@
    "covers": null,
    "date": "2026-10-25",
    "fallback": false,
-   "finished_at": null,
+   "finished_at": "2026-10-25T22:00:59Z",
    "id": "2026-10-25-b",
-   "in_play": 5.0,
+   "in_play": 0,
    "kind": "double",
    "legs": [
     {
@@ -964,6 +964,8 @@
      "kickoff": "2026-10-25T13:00:00Z",
      "min_odds": 1.26,
      "odds": 1.43,
+     "result": "WIN",
+     "returns": 7.02,
      "runner": "Over 2.5",
      "stake": 5.0
     },
@@ -974,21 +976,21 @@
      "runner": "Over 2.5"
     }
    ],
-   "note": "",
-   "pl": null,
+   "note": "leg 2 not placed (nothing placed), winnings kept",
+   "pl": 2.02,
    "placed": true,
    "reserve": false,
-   "returned": null,
+   "returned": 7.02,
    "stake": 5.0,
-   "status": "matched"
+   "status": "banked"
   },
   {
    "covers": null,
    "date": "2026-10-25",
    "fallback": false,
-   "finished_at": null,
+   "finished_at": "2026-10-25T21:58:59Z",
    "id": "2026-10-25-s1",
-   "in_play": 5.0,
+   "in_play": 0,
    "kind": "single",
    "legs": [
     {
@@ -997,25 +999,27 @@
      "kickoff": "2026-10-25T17:30:00Z",
      "min_odds": 1.89,
      "odds": 2.26,
+     "result": "LOSE",
+     "returns": 0.0,
      "runner": "Under 2.5",
      "stake": 5.0
     }
    ],
-   "note": "",
-   "pl": null,
+   "note": "leg 1 lost",
+   "pl": -5.0,
    "placed": true,
    "reserve": false,
-   "returned": null,
+   "returned": 0.0,
    "stake": 5.0,
-   "status": "matched"
+   "status": "lost"
   },
   {
    "covers": null,
    "date": "2026-10-25",
    "fallback": false,
-   "finished_at": null,
+   "finished_at": "2026-10-25T21:58:59Z",
    "id": "2026-10-25-c",
-   "in_play": 6.79,
+   "in_play": 0,
    "kind": "double",
    "legs": [
     {
@@ -1035,25 +1039,27 @@
      "kickoff": "2026-10-25T15:45:00Z",
      "min_odds": 1.33,
      "odds": 1.48,
+     "result": "WIN",
+     "returns": 9.85,
      "runner": "Ajax",
      "stake": 6.79
     }
    ],
-   "note": "",
-   "pl": null,
+   "note": "returned 9.85 from a 5.00 stake",
+   "pl": 4.85,
    "placed": true,
    "reserve": false,
-   "returned": null,
+   "returned": 9.85,
    "stake": 5.0,
-   "status": "matched"
+   "status": "won"
   },
   {
    "covers": null,
    "date": "2026-10-25",
    "fallback": true,
-   "finished_at": null,
+   "finished_at": "2026-10-25T21:58:59Z",
    "id": "2026-10-25-a-s",
-   "in_play": 5.0,
+   "in_play": 0,
    "kind": "single",
    "legs": [
     {
@@ -1062,19 +1068,21 @@
      "kickoff": "2026-10-25T14:30:00Z",
      "min_odds": 1.17,
      "odds": 1.33,
+     "result": "WIN",
+     "returns": 6.55,
      "runner": "Over 2.5",
      "stake": 5.0
     }
    ],
-   "note": "",
-   "pl": null,
+   "note": "returned 6.55 from a 5.00 stake",
+   "pl": 1.55,
    "placed": true,
    "reserve": false,
-   "returned": null,
+   "returned": 6.55,
    "stake": 5.0,
-   "status": "matched"
+   "status": "won"
   }
  ],
- "exchange_balance": 82.02,
- "updated": "2026-10-25T21:52:17Z"
+ "exchange_balance": 100.0,
+ "updated": "2026-10-25T22:00:59Z"
 }
