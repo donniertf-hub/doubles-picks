@@ -2,8 +2,8 @@
   "note": "Pot from Fri 16 Oct 2026 (start 50). Reset on 17 Oct to the real record: only bets the bot actually placed count. Ids in 'skipped' were never bet. When bot_status.json is fresh it is the source. 17 Oct: Don confirmed 2026-10-17-b and -c count as placed (5 each, both leg 1 won, leg 2 on Sun 18 Oct, still open); 2026-10-17-a was not bet. 24 Oct: Don set the pot to 91.18 free with 2026-10-24-a (5.00, Porto leg) the only open bet; stored pot 96.18 includes that 5.00 stake. 25 Oct: Don confirmed 24-b and 24-d won, 24-c lost (Heidenheim drew); Rangers was not bet on its own.",
   "start_date": "2026-10-16",
   "starting_pot": 50.0,
-  "pot": 102.75,
-  "updated": "2026-10-25T05:18:40Z",
+  "pot": 85.55,
+  "updated": "2026-10-25T22:55:00Z",
   "settled": [
     {
       "id": "2026-10-16-c",
@@ -188,6 +188,74 @@
       "pl": 6.57,
       "pot_after": 102.75,
       "source": "paper: odds_seen used"
+    },
+    {
+      "id": "2026-10-25-a",
+      "settled_on": "2026-10-25",
+      "stake": 10.0,
+      "legs": "Fortuna Sittard v Excelsior Over 2.5 0-1 lost > Hoffenheim v Leverkusen Over 2.5 3-0 won (leg 2 not counted, double lost)",
+      "prices": [
+        1.6,
+        1.3
+      ],
+      "result": "lost",
+      "pl": -10.0,
+      "pot_after": 92.75,
+      "source": "paper: odds_seen used; one-off 10 pound stakes per Don 25 Oct"
+    },
+    {
+      "id": "2026-10-25-c",
+      "settled_on": "2026-10-25",
+      "stake": 10.0,
+      "legs": "Inter v Fiorentina Inter to win 2-1 won > Sparta v Ajax Ajax to win 1-2 won",
+      "prices": [
+        1.39,
+        1.48
+      ],
+      "result": "won",
+      "pl": 9.95,
+      "pot_after": 102.7,
+      "source": "paper: odds_seen used; one-off 10 pound stakes per Don 25 Oct"
+    },
+    {
+      "id": "2026-10-25-b",
+      "settled_on": "2026-10-25",
+      "stake": 10.0,
+      "legs": "Thun v Lugano Over 2.5 2-3 won > Auxerre v Le Mans Over 2.5 1-1 lost",
+      "prices": [
+        1.4,
+        1.73
+      ],
+      "result": "lost",
+      "pl": -10.0,
+      "pot_after": 92.7,
+      "source": "paper: odds_seen used; one-off 10 pound stakes per Don 25 Oct"
+    },
+    {
+      "id": "2026-10-25-a-s",
+      "settled_on": "2026-10-25",
+      "stake": 10.0,
+      "legs": "Hoffenheim v Leverkusen Over 2.5 3-0 won (on its own after leg 1 lost)",
+      "prices": [
+        1.3
+      ],
+      "result": "won",
+      "pl": 2.85,
+      "pot_after": 95.55,
+      "source": "paper: odds_seen used; one-off 10 pound stakes per Don 25 Oct"
+    },
+    {
+      "id": "2026-10-25-s1",
+      "settled_on": "2026-10-25",
+      "stake": 10.0,
+      "legs": "Castellon v Gijon Under 2.5 4-0 lost (single)",
+      "prices": [
+        2.1
+      ],
+      "result": "lost",
+      "pl": -10.0,
+      "pot_after": 85.55,
+      "source": "paper: odds_seen used; one-off 10 pound stakes per Don 25 Oct"
     }
   ],
   "skipped": [
