@@ -2566,6 +2566,830 @@
       "odds": 1.83,
       "in_picks": true,
       "result": "won"
+    },
+    {
+      "date": "2026-10-25",
+      "track": "confidence",
+      "confidence": 80,
+      "gap": 3.1,
+      "league": "Netherlands Eredivisie",
+      "league_goals": 3.85,
+      "played": [
+        9,
+        9
+      ],
+      "scored": [
+        3.0,
+        3.44
+      ],
+      "conceded": [
+        1.33,
+        1.11
+      ],
+      "over25": [
+        null,
+        null
+      ],
+      "event": "PSV vs Feyenoord",
+      "market": "Over/Under 2.5 Goals",
+      "runner": "Over 2.5",
+      "kickoff": "2026-10-25T13:30:00Z",
+      "odds": 1.3,
+      "in_picks": false,
+      "result": null
+    },
+    {
+      "date": "2026-10-25",
+      "track": "confidence",
+      "confidence": 80,
+      "gap": 4.8,
+      "league": "Netherlands Eredivisie",
+      "league_goals": 3.85,
+      "played": [
+        9,
+        9
+      ],
+      "scored": [
+        1.78,
+        3.0
+      ],
+      "conceded": [
+        2.44,
+        1.33
+      ],
+      "over25": [
+        null,
+        null
+      ],
+      "event": "Sparta vs Ajax",
+      "market": "Over/Under 2.5 Goals",
+      "runner": "Over 2.5",
+      "kickoff": "2026-10-25T15:45:00Z",
+      "odds": 1.33,
+      "in_picks": false,
+      "result": null
+    },
+    {
+      "date": "2026-10-25",
+      "track": "confidence",
+      "confidence": 80,
+      "gap": 3.1,
+      "league": "Germany Bundesliga",
+      "league_goals": 3.56,
+      "played": [
+        6,
+        6
+      ],
+      "scored": [
+        1.83,
+        2.67
+      ],
+      "conceded": [
+        2.33,
+        1.5
+      ],
+      "over25": [
+        null,
+        null
+      ],
+      "event": "Hoffenheim vs Leverkusen",
+      "market": "Over/Under 2.5 Goals",
+      "runner": "Over 2.5",
+      "kickoff": "2026-10-25T14:30:00Z",
+      "odds": 1.3,
+      "in_picks": true,
+      "result": null
+    },
+    {
+      "date": "2026-10-25",
+      "track": "confidence",
+      "confidence": 78,
+      "gap": 6.6,
+      "league": "Netherlands Eredivisie",
+      "league_goals": 3.85,
+      "played": [
+        9,
+        9
+      ],
+      "scored": [
+        1.67,
+        2.44
+      ],
+      "conceded": [
+        1.78,
+        2.11
+      ],
+      "over25": [
+        null,
+        null
+      ],
+      "event": "NEC vs Groningen",
+      "market": "Over/Under 2.5 Goals",
+      "runner": "Over 2.5",
+      "kickoff": "2026-10-25T13:30:00Z",
+      "odds": 1.4,
+      "in_picks": false,
+      "result": null
+    },
+    {
+      "date": "2026-10-25",
+      "track": "confidence",
+      "confidence": 76,
+      "gap": 4.6,
+      "league": "Switzerland Super League",
+      "league_goals": 3.8,
+      "played": [
+        10,
+        10
+      ],
+      "scored": [
+        1.7,
+        3.1
+      ],
+      "conceded": [
+        2.7,
+        0.7
+      ],
+      "over25": [
+        null,
+        null
+      ],
+      "event": "Thun vs Lugano",
+      "market": "Over/Under 2.5 Goals",
+      "runner": "Over 2.5",
+      "kickoff": "2026-10-25T13:00:00Z",
+      "odds": 1.4,
+      "in_picks": true,
+      "result": null
+    },
+    {
+      "date": "2026-10-25",
+      "track": "confidence",
+      "confidence": 72,
+      "gap": 9.5,
+      "league": "Netherlands Eredivisie",
+      "league_goals": 3.85,
+      "played": [
+        9,
+        9
+      ],
+      "scored": [
+        1.78,
+        1.78
+      ],
+      "conceded": [
+        1.89,
+        2.0
+      ],
+      "over25": [
+        null,
+        null
+      ],
+      "event": "Fortuna Sittard vs Excelsior",
+      "market": "Over/Under 2.5 Goals",
+      "runner": "Over 2.5",
+      "kickoff": "2026-10-25T11:15:00Z",
+      "odds": 1.6,
+      "in_picks": true,
+      "result": null
+    },
+    {
+      "date": "2026-10-25",
+      "track": "confidence",
+      "confidence": 70,
+      "gap": 12.2,
+      "league": "France Ligue 1",
+      "league_goals": 3.05,
+      "played": [
+        7,
+        7
+      ],
+      "scored": [
+        1.57,
+        1.43
+      ],
+      "conceded": [
+        2.43,
+        2.14
+      ],
+      "over25": [
+        null,
+        null
+      ],
+      "event": "Auxerre vs Le Mans",
+      "market": "Over/Under 2.5 Goals",
+      "runner": "Over 2.5",
+      "kickoff": "2026-10-25T16:15:00Z",
+      "odds": 1.73,
+      "in_picks": true,
+      "result": null
+    },
+    {
+      "date": "2026-10-25",
+      "track": "confidence",
+      "confidence": 60,
+      "gap": 12.4,
+      "league": "Spain La Liga 2",
+      "league_goals": 2.65,
+      "played": [
+        10,
+        10
+      ],
+      "scored": [
+        1.8,
+        1.1
+      ],
+      "conceded": [
+        0.4,
+        0.9
+      ],
+      "over25": [
+        null,
+        null
+      ],
+      "event": "Castellon vs Sporting Gijon",
+      "market": "Over/Under 2.5 Goals",
+      "runner": "Under 2.5",
+      "kickoff": "2026-10-25T17:30:00Z",
+      "odds": 2.1,
+      "in_picks": true,
+      "result": null
+    },
+    {
+      "date": "2026-10-25",
+      "track": "rules",
+      "rule": "btts",
+      "confidence": 68,
+      "gap": 1.3,
+      "league": "Netherlands Eredivisie",
+      "league_goals": 3.85,
+      "played": [
+        9,
+        9
+      ],
+      "scored": [
+        1.78,
+        1.78
+      ],
+      "conceded": [
+        1.89,
+        2.0
+      ],
+      "over25": [
+        null,
+        null
+      ],
+      "event": "Fortuna Sittard vs Excelsior",
+      "market": "Both Teams To Score",
+      "runner": "Yes",
+      "kickoff": "2026-10-25T11:15:00Z",
+      "odds": 1.5,
+      "in_picks": false,
+      "result": null
+    },
+    {
+      "date": "2026-10-25",
+      "track": "rules",
+      "rule": "btts",
+      "confidence": 70,
+      "gap": null,
+      "league": "Netherlands Eredivisie",
+      "league_goals": 3.85,
+      "played": [
+        9,
+        9
+      ],
+      "scored": [
+        3.0,
+        3.44
+      ],
+      "conceded": [
+        1.33,
+        1.11
+      ],
+      "over25": [
+        null,
+        null
+      ],
+      "event": "PSV vs Feyenoord",
+      "market": "Both Teams To Score",
+      "runner": "Yes",
+      "kickoff": "2026-10-25T13:30:00Z",
+      "odds": null,
+      "in_picks": false,
+      "result": null
+    },
+    {
+      "date": "2026-10-25",
+      "track": "rules",
+      "rule": "btts",
+      "confidence": 74,
+      "gap": 2.6,
+      "league": "Netherlands Eredivisie",
+      "league_goals": 3.85,
+      "played": [
+        9,
+        9
+      ],
+      "scored": [
+        1.67,
+        2.44
+      ],
+      "conceded": [
+        1.78,
+        2.11
+      ],
+      "over25": [
+        null,
+        null
+      ],
+      "event": "NEC vs Groningen",
+      "market": "Both Teams To Score",
+      "runner": "Yes",
+      "kickoff": "2026-10-25T13:30:00Z",
+      "odds": 1.4,
+      "in_picks": false,
+      "result": null
+    },
+    {
+      "date": "2026-10-25",
+      "track": "rules",
+      "rule": "btts",
+      "confidence": 62,
+      "gap": null,
+      "league": "Netherlands Eredivisie",
+      "league_goals": 3.85,
+      "played": [
+        9,
+        9
+      ],
+      "scored": [
+        2.22,
+        1.89
+      ],
+      "conceded": [
+        1.11,
+        1.11
+      ],
+      "over25": [
+        null,
+        null
+      ],
+      "event": "AZ vs Twente",
+      "market": "Both Teams To Score",
+      "runner": "Yes",
+      "kickoff": "2026-10-25T19:00:00Z",
+      "odds": null,
+      "in_picks": false,
+      "result": null
+    },
+    {
+      "date": "2026-10-25",
+      "track": "rules",
+      "rule": "btts",
+      "confidence": 72,
+      "gap": -3.2,
+      "league": "Germany Bundesliga",
+      "league_goals": 3.56,
+      "played": [
+        6,
+        6
+      ],
+      "scored": [
+        1.83,
+        2.67
+      ],
+      "conceded": [
+        2.33,
+        1.5
+      ],
+      "over25": [
+        null,
+        null
+      ],
+      "event": "Hoffenheim vs Leverkusen",
+      "market": "Both Teams To Score",
+      "runner": "Yes",
+      "kickoff": "2026-10-25T14:30:00Z",
+      "odds": 1.33,
+      "in_picks": false,
+      "result": null
+    },
+    {
+      "date": "2026-10-25",
+      "track": "rules",
+      "rule": "btts",
+      "confidence": 60,
+      "gap": null,
+      "league": "Spain La Liga",
+      "league_goals": 3.04,
+      "played": [
+        9,
+        9
+      ],
+      "scored": [
+        1.89,
+        1.67
+      ],
+      "conceded": [
+        1.89,
+        1.89
+      ],
+      "over25": [
+        null,
+        null
+      ],
+      "event": "Real Sociedad vs Levante",
+      "market": "Both Teams To Score",
+      "runner": "Yes",
+      "kickoff": "2026-10-25T17:30:00Z",
+      "odds": null,
+      "in_picks": false,
+      "result": null
+    },
+    {
+      "date": "2026-10-25",
+      "track": "rules",
+      "rule": "btts",
+      "confidence": 72,
+      "gap": -8.0,
+      "league": "Spain La Liga",
+      "league_goals": 3.04,
+      "played": [
+        9,
+        9
+      ],
+      "scored": [
+        4.33,
+        2.56
+      ],
+      "conceded": [
+        1.0,
+        1.0
+      ],
+      "over25": [
+        null,
+        null
+      ],
+      "event": "Barcelona vs Real Madrid",
+      "market": "Both Teams To Score",
+      "runner": "Yes",
+      "kickoff": "2026-10-25T20:00:00Z",
+      "odds": 1.25,
+      "in_picks": false,
+      "result": null
+    },
+    {
+      "date": "2026-10-25",
+      "track": "rules",
+      "rule": "btts",
+      "confidence": 72,
+      "gap": 2.6,
+      "league": "France Ligue 1",
+      "league_goals": 3.05,
+      "played": [
+        7,
+        7
+      ],
+      "scored": [
+        2.14,
+        1.71
+      ],
+      "conceded": [
+        2.0,
+        2.14
+      ],
+      "over25": [
+        null,
+        null
+      ],
+      "event": "Rennes vs Strasbourg",
+      "market": "Both Teams To Score",
+      "runner": "Yes",
+      "kickoff": "2026-10-25T16:15:00Z",
+      "odds": 1.44,
+      "in_picks": false,
+      "result": null
+    },
+    {
+      "date": "2026-10-25",
+      "track": "rules",
+      "rule": "btts",
+      "confidence": 62,
+      "gap": -9.4,
+      "league": "Switzerland Super League",
+      "league_goals": 3.8,
+      "played": [
+        10,
+        10
+      ],
+      "scored": [
+        1.7,
+        3.1
+      ],
+      "conceded": [
+        2.7,
+        0.7
+      ],
+      "over25": [
+        null,
+        null
+      ],
+      "event": "Thun vs Lugano",
+      "market": "Both Teams To Score",
+      "runner": "Yes",
+      "kickoff": "2026-10-25T13:00:00Z",
+      "odds": 1.4,
+      "in_picks": false,
+      "result": null
+    },
+    {
+      "date": "2026-10-25",
+      "track": "rules",
+      "rule": "btts",
+      "confidence": 52,
+      "gap": null,
+      "league": "Austria Bundesliga",
+      "league_goals": 3.16,
+      "played": [
+        9,
+        9
+      ],
+      "scored": [
+        2.56,
+        2.33
+      ],
+      "conceded": [
+        1.0,
+        0.44
+      ],
+      "over25": [
+        null,
+        null
+      ],
+      "event": "LASK vs Salzburg",
+      "market": "Both Teams To Score",
+      "runner": "Yes",
+      "kickoff": "2026-10-25T16:00:00Z",
+      "odds": null,
+      "in_picks": false,
+      "result": null
+    },
+    {
+      "date": "2026-10-25",
+      "track": "rules",
+      "rule": "btts",
+      "confidence": 62,
+      "gap": null,
+      "league": "Austria Bundesliga",
+      "league_goals": 3.16,
+      "played": [
+        9,
+        9
+      ],
+      "scored": [
+        1.78,
+        1.78
+      ],
+      "conceded": [
+        1.11,
+        1.67
+      ],
+      "over25": [
+        null,
+        null
+      ],
+      "event": "Sturm Graz vs Ried",
+      "market": "Both Teams To Score",
+      "runner": "Yes",
+      "kickoff": "2026-10-25T13:30:00Z",
+      "odds": null,
+      "in_picks": false,
+      "result": null
+    },
+    {
+      "date": "2026-10-25",
+      "track": "rules",
+      "rule": "btts",
+      "confidence": 66,
+      "gap": null,
+      "league": "Belgium Pro League",
+      "league_goals": 3.03,
+      "played": [
+        8,
+        8
+      ],
+      "scored": [
+        2.0,
+        1.62
+      ],
+      "conceded": [
+        1.5,
+        1.62
+      ],
+      "over25": [
+        null,
+        null
+      ],
+      "event": "Genk vs Standard Liege",
+      "market": "Both Teams To Score",
+      "runner": "Yes",
+      "kickoff": "2026-10-25T12:30:00Z",
+      "odds": null,
+      "in_picks": false,
+      "result": null
+    },
+    {
+      "date": "2026-10-25",
+      "track": "rules",
+      "rule": "btts",
+      "confidence": 62,
+      "gap": -1.7,
+      "league": "Poland Ekstraklasa",
+      "league_goals": 2.96,
+      "played": [
+        11,
+        10
+      ],
+      "scored": [
+        2.0,
+        2.7
+      ],
+      "conceded": [
+        0.82,
+        0.9
+      ],
+      "over25": [
+        null,
+        null
+      ],
+      "event": "Legia Warszawa vs Lech Poznan",
+      "market": "Both Teams To Score",
+      "runner": "Yes",
+      "kickoff": "2026-10-25T16:30:00Z",
+      "odds": 1.57,
+      "in_picks": false,
+      "result": null
+    },
+    {
+      "date": "2026-10-25",
+      "track": "rules",
+      "rule": "btts",
+      "confidence": 64,
+      "gap": null,
+      "league": "Italy Serie B",
+      "league_goals": 2.72,
+      "played": [
+        7,
+        7
+      ],
+      "scored": [
+        2.0,
+        2.0
+      ],
+      "conceded": [
+        1.71,
+        1.29
+      ],
+      "over25": [
+        null,
+        null
+      ],
+      "event": "Hellas Verona vs Pisa",
+      "market": "Both Teams To Score",
+      "runner": "Yes",
+      "kickoff": "2026-10-25T16:15:00Z",
+      "odds": null,
+      "in_picks": false,
+      "result": null
+    },
+    {
+      "date": "2026-10-25",
+      "track": "rules",
+      "rule": "btts",
+      "confidence": 62,
+      "gap": null,
+      "league": "Turkey Super Lig",
+      "league_goals": 2.88,
+      "played": [
+        8,
+        8
+      ],
+      "scored": [
+        2.12,
+        2.25
+      ],
+      "conceded": [
+        2.0,
+        1.62
+      ],
+      "over25": [
+        null,
+        null
+      ],
+      "event": "Goztepe vs Corum",
+      "market": "Both Teams To Score",
+      "runner": "Yes",
+      "kickoff": "2026-10-25T16:00:00Z",
+      "odds": null,
+      "in_picks": false,
+      "result": null
+    },
+    {
+      "date": "2026-10-25",
+      "track": "rules",
+      "rule": "btts",
+      "confidence": 60,
+      "gap": null,
+      "league": "Greece Super League",
+      "league_goals": 2.73,
+      "played": [
+        7,
+        7
+      ],
+      "scored": [
+        1.57,
+        2.14
+      ],
+      "conceded": [
+        1.57,
+        1.29
+      ],
+      "over25": [
+        null,
+        null
+      ],
+      "event": "OFI Crete vs PAOK",
+      "market": "Both Teams To Score",
+      "runner": "Yes",
+      "kickoff": "2026-10-25T18:00:00Z",
+      "odds": null,
+      "in_picks": false,
+      "result": null
+    },
+    {
+      "date": "2026-10-25",
+      "track": "rules",
+      "rule": "btts",
+      "confidence": 62,
+      "gap": null,
+      "league": "Finland Veikkausliiga",
+      "league_goals": 2.52,
+      "played": [
+        22,
+        22
+      ],
+      "scored": [
+        1.64,
+        1.73
+      ],
+      "conceded": [
+        1.23,
+        1.05
+      ],
+      "over25": [
+        null,
+        null
+      ],
+      "event": "HJK vs KuPS",
+      "market": "Both Teams To Score",
+      "runner": "Yes",
+      "kickoff": "2026-10-25T13:00:00Z",
+      "odds": null,
+      "in_picks": false,
+      "result": null
+    },
+    {
+      "date": "2026-10-25",
+      "track": "rules",
+      "rule": "btts",
+      "confidence": 68,
+      "gap": null,
+      "league": "Germany 3. Liga",
+      "league_goals": 3.4,
+      "played": [
+        8,
+        8
+      ],
+      "scored": [
+        2.0,
+        2.0
+      ],
+      "conceded": [
+        1.38,
+        1.38
+      ],
+      "over25": [
+        null,
+        null
+      ],
+      "event": "Waldhof Mannheim vs Hoffenheim II",
+      "market": "Both Teams To Score",
+      "runner": "Yes",
+      "kickoff": "2026-10-25T18:30:00Z",
+      "odds": null,
+      "in_picks": false,
+      "result": null
     }
   ]
 }
