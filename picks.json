@@ -74,6 +74,33 @@
           "track": "confidence"
         }
       ]
+    },
+    {
+      "id": "2026-10-25-c",
+      "legs": [
+        {
+          "sport": "football",
+          "event": "Inter vs Fiorentina",
+          "market": "Match Odds",
+          "runner": "Inter",
+          "kickoff": "2026-10-25T11:30:00Z",
+          "confidence": 76,
+          "odds_seen": 1.39,
+          "min_odds": 1.25,
+          "track": "confidence"
+        },
+        {
+          "sport": "football",
+          "event": "Sparta vs Ajax",
+          "market": "Match Odds",
+          "runner": "Ajax",
+          "kickoff": "2026-10-25T15:45:00Z",
+          "confidence": 70,
+          "odds_seen": 1.48,
+          "min_odds": 1.33,
+          "track": "confidence"
+        }
+      ]
     }
   ],
   "singles": [

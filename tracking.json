@@ -3390,6 +3390,50 @@
       "odds": null,
       "in_picks": false,
       "result": null
+    },
+    {
+      "date": "2026-10-25",
+      "track": "confidence",
+      "confidence": 76,
+      "gap": 4.1,
+      "league": "Italy Serie A",
+      "played": [
+        7,
+        7
+      ],
+      "event": "Inter vs Fiorentina",
+      "market": "Match Odds",
+      "runner": "Inter",
+      "kickoff": "2026-10-25T11:30:00Z",
+      "odds": 1.39,
+      "in_picks": true,
+      "result": null
+    },
+    {
+      "date": "2026-10-25",
+      "track": "confidence",
+      "confidence": 70,
+      "gap": 2.4,
+      "league": "Netherlands Eredivisie",
+      "played": [
+        9,
+        9
+      ],
+      "scored": [
+        1.78,
+        3.0
+      ],
+      "conceded": [
+        2.44,
+        1.33
+      ],
+      "event": "Sparta vs Ajax",
+      "market": "Match Odds",
+      "runner": "Ajax",
+      "kickoff": "2026-10-25T15:45:00Z",
+      "odds": 1.48,
+      "in_picks": true,
+      "result": null
     }
   ]
 }
