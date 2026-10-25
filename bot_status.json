@@ -1,0 +1,1080 @@
+{
+ "bankroll_start": 50,
+ "bot_pot_free": 67.55,
+ "bot_pot_total": 89.34,
+ "doubles": [
+  {
+   "covers": null,
+   "date": "2026-10-11",
+   "fallback": false,
+   "finished_at": null,
+   "id": "2026-10-11-a",
+   "in_play": 0,
+   "kind": "double",
+   "legs": [
+    {
+     "asked_odds": 1.53,
+     "event": "Betis vs Osasuna",
+     "kickoff": "2026-10-11T16:30:00Z",
+     "min_odds": null,
+     "odds": 1.53,
+     "result": "WIN",
+     "returns": 7.49,
+     "runner": "Betis",
+     "stake": 5.0
+    },
+    {
+     "asked_odds": 1.44,
+     "event": "Lions vs Cardinals",
+     "kickoff": "2026-10-11T20:25:00Z",
+     "min_odds": null,
+     "odds": 1.44,
+     "result": "WIN",
+     "returns": 10.59,
+     "runner": "Lions",
+     "stake": 7.49
+    }
+   ],
+   "note": "returned 10.59 from a 5.00 stake",
+   "pl": 5.59,
+   "placed": true,
+   "reserve": false,
+   "returned": 10.59,
+   "stake": 5.0,
+   "status": "won"
+  },
+  {
+   "covers": null,
+   "date": "2026-10-11",
+   "fallback": false,
+   "finished_at": null,
+   "id": "2026-10-11-b",
+   "in_play": 0,
+   "kind": "double",
+   "legs": [
+    {
+     "asked_odds": 1.76,
+     "event": "Modena vs Verona",
+     "kickoff": "2026-10-11T17:30:00Z",
+     "min_odds": null,
+     "odds": 1.76,
+     "result": "WIN",
+     "returns": 8.57,
+     "runner": "Yes",
+     "stake": 5.0
+    },
+    {
+     "asked_odds": 1.55,
+     "event": "Atalanta vs Venezia",
+     "kickoff": "2026-10-12T16:30:00Z",
+     "min_odds": null,
+     "odds": 1.55,
+     "result": "WIN",
+     "returns": 13.0,
+     "runner": "Atalanta",
+     "stake": 8.57
+    }
+   ],
+   "note": "returned 13.00 from a 5.00 stake",
+   "pl": 8.0,
+   "placed": true,
+   "reserve": false,
+   "returned": 13.0,
+   "stake": 5.0,
+   "status": "won"
+  },
+  {
+   "covers": null,
+   "date": "2026-10-11",
+   "fallback": false,
+   "finished_at": null,
+   "id": "2026-10-11-c",
+   "in_play": 0,
+   "kind": "double",
+   "legs": [
+    {
+     "event": "Cagliari vs Juventus",
+     "kickoff": "2026-10-11T18:45:00Z",
+     "min_odds": null,
+     "runner": "Under 2.5"
+    },
+    {
+     "event": "Elfsborg vs Halmstad",
+     "kickoff": "2026-10-12T17:00:00Z",
+     "min_odds": null,
+     "runner": "Elfsborg"
+    }
+   ],
+   "note": "daily limit of doubles reached",
+   "pl": 0.0,
+   "placed": false,
+   "reserve": false,
+   "returned": null,
+   "stake": null,
+   "status": "skipped"
+  },
+  {
+   "covers": null,
+   "date": "2026-10-11",
+   "fallback": false,
+   "finished_at": null,
+   "id": "2026-10-11-e",
+   "in_play": 0,
+   "kind": "double",
+   "legs": [
+    {
+     "asked_odds": 1.61,
+     "event": "Liverpool vs Manchester City",
+     "kickoff": "2026-10-11T15:30:00Z",
+     "min_odds": null,
+     "odds": 1.61,
+     "result": "LOSE",
+     "returns": 0.0,
+     "runner": "Yes",
+     "stake": 5.0
+    },
+    {
+     "event": "Cagliari vs Juventus",
+     "kickoff": "2026-10-11T18:45:00Z",
+     "min_odds": null,
+     "runner": "Under 2.5"
+    }
+   ],
+   "note": "leg 1 lost",
+   "pl": -5.0,
+   "placed": true,
+   "reserve": false,
+   "returned": 0.0,
+   "stake": 5.0,
+   "status": "lost"
+  },
+  {
+   "covers": null,
+   "date": "2026-10-11",
+   "fallback": false,
+   "finished_at": null,
+   "id": "2026-10-11-f",
+   "in_play": 0,
+   "kind": "double",
+   "legs": [
+    {
+     "asked_odds": 1.68,
+     "event": "Freiburg vs Schalke",
+     "kickoff": "2026-10-11T15:30:00Z",
+     "min_odds": null,
+     "odds": 1.68,
+     "result": "WIN",
+     "returns": 8.2,
+     "runner": "Yes",
+     "stake": 5.0
+    },
+    {
+     "asked_odds": 1.41,
+     "event": "Elfsborg vs Halmstad",
+     "kickoff": "2026-10-12T17:00:00Z",
+     "min_odds": null,
+     "odds": 1.41,
+     "result": "WIN",
+     "returns": 11.36,
+     "runner": "Elfsborg",
+     "stake": 8.2
+    }
+   ],
+   "note": "returned 11.36 from a 5.00 stake",
+   "pl": 6.36,
+   "placed": true,
+   "reserve": false,
+   "returned": 11.36,
+   "stake": 5.0,
+   "status": "won"
+  },
+  {
+   "covers": null,
+   "date": "2026-10-12",
+   "fallback": false,
+   "finished_at": null,
+   "id": "2026-10-12-a",
+   "in_play": 0,
+   "kind": "double",
+   "legs": [
+    {
+     "asked_odds": 2.38,
+     "event": "Burgos vs Granada",
+     "kickoff": "2026-10-12T14:15:00Z",
+     "min_odds": 1.93,
+     "odds": 2.38,
+     "result": "LOSE",
+     "returns": 0.0,
+     "runner": "Over 2.5",
+     "stake": 5.0
+    },
+    {
+     "event": "Pyramids vs Ceramica",
+     "kickoff": "2026-10-12T17:00:00Z",
+     "min_odds": 1.86,
+     "runner": "Under 2.5"
+    }
+   ],
+   "note": "leg 1 lost",
+   "pl": -5.0,
+   "placed": true,
+   "reserve": false,
+   "returned": 0.0,
+   "stake": 5.0,
+   "status": "lost"
+  },
+  {
+   "covers": null,
+   "date": "2026-10-12",
+   "fallback": false,
+   "finished_at": null,
+   "id": "2026-10-12-b",
+   "in_play": 0,
+   "kind": "double",
+   "legs": [
+    {
+     "event": "Pyramids vs Ceramica",
+     "kickoff": "2026-10-12T17:00:00Z",
+     "min_odds": 1.86,
+     "runner": "Under 2.5"
+    },
+    {
+     "event": "Arsenal vs Lille",
+     "kickoff": "2026-10-13T19:00:00Z",
+     "min_odds": 1.24,
+     "runner": "Arsenal"
+    }
+   ],
+   "note": "missed kick-off (Under 2.5 is 1.76, below the pick's minimum)",
+   "pl": 0.0,
+   "placed": false,
+   "reserve": false,
+   "returned": null,
+   "stake": null,
+   "status": "skipped"
+  },
+  {
+   "covers": null,
+   "date": "2026-10-16",
+   "fallback": false,
+   "finished_at": null,
+   "id": "2026-10-16-a",
+   "in_play": 0,
+   "kind": "double",
+   "legs": [
+    {
+     "event": "Cottbus vs Nurnberg",
+     "kickoff": "2026-10-16T16:30:00Z",
+     "min_odds": 1.54,
+     "runner": "Over 2.5"
+    },
+    {
+     "event": "Burnley vs Wolves",
+     "kickoff": "2026-10-16T19:00:00Z",
+     "min_odds": 1.7,
+     "runner": "Yes"
+    }
+   ],
+   "note": "missed kick-off (Over 2.5 is 1.34, below the pick's minimum)",
+   "pl": 0.0,
+   "placed": false,
+   "reserve": false,
+   "returned": null,
+   "stake": null,
+   "status": "skipped"
+  },
+  {
+   "covers": null,
+   "date": "2026-10-16",
+   "fallback": false,
+   "finished_at": null,
+   "id": "2026-10-16-b",
+   "in_play": 0,
+   "kind": "double",
+   "legs": [
+    {
+     "event": "Frankfurt vs Koln",
+     "kickoff": "2026-10-16T18:30:00Z",
+     "min_odds": 1.59,
+     "runner": "Over 2.5"
+    },
+    {
+     "event": "Elversberg vs Augsburg",
+     "kickoff": "2026-10-17T13:30:00Z",
+     "min_odds": 1.67,
+     "runner": "Yes"
+    }
+   ],
+   "note": "missed kick-off (Over 2.5 is 1.39, below the pick's minimum)",
+   "pl": 0.0,
+   "placed": false,
+   "reserve": false,
+   "returned": null,
+   "stake": null,
+   "status": "skipped"
+  },
+  {
+   "covers": null,
+   "date": "2026-10-17",
+   "fallback": false,
+   "finished_at": null,
+   "id": "2026-10-17-a",
+   "in_play": 0,
+   "kind": "double",
+   "legs": [
+    {
+     "event": "Wolfsburg vs Heidenheim",
+     "kickoff": "2026-10-17T11:00:00Z",
+     "min_odds": 1.7,
+     "runner": "Yes"
+    },
+    {
+     "event": "Sparta vs Willem",
+     "kickoff": "2026-10-17T19:00:00Z",
+     "min_odds": 1.45,
+     "runner": "Over 2.5"
+    }
+   ],
+   "note": "missed kick-off (Yes is 1.44, below the pick's minimum)",
+   "pl": 0.0,
+   "placed": false,
+   "reserve": false,
+   "returned": null,
+   "stake": null,
+   "status": "skipped"
+  },
+  {
+   "covers": null,
+   "date": "2026-10-17",
+   "fallback": false,
+   "finished_at": null,
+   "id": "2026-10-17-b",
+   "in_play": 0,
+   "kind": "double",
+   "legs": [
+    {
+     "event": "Strasbourg vs Paris",
+     "kickoff": "2026-10-17T15:15:00Z",
+     "min_odds": 1.59,
+     "runner": "Over 2.5"
+    },
+    {
+     "event": "Mgladbach vs Hoffenheim",
+     "kickoff": "2026-10-18T15:30:00Z",
+     "min_odds": 1.5,
+     "runner": "Over 2.5"
+    }
+   ],
+   "note": "missed kick-off (Over 2.5 is 1.39, below the pick's minimum)",
+   "pl": 0.0,
+   "placed": false,
+   "reserve": false,
+   "returned": null,
+   "stake": null,
+   "status": "skipped"
+  },
+  {
+   "covers": null,
+   "date": "2026-10-17",
+   "fallback": false,
+   "finished_at": "2026-10-17T23:09:49Z",
+   "id": "2026-10-17-c",
+   "in_play": 0,
+   "kind": "double",
+   "legs": [
+    {
+     "event": "Bayern Munich vs Leipzig",
+     "kickoff": "2026-10-17T16:30:00Z",
+     "min_odds": 1.64,
+     "runner": "Over 2.5"
+    },
+    {
+     "event": "Leverkusen vs Freiburg",
+     "kickoff": "2026-10-18T13:30:00Z",
+     "min_odds": 1.59,
+     "runner": "Over 2.5"
+    }
+   ],
+   "note": "missed kick-off (Over 2.5 is 1.14, below the pick's minimum)",
+   "pl": 0.0,
+   "placed": false,
+   "reserve": false,
+   "returned": 0.0,
+   "stake": null,
+   "status": "skipped"
+  },
+  {
+   "covers": null,
+   "date": "2026-10-16",
+   "fallback": false,
+   "finished_at": null,
+   "id": "2026-10-16-c",
+   "in_play": 0,
+   "kind": "double",
+   "legs": [
+    {
+     "asked_odds": 1.55,
+     "event": "Wieczysta vs Rakow",
+     "kickoff": "2026-10-16T16:00:00Z",
+     "min_odds": 1.39,
+     "odds": 1.55,
+     "result": "WIN",
+     "returns": 7.58,
+     "runner": "Yes",
+     "stake": 5.0
+    },
+    {
+     "asked_odds": 2.2,
+     "event": "Ayr vs Partick",
+     "kickoff": "2026-10-16T18:30:00Z",
+     "min_odds": 1.45,
+     "odds": 2.22,
+     "result": "WIN",
+     "returns": 16.27,
+     "runner": "Under 2.5",
+     "stake": 7.58
+    }
+   ],
+   "note": "returned 16.27 from a 5.00 stake",
+   "pl": 11.27,
+   "placed": true,
+   "reserve": false,
+   "returned": 16.27,
+   "stake": 5.0,
+   "status": "won"
+  },
+  {
+   "covers": null,
+   "date": "2026-10-16",
+   "fallback": false,
+   "finished_at": null,
+   "id": "2026-10-16-d",
+   "in_play": 0,
+   "kind": "double",
+   "legs": [
+    {
+     "asked_odds": 1.65,
+     "event": "Reims vs Dijon",
+     "kickoff": "2026-10-16T18:00:00Z",
+     "min_odds": 1.57,
+     "odds": 1.65,
+     "result": "WIN",
+     "returns": 8.05,
+     "runner": "Yes",
+     "stake": 5.0
+    },
+    {
+     "asked_odds": 1.75,
+     "event": "Mirassol vs Internacional",
+     "kickoff": "2026-10-16T23:00:00Z",
+     "min_odds": 1.67,
+     "odds": 1.75,
+     "result": "LOSE",
+     "returns": 0.0,
+     "runner": "Yes",
+     "stake": 4.16
+    }
+   ],
+   "note": "leg 2 lost",
+   "pl": -5.0,
+   "placed": true,
+   "reserve": false,
+   "returned": 0.0,
+   "stake": 5.0,
+   "status": "lost"
+  },
+  {
+   "covers": null,
+   "date": "2026-10-16",
+   "fallback": false,
+   "finished_at": null,
+   "id": "2026-10-16-s1",
+   "in_play": 0,
+   "kind": "single",
+   "legs": [
+    {
+     "event": "Helmond vs Breda",
+     "kickoff": "2026-10-16T18:00:00Z",
+     "min_odds": 1.37,
+     "runner": "Yes"
+    }
+   ],
+   "note": "missed kick-off (no profit to stake yet (up 0.00, a single needs 5.00))",
+   "pl": 0.0,
+   "placed": false,
+   "reserve": false,
+   "returned": null,
+   "stake": null,
+   "status": "skipped"
+  },
+  {
+   "covers": null,
+   "date": "2026-10-16",
+   "fallback": false,
+   "finished_at": null,
+   "id": "2026-10-16-s2",
+   "in_play": 0,
+   "kind": "single",
+   "legs": [
+    {
+     "event": "Venlo vs Jong",
+     "kickoff": "2026-10-16T18:00:00Z",
+     "min_odds": 1.27,
+     "runner": "Over 2.5"
+    }
+   ],
+   "note": "missed kick-off (no profit to stake yet (up 0.00, a single needs 5.00))",
+   "pl": 0.0,
+   "placed": false,
+   "reserve": false,
+   "returned": null,
+   "stake": null,
+   "status": "skipped"
+  },
+  {
+   "covers": null,
+   "date": "2026-10-16",
+   "fallback": false,
+   "finished_at": null,
+   "id": "2026-10-16-s3",
+   "in_play": 0,
+   "kind": "single",
+   "legs": [
+    {
+     "event": "Grenoble vs Boulogne",
+     "kickoff": "2026-10-16T18:00:00Z",
+     "min_odds": 1.5,
+     "runner": "Under 2.5"
+    }
+   ],
+   "note": "missed kick-off (no profit to stake yet (up 0.00, a single needs 5.00))",
+   "pl": 0.0,
+   "placed": false,
+   "reserve": false,
+   "returned": null,
+   "stake": null,
+   "status": "skipped"
+  },
+  {
+   "covers": null,
+   "date": "2026-10-17",
+   "fallback": false,
+   "finished_at": null,
+   "id": "2026-10-17-s1",
+   "in_play": 0,
+   "kind": "single",
+   "legs": [
+    {
+     "event": "Stenhousemuir vs Raith",
+     "kickoff": "2026-10-17T14:00:00Z",
+     "min_odds": 1.5,
+     "runner": "No"
+    }
+   ],
+   "note": "missed kick-off (no profit to stake yet (up 0.00, a single needs 5.00))",
+   "pl": 0.0,
+   "placed": false,
+   "reserve": false,
+   "returned": null,
+   "stake": null,
+   "status": "skipped"
+  },
+  {
+   "covers": null,
+   "date": "2026-10-17",
+   "fallback": false,
+   "finished_at": null,
+   "id": "2026-10-17-s2",
+   "in_play": 0,
+   "kind": "single",
+   "legs": [
+    {
+     "event": "Dunfermline vs Livingston",
+     "kickoff": "2026-10-17T14:00:00Z",
+     "min_odds": 1.59,
+     "runner": "No"
+    }
+   ],
+   "note": "missed kick-off (no profit to stake yet (up 0.00, a single needs 5.00))",
+   "pl": 0.0,
+   "placed": false,
+   "reserve": false,
+   "returned": null,
+   "stake": null,
+   "status": "skipped"
+  },
+  {
+   "covers": null,
+   "date": "2026-10-18",
+   "fallback": false,
+   "finished_at": "2026-10-18T18:25:47Z",
+   "id": "2026-10-18-a",
+   "in_play": 0,
+   "kind": "double",
+   "legs": [
+    {
+     "asked_odds": 1.51,
+     "event": "PEC Zwolle vs Go Ahead Eagles",
+     "kickoff": "2026-10-18T10:15:00Z",
+     "min_odds": 1.45,
+     "odds": 1.51,
+     "result": "WIN",
+     "returns": 7.4,
+     "runner": "Over 2.5",
+     "stake": 5.0
+    },
+    {
+     "asked_odds": 1.69,
+     "event": "Kabylie vs Biskra",
+     "kickoff": "2026-10-18T16:45:00Z",
+     "min_odds": 1.45,
+     "odds": 1.69,
+     "result": "LOSE",
+     "returns": 0.0,
+     "runner": "Under 2.5",
+     "stake": 7.4
+    }
+   ],
+   "note": "leg 2 lost",
+   "pl": -5.0,
+   "placed": true,
+   "reserve": false,
+   "returned": 0.0,
+   "stake": 5.0,
+   "status": "lost"
+  },
+  {
+   "covers": null,
+   "date": "2026-10-18",
+   "fallback": false,
+   "finished_at": "2026-10-18T16:59:43Z",
+   "id": "2026-10-18-s1",
+   "in_play": 0,
+   "kind": "single",
+   "legs": [
+    {
+     "asked_odds": 2.66,
+     "event": "Sandefjord vs Lillestrom",
+     "kickoff": "2026-10-18T15:00:00Z",
+     "min_odds": 1.86,
+     "odds": 2.66,
+     "result": "WIN",
+     "returns": 12.8,
+     "runner": "No",
+     "stake": 5.0
+    }
+   ],
+   "note": "returned 12.80 from a 5.00 stake",
+   "pl": 7.8,
+   "placed": true,
+   "reserve": false,
+   "returned": 12.8,
+   "stake": 5.0,
+   "status": "won"
+  },
+  {
+   "covers": null,
+   "date": "2026-10-18",
+   "fallback": false,
+   "finished_at": "2026-10-18T14:29:15Z",
+   "id": "2026-10-18-s2",
+   "in_play": 0,
+   "kind": "single",
+   "legs": [
+    {
+     "asked_odds": 2.06,
+     "event": "Salzburg vs Altach",
+     "kickoff": "2026-10-18T12:30:00Z",
+     "min_odds": 1.7,
+     "odds": 2.06,
+     "result": "WIN",
+     "returns": 9.98,
+     "runner": "No",
+     "stake": 5.0
+    }
+   ],
+   "note": "returned 9.98 from a 5.00 stake",
+   "pl": 4.98,
+   "placed": true,
+   "reserve": false,
+   "returned": 9.98,
+   "stake": 5.0,
+   "status": "won"
+  },
+  {
+   "covers": null,
+   "date": "2026-10-18",
+   "fallback": false,
+   "finished_at": "2026-10-18T14:59:24Z",
+   "id": "2026-10-18-s3",
+   "in_play": 0,
+   "kind": "single",
+   "legs": [
+    {
+     "asked_odds": 2.32,
+     "event": "Banik vs Sparta",
+     "kickoff": "2026-10-18T13:00:00Z",
+     "min_odds": 1.82,
+     "odds": 2.32,
+     "result": "WIN",
+     "returns": 11.2,
+     "runner": "No",
+     "stake": 5.0
+    }
+   ],
+   "note": "returned 11.20 from a 5.00 stake",
+   "pl": 6.2,
+   "placed": true,
+   "reserve": false,
+   "returned": 11.2,
+   "stake": 5.0,
+   "status": "won"
+  },
+  {
+   "covers": null,
+   "date": "2026-10-24",
+   "fallback": false,
+   "finished_at": "2026-10-24T21:34:26Z",
+   "id": "2026-10-24-a",
+   "in_play": 0,
+   "kind": "double",
+   "legs": [
+    {
+     "asked_odds": 1.63,
+     "event": "Eyupspor vs Kasimpasa",
+     "kickoff": "2026-10-24T10:30:00Z",
+     "min_odds": 1.45,
+     "odds": 1.63,
+     "result": "WIN",
+     "returns": 7.96,
+     "runner": "Kasimpasa",
+     "stake": 5.0
+    },
+    {
+     "asked_odds": 1.49,
+     "event": "Vicente vs Porto",
+     "kickoff": "2026-10-24T19:30:00Z",
+     "min_odds": 1.33,
+     "odds": 1.49,
+     "result": "WIN",
+     "returns": 11.63,
+     "runner": "Porto",
+     "stake": 7.96
+    }
+   ],
+   "note": "returned 11.63 from a 5.00 stake",
+   "pl": 6.63,
+   "placed": true,
+   "reserve": false,
+   "returned": 11.63,
+   "stake": 5.0,
+   "status": "won"
+  },
+  {
+   "covers": null,
+   "date": "2026-10-24",
+   "fallback": false,
+   "finished_at": "2026-10-24T16:00:03Z",
+   "id": "2026-10-24-b",
+   "in_play": 0,
+   "kind": "double",
+   "legs": [
+    {
+     "asked_odds": 1.84,
+     "event": "Hertha vs Bielefeld",
+     "kickoff": "2026-10-24T11:00:00Z",
+     "min_odds": 1.64,
+     "odds": 1.84,
+     "result": "WIN",
+     "returns": 8.95,
+     "runner": "Hertha",
+     "stake": 5.0
+    },
+    {
+     "asked_odds": 1.48,
+     "event": "Wolves vs Watford",
+     "kickoff": "2026-10-24T14:00:00Z",
+     "min_odds": 1.22,
+     "odds": 1.48,
+     "result": "WIN",
+     "returns": 12.99,
+     "runner": "Wolves",
+     "stake": 8.95
+    }
+   ],
+   "note": "returned 12.99 from a 5.00 stake",
+   "pl": 7.99,
+   "placed": true,
+   "reserve": false,
+   "returned": 12.99,
+   "stake": 5.0,
+   "status": "won"
+  },
+  {
+   "covers": null,
+   "date": "2026-10-24",
+   "fallback": false,
+   "finished_at": "2026-10-24T12:59:41Z",
+   "id": "2026-10-24-c",
+   "in_play": 0,
+   "kind": "double",
+   "legs": [
+    {
+     "asked_odds": 1.8,
+     "event": "Heidenheim vs Cottbus",
+     "kickoff": "2026-10-24T11:00:00Z",
+     "min_odds": 1.55,
+     "odds": 1.8057,
+     "result": "LOSE",
+     "returns": 0.0,
+     "runner": "Heidenheim",
+     "stake": 5.0
+    },
+    {
+     "event": "Rangers vs Johnstone",
+     "kickoff": "2026-10-24T14:00:00Z",
+     "min_odds": 1.12,
+     "runner": "Rangers"
+    }
+   ],
+   "note": "leg 1 lost",
+   "pl": -5.0,
+   "placed": true,
+   "reserve": false,
+   "returned": 0.0,
+   "stake": 5.0,
+   "status": "lost"
+  },
+  {
+   "covers": null,
+   "date": "2026-10-24",
+   "fallback": false,
+   "finished_at": "2026-10-24T17:40:10Z",
+   "id": "2026-10-24-d",
+   "in_play": 0,
+   "kind": "double",
+   "legs": [
+    {
+     "asked_odds": 1.85,
+     "event": "Magdeburg vs Karlsruhe",
+     "kickoff": "2026-10-24T11:00:00Z",
+     "min_odds": 1.6,
+     "odds": 1.85,
+     "result": "WIN",
+     "returns": 8.99,
+     "runner": "Magdeburg",
+     "stake": 5.0
+    },
+    {
+     "asked_odds": 1.45,
+     "event": "Zurich vs Luzern",
+     "kickoff": "2026-10-24T16:00:00Z",
+     "min_odds": 1.19,
+     "odds": 1.45,
+     "result": "WIN",
+     "returns": 12.8,
+     "runner": "Over 2.5",
+     "stake": 8.99
+    }
+   ],
+   "note": "returned 12.80 from a 5.00 stake",
+   "pl": 7.8,
+   "placed": true,
+   "reserve": false,
+   "returned": 12.8,
+   "stake": 5.0,
+   "status": "won"
+  },
+  {
+   "covers": null,
+   "date": "2026-10-24",
+   "fallback": true,
+   "finished_at": "2026-10-24T16:00:04Z",
+   "id": "2026-10-24-c-s",
+   "in_play": 0,
+   "kind": "single",
+   "legs": [
+    {
+     "asked_odds": 1.21,
+     "event": "Rangers vs Johnstone",
+     "kickoff": "2026-10-24T14:00:00Z",
+     "min_odds": 1.12,
+     "odds": 1.21,
+     "result": "WIN",
+     "returns": 5.99,
+     "runner": "Rangers",
+     "stake": 5.0
+    }
+   ],
+   "note": "returned 5.99 from a 5.00 stake",
+   "pl": 0.99,
+   "placed": true,
+   "reserve": false,
+   "returned": 5.99,
+   "stake": 5.0,
+   "status": "won"
+  },
+  {
+   "covers": null,
+   "date": "2026-10-25",
+   "fallback": false,
+   "finished_at": "2026-10-25T13:13:19Z",
+   "id": "2026-10-25-a",
+   "in_play": 0,
+   "kind": "double",
+   "legs": [
+    {
+     "asked_odds": 1.79,
+     "event": "Fortuna vs Excelsior",
+     "kickoff": "2026-10-25T11:15:00Z",
+     "min_odds": 1.44,
+     "odds": 1.79,
+     "result": "LOSE",
+     "returns": 0.0,
+     "runner": "Over 2.5",
+     "stake": 5.0
+    },
+    {
+     "event": "Hoffenheim vs Leverkusen",
+     "kickoff": "2026-10-25T14:30:00Z",
+     "min_odds": 1.17,
+     "runner": "Over 2.5"
+    }
+   ],
+   "note": "leg 1 lost",
+   "pl": -5.0,
+   "placed": true,
+   "reserve": false,
+   "returned": 0.0,
+   "stake": 5.0,
+   "status": "lost"
+  },
+  {
+   "covers": null,
+   "date": "2026-10-25",
+   "fallback": false,
+   "finished_at": null,
+   "id": "2026-10-25-b",
+   "in_play": 5.0,
+   "kind": "double",
+   "legs": [
+    {
+     "asked_odds": 1.43,
+     "event": "Thun vs Lugano",
+     "kickoff": "2026-10-25T13:00:00Z",
+     "min_odds": 1.26,
+     "odds": 1.43,
+     "runner": "Over 2.5",
+     "stake": 5.0
+    },
+    {
+     "event": "Auxerre vs Le Mans",
+     "kickoff": "2026-10-25T16:15:00Z",
+     "min_odds": 1.55,
+     "runner": "Over 2.5"
+    }
+   ],
+   "note": "",
+   "pl": null,
+   "placed": true,
+   "reserve": false,
+   "returned": null,
+   "stake": 5.0,
+   "status": "matched"
+  },
+  {
+   "covers": null,
+   "date": "2026-10-25",
+   "fallback": false,
+   "finished_at": null,
+   "id": "2026-10-25-s1",
+   "in_play": 5.0,
+   "kind": "single",
+   "legs": [
+    {
+     "asked_odds": 2.26,
+     "event": "Castellon vs Gijon",
+     "kickoff": "2026-10-25T17:30:00Z",
+     "min_odds": 1.89,
+     "odds": 2.26,
+     "runner": "Under 2.5",
+     "stake": 5.0
+    }
+   ],
+   "note": "",
+   "pl": null,
+   "placed": true,
+   "reserve": false,
+   "returned": null,
+   "stake": 5.0,
+   "status": "matched"
+  },
+  {
+   "covers": null,
+   "date": "2026-10-25",
+   "fallback": false,
+   "finished_at": null,
+   "id": "2026-10-25-c",
+   "in_play": 6.79,
+   "kind": "double",
+   "legs": [
+    {
+     "asked_odds": 1.38,
+     "event": "Inter vs Fiorentina",
+     "kickoff": "2026-10-25T11:30:00Z",
+     "min_odds": 1.25,
+     "odds": 1.38,
+     "result": "WIN",
+     "returns": 6.79,
+     "runner": "Inter",
+     "stake": 5.0
+    },
+    {
+     "asked_odds": 1.48,
+     "event": "Sparta vs Ajax",
+     "kickoff": "2026-10-25T15:45:00Z",
+     "min_odds": 1.33,
+     "odds": 1.48,
+     "runner": "Ajax",
+     "stake": 6.79
+    }
+   ],
+   "note": "",
+   "pl": null,
+   "placed": true,
+   "reserve": false,
+   "returned": null,
+   "stake": 5.0,
+   "status": "matched"
+  },
+  {
+   "covers": null,
+   "date": "2026-10-25",
+   "fallback": true,
+   "finished_at": null,
+   "id": "2026-10-25-a-s",
+   "in_play": 5.0,
+   "kind": "single",
+   "legs": [
+    {
+     "asked_odds": 1.33,
+     "event": "Hoffenheim vs Leverkusen",
+     "kickoff": "2026-10-25T14:30:00Z",
+     "min_odds": 1.17,
+     "odds": 1.33,
+     "runner": "Over 2.5",
+     "stake": 5.0
+    }
+   ],
+   "note": "",
+   "pl": null,
+   "placed": true,
+   "reserve": false,
+   "returned": null,
+   "stake": 5.0,
+   "status": "matched"
+  }
+ ],
+ "exchange_balance": 82.02,
+ "updated": "2026-10-25T18:41:30Z"
+}
