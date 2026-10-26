@@ -2,8 +2,8 @@
   "note": "Pot from Fri 16 Oct 2026 (start 50). Reset on 17 Oct to the real record: only bets the bot actually placed count. Ids in 'skipped' were never bet. When bot_status.json is fresh it is the source. 17 Oct: Don confirmed 2026-10-17-b and -c count as placed (5 each, both leg 1 won, leg 2 on Sun 18 Oct, still open); 2026-10-17-a was not bet. 24 Oct: Don set the pot to 91.18 free with 2026-10-24-a (5.00, Porto leg) the only open bet; stored pot 96.18 includes that 5.00 stake. 25 Oct: Don confirmed 24-b and 24-d won, 24-c lost (Heidenheim drew); Rangers was not bet on its own.",
   "start_date": "2026-10-16",
   "starting_pot": 50.0,
-  "pot": 90.97,
-  "updated": "2026-10-26T05:12:52Z",
+  "pot": 101.85,
+  "updated": "2026-10-26T22:50:00Z",
   "settled": [
     {
       "id": "2026-10-16-c",
@@ -267,6 +267,30 @@
       "pl": 5.42,
       "pot_after": 90.97,
       "source": "bot_status.json updated 2026-10-26T04:01:26Z"
+    },
+    {
+      "id": "2026-10-24-c-s",
+      "settled_on": "2026-10-24",
+      "stake": 5.0,
+      "legs": "Rangers v St Johnstone Rangers to win won (on its own after leg 1 lost)",
+      "prices": [
+        1.21
+      ],
+      "result": "won",
+      "pl": 0.99,
+      "pot_after": 91.96,
+      "source": "bot: returned 5.99 from a 5.00 stake; bot_status.json shows it was placed"
+    },
+    {
+      "id": "adjustment-2026-10-26b",
+      "settled_on": "2026-10-25",
+      "stake": 0.0,
+      "legs": "Matched to the bot's own record (bot_pot_total 101.85, includes 30.88 still in play on 2026-10-26-a and -b, both leg 1 won). Gap is the bot's real stakes and prices versus the paper figures, plus early-October bot bets before the 16th.",
+      "prices": [],
+      "result": "adjustment",
+      "pl": 9.89,
+      "pot_after": 101.85,
+      "source": "bot_status.json updated 2026-10-26T21:49:40Z"
     }
   ],
   "skipped": [
@@ -274,7 +298,6 @@
     "2026-10-16-b",
     "2026-10-17-a",
     "2026-10-24-b-s",
-    "2026-10-24-c-s",
     "2026-10-24-d-s"
   ]
 }
