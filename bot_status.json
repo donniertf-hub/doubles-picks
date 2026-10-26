@@ -1,7 +1,7 @@
 {
  "bankroll_start": 50,
  "bot_pot_free": 70.97,
- "bot_pot_total": 90.97,
+ "bot_pot_total": 101.85,
  "doubles": [
   {
    "covers": null,
@@ -1088,7 +1088,7 @@
    "fallback": false,
    "finished_at": null,
    "id": "2026-10-26-a",
-   "in_play": 10.0,
+   "in_play": 13.68,
    "kind": "double",
    "legs": [
     {
@@ -1097,14 +1097,19 @@
      "kickoff": "2026-10-26T19:45:00Z",
      "min_odds": 1.22,
      "odds": 1.3925,
+     "result": "WIN",
+     "returns": 13.68,
      "runner": "Under 3.5",
      "stake": 10.0
     },
     {
+     "asked_odds": 1.64,
      "event": "Sassuolo vs Lazio",
      "kickoff": "2026-10-27T17:30:00Z",
      "min_odds": 1.46,
-     "runner": "Lazio"
+     "odds": 1.64,
+     "runner": "Lazio",
+     "stake": 13.68
     }
    ],
    "note": "",
@@ -1121,7 +1126,7 @@
    "fallback": false,
    "finished_at": null,
    "id": "2026-10-26-b",
-   "in_play": 10.0,
+   "in_play": 17.2,
    "kind": "double",
    "legs": [
     {
@@ -1130,14 +1135,19 @@
      "kickoff": "2026-10-26T19:45:00Z",
      "min_odds": 1.49,
      "odds": 1.7668,
+     "result": "WIN",
+     "returns": 17.2,
      "runner": "Under 2.5",
      "stake": 10.0
     },
     {
+     "asked_odds": 1.36,
      "event": "Roma vs Cagliari",
      "kickoff": "2026-10-27T19:45:00Z",
      "min_odds": 1.22,
-     "runner": "Roma"
+     "odds": 1.36,
+     "runner": "Roma",
+     "stake": 17.2
     }
    ],
    "note": "",
@@ -1149,6 +1159,6 @@
    "status": "matched"
   }
  ],
- "exchange_balance": 30.0,
- "updated": "2026-10-26T21:29:28Z"
+ "exchange_balance": 47.2,
+ "updated": "2026-10-26T21:45:38Z"
 }
