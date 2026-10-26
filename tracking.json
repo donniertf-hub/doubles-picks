@@ -2596,7 +2596,7 @@
       "kickoff": "2026-10-25T13:30:00Z",
       "odds": 1.3,
       "in_picks": false,
-      "result": null
+      "result": "lost"
     },
     {
       "date": "2026-10-25",
@@ -2627,7 +2627,7 @@
       "kickoff": "2026-10-25T15:45:00Z",
       "odds": 1.33,
       "in_picks": false,
-      "result": null
+      "result": "won"
     },
     {
       "date": "2026-10-25",
@@ -2658,7 +2658,7 @@
       "kickoff": "2026-10-25T14:30:00Z",
       "odds": 1.3,
       "in_picks": true,
-      "result": null
+      "result": "won"
     },
     {
       "date": "2026-10-25",
@@ -2689,7 +2689,7 @@
       "kickoff": "2026-10-25T13:30:00Z",
       "odds": 1.4,
       "in_picks": false,
-      "result": null
+      "result": "won"
     },
     {
       "date": "2026-10-25",
@@ -2720,7 +2720,7 @@
       "kickoff": "2026-10-25T13:00:00Z",
       "odds": 1.4,
       "in_picks": true,
-      "result": null
+      "result": "won"
     },
     {
       "date": "2026-10-25",
@@ -2751,7 +2751,7 @@
       "kickoff": "2026-10-25T11:15:00Z",
       "odds": 1.6,
       "in_picks": true,
-      "result": null
+      "result": "lost"
     },
     {
       "date": "2026-10-25",
@@ -2782,7 +2782,7 @@
       "kickoff": "2026-10-25T16:15:00Z",
       "odds": 1.73,
       "in_picks": true,
-      "result": null
+      "result": "lost"
     },
     {
       "date": "2026-10-25",
@@ -2813,7 +2813,7 @@
       "kickoff": "2026-10-25T17:30:00Z",
       "odds": 2.1,
       "in_picks": true,
-      "result": null
+      "result": "lost"
     },
     {
       "date": "2026-10-25",
@@ -2845,7 +2845,7 @@
       "kickoff": "2026-10-25T11:15:00Z",
       "odds": 1.5,
       "in_picks": false,
-      "result": null
+      "result": "lost"
     },
     {
       "date": "2026-10-25",
@@ -2877,7 +2877,7 @@
       "kickoff": "2026-10-25T13:30:00Z",
       "odds": null,
       "in_picks": false,
-      "result": null
+      "result": "won"
     },
     {
       "date": "2026-10-25",
@@ -2909,7 +2909,7 @@
       "kickoff": "2026-10-25T13:30:00Z",
       "odds": 1.4,
       "in_picks": false,
-      "result": null
+      "result": "won"
     },
     {
       "date": "2026-10-25",
@@ -2941,7 +2941,7 @@
       "kickoff": "2026-10-25T19:00:00Z",
       "odds": null,
       "in_picks": false,
-      "result": null
+      "result": "lost"
     },
     {
       "date": "2026-10-25",
@@ -2973,7 +2973,7 @@
       "kickoff": "2026-10-25T14:30:00Z",
       "odds": 1.33,
       "in_picks": false,
-      "result": null
+      "result": "lost"
     },
     {
       "date": "2026-10-25",
@@ -3005,7 +3005,7 @@
       "kickoff": "2026-10-25T17:30:00Z",
       "odds": null,
       "in_picks": false,
-      "result": null
+      "result": "won"
     },
     {
       "date": "2026-10-25",
@@ -3037,7 +3037,7 @@
       "kickoff": "2026-10-25T20:00:00Z",
       "odds": 1.25,
       "in_picks": false,
-      "result": null
+      "result": "won"
     },
     {
       "date": "2026-10-25",
@@ -3069,7 +3069,7 @@
       "kickoff": "2026-10-25T16:15:00Z",
       "odds": 1.44,
       "in_picks": false,
-      "result": null
+      "result": "lost"
     },
     {
       "date": "2026-10-25",
@@ -3101,7 +3101,7 @@
       "kickoff": "2026-10-25T13:00:00Z",
       "odds": 1.4,
       "in_picks": false,
-      "result": null
+      "result": "won"
     },
     {
       "date": "2026-10-25",
@@ -3133,7 +3133,7 @@
       "kickoff": "2026-10-25T16:00:00Z",
       "odds": null,
       "in_picks": false,
-      "result": null
+      "result": "won"
     },
     {
       "date": "2026-10-25",
@@ -3165,7 +3165,7 @@
       "kickoff": "2026-10-25T13:30:00Z",
       "odds": null,
       "in_picks": false,
-      "result": null
+      "result": "won"
     },
     {
       "date": "2026-10-25",
@@ -3197,7 +3197,7 @@
       "kickoff": "2026-10-25T12:30:00Z",
       "odds": null,
       "in_picks": false,
-      "result": null
+      "result": "won"
     },
     {
       "date": "2026-10-25",
@@ -3229,7 +3229,7 @@
       "kickoff": "2026-10-25T16:30:00Z",
       "odds": 1.57,
       "in_picks": false,
-      "result": null
+      "result": "won"
     },
     {
       "date": "2026-10-25",
@@ -3293,7 +3293,7 @@
       "kickoff": "2026-10-25T16:00:00Z",
       "odds": null,
       "in_picks": false,
-      "result": null
+      "result": "lost"
     },
     {
       "date": "2026-10-25",
@@ -3325,7 +3325,7 @@
       "kickoff": "2026-10-25T18:00:00Z",
       "odds": null,
       "in_picks": false,
-      "result": null
+      "result": "won"
     },
     {
       "date": "2026-10-25",
@@ -3357,7 +3357,7 @@
       "kickoff": "2026-10-25T13:00:00Z",
       "odds": null,
       "in_picks": false,
-      "result": null
+      "result": "won"
     },
     {
       "date": "2026-10-25",
@@ -3407,7 +3407,7 @@
       "kickoff": "2026-10-25T11:30:00Z",
       "odds": 1.39,
       "in_picks": true,
-      "result": null
+      "result": "won"
     },
     {
       "date": "2026-10-25",
@@ -3433,7 +3433,7 @@
       "kickoff": "2026-10-25T15:45:00Z",
       "odds": 1.48,
       "in_picks": true,
-      "result": null
+      "result": "won"
     }
   ]
 }

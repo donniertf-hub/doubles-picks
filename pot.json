@@ -2,8 +2,8 @@
   "note": "Pot from Fri 16 Oct 2026 (start 50). Reset on 17 Oct to the real record: only bets the bot actually placed count. Ids in 'skipped' were never bet. When bot_status.json is fresh it is the source. 17 Oct: Don confirmed 2026-10-17-b and -c count as placed (5 each, both leg 1 won, leg 2 on Sun 18 Oct, still open); 2026-10-17-a was not bet. 24 Oct: Don set the pot to 91.18 free with 2026-10-24-a (5.00, Porto leg) the only open bet; stored pot 96.18 includes that 5.00 stake. 25 Oct: Don confirmed 24-b and 24-d won, 24-c lost (Heidenheim drew); Rangers was not bet on its own.",
   "start_date": "2026-10-16",
   "starting_pot": 50.0,
-  "pot": 85.55,
-  "updated": "2026-10-25T22:55:00Z",
+  "pot": 90.97,
+  "updated": "2026-10-26T05:12:52Z",
   "settled": [
     {
       "id": "2026-10-16-c",
@@ -256,6 +256,17 @@
       "pl": -10.0,
       "pot_after": 85.55,
       "source": "paper: odds_seen used; one-off 10 pound stakes per Don 25 Oct"
+    },
+    {
+      "id": "adjustment-2026-10-26",
+      "settled_on": "2026-10-25",
+      "stake": 0.0,
+      "legs": "Matched to the bot's own record (bot_pot_total 90.97); the 25 Oct entries above were paper-calculated at 10 pound stakes, the bot staked 5",
+      "prices": [],
+      "result": "adjustment",
+      "pl": 5.42,
+      "pot_after": 90.97,
+      "source": "bot_status.json updated 2026-10-26T04:01:26Z"
     }
   ],
   "skipped": [
