@@ -3474,7 +3474,7 @@
    "runner": "Under 2.5",
    "kickoff": "2026-10-26T19:45:00Z",
    "odds": 1.67,
-   "in_picks": false,
+   "in_picks": true,
    "result": null
   },
   {
@@ -3516,6 +3516,20 @@
    "runner": "Lazio",
    "kickoff": "2026-10-27T17:30:00Z",
    "odds": 1.63,
+   "in_picks": true,
+   "result": null
+  },
+  {
+   "date": "2026-10-27",
+   "track": "confidence",
+   "confidence": 74,
+   "gap": 0.5,
+   "league": "Italy Serie A",
+   "event": "Roma vs Cagliari",
+   "market": "Match Odds",
+   "runner": "Roma",
+   "kickoff": "2026-10-27T19:45:00Z",
+   "odds": 1.36,
    "in_picks": true,
    "result": null
   }

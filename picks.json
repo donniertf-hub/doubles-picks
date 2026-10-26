@@ -1,5 +1,5 @@
 {
- "generated": "2026-10-26T10:57:34Z",
+ "generated": "2026-10-26T10:59:45Z",
  "doubles": [
   {
    "id": "2026-10-26-a",
@@ -27,6 +27,38 @@
      "confidence": 62,
      "odds_seen": 1.63,
      "min_odds": 1.46,
+     "track": "confidence"
+    }
+   ]
+  },
+  {
+   "id": "2026-10-26-b",
+   "legs": [
+    {
+     "sport": "football",
+     "event": "Boulogne vs Reims",
+     "market": [
+      "Over/Under 2.5 Goals",
+      "Over/Under 2.5",
+      "Total Goals",
+      "Total"
+     ],
+     "runner": "Under 2.5",
+     "kickoff": "2026-10-26T19:45:00Z",
+     "confidence": 62,
+     "odds_seen": 1.66,
+     "min_odds": 1.49,
+     "track": "confidence"
+    },
+    {
+     "sport": "football",
+     "event": "Roma vs Cagliari",
+     "market": "Match Odds",
+     "runner": "Roma",
+     "kickoff": "2026-10-27T19:45:00Z",
+     "confidence": 74,
+     "odds_seen": 1.36,
+     "min_odds": 1.22,
      "track": "confidence"
     }
    ]
