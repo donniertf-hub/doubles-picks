@@ -1,6 +1,6 @@
 {
  "bankroll_start": 50,
- "bot_pot_free": 90.97,
+ "bot_pot_free": 70.97,
  "bot_pot_total": 90.97,
  "doubles": [
   {
@@ -1081,8 +1081,74 @@
    "returned": 6.55,
    "stake": 5.0,
    "status": "won"
+  },
+  {
+   "covers": null,
+   "date": "2026-10-26",
+   "fallback": false,
+   "finished_at": null,
+   "id": "2026-10-26-a",
+   "in_play": 10.0,
+   "kind": "double",
+   "legs": [
+    {
+     "asked_odds": 1.39,
+     "event": "Montpellier vs Red Star",
+     "kickoff": "2026-10-26T19:45:00Z",
+     "min_odds": 1.22,
+     "odds": 1.3925,
+     "runner": "Under 3.5",
+     "stake": 10.0
+    },
+    {
+     "event": "Sassuolo vs Lazio",
+     "kickoff": "2026-10-27T17:30:00Z",
+     "min_odds": 1.46,
+     "runner": "Lazio"
+    }
+   ],
+   "note": "",
+   "pl": null,
+   "placed": true,
+   "reserve": false,
+   "returned": null,
+   "stake": 10.0,
+   "status": "matched"
+  },
+  {
+   "covers": null,
+   "date": "2026-10-26",
+   "fallback": false,
+   "finished_at": null,
+   "id": "2026-10-26-b",
+   "in_play": 10.0,
+   "kind": "double",
+   "legs": [
+    {
+     "asked_odds": 1.76,
+     "event": "Boulogne vs Reims",
+     "kickoff": "2026-10-26T19:45:00Z",
+     "min_odds": 1.49,
+     "odds": 1.7668,
+     "runner": "Under 2.5",
+     "stake": 10.0
+    },
+    {
+     "event": "Roma vs Cagliari",
+     "kickoff": "2026-10-27T19:45:00Z",
+     "min_odds": 1.22,
+     "runner": "Roma"
+    }
+   ],
+   "note": "",
+   "pl": null,
+   "placed": true,
+   "reserve": false,
+   "returned": null,
+   "stake": 10.0,
+   "status": "matched"
   }
  ],
  "exchange_balance": 70.0,
- "updated": "2026-10-26T10:17:56Z"
+ "updated": "2026-10-26T11:14:05Z"
 }
