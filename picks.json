@@ -1,5 +1,36 @@
 {
- "generated": "2026-10-26T08:43:20Z",
- "doubles": [],
+ "generated": "2026-10-26T10:57:34Z",
+ "doubles": [
+  {
+   "id": "2026-10-26-a",
+   "legs": [
+    {
+     "sport": "football",
+     "event": "Montpellier vs Red Star",
+     "market": [
+      "Over/Under 3.5 Goals",
+      "Over/Under 3.5"
+     ],
+     "runner": "Under 3.5",
+     "kickoff": "2026-10-26T19:45:00Z",
+     "confidence": 78,
+     "odds_seen": 1.36,
+     "min_odds": 1.22,
+     "track": "confidence"
+    },
+    {
+     "sport": "football",
+     "event": "Sassuolo vs Lazio",
+     "market": "Draw No Bet",
+     "runner": "Lazio",
+     "kickoff": "2026-10-27T17:30:00Z",
+     "confidence": 62,
+     "odds_seen": 1.63,
+     "min_odds": 1.46,
+     "track": "confidence"
+    }
+   ]
+  }
+ ],
  "singles": []
 }

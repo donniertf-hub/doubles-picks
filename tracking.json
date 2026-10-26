@@ -3446,7 +3446,7 @@
    "runner": "Under 3.5",
    "kickoff": "2026-10-26T19:45:00Z",
    "odds": 1.36,
-   "in_picks": false,
+   "in_picks": true,
    "result": null
   },
   {
@@ -3503,6 +3503,20 @@
    "kickoff": "2026-10-26T20:00:00Z",
    "odds": 1.22,
    "in_picks": false,
+   "result": null
+  },
+  {
+   "date": "2026-10-27",
+   "track": "confidence",
+   "confidence": 62,
+   "gap": 0.7,
+   "league": "Italy Serie A",
+   "event": "Sassuolo vs Lazio",
+   "market": "Draw No Bet",
+   "runner": "Lazio",
+   "kickoff": "2026-10-27T17:30:00Z",
+   "odds": 1.63,
+   "in_picks": true,
    "result": null
   }
  ]
