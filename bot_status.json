@@ -1,7 +1,7 @@
 {
  "bankroll_start": 50,
- "bot_pot_free": 92.88,
- "bot_pot_total": 110.08,
+ "bot_pot_free": 115.9,
+ "bot_pot_total": 115.9,
  "doubles": [
   {
    "covers": null,
@@ -1126,9 +1126,9 @@
    "covers": null,
    "date": "2026-10-26",
    "fallback": false,
-   "finished_at": null,
+   "finished_at": "2026-10-27T21:44:09Z",
    "id": "2026-10-26-b",
-   "in_play": 17.2,
+   "in_play": 0,
    "kind": "double",
    "legs": [
     {
@@ -1148,19 +1148,21 @@
      "kickoff": "2026-10-27T19:45:00Z",
      "min_odds": 1.22,
      "odds": 1.36,
+     "result": "WIN",
+     "returns": 23.02,
      "runner": "Roma",
      "stake": 17.2
     }
    ],
-   "note": "",
-   "pl": null,
+   "note": "returned 23.02 from a 10.00 stake",
+   "pl": 13.02,
    "placed": true,
    "reserve": false,
-   "returned": null,
+   "returned": 23.02,
    "stake": 10.0,
-   "status": "matched"
+   "status": "won"
   }
  ],
  "exchange_balance": 23.02,
- "updated": "2026-10-27T21:42:07Z"
+ "updated": "2026-10-27T21:44:09Z"
 }
