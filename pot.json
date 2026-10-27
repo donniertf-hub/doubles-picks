@@ -1,9 +1,9 @@
 {
-  "note": "Pot from Fri 16 Oct 2026 (start 50). Reset on 17 Oct to the real record: only bets the bot actually placed count. Ids in 'skipped' were never bet. When bot_status.json is fresh it is the source. 17 Oct: Don confirmed 2026-10-17-b and -c count as placed (5 each, both leg 1 won, leg 2 on Sun 18 Oct, still open); 2026-10-17-a was not bet. 24 Oct: Don set the pot to 91.18 free with 2026-10-24-a (5.00, Porto leg) the only open bet; stored pot 96.18 includes that 5.00 stake. 25 Oct: Don confirmed 24-b and 24-d won, 24-c lost (Heidenheim drew); Rangers was not bet on its own. 27 Oct: Don's rule - the pot only moves when a bet finishes: pot = bot_pot_free plus the stake of each open placed bet (leg 1 winnings riding on leg 2 not counted until leg 2 settles).",
+  "note": "Pot from Fri 16 Oct 2026 (start 50). Reset on 17 Oct to the real record: only bets the bot actually placed count. Ids in 'skipped' were never bet. When bot_status.json is fresh it is the source. 17 Oct: Don confirmed 2026-10-17-b and -c count as placed (5 each, both leg 1 won, leg 2 on Sun 18 Oct, still open); 2026-10-17-a was not bet. 24 Oct: Don set the pot to 91.18 free with 2026-10-24-a (5.00, Porto leg) the only open bet; stored pot 96.18 includes that 5.00 stake. 25 Oct: Don confirmed 24-b and 24-d won, 24-c lost (Heidenheim drew); Rangers was not bet on its own. 27 Oct: Don's rule - the pot only moves when a bet finishes: pot = bot_pot_free plus the stake of each open placed bet (leg 1 winnings riding on leg 2 not counted until leg 2 settles). 27 Oct: posts use the bot's settled pot minus a fixed 5.42 posting offset (entry adjustment-posting-offset), so they continue from 85.55.",
   "start_date": "2026-10-16",
   "starting_pot": 50.0,
-  "pot": 90.97,
-  "updated": "2026-10-27T00:15:16Z",
+  "pot": 85.55,
+  "updated": "2026-10-27T02:51:41Z",
   "settled": [
     {
       "id": "2026-10-16-c",
@@ -283,14 +283,25 @@
     },
     {
       "id": "adjustment-2026-10-26b",
-      "settled_on": "2026-10-25",
+      "settled_on": "2026-10-24",
       "stake": 0.0,
-      "legs": "Matched to the bot's own record: 70.97 free plus 20.00 staked on 2026-10-26-a and -b = 90.97. Replaces a +9.89 adjustment that counted 10.88 of leg 1 winnings still riding on the 27 Oct second legs; the Rangers single above was already inside the bot's 90.97.",
+      "legs": "Matched to the bot's own record: 70.97 free plus 20.00 staked on 2026-10-26-a and -b = 90.97. Replaces a +9.89 adjustment that counted 10.88 of leg 1 winnings still riding on the 27 Oct second legs; the Rangers single above was already inside the bot's 90.97. Dated 24 Oct so it nets off the Rangers single on the same day.",
       "prices": [],
       "result": "adjustment",
       "pl": -0.99,
       "pot_after": 90.97,
       "source": "bot_status.json updated 2026-10-26T23:49:53Z (bot_pot_free 70.97 + open stakes 20.00)"
+    },
+    {
+      "id": "adjustment-posting-offset",
+      "settled_on": "2026-10-25",
+      "stake": 0.0,
+      "legs": "Posting offset (Don's instruction, 26 Oct 2026): posts carry on from the 85.55 shown on 25 Oct at 10-pound stakes; the bot really staked 5 that day. Pot = bot_pot_free + open stakes - 5.42.",
+      "prices": [],
+      "result": "adjustment",
+      "pl": -5.42,
+      "pot_after": 85.55,
+      "source": "Don, 26-27 Oct 2026"
     }
   ],
   "skipped": [
