@@ -1,7 +1,7 @@
 {
  "bankroll_start": 50,
- "bot_pot_free": 70.97,
- "bot_pot_total": 101.85,
+ "bot_pot_free": 92.88,
+ "bot_pot_total": 110.08,
  "doubles": [
   {
    "covers": null,
@@ -1086,9 +1086,9 @@
    "covers": null,
    "date": "2026-10-26",
    "fallback": false,
-   "finished_at": null,
+   "finished_at": "2026-10-27T19:29:51Z",
    "id": "2026-10-26-a",
-   "in_play": 13.68,
+   "in_play": 0,
    "kind": "double",
    "legs": [
     {
@@ -1108,17 +1108,19 @@
      "kickoff": "2026-10-27T17:30:00Z",
      "min_odds": 1.46,
      "odds": 1.64,
+     "result": "WIN",
+     "returns": 21.91,
      "runner": "Lazio",
      "stake": 13.68
     }
    ],
-   "note": "",
-   "pl": null,
+   "note": "returned 21.91 from a 10.00 stake",
+   "pl": 11.91,
    "placed": true,
    "reserve": false,
-   "returned": null,
+   "returned": 21.91,
    "stake": 10.0,
-   "status": "matched"
+   "status": "won"
   },
   {
    "covers": null,
@@ -1160,5 +1162,5 @@
   }
  ],
  "exchange_balance": 0.0,
- "updated": "2026-10-27T19:11:47Z"
+ "updated": "2026-10-27T19:29:51Z"
 }
