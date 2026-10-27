@@ -2,8 +2,8 @@
   "note": "Pot from Fri 16 Oct 2026 (start 50). Reset on 17 Oct to the real record: only bets the bot actually placed count. Ids in 'skipped' were never bet. When bot_status.json is fresh it is the source. 17 Oct: Don confirmed 2026-10-17-b and -c count as placed (5 each, both leg 1 won, leg 2 on Sun 18 Oct, still open); 2026-10-17-a was not bet. 24 Oct: Don set the pot to 91.18 free with 2026-10-24-a (5.00, Porto leg) the only open bet; stored pot 96.18 includes that 5.00 stake. 25 Oct: Don confirmed 24-b and 24-d won, 24-c lost (Heidenheim drew); Rangers was not bet on its own. 27 Oct: Don's rule - the pot only moves when a bet finishes: pot = bot_pot_free plus the stake of each open placed bet (leg 1 winnings riding on leg 2 not counted until leg 2 settles). 27 Oct: posts use the bot's settled pot minus a fixed 5.42 posting offset (entry adjustment-posting-offset), so they continue from 85.55.",
   "start_date": "2026-10-16",
   "starting_pot": 50.0,
-  "pot": 85.55,
-  "updated": "2026-10-27T05:03:11Z",
+  "pot": 110.48,
+  "updated": "2026-10-27T22:03:19Z",
   "settled": [
     {
       "id": "2026-10-16-c",
@@ -302,6 +302,34 @@
       "pl": -5.42,
       "pot_after": 85.55,
       "source": "Don, 26-27 Oct 2026"
+    },
+    {
+      "id": "2026-10-26-a",
+      "settled_on": "2026-10-27",
+      "stake": 10.0,
+      "legs": "Montpellier v Red Star Under 3.5 won > Sassuolo v Lazio Lazio draw no bet 2-6 won",
+      "prices": [
+        1.3925,
+        1.64
+      ],
+      "result": "won",
+      "pl": 11.91,
+      "source": "bot: returned 21.91 from a 10.00 stake",
+      "pot_after": 97.46
+    },
+    {
+      "id": "2026-10-26-b",
+      "settled_on": "2026-10-27",
+      "stake": 10.0,
+      "legs": "Boulogne v Reims Under 2.5 won > Roma v Cagliari Roma to win 4-2 won",
+      "prices": [
+        1.7668,
+        1.36
+      ],
+      "result": "won",
+      "pl": 13.02,
+      "source": "bot: returned 23.02 from a 10.00 stake",
+      "pot_after": 110.48
     }
   ],
   "skipped": [
