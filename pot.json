@@ -1,342 +1,360 @@
 {
-  "note": "Pot from Fri 16 Oct 2026 (start 50). Reset on 17 Oct to the real record: only bets the bot actually placed count. Ids in 'skipped' were never bet. When bot_status.json is fresh it is the source. 17 Oct: Don confirmed 2026-10-17-b and -c count as placed (5 each, both leg 1 won, leg 2 on Sun 18 Oct, still open); 2026-10-17-a was not bet. 24 Oct: Don set the pot to 91.18 free with 2026-10-24-a (5.00, Porto leg) the only open bet; stored pot 96.18 includes that 5.00 stake. 25 Oct: Don confirmed 24-b and 24-d won, 24-c lost (Heidenheim drew); Rangers was not bet on its own. 27 Oct: Don's rule - the pot only moves when a bet finishes: pot = bot_pot_free plus the stake of each open placed bet (leg 1 winnings riding on leg 2 not counted until leg 2 settles). 27 Oct: posts use the bot's settled pot minus a fixed 5.42 posting offset (entry adjustment-posting-offset), so they continue from 85.55.",
-  "start_date": "2026-10-16",
-  "starting_pot": 50.0,
-  "pot": 110.48,
-  "updated": "2026-10-27T22:03:19Z",
-  "settled": [
-    {
-      "id": "2026-10-16-c",
-      "settled_on": "2026-10-16",
-      "stake": 5.0,
-      "legs": "Wieczysta v Rakow BTTS 1-2 won > Ayr v Partick Under 2.5 0-1 won",
-      "prices": [
-        1.41,
-        1.95
-      ],
-      "result": "won",
-      "pl": 11.27,
-      "pot_after": 61.27,
-      "source": "bot: returned 16.27 from a 5.00 stake"
-    },
-    {
-      "id": "2026-10-16-d",
-      "settled_on": "2026-10-16",
-      "stake": 5.0,
-      "legs": "Reims v Dijon BTTS 4-2 won > Mirassol v Internacional BTTS 2-0 lost",
-      "prices": [
-        1.66,
-        1.7
-      ],
-      "result": "lost",
-      "pl": -5.0,
-      "pot_after": 56.27,
-      "source": "bot: leg 2 lost",
-      "note": "leg 2 kicked off late Friday (Brazil); counted on Friday as in the 11am post"
-    },
-    {
-      "id": "balance-check-2026-10-17",
-      "settled_on": "2026-10-16",
-      "stake": 0.0,
-      "legs": "Matched to the Betfair balance Don reported (60.16)",
-      "prices": [],
-      "result": "adjustment",
-      "pl": 3.89,
-      "pot_after": 60.16,
-      "source": "Don's Betfair app balance; the bot's own record shows +6.27"
-    },
-    {
-      "id": "2026-10-17-b",
-      "settled_on": "2026-10-18",
-      "stake": 5.0,
-      "legs": "Strasbourg v Paris Over 2.5 won > Mgladbach v Hoffenheim Over 2.5 1-2 won",
-      "prices": [
-        1.59,
-        1.5
-      ],
-      "result": "won",
-      "pl": 6.51,
-      "pot_after": 66.67,
-      "source": "paper: min_odds used; leg 1 won per Don's 17 Oct note"
-    },
-    {
-      "id": "2026-10-17-c",
-      "settled_on": "2026-10-18",
-      "stake": 5.0,
-      "legs": "Bayern v Leipzig Over 2.5 won > Leverkusen v Freiburg Over 2.5 2-1 won",
-      "prices": [
-        1.64,
-        1.59
-      ],
-      "result": "won",
-      "pl": 7.55,
-      "pot_after": 74.22,
-      "source": "paper: min_odds used; leg 1 won per Don's 17 Oct note"
-    },
-    {
-      "id": "2026-10-18-a",
-      "settled_on": "2026-10-18",
-      "stake": 5.0,
-      "legs": "PEC Zwolle v Go Ahead Over 2.5 won > Kabylie v Biskra Under 2.5 lost",
-      "prices": [
-        1.4,
-        1.68
-      ],
-      "result": "lost",
-      "pl": -5.0,
-      "pot_after": 69.22,
-      "source": "paper: odds_seen used"
-    },
-    {
-      "id": "2026-10-18-s2",
-      "settled_on": "2026-10-18",
-      "stake": 5.0,
-      "legs": "Salzburg v Altach BTTS No won (single)",
-      "prices": [
-        2.09
-      ],
-      "result": "won",
-      "pl": 5.18,
-      "pot_after": 74.4,
-      "source": "paper: odds_seen used"
-    },
-    {
-      "id": "2026-10-18-s3",
-      "settled_on": "2026-10-18",
-      "stake": 5.0,
-      "legs": "Banik v Sparta BTTS No won (single)",
-      "prices": [
-        2.25
-      ],
-      "result": "won",
-      "pl": 5.94,
-      "pot_after": 80.34,
-      "source": "paper: odds_seen used"
-    },
-    {
-      "id": "2026-10-18-s1",
-      "settled_on": "2026-10-18",
-      "stake": 5.0,
-      "legs": "Sandefjord v Lillestrom BTTS No won (single)",
-      "prices": [
-        2.5
-      ],
-      "result": "won",
-      "pl": 7.13,
-      "pot_after": 87.47,
-      "source": "paper: odds_seen used"
-    },
-    {
-      "id": "balance-check-2026-10-24",
-      "settled_on": "2026-10-23",
-      "stake": 0.0,
-      "legs": "Matched to the pot Don reported on 24 Oct (91.18 free plus 5.00 riding on 2026-10-24-a)",
-      "prices": [],
-      "result": "adjustment",
-      "pl": 0.28,
-      "pot_after": 87.75
-    },
-    {
-      "id": "2026-10-24-b",
-      "settled_on": "2026-10-24",
-      "stake": 5.0,
-      "legs": "Hertha v Bielefeld Hertha to win won > Wolves v Watford Wolves to win won",
-      "prices": [
-        1.83,
-        1.36
-      ],
-      "result": "won",
-      "pl": 7.0,
-      "pot_after": 94.75
-    },
-    {
-      "id": "2026-10-24-c",
-      "settled_on": "2026-10-24",
-      "stake": 5.0,
-      "legs": "Heidenheim v Cottbus Heidenheim to win drew, lost > Rangers v St Johnstone Rangers to win won (not bet on its own)",
-      "prices": [
-        1.73,
-        1.25
-      ],
-      "result": "lost",
-      "pl": -5.0,
-      "pot_after": 89.75
-    },
-    {
-      "id": "2026-10-24-d",
-      "settled_on": "2026-10-24",
-      "stake": 5.0,
-      "legs": "Magdeburg v Karlsruhe Magdeburg to win won > Zurich v Luzern Over 2.5 won",
-      "prices": [
-        1.78,
-        1.33
-      ],
-      "result": "won",
-      "pl": 6.43,
-      "pot_after": 96.18
-    },
-    {
-      "id": "2026-10-24-a",
-      "settled_on": "2026-10-24",
-      "stake": 5.0,
-      "legs": "Eyupspor v Kasimpasa Kasimpasa to win 0-1 won > Gil Vicente v Porto Porto to win 0-1 won",
-      "prices": [
-        1.62,
-        1.48
-      ],
-      "result": "won",
-      "pl": 6.57,
-      "pot_after": 102.75,
-      "source": "paper: odds_seen used"
-    },
-    {
-      "id": "2026-10-25-a",
-      "settled_on": "2026-10-25",
-      "stake": 10.0,
-      "legs": "Fortuna Sittard v Excelsior Over 2.5 0-1 lost > Hoffenheim v Leverkusen Over 2.5 3-0 won (leg 2 not counted, double lost)",
-      "prices": [
-        1.6,
-        1.3
-      ],
-      "result": "lost",
-      "pl": -10.0,
-      "pot_after": 92.75,
-      "source": "paper: odds_seen used; one-off 10 pound stakes per Don 25 Oct"
-    },
-    {
-      "id": "2026-10-25-c",
-      "settled_on": "2026-10-25",
-      "stake": 10.0,
-      "legs": "Inter v Fiorentina Inter to win 2-1 won > Sparta v Ajax Ajax to win 1-2 won",
-      "prices": [
-        1.39,
-        1.48
-      ],
-      "result": "won",
-      "pl": 9.95,
-      "pot_after": 102.7,
-      "source": "paper: odds_seen used; one-off 10 pound stakes per Don 25 Oct"
-    },
-    {
-      "id": "2026-10-25-b",
-      "settled_on": "2026-10-25",
-      "stake": 10.0,
-      "legs": "Thun v Lugano Over 2.5 2-3 won > Auxerre v Le Mans Over 2.5 1-1 lost",
-      "prices": [
-        1.4,
-        1.73
-      ],
-      "result": "lost",
-      "pl": -10.0,
-      "pot_after": 92.7,
-      "source": "paper: odds_seen used; one-off 10 pound stakes per Don 25 Oct"
-    },
-    {
-      "id": "2026-10-25-a-s",
-      "settled_on": "2026-10-25",
-      "stake": 10.0,
-      "legs": "Hoffenheim v Leverkusen Over 2.5 3-0 won (on its own after leg 1 lost)",
-      "prices": [
-        1.3
-      ],
-      "result": "won",
-      "pl": 2.85,
-      "pot_after": 95.55,
-      "source": "paper: odds_seen used; one-off 10 pound stakes per Don 25 Oct"
-    },
-    {
-      "id": "2026-10-25-s1",
-      "settled_on": "2026-10-25",
-      "stake": 10.0,
-      "legs": "Castellon v Gijon Under 2.5 4-0 lost (single)",
-      "prices": [
-        2.1
-      ],
-      "result": "lost",
-      "pl": -10.0,
-      "pot_after": 85.55,
-      "source": "paper: odds_seen used; one-off 10 pound stakes per Don 25 Oct"
-    },
-    {
-      "id": "adjustment-2026-10-26",
-      "settled_on": "2026-10-25",
-      "stake": 0.0,
-      "legs": "Matched to the bot's own record (bot_pot_total 90.97); the 25 Oct entries above were paper-calculated at 10 pound stakes, the bot staked 5",
-      "prices": [],
-      "result": "adjustment",
-      "pl": 5.42,
-      "pot_after": 90.97,
-      "source": "bot_status.json updated 2026-10-26T04:01:26Z"
-    },
-    {
-      "id": "2026-10-24-c-s",
-      "settled_on": "2026-10-24",
-      "stake": 5.0,
-      "legs": "Rangers v St Johnstone Rangers to win won (on its own after leg 1 lost)",
-      "prices": [
-        1.21
-      ],
-      "result": "won",
-      "pl": 0.99,
-      "pot_after": 91.96,
-      "source": "bot: returned 5.99 from a 5.00 stake; bot_status.json shows it was placed"
-    },
-    {
-      "id": "adjustment-2026-10-26b",
-      "settled_on": "2026-10-24",
-      "stake": 0.0,
-      "legs": "Matched to the bot's own record: 70.97 free plus 20.00 staked on 2026-10-26-a and -b = 90.97. Replaces a +9.89 adjustment that counted 10.88 of leg 1 winnings still riding on the 27 Oct second legs; the Rangers single above was already inside the bot's 90.97. Dated 24 Oct so it nets off the Rangers single on the same day.",
-      "prices": [],
-      "result": "adjustment",
-      "pl": -0.99,
-      "pot_after": 90.97,
-      "source": "bot_status.json updated 2026-10-26T23:49:53Z (bot_pot_free 70.97 + open stakes 20.00)"
-    },
-    {
-      "id": "adjustment-posting-offset",
-      "settled_on": "2026-10-25",
-      "stake": 0.0,
-      "legs": "Posting offset (Don's instruction, 26 Oct 2026): posts carry on from the 85.55 shown on 25 Oct at 10-pound stakes; the bot really staked 5 that day. Pot = bot_pot_free + open stakes - 5.42.",
-      "prices": [],
-      "result": "adjustment",
-      "pl": -5.42,
-      "pot_after": 85.55,
-      "source": "Don, 26-27 Oct 2026"
-    },
-    {
-      "id": "2026-10-26-a",
-      "settled_on": "2026-10-27",
-      "stake": 10.0,
-      "legs": "Montpellier v Red Star Under 3.5 won > Sassuolo v Lazio Lazio draw no bet 2-6 won",
-      "prices": [
-        1.3925,
-        1.64
-      ],
-      "result": "won",
-      "pl": 11.91,
-      "source": "bot: returned 21.91 from a 10.00 stake",
-      "pot_after": 97.46
-    },
-    {
-      "id": "2026-10-26-b",
-      "settled_on": "2026-10-27",
-      "stake": 10.0,
-      "legs": "Boulogne v Reims Under 2.5 won > Roma v Cagliari Roma to win 4-2 won",
-      "prices": [
-        1.7668,
-        1.36
-      ],
-      "result": "won",
-      "pl": 13.02,
-      "source": "bot: returned 23.02 from a 10.00 stake",
-      "pot_after": 110.48
-    }
-  ],
-  "skipped": [
-    "2026-10-16-a",
-    "2026-10-16-b",
-    "2026-10-17-a",
-    "2026-10-24-b-s",
-    "2026-10-24-d-s"
-  ]
+ "note": "Pot from Fri 16 Oct 2026 (start 50). Reset on 17 Oct to the real record: only bets the bot actually placed count. Ids in 'skipped' were never bet. When bot_status.json is fresh it is the source. 17 Oct: Don confirmed 2026-10-17-b and -c count as placed (5 each, both leg 1 won, leg 2 on Sun 18 Oct, still open); 2026-10-17-a was not bet. 24 Oct: Don set the pot to 91.18 free with 2026-10-24-a (5.00, Porto leg) the only open bet; stored pot 96.18 includes that 5.00 stake. 25 Oct: Don confirmed 24-b and 24-d won, 24-c lost (Heidenheim drew); Rangers was not bet on its own. 27 Oct: Don's rule - the pot only moves when a bet finishes: pot = bot_pot_free plus the stake of each open placed bet (leg 1 winnings riding on leg 2 not counted until leg 2 settles). 27 Oct: posts use the bot's settled pot minus a fixed 5.42 posting offset (entry adjustment-posting-offset), so they continue from 85.55.",
+ "start_date": "2026-10-16",
+ "starting_pot": 50.0,
+ "pot": 115.9,
+ "updated": "2026-10-28T05:20:23Z",
+ "settled": [
+  {
+   "id": "2026-10-16-c",
+   "settled_on": "2026-10-16",
+   "stake": 5.0,
+   "legs": "Wieczysta v Rakow BTTS 1-2 won > Ayr v Partick Under 2.5 0-1 won",
+   "prices": [
+    1.41,
+    1.95
+   ],
+   "result": "won",
+   "pl": 11.27,
+   "pot_after": 61.27,
+   "source": "bot: returned 16.27 from a 5.00 stake"
+  },
+  {
+   "id": "2026-10-16-d",
+   "settled_on": "2026-10-16",
+   "stake": 5.0,
+   "legs": "Reims v Dijon BTTS 4-2 won > Mirassol v Internacional BTTS 2-0 lost",
+   "prices": [
+    1.66,
+    1.7
+   ],
+   "result": "lost",
+   "pl": -5.0,
+   "pot_after": 56.27,
+   "source": "bot: leg 2 lost",
+   "note": "leg 2 kicked off late Friday (Brazil); counted on Friday as in the 11am post"
+  },
+  {
+   "id": "balance-check-2026-10-17",
+   "settled_on": "2026-10-16",
+   "stake": 0.0,
+   "legs": "Matched to the Betfair balance Don reported (60.16)",
+   "prices": [],
+   "result": "adjustment",
+   "pl": 3.89,
+   "pot_after": 60.16,
+   "source": "Don's Betfair app balance; the bot's own record shows +6.27"
+  },
+  {
+   "id": "2026-10-17-b",
+   "settled_on": "2026-10-18",
+   "stake": 5.0,
+   "legs": "Strasbourg v Paris Over 2.5 won > Mgladbach v Hoffenheim Over 2.5 1-2 won",
+   "prices": [
+    1.59,
+    1.5
+   ],
+   "result": "won",
+   "pl": 6.51,
+   "pot_after": 66.67,
+   "source": "paper: min_odds used; leg 1 won per Don's 17 Oct note"
+  },
+  {
+   "id": "2026-10-17-c",
+   "settled_on": "2026-10-18",
+   "stake": 5.0,
+   "legs": "Bayern v Leipzig Over 2.5 won > Leverkusen v Freiburg Over 2.5 2-1 won",
+   "prices": [
+    1.64,
+    1.59
+   ],
+   "result": "won",
+   "pl": 7.55,
+   "pot_after": 74.22,
+   "source": "paper: min_odds used; leg 1 won per Don's 17 Oct note"
+  },
+  {
+   "id": "2026-10-18-a",
+   "settled_on": "2026-10-18",
+   "stake": 5.0,
+   "legs": "PEC Zwolle v Go Ahead Over 2.5 won > Kabylie v Biskra Under 2.5 lost",
+   "prices": [
+    1.4,
+    1.68
+   ],
+   "result": "lost",
+   "pl": -5.0,
+   "pot_after": 69.22,
+   "source": "paper: odds_seen used"
+  },
+  {
+   "id": "2026-10-18-s2",
+   "settled_on": "2026-10-18",
+   "stake": 5.0,
+   "legs": "Salzburg v Altach BTTS No won (single)",
+   "prices": [
+    2.09
+   ],
+   "result": "won",
+   "pl": 5.18,
+   "pot_after": 74.4,
+   "source": "paper: odds_seen used"
+  },
+  {
+   "id": "2026-10-18-s3",
+   "settled_on": "2026-10-18",
+   "stake": 5.0,
+   "legs": "Banik v Sparta BTTS No won (single)",
+   "prices": [
+    2.25
+   ],
+   "result": "won",
+   "pl": 5.94,
+   "pot_after": 80.34,
+   "source": "paper: odds_seen used"
+  },
+  {
+   "id": "2026-10-18-s1",
+   "settled_on": "2026-10-18",
+   "stake": 5.0,
+   "legs": "Sandefjord v Lillestrom BTTS No won (single)",
+   "prices": [
+    2.5
+   ],
+   "result": "won",
+   "pl": 7.13,
+   "pot_after": 87.47,
+   "source": "paper: odds_seen used"
+  },
+  {
+   "id": "balance-check-2026-10-24",
+   "settled_on": "2026-10-23",
+   "stake": 0.0,
+   "legs": "Matched to the pot Don reported on 24 Oct (91.18 free plus 5.00 riding on 2026-10-24-a)",
+   "prices": [],
+   "result": "adjustment",
+   "pl": 0.28,
+   "pot_after": 87.75
+  },
+  {
+   "id": "2026-10-24-b",
+   "settled_on": "2026-10-24",
+   "stake": 5.0,
+   "legs": "Hertha v Bielefeld Hertha to win won > Wolves v Watford Wolves to win won",
+   "prices": [
+    1.83,
+    1.36
+   ],
+   "result": "won",
+   "pl": 7.0,
+   "pot_after": 94.75
+  },
+  {
+   "id": "2026-10-24-c",
+   "settled_on": "2026-10-24",
+   "stake": 5.0,
+   "legs": "Heidenheim v Cottbus Heidenheim to win drew, lost > Rangers v St Johnstone Rangers to win won (not bet on its own)",
+   "prices": [
+    1.73,
+    1.25
+   ],
+   "result": "lost",
+   "pl": -5.0,
+   "pot_after": 89.75
+  },
+  {
+   "id": "2026-10-24-d",
+   "settled_on": "2026-10-24",
+   "stake": 5.0,
+   "legs": "Magdeburg v Karlsruhe Magdeburg to win won > Zurich v Luzern Over 2.5 won",
+   "prices": [
+    1.78,
+    1.33
+   ],
+   "result": "won",
+   "pl": 6.43,
+   "pot_after": 96.18
+  },
+  {
+   "id": "2026-10-24-a",
+   "settled_on": "2026-10-24",
+   "stake": 5.0,
+   "legs": "Eyupspor v Kasimpasa Kasimpasa to win 0-1 won > Gil Vicente v Porto Porto to win 0-1 won",
+   "prices": [
+    1.62,
+    1.48
+   ],
+   "result": "won",
+   "pl": 6.57,
+   "pot_after": 102.75,
+   "source": "paper: odds_seen used"
+  },
+  {
+   "id": "2026-10-25-a",
+   "settled_on": "2026-10-25",
+   "stake": 10.0,
+   "legs": "Fortuna Sittard v Excelsior Over 2.5 0-1 lost > Hoffenheim v Leverkusen Over 2.5 3-0 won (leg 2 not counted, double lost)",
+   "prices": [
+    1.6,
+    1.3
+   ],
+   "result": "lost",
+   "pl": -10.0,
+   "pot_after": 92.75,
+   "source": "paper: odds_seen used; one-off 10 pound stakes per Don 25 Oct"
+  },
+  {
+   "id": "2026-10-25-c",
+   "settled_on": "2026-10-25",
+   "stake": 10.0,
+   "legs": "Inter v Fiorentina Inter to win 2-1 won > Sparta v Ajax Ajax to win 1-2 won",
+   "prices": [
+    1.39,
+    1.48
+   ],
+   "result": "won",
+   "pl": 9.95,
+   "pot_after": 102.7,
+   "source": "paper: odds_seen used; one-off 10 pound stakes per Don 25 Oct"
+  },
+  {
+   "id": "2026-10-25-b",
+   "settled_on": "2026-10-25",
+   "stake": 10.0,
+   "legs": "Thun v Lugano Over 2.5 2-3 won > Auxerre v Le Mans Over 2.5 1-1 lost",
+   "prices": [
+    1.4,
+    1.73
+   ],
+   "result": "lost",
+   "pl": -10.0,
+   "pot_after": 92.7,
+   "source": "paper: odds_seen used; one-off 10 pound stakes per Don 25 Oct"
+  },
+  {
+   "id": "2026-10-25-a-s",
+   "settled_on": "2026-10-25",
+   "stake": 10.0,
+   "legs": "Hoffenheim v Leverkusen Over 2.5 3-0 won (on its own after leg 1 lost)",
+   "prices": [
+    1.3
+   ],
+   "result": "won",
+   "pl": 2.85,
+   "pot_after": 95.55,
+   "source": "paper: odds_seen used; one-off 10 pound stakes per Don 25 Oct"
+  },
+  {
+   "id": "2026-10-25-s1",
+   "settled_on": "2026-10-25",
+   "stake": 10.0,
+   "legs": "Castellon v Gijon Under 2.5 4-0 lost (single)",
+   "prices": [
+    2.1
+   ],
+   "result": "lost",
+   "pl": -10.0,
+   "pot_after": 85.55,
+   "source": "paper: odds_seen used; one-off 10 pound stakes per Don 25 Oct"
+  },
+  {
+   "id": "adjustment-2026-10-26",
+   "settled_on": "2026-10-25",
+   "stake": 0.0,
+   "legs": "Matched to the bot's own record (bot_pot_total 90.97); the 25 Oct entries above were paper-calculated at 10 pound stakes, the bot staked 5",
+   "prices": [],
+   "result": "adjustment",
+   "pl": 5.42,
+   "pot_after": 90.97,
+   "source": "bot_status.json updated 2026-10-26T04:01:26Z"
+  },
+  {
+   "id": "2026-10-24-c-s",
+   "settled_on": "2026-10-24",
+   "stake": 5.0,
+   "legs": "Rangers v St Johnstone Rangers to win won (on its own after leg 1 lost)",
+   "prices": [
+    1.21
+   ],
+   "result": "won",
+   "pl": 0.99,
+   "pot_after": 91.96,
+   "source": "bot: returned 5.99 from a 5.00 stake; bot_status.json shows it was placed"
+  },
+  {
+   "id": "adjustment-2026-10-26b",
+   "settled_on": "2026-10-24",
+   "stake": 0.0,
+   "legs": "Matched to the bot's own record: 70.97 free plus 20.00 staked on 2026-10-26-a and -b = 90.97. Replaces a +9.89 adjustment that counted 10.88 of leg 1 winnings still riding on the 27 Oct second legs; the Rangers single above was already inside the bot's 90.97. Dated 24 Oct so it nets off the Rangers single on the same day.",
+   "prices": [],
+   "result": "adjustment",
+   "pl": -0.99,
+   "pot_after": 90.97,
+   "source": "bot_status.json updated 2026-10-26T23:49:53Z (bot_pot_free 70.97 + open stakes 20.00)"
+  },
+  {
+   "id": "adjustment-posting-offset",
+   "settled_on": "2026-10-25",
+   "stake": 0.0,
+   "legs": "Posting offset (Don's instruction, 26 Oct 2026): posts carry on from the 85.55 shown on 25 Oct at 10-pound stakes; the bot really staked 5 that day. Pot = bot_pot_free + open stakes - 5.42.",
+   "prices": [],
+   "result": "adjustment",
+   "pl": -5.42,
+   "pot_after": 85.55,
+   "source": "Don, 26-27 Oct 2026"
+  },
+  {
+   "id": "2026-10-26-a",
+   "settled_on": "2026-10-27",
+   "stake": 10.0,
+   "legs": "Montpellier v Red Star Under 3.5 won > Sassuolo v Lazio Lazio draw no bet 2-6 won",
+   "prices": [
+    1.3925,
+    1.64
+   ],
+   "result": "won",
+   "pl": 11.91,
+   "source": "bot: returned 21.91 from a 10.00 stake",
+   "pot_after": 97.46
+  },
+  {
+   "id": "2026-10-26-b",
+   "settled_on": "2026-10-27",
+   "stake": 10.0,
+   "legs": "Boulogne v Reims Under 2.5 won > Roma v Cagliari Roma to win 4-2 won",
+   "prices": [
+    1.7668,
+    1.36
+   ],
+   "result": "won",
+   "pl": 13.02,
+   "source": "bot: returned 23.02 from a 10.00 stake",
+   "pot_after": 110.48
+  },
+  {
+   "id": "adjustment-bot-real-record",
+   "settled_on": "2026-10-28",
+   "stake": 0.0,
+   "legs": "Pot brought into line with the bot's real record (bot_pot_free 115.90, no open bets): removes the 26 Oct posting offset (Don, 27 Oct 2026)",
+   "prices": [],
+   "result": "adjustment",
+   "pl": 5.42,
+   "pot_after": 115.9,
+   "source": "bot_status.json 2026-10-28T04:22:42Z"
+  }
+ ],
+ "skipped": [
+  "2026-10-16-a",
+  "2026-10-16-b",
+  "2026-10-17-a",
+  "2026-10-24-b-s",
+  "2026-10-24-d-s",
+  "2026-10-17-b",
+  "2026-10-17-c",
+  "2026-10-16-s1",
+  "2026-10-16-s2",
+  "2026-10-16-s3",
+  "2026-10-17-s1",
+  "2026-10-17-s2"
+ ]
 }

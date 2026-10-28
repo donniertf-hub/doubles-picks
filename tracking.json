@@ -3261,7 +3261,7 @@
    "kickoff": "2026-10-25T16:15:00Z",
    "odds": null,
    "in_picks": false,
-   "result": null
+   "result": "won"
   },
   {
    "date": "2026-10-25",
@@ -3389,7 +3389,7 @@
    "kickoff": "2026-10-25T18:30:00Z",
    "odds": null,
    "in_picks": false,
-   "result": null
+   "result": "won"
   },
   {
    "date": "2026-10-25",
@@ -3461,7 +3461,7 @@
    "kickoff": "2026-10-26T18:45:00Z",
    "odds": 1.85,
    "in_picks": false,
-   "result": null
+   "result": "won"
   },
   {
    "date": "2026-10-26",
@@ -3489,7 +3489,7 @@
    "kickoff": "2026-10-26T16:00:00Z",
    "odds": 1.26,
    "in_picks": false,
-   "result": null
+   "result": "won"
   },
   {
    "date": "2026-10-26",
@@ -3503,7 +3503,7 @@
    "kickoff": "2026-10-26T20:00:00Z",
    "odds": 1.22,
    "in_picks": false,
-   "result": null
+   "result": "won"
   },
   {
    "date": "2026-10-27",
@@ -3517,7 +3517,7 @@
    "kickoff": "2026-10-27T17:30:00Z",
    "odds": 1.63,
    "in_picks": true,
-   "result": null
+   "result": "won"
   },
   {
    "date": "2026-10-27",
@@ -3531,6 +3531,193 @@
    "kickoff": "2026-10-27T19:45:00Z",
    "odds": 1.36,
    "in_picks": true,
+   "result": "won"
+  },
+  {
+   "track": "rules",
+   "rule": "btts",
+   "confidence": 62,
+   "gap": 2.1,
+   "league": "Italy Serie A",
+   "league_goals": 3.01,
+   "played": [
+    8,
+    8
+   ],
+   "scored": [
+    1.88,
+    1.63
+   ],
+   "conceded": [
+    2.25,
+    1.25
+   ],
+   "over25": [
+    null,
+    null
+   ],
+   "event": "Monza vs Napoli",
+   "market": "Both Teams To Score",
+   "runner": "Yes",
+   "kickoff": "2026-10-28T19:45:00Z",
+   "odds": 1.67,
+   "in_picks": false,
+   "date": "2026-10-28",
+   "result": null
+  },
+  {
+   "track": "confidence",
+   "confidence": 80,
+   "gap": 2.5,
+   "league": "Italy Serie A",
+   "league_goals": 3.01,
+   "played": [
+    8,
+    8
+   ],
+   "scored": [
+    0.75,
+    2.88
+   ],
+   "conceded": [
+    2.13,
+    1.25
+   ],
+   "over25": [
+    null,
+    null
+   ],
+   "event": "Venezia vs Inter",
+   "market": "Match Odds",
+   "runner": "Inter",
+   "kickoff": "2026-10-28T17:30:00Z",
+   "odds": 1.29,
+   "in_picks": false,
+   "date": "2026-10-28",
+   "result": null
+  },
+  {
+   "track": "confidence",
+   "confidence": 83,
+   "gap": 1.0,
+   "league": "Scotland Premiership",
+   "league_goals": 2.56,
+   "played": [
+    8,
+    8
+   ],
+   "scored": [
+    2.0,
+    1.25
+   ],
+   "conceded": [
+    0.5,
+    1.38
+   ],
+   "over25": [
+    null,
+    null
+   ],
+   "event": "Celtic vs Dundee United",
+   "market": "Match Odds",
+   "runner": "Celtic",
+   "kickoff": "2026-10-28T19:45:00Z",
+   "odds": 1.22,
+   "in_picks": false,
+   "date": "2026-10-28",
+   "result": null
+  },
+  {
+   "track": "confidence",
+   "confidence": 62,
+   "gap": -2.5,
+   "league": "Sweden Allsvenskan",
+   "league_goals": 2.94,
+   "played": [
+    22,
+    22
+   ],
+   "scored": [
+    0.73,
+    1.68
+   ],
+   "conceded": [
+    1.82,
+    1.5
+   ],
+   "over25": [
+    null,
+    null
+   ],
+   "event": "Halmstad vs Malmo",
+   "market": "Match Odds",
+   "runner": "Malmo",
+   "kickoff": "2026-10-28T18:00:00Z",
+   "odds": 1.55,
+   "in_picks": false,
+   "date": "2026-10-28",
+   "result": null
+  },
+  {
+   "track": "confidence",
+   "confidence": 62,
+   "gap": -3.4,
+   "league": "Scotland Premiership",
+   "league_goals": 2.56,
+   "played": [
+    8,
+    8
+   ],
+   "scored": [
+    2.38,
+    1.38
+   ],
+   "conceded": [
+    1.0,
+    0.63
+   ],
+   "over25": [
+    null,
+    null
+   ],
+   "event": "Hearts vs Rangers",
+   "market": "Both Teams To Score",
+   "runner": "Yes",
+   "kickoff": "2026-10-28T20:00:00Z",
+   "odds": 1.53,
+   "in_picks": false,
+   "date": "2026-10-28",
+   "result": null
+  },
+  {
+   "track": "confidence",
+   "confidence": 58,
+   "gap": -3.7,
+   "league": "Italy Serie A",
+   "league_goals": 3.01,
+   "played": [
+    8,
+    8
+   ],
+   "scored": [
+    2.0,
+    1.0
+   ],
+   "conceded": [
+    0.88,
+    1.25
+   ],
+   "over25": [
+    null,
+    null
+   ],
+   "event": "AC Milan vs Bologna",
+   "market": "Match Odds",
+   "runner": "AC Milan",
+   "kickoff": "2026-10-28T17:30:00Z",
+   "odds": 1.62,
+   "in_picks": false,
+   "date": "2026-10-28",
    "result": null
   }
  ]
