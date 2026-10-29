@@ -3563,7 +3563,7 @@
    "odds": 1.67,
    "in_picks": false,
    "date": "2026-10-28",
-   "result": null
+   "result": "won"
   },
   {
    "track": "confidence",
@@ -3594,7 +3594,7 @@
    "odds": 1.29,
    "in_picks": false,
    "date": "2026-10-28",
-   "result": null
+   "result": "won"
   },
   {
    "track": "confidence",
@@ -3625,7 +3625,7 @@
    "odds": 1.22,
    "in_picks": false,
    "date": "2026-10-28",
-   "result": null
+   "result": "lost"
   },
   {
    "track": "confidence",
@@ -3656,7 +3656,7 @@
    "odds": 1.55,
    "in_picks": false,
    "date": "2026-10-28",
-   "result": null
+   "result": "won"
   },
   {
    "track": "confidence",
@@ -3687,7 +3687,7 @@
    "odds": 1.53,
    "in_picks": false,
    "date": "2026-10-28",
-   "result": null
+   "result": "won"
   },
   {
    "track": "confidence",
@@ -3718,7 +3718,7 @@
    "odds": 1.62,
    "in_picks": false,
    "date": "2026-10-28",
-   "result": null
+   "result": "lost"
   }
  ]
 }
