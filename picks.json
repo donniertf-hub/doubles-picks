@@ -1,5 +1,33 @@
 {
- "generated": "2026-10-29T05:25:00Z",
- "doubles": [],
+ "generated": "2026-10-30T05:21:02Z",
+ "doubles": [
+  {
+   "id": "2026-10-30-a",
+   "legs": [
+    {
+     "sport": "football",
+     "event": "Bielefeld vs Braunschweig",
+     "market": "Match Odds",
+     "runner": "Bielefeld",
+     "kickoff": "2026-10-30T17:30:00Z",
+     "confidence": 62,
+     "odds_seen": 1.75,
+     "min_odds": 1.57,
+     "track": "confidence"
+    },
+    {
+     "sport": "football",
+     "event": "Villarreal vs Espanyol",
+     "market": "Match Odds",
+     "runner": "Villarreal",
+     "kickoff": "2026-10-30T20:00:00Z",
+     "confidence": 70,
+     "odds_seen": 1.42,
+     "min_odds": 1.27,
+     "track": "confidence"
+    }
+   ]
+  }
+ ],
  "singles": []
 }

@@ -3719,6 +3719,109 @@
    "in_picks": false,
    "date": "2026-10-28",
    "result": "lost"
+  },
+  {
+   "date": "2026-10-30",
+   "track": "rules",
+   "confidence": 58,
+   "gap": -11.4,
+   "league": "Germany Bundesliga",
+   "event": "Elversberg vs Mainz",
+   "market": "Both Teams To Score",
+   "runner": "Yes",
+   "kickoff": "2026-10-30T19:30:00Z",
+   "odds": 1.44,
+   "in_picks": false,
+   "result": null,
+   "rule": "btts",
+   "league_goals": 3.56,
+   "played": [
+    7,
+    7
+   ],
+   "scored": [
+    1.71,
+    2.29
+   ],
+   "conceded": [
+    2.14,
+    1.86
+   ],
+   "over25": [
+    null,
+    null
+   ]
+  },
+  {
+   "date": "2026-10-30",
+   "track": "confidence",
+   "confidence": 70,
+   "gap": -0.4,
+   "league": "Spain La Liga",
+   "event": "Villarreal vs Espanyol",
+   "market": "Match Odds",
+   "runner": "Villarreal",
+   "kickoff": "2026-10-30T20:00:00Z",
+   "odds": 1.42,
+   "in_picks": true,
+   "result": null
+  },
+  {
+   "date": "2026-10-30",
+   "track": "confidence",
+   "confidence": 62,
+   "gap": 4.9,
+   "league": "Germany 2. Bundesliga",
+   "event": "Bielefeld vs Braunschweig",
+   "market": "Match Odds",
+   "runner": "Bielefeld",
+   "kickoff": "2026-10-30T17:30:00Z",
+   "odds": 1.75,
+   "in_picks": true,
+   "result": null
+  },
+  {
+   "date": "2026-10-30",
+   "track": "confidence",
+   "confidence": 68,
+   "gap": 1.3,
+   "league": "Germany Bundesliga",
+   "event": "Elversberg vs Mainz",
+   "market": "Over/Under 2.5 Goals",
+   "runner": "Over 2.5",
+   "kickoff": "2026-10-30T19:30:00Z",
+   "odds": 1.5,
+   "in_picks": false,
+   "result": null,
+   "league_goals": 3.56
+  },
+  {
+   "date": "2026-10-30",
+   "track": "confidence",
+   "confidence": 68,
+   "gap": -1.4,
+   "league": "Belgium Pro League",
+   "event": "Waregem vs Club Brugge",
+   "market": "Over/Under 2.5 Goals",
+   "runner": "Over 2.5",
+   "kickoff": "2026-10-30T19:45:00Z",
+   "odds": 1.44,
+   "in_picks": false,
+   "result": null
+  },
+  {
+   "date": "2026-10-30",
+   "track": "confidence",
+   "confidence": 90,
+   "gap": -0.9,
+   "league": "Portugal Primeira Liga",
+   "event": "Casa Pia vs Sporting",
+   "market": "Draw No Bet",
+   "runner": "Sporting",
+   "kickoff": "2026-10-30T20:15:00Z",
+   "odds": 1.1,
+   "in_picks": false,
+   "result": null
   }
  ]
 }
