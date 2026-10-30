@@ -1218,10 +1218,13 @@
      "stake": 10.0
     },
     {
+     "asked_odds": 1.51,
      "event": "Huracan vs Tigre",
      "kickoff": "2026-10-30T22:00:00Z",
      "min_odds": 1.26,
-     "runner": "Under 2.5"
+     "odds": 1.51,
+     "runner": "Under 2.5",
+     "stake": 14.95
     }
    ],
    "note": "",
@@ -1230,7 +1233,7 @@
    "reserve": false,
    "returned": null,
    "stake": 10.0,
-   "status": "pending"
+   "status": "matched"
   },
   {
    "covers": null,
@@ -1253,10 +1256,13 @@
      "stake": 10.0
     },
     {
+     "asked_odds": 1.51,
      "event": "Huracan vs Tigre",
      "kickoff": "2026-10-30T22:00:00Z",
      "min_odds": 1.26,
-     "runner": "Under 2.5"
+     "odds": 1.51,
+     "runner": "Under 2.5",
+     "stake": 14.65
     }
    ],
    "note": "",
@@ -1265,9 +1271,9 @@
    "reserve": false,
    "returned": null,
    "stake": 10.0,
-   "status": "pending"
+   "status": "matched"
   }
  ],
- "exchange_balance": 19.99,
- "updated": "2026-10-30T21:23:38Z"
+ "exchange_balance": 20.64,
+ "updated": "2026-10-30T21:29:43Z"
 }
