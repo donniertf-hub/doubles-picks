@@ -1003,10 +1003,8 @@ class Bot:
                 if odds * chance + 1e-9 < float(c["min_edge"]):
                     return self.note(d, f"{info['runner']} is {odds}, too short for a "
                                         f"{leg['confidence']}% pick")
-            elif not first and odds * chance + 1e-9 < 1.0:
-                # Leg 1 has won: the rolled bet must still be worth more than it costs.
-                return self.note(d, f"{info['runner']} is {odds}, too short for a "
-                                    f"{leg['confidence']}% pick, winnings kept if it stays there")
+            # Leg 2 of a double is always placed once leg 1 has won: a bet that
+            # was announced goes on (Don, 30 Oct). No value re-check here.
         else:
             floor = float(leg.get("min_odds") or 1.01) * (1 - float(c.get("min_odds_slack_percent") or 0) / 100)
             if odds + 1e-9 < floor:

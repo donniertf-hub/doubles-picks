@@ -843,7 +843,7 @@ def test_whole_double_still_needs_evens():
     assert bot.state["doubles"]["d1"]["status"] == "skipped" and not mb.placed
 
 
-def test_whole_leg_two_too_short_keeps_winnings():
+def test_whole_leg_two_always_placed_even_if_short():
     evs = fixtures()
     mb = FakeMB(evs, {ARS: "WIN", LIL: "WIN"})
     bot, clock, _ = make([conf_double(75, 75)], mb, bet_check="whole")
@@ -860,8 +860,7 @@ def test_whole_leg_two_too_short_keeps_winnings():
         bot.tick()
         clock.now += B.timedelta(minutes=10)
     d = bot.state["doubles"]["d1"]
-    assert d["status"] == "banked" and len(mb.placed) == 1, d
-    assert bot.state["bankroll"] > 30, bot.state["bankroll"]
+    assert d["status"] == "won" and len(mb.placed) == 2, d
 
 
 def test_whole_single_needs_evens():
