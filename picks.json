@@ -61,6 +61,38 @@
      "track": "confidence"
     }
    ]
+  },
+  {
+   "id": "2026-10-30-c",
+   "note": "Don's choice at 15:40 UK on 30 Oct: same bet as 2026-10-30-b, forced on. The bot refused -b on its value test (2.28 for a 46% chance = 1.04). Confidence left out so the bot skips that test; honest figures were 67 and 68.",
+   "legs": [
+    {
+     "sport": "football",
+     "event": "Elversberg vs Mainz",
+     "market": "Both Teams To Score",
+     "runner": "Yes",
+     "kickoff": "2026-10-30T19:30:00Z",
+     "odds_seen": 1.49,
+     "min_odds": 1.34,
+     "track": "rules",
+     "rule": "btts"
+    },
+    {
+     "sport": "football",
+     "event": "Huracan vs Tigre",
+     "market": [
+      "Over/Under 2.5 Goals",
+      "Over/Under 2.5",
+      "Total Goals",
+      "Total"
+     ],
+     "runner": "Under 2.5",
+     "kickoff": "2026-10-30T22:00:00Z",
+     "odds_seen": 1.41,
+     "min_odds": 1.26,
+     "track": "confidence"
+    }
+   ]
   }
  ],
  "singles": []
