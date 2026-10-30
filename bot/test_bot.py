@@ -114,7 +114,8 @@ def make(picks, mb, **overrides):
     folder = tempfile.mkdtemp()
     with open(os.path.join(folder, "picks.json"), "w") as fh:
         json.dump({"doubles": picks}, fh)
-    cfg = dict(B.DEFAULTS, **dict({"dry_run": False, "fallback_singles": False}, **overrides))
+    cfg = dict(B.DEFAULTS, **dict({"dry_run": False, "fallback_singles": False,
+                                   "always_bet_doubles": False}, **overrides))
     clock = Clock()
     return B.Bot(cfg, mb, folder=folder, clock=clock), clock, folder
 
@@ -894,3 +895,48 @@ if __name__ == "__main__":
         t()
         print("ok  ", t.__name__)
     print(f"\n{len(tests)} tests passed")
+
+
+# ---- always_bet_doubles (Don, 30 Oct): an announced double goes on whatever the price
+
+def test_always_double_bets_without_edge():
+    mb = FakeMB(fixtures(), {ARS: "WIN", LIL: "WIN"})
+    bot, clock, _ = make([conf_double(65, 65)], mb, bet_check="whole", always_bet_doubles=True)
+    play_through(bot, clock)
+    assert bot.state["doubles"]["d1"]["status"] == "won" and len(mb.placed) == 2
+
+
+def test_always_double_bets_under_evens():
+    mb = FakeMB(fixtures(ars=1.30, lil=1.40), {ARS: "WIN", LIL: "WIN"})  # pays 1.82
+    bot, clock, _ = make([conf_double(90, 90)], mb, bet_check="whole", always_bet_doubles=True)
+    play_through(bot, clock)
+    assert bot.state["doubles"]["d1"]["status"] == "won" and len(mb.placed) == 2
+
+
+def test_always_double_bets_after_drift():
+    mb = FakeMB(fixtures(), {ARS: "WIN", LIL: "WIN"})
+    pick = with_odds_seen(double(), first=1.20, second=1.10)           # both drifted out
+    bot, clock, _ = make([pick], mb, always_bet_doubles=True)
+    play_through(bot, clock)
+    assert bot.state["doubles"]["d1"]["status"] == "won" and len(mb.placed) == 2
+
+
+def test_always_double_bets_below_min_odds():
+    mb = FakeMB(fixtures(), {ARS: "WIN", LIL: "WIN"})
+    p = double()
+    p["legs"][0]["min_odds"] = p["legs"][1]["min_odds"] = 1.90
+    bot, clock, _ = make([p], mb, always_bet_doubles=True)
+    play_through(bot, clock)
+    assert bot.state["doubles"]["d1"]["status"] == "won" and len(mb.placed) == 2
+
+
+def test_always_still_respects_stop_file():
+    mb = FakeMB(fixtures(), {ARS: "WIN", LIL: "WIN"})
+    bot, clock, folder = make([double()], mb, always_bet_doubles=True)
+    open(os.path.join(folder, "STOP"), "w").close()
+    play_through(bot, clock)
+    assert not mb.placed
+
+
+def test_always_is_the_default():
+    assert B.DEFAULTS["always_bet_doubles"] is True

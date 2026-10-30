@@ -87,6 +87,9 @@ DEFAULTS = {
     "single_min_odds": 2.0,        # "whole" only: a single must pay evens or more
     "min_edge": 1.05,              # "whole" only: price x chance of winning (from the legs'
                                    #   confidence) must be at least this (5% edge, pays commission)
+    "always_bet_doubles": True,    # Don, 30 Oct: a double in picks.json has been announced, so it
+                                   #   goes on whatever the price. Skips min_odds, min_combined_odds,
+                                   #   min_edge and the drift check for doubles. False = checks back on.
     "status_file": "../bot_status.json",  # written after every pass; "" = off
     "status_push": False,          # True: commit and push the status file to GitHub
     "status_push_minutes": 15,     # push at most this often, and only when it changed
@@ -992,9 +995,12 @@ class Bot:
         if not priced:
             return self.note(d, f"not enough money on offer for {info['runner']}")
         odds, best = priced
+        always = not single and bool(c.get("always_bet_doubles"))
         whole = c.get("bet_check") == "whole" and all(
             l.get("confidence") is not None for l in d["legs"])
-        if whole:
+        if always:
+            pass                    # announced double: no price checks
+        elif whole:
             chance = float(leg["confidence"]) / 100
             if single:
                 if odds + 1e-9 < float(c["single_min_odds"]):
@@ -1010,7 +1016,7 @@ class Bot:
             if odds + 1e-9 < floor:
                 return self.note(d, f"{info['runner']} is {odds}, below the pick's minimum")
         seen = leg.get("odds_seen")
-        drift_limit = float(c.get("max_drift_percent") or 0)
+        drift_limit = 0.0 if always else float(c.get("max_drift_percent") or 0)
         if seen and drift_limit > 0 and odds > float(seen) * (1 + drift_limit / 100):
             return self.note(d, f"{info['runner']} has drifted to {odds} from {seen} "
                                 f"(over {drift_limit:g}% out), team news perhaps, not betting")
@@ -1020,21 +1026,28 @@ class Bot:
             for later in d["legs"][1:]:
                 other, why = resolve_leg(self.mb, later)
                 if why:
+                    if always:          # leg 2 not listed yet: bet leg 1 anyway
+                        combined = None
+                        break
                     return self.note(d, why)
                 other_price = price_for_stake(other["prices"], 0.01)
                 if not other_price:
+                    if always:
+                        combined = None
+                        break
                     return self.note(d, f"no price yet for {other['runner']}")
                 combined *= other_price[1]
-            if combined + 1e-9 < c["min_combined_odds"]:
-                return self.note(d, f"pays {combined:.2f}, under the {c['min_combined_odds']:.2f} minimum")
-            if whole:
-                chance = 1.0
-                for l in d["legs"]:
-                    chance *= float(l["confidence"]) / 100
-                if combined * chance + 1e-9 < float(c["min_edge"]):
-                    return self.note(d, f"pays {combined:.2f} for a {chance * 100:.0f}% chance, "
-                                        f"not enough edge")
-            d["combined_at_entry"] = round(combined, 3)
+            if not always:
+                if combined + 1e-9 < c["min_combined_odds"]:
+                    return self.note(d, f"pays {combined:.2f}, under the {c['min_combined_odds']:.2f} minimum")
+                if whole:
+                    chance = 1.0
+                    for l in d["legs"]:
+                        chance *= float(l["confidence"]) / 100
+                    if combined * chance + 1e-9 < float(c["min_edge"]):
+                        return self.note(d, f"pays {combined:.2f} for a {chance * 100:.0f}% chance, "
+                                            f"not enough edge")
+            d["combined_at_entry"] = round(combined, 3) if combined else None
 
         bet = {"event": info["event"], "market": info["market"], "runner": info["runner"],
                "runner_id": info["runner_id"], "asked_odds": odds, "stake": money,
