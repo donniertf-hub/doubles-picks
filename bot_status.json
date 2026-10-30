@@ -1,6 +1,6 @@
 {
  "bankroll_start": 50,
- "bot_pot_free": 85.9,
+ "bot_pot_free": 105.49,
  "bot_pot_total": 125.49,
  "doubles": [
   {
@@ -1166,9 +1166,9 @@
    "covers": null,
    "date": "2026-10-30",
    "fallback": false,
-   "finished_at": null,
+   "finished_at": "2026-10-30T20:01:28Z",
    "id": "2026-10-30-a",
-   "in_play": 19.59,
+   "in_play": 0,
    "kind": "double",
    "legs": [
     {
@@ -1189,13 +1189,13 @@
      "runner": "Villarreal"
     }
    ],
-   "note": "Villarreal is 1.41, too short for a 70% pick, winnings kept if it stays there",
-   "pl": null,
+   "note": "leg 2 not placed (Villarreal is 1.41, too short for a 70% pick, winnings kept if it stays there), winnings kept",
+   "pl": 9.59,
    "placed": true,
    "reserve": false,
-   "returned": null,
+   "returned": 19.59,
    "stake": 10.0,
-   "status": "pending"
+   "status": "banked"
   },
   {
    "covers": null,
@@ -1265,5 +1265,5 @@
   }
  ],
  "exchange_balance": 19.99,
- "updated": "2026-10-30T19:55:25Z"
+ "updated": "2026-10-30T20:01:28Z"
 }
