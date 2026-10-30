@@ -1161,8 +1161,38 @@
    "returned": 23.02,
    "stake": 10.0,
    "status": "won"
+  },
+  {
+   "covers": null,
+   "date": "2026-10-30",
+   "fallback": false,
+   "finished_at": null,
+   "id": "2026-10-30-a",
+   "in_play": 0,
+   "kind": "double",
+   "legs": [
+    {
+     "event": "Bielefeld vs Braunschweig",
+     "kickoff": "2026-10-30T17:30:00Z",
+     "min_odds": 1.57,
+     "runner": "Bielefeld"
+    },
+    {
+     "event": "Villarreal vs Espanyol",
+     "kickoff": "2026-10-30T20:00:00Z",
+     "min_odds": 1.27,
+     "runner": "Villarreal"
+    }
+   ],
+   "note": "Betfair balance is lower than the bet",
+   "pl": null,
+   "placed": false,
+   "reserve": false,
+   "returned": null,
+   "stake": null,
+   "status": "pending"
   }
  ],
  "exchange_balance": 0.4,
- "updated": "2026-10-30T05:27:08Z"
+ "updated": "2026-10-30T05:31:12Z"
 }
