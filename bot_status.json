@@ -1,6 +1,6 @@
 {
  "bankroll_start": 50,
- "bot_pot_free": 105.9,
+ "bot_pot_free": 95.9,
  "bot_pot_total": 115.9,
  "doubles": [
   {
@@ -1224,8 +1224,41 @@
    "returned": null,
    "stake": null,
    "status": "pending"
+  },
+  {
+   "covers": null,
+   "date": "2026-10-30",
+   "fallback": false,
+   "finished_at": null,
+   "id": "2026-10-30-c",
+   "in_play": 10.0,
+   "kind": "double",
+   "legs": [
+    {
+     "asked_odds": 1.53,
+     "event": "Elversberg vs Mainz",
+     "kickoff": "2026-10-30T19:30:00Z",
+     "min_odds": 1.34,
+     "odds": 1.53,
+     "runner": "Yes",
+     "stake": 10.0
+    },
+    {
+     "event": "Huracan vs Tigre",
+     "kickoff": "2026-10-30T22:00:00Z",
+     "min_odds": 1.26,
+     "runner": "Under 2.5"
+    }
+   ],
+   "note": "",
+   "pl": null,
+   "placed": true,
+   "reserve": false,
+   "returned": null,
+   "stake": 10.0,
+   "status": "matched"
   }
  ],
  "exchange_balance": 20.4,
- "updated": "2026-10-30T15:23:40Z"
+ "updated": "2026-10-30T15:45:55Z"
 }
