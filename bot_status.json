@@ -1,7 +1,7 @@
 {
  "bankroll_start": 50,
  "bot_pot_free": 85.9,
- "bot_pot_total": 115.9,
+ "bot_pot_total": 125.49,
  "doubles": [
   {
    "covers": null,
@@ -1168,7 +1168,7 @@
    "fallback": false,
    "finished_at": null,
    "id": "2026-10-30-a",
-   "in_play": 10.0,
+   "in_play": 19.59,
    "kind": "double",
    "legs": [
     {
@@ -1177,6 +1177,8 @@
      "kickoff": "2026-10-30T17:30:00Z",
      "min_odds": 1.57,
      "odds": 2.02,
+     "result": "WIN",
+     "returns": 19.59,
      "runner": "Bielefeld",
      "stake": 10.0
     },
@@ -1187,13 +1189,13 @@
      "runner": "Villarreal"
     }
    ],
-   "note": "",
+   "note": "Villarreal is 1.41, too short for a 70% pick, winnings kept if it stays there",
    "pl": null,
    "placed": true,
    "reserve": false,
    "returned": null,
    "stake": 10.0,
-   "status": "matched"
+   "status": "pending"
   },
   {
    "covers": null,
@@ -1263,5 +1265,5 @@
   }
  ],
  "exchange_balance": 19.99,
- "updated": "2026-10-30T19:25:11Z"
+ "updated": "2026-10-30T19:31:16Z"
 }
