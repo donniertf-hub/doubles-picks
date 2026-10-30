@@ -1217,7 +1217,7 @@
      "runner": "Under 2.5"
     }
    ],
-   "note": "pays 2.25 for a 46% chance, not enough edge",
+   "note": "pays 2.28 for a 46% chance, not enough edge",
    "pl": null,
    "placed": false,
    "reserve": false,
@@ -1227,5 +1227,5 @@
   }
  ],
  "exchange_balance": 20.4,
- "updated": "2026-10-30T15:13:29Z"
+ "updated": "2026-10-30T15:23:40Z"
 }
