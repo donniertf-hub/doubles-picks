@@ -1194,8 +1194,38 @@
    "returned": null,
    "stake": 10.0,
    "status": "matched"
+  },
+  {
+   "covers": null,
+   "date": "2026-10-30",
+   "fallback": false,
+   "finished_at": null,
+   "id": "2026-10-30-b",
+   "in_play": 0,
+   "kind": "double",
+   "legs": [
+    {
+     "event": "Elversberg vs Mainz",
+     "kickoff": "2026-10-30T19:30:00Z",
+     "min_odds": 1.34,
+     "runner": "Yes"
+    },
+    {
+     "event": "Huracan vs Tigre",
+     "kickoff": "2026-10-30T22:00:00Z",
+     "min_odds": 1.26,
+     "runner": "Under 2.5"
+    }
+   ],
+   "note": "pays 2.25 for a 46% chance, not enough edge",
+   "pl": null,
+   "placed": false,
+   "reserve": false,
+   "returned": null,
+   "stake": null,
+   "status": "pending"
   }
  ],
- "exchange_balance": 0.4,
- "updated": "2026-10-30T14:57:25Z"
+ "exchange_balance": 20.4,
+ "updated": "2026-10-30T15:13:29Z"
 }
