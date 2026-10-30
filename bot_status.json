@@ -1,6 +1,6 @@
 {
  "bankroll_start": 50,
- "bot_pot_free": 115.9,
+ "bot_pot_free": 105.9,
  "bot_pot_total": 115.9,
  "doubles": [
   {
@@ -1168,14 +1168,17 @@
    "fallback": false,
    "finished_at": null,
    "id": "2026-10-30-a",
-   "in_play": 0,
+   "in_play": 10.0,
    "kind": "double",
    "legs": [
     {
+     "asked_odds": 2.0,
      "event": "Bielefeld vs Braunschweig",
      "kickoff": "2026-10-30T17:30:00Z",
      "min_odds": 1.57,
-     "runner": "Bielefeld"
+     "odds": 2.02,
+     "runner": "Bielefeld",
+     "stake": 10.0
     },
     {
      "event": "Villarreal vs Espanyol",
@@ -1184,15 +1187,15 @@
      "runner": "Villarreal"
     }
    ],
-   "note": "Arminia Bielefeld has drifted to 2.02 from 1.75 (over 15% out), team news perhaps, not betting",
+   "note": "",
    "pl": null,
-   "placed": false,
+   "placed": true,
    "reserve": false,
    "returned": null,
-   "stake": null,
-   "status": "pending"
+   "stake": 10.0,
+   "status": "matched"
   }
  ],
  "exchange_balance": 0.4,
- "updated": "2026-10-30T14:24:59Z"
+ "updated": "2026-10-30T14:57:25Z"
 }
