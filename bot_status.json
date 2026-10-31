@@ -1366,10 +1366,13 @@
      "stake": 10.0
     },
     {
+     "asked_odds": 1.47,
      "event": "Falkirk vs Celtic",
      "kickoff": "2026-11-01T13:00:00Z",
      "min_odds": 1.3,
-     "runner": "Celtic"
+     "odds": 1.47,
+     "runner": "Celtic",
+     "stake": 14.04
     }
    ],
    "note": "",
@@ -1378,7 +1381,7 @@
    "reserve": false,
    "returned": null,
    "stake": 10.0,
-   "status": "pending"
+   "status": "matched"
   },
   {
    "covers": null,
@@ -1410,6 +1413,6 @@
    "status": "lost"
   }
  ],
- "exchange_balance": 0.0,
- "updated": "2026-10-31T16:46:28Z"
+ "exchange_balance": 35.28,
+ "updated": "2026-10-31T16:58:32Z"
 }
