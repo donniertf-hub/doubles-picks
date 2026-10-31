@@ -1,6 +1,6 @@
 {
  "bankroll_start": 50,
- "bot_pot_free": 148.36,
+ "bot_pot_free": 128.36,
  "bot_pot_total": 148.36,
  "doubles": [
   {
@@ -1276,8 +1276,74 @@
    "returned": 21.21,
    "stake": 10.0,
    "status": "won"
+  },
+  {
+   "covers": null,
+   "date": "2026-10-31",
+   "fallback": false,
+   "finished_at": null,
+   "id": "2026-10-31-a",
+   "in_play": 10.0,
+   "kind": "double",
+   "legs": [
+    {
+     "asked_odds": 1.42,
+     "event": "Wolfsburg vs Osnabruck",
+     "kickoff": "2026-10-31T12:00:00Z",
+     "min_odds": 1.26,
+     "odds": 1.42,
+     "runner": "Over 2.5",
+     "stake": 10.0
+    },
+    {
+     "event": "PSV vs Willem",
+     "kickoff": "2026-10-31T17:45:00Z",
+     "min_odds": 1.53,
+     "runner": "Yes"
+    }
+   ],
+   "note": "",
+   "pl": null,
+   "placed": true,
+   "reserve": false,
+   "returned": null,
+   "stake": 10.0,
+   "status": "matched"
+  },
+  {
+   "covers": null,
+   "date": "2026-10-31",
+   "fallback": false,
+   "finished_at": null,
+   "id": "2026-10-31-b",
+   "in_play": 10.0,
+   "kind": "double",
+   "legs": [
+    {
+     "asked_odds": 1.49,
+     "event": "Cambuur vs Eagles",
+     "kickoff": "2026-10-31T20:00:00Z",
+     "min_odds": 1.29,
+     "odds": 1.49,
+     "runner": "Over 2.5",
+     "stake": 10.0
+    },
+    {
+     "event": "Groningen vs Sparta",
+     "kickoff": "2026-11-01T15:45:00Z",
+     "min_odds": 1.32,
+     "runner": "Over 2.5"
+    }
+   ],
+   "note": "",
+   "pl": null,
+   "placed": true,
+   "reserve": false,
+   "returned": null,
+   "stake": 10.0,
+   "status": "matched"
   }
  ],
- "exchange_balance": 64.42,
- "updated": "2026-10-31T01:06:04Z"
+ "exchange_balance": 44.42,
+ "updated": "2026-10-31T01:19:13Z"
 }
