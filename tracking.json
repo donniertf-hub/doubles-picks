@@ -4073,7 +4073,35 @@
    "runner": "Under 2.5",
    "kickoff": "2026-10-31T12:00:00Z",
    "odds": 2.35,
-   "in_picks": false,
+   "in_picks": true,
+   "result": null
+  },
+  {
+   "date": "2026-10-31",
+   "track": "confidence",
+   "confidence": 69,
+   "gap": -2.4,
+   "league": "England Championship",
+   "event": "Middlesbrough vs Charlton",
+   "market": "Over/Under 2.5 Goals",
+   "runner": "Over 2.5",
+   "kickoff": "2026-10-31T15:00:00Z",
+   "odds": 1.4,
+   "in_picks": true,
+   "result": null
+  },
+  {
+   "date": "2026-10-31",
+   "track": "confidence",
+   "confidence": 66,
+   "gap": -3.0,
+   "league": "Scotland Premiership",
+   "event": "Falkirk vs Celtic",
+   "market": "Match Odds",
+   "runner": "Celtic",
+   "kickoff": "2026-11-01T13:00:00Z",
+   "odds": 1.45,
+   "in_picks": true,
    "result": null
   }
  ]

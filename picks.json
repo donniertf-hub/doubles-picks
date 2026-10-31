@@ -72,7 +72,63 @@
      "rule": "goals"
     }
    ]
+  },
+  {
+   "id": "2026-10-31-c",
+   "note": "Don's choice at 01:08 UK on 31 Oct (4 bets on Saturdays even if forced): best near miss, below the 1.05 value test (2.03 x 45.5% = 0.93).",
+   "legs": [
+    {
+     "sport": "football",
+     "event": "Middlesbrough vs Charlton",
+     "market": [
+      "Over/Under 2.5 Goals",
+      "Over/Under 2.5",
+      "Total Goals",
+      "Total"
+     ],
+     "runner": "Over 2.5",
+     "kickoff": "2026-10-31T15:00:00Z",
+     "confidence": 69,
+     "odds_seen": 1.4,
+     "min_odds": 1.26,
+     "track": "confidence"
+    },
+    {
+     "sport": "football",
+     "event": "Falkirk vs Celtic",
+     "market": "Match Odds",
+     "runner": "Celtic",
+     "kickoff": "2026-11-01T13:00:00Z",
+     "confidence": 66,
+     "odds_seen": 1.45,
+     "min_odds": 1.3,
+     "track": "confidence"
+    }
+   ]
   }
  ],
- "singles": []
+ "singles": [
+  {
+   "id": "2026-10-31-s1",
+   "note": "Don's choice at 01:08 UK on 31 Oct: value bet (2.35 x 54% = 1.27) but 1 point under the 55% singles minimum.",
+   "legs": [
+    {
+     "sport": "football",
+     "event": "Kaiserslautern vs Hertha",
+     "market": [
+      "Over/Under 2.5 Goals",
+      "Over/Under 2.5",
+      "Total Goals",
+      "Total"
+     ],
+     "runner": "Under 2.5",
+     "kickoff": "2026-10-31T12:00:00Z",
+     "confidence": 54,
+     "odds_seen": 2.35,
+     "min_odds": 2.11,
+     "track": "confidence"
+    }
+   ]
+  }
+ ]
 }
