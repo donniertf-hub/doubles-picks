@@ -19,6 +19,8 @@ Commands
   python3 bot.py once           do one pass and exit
   python3 bot.py run            keep running, one pass every poll_seconds
   python3 bot.py status         show the pot and every double
+  python3 bot.py scan           list every Betfair football match with prices and
+                                season stats in ../candidates.json (also runs daily)
 
 Safety
   - dry_run is true by default: it logs what it would bet and places nothing.
@@ -87,6 +89,11 @@ DEFAULTS = {
     "single_min_odds": 2.0,        # "whole" only: a single must pay evens or more
     "min_edge": 1.05,              # "whole" only: price x chance of winning (from the legs'
                                    #   confidence) must be at least this (5% edge, pays commission)
+    "scan_enabled": True,          # once a day, list every Betfair football match with prices and
+                                   #   season stats in candidates.json for the morning picks (scanner.py)
+    "scan_time": "04:15",          # UK time to run the scan (before the 04:55 picks run)
+    "scan_hours_ahead": 36,
+    "scan_file": "../candidates.json",
     "always_bet_doubles": True,    # Don, 30 Oct: a double in picks.json has been announced, so it
                                    #   goes on whatever the price. Skips min_odds, min_combined_odds,
                                    #   min_edge and the drift check for doubles. False = checks back on.
@@ -918,6 +925,47 @@ class Bot:
             inplay_tick(self)
         self.save()
         self.export_status()
+        self.maybe_scan()
+
+    def maybe_scan(self):
+        """Run the market scanner once a day after scan_time (UK time). A failed
+        scan is retried every 30 minutes, three times at most."""
+        c = self.cfg
+        if not c.get("scan_enabled") or not hasattr(self.mb, "_call"):
+            return
+        now = self.clock()
+        local = uk_time(now)
+        today = local.date().isoformat()
+        hh, mm = (int(x) for x in str(c.get("scan_time", "04:15")).split(":"))
+        if (local.hour, local.minute) < (hh, mm) or self.state.get("scan_date") == today:
+            return
+        tries = self.state.get("scan_tries", {})
+        if tries.get("date") != today:
+            tries = {"date": today, "n": 0, "last": None}
+        if tries["n"] >= 3 or (tries["last"] and
+                               (now - parse_time(tries["last"])).total_seconds() < 1800):
+            return
+        tries["n"] += 1
+        tries["last"] = iso(now)
+        self.state["scan_tries"] = tries
+        try:
+            import scanner
+            result = scanner.scan(self.mb, fetch=getattr(self, "scan_fetch", scanner.http_text),
+                                  now=now, hours=int(c.get("scan_hours_ahead", 36)),
+                                  commission=float(c.get("commission_rate", 0.05)), log=self.log)
+            path = os.path.normpath(os.path.join(self.folder, c.get("scan_file", "../candidates.json")))
+            scanner.write(result, path)
+            n = result["counts"]
+            self.log(f"scan: {n['betfair_matches']} Betfair matches, {n['with_stats']} with stats, "
+                     f"{len(result['rule_qualifiers'])} rule qualifiers")
+            self.state["scan_date"] = today
+            if c.get("status_push"):
+                err = push_file(path, "Scanner candidates")
+                if err:
+                    self.log(f"could not push the scan file: {err}")
+        except Exception as err:          # a scan must never stop the betting
+            self.log(f"scan failed (try {tries['n']} of 3): {err}")
+        self.save()
 
     def reserve_cover(self, d):
         """A reserve double is used only when a main double of the same day was
@@ -1308,26 +1356,43 @@ class Bot:
             self.push_status(path)
 
     def push_status(self, path):
-        repo, name = os.path.dirname(path), os.path.basename(path)
-
-        def git(*args):
-            return subprocess.run(["git", "-C", repo, *args], capture_output=True,
-                                  text=True, timeout=90)
-        try:
-            git("add", name)
-            commit = git("commit", "-m", "Bot status", "--", name)
-            if commit.returncode not in (0, 1):
-                raise OSError(commit.stderr.strip() or commit.stdout.strip())
-            git("pull", "--rebase", "--autostash", "-q")
-            out = git("push", "-q")
-            if out.returncode != 0:
-                raise OSError(out.stderr.strip()[:200])
+        err = push_file(path, "Bot status")
+        if not err:
             self.state["status_dirty"] = False
             self.state.pop("push_error", None)
-        except (OSError, subprocess.SubprocessError) as err:
-            if self.state.get("push_error") != str(err):
-                self.state["push_error"] = str(err)
-                self.log(f"could not push the status file, will retry: {err}")
+        elif self.state.get("push_error") != err:
+            self.state["push_error"] = err
+            self.log(f"could not push the status file, will retry: {err}")
+
+
+def push_file(path, message):
+    """Commit one file and push it. Returns None, or the error as text."""
+    repo, name = os.path.dirname(path), os.path.basename(path)
+
+    def git(*args):
+        return subprocess.run(["git", "-C", repo, *args], capture_output=True,
+                              text=True, timeout=90)
+    try:
+        git("add", name)
+        commit = git("commit", "-m", message, "--", name)
+        if commit.returncode not in (0, 1):
+            raise OSError(commit.stderr.strip() or commit.stdout.strip())
+        git("pull", "--rebase", "--autostash", "-q")
+        out = git("push", "-q")
+        if out.returncode != 0:
+            raise OSError(out.stderr.strip()[:200])
+        return None
+    except (OSError, subprocess.SubprocessError) as err:
+        return str(err)
+
+
+def uk_time(now):
+    """UK local time (GMT or BST). Falls back to UTC if the time zone data is missing."""
+    try:
+        from zoneinfo import ZoneInfo
+        return now.astimezone(ZoneInfo("Europe/London"))
+    except Exception:
+        return now.astimezone(timezone.utc)
 
 
 def inplay_tick(bot):
@@ -1400,9 +1465,12 @@ def cmd_status(bot):
 
 def main(argv):
     command = argv[1] if len(argv) > 1 else "help"
-    if command not in ("find", "once", "run", "status"):
+    if command not in ("find", "once", "run", "status", "scan"):
         print(__doc__)
         return 0
+    if command == "scan":
+        import scanner
+        return scanner.main(argv[1:])
     cfg = load_config()
     mb = make_exchange(cfg)
     if command == "find":

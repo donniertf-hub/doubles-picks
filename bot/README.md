@@ -87,6 +87,27 @@ Two legs is a rolled double. One leg is a plain single. A leg looks like this:
 - Set `picks_url` in `config.json` to an https address and the bot downloads the
   picks from there every 15 minutes instead of needing the file edited by hand.
 
+## Daily market scan (candidates.json)
+
+Once a day at 04:15 UK time (`scan_time`), before the 04:55 picks run, the bot
+lists every football match Betfair has from 30 minutes to 36 hours ahead, with
+the Match Odds, Over/Under 2.5 and Both Teams To Score back prices. For leagues
+the free football-data.co.uk results files cover (about 38: England 5 divisions,
+Scotland 4, the top two in Germany, Italy, Spain and France, the Netherlands,
+Belgium, Portugal, Turkey, Greece, Argentina, Austria, Brazil, China, Denmark,
+Finland, Ireland, Japan, Mexico, Norway, Poland, Romania, Russia, Sweden,
+Switzerland and the USA) it adds each team's season stats, checks Don's two
+rules and a simple goals model, and writes everything to `../candidates.json`,
+pushed to GitHub with the status file. Matches in other leagues are still listed
+with their prices under `no_stats`.
+
+Run it by hand any time (needs the same login as the bot):
+
+    python3 bot.py scan
+
+A failed scan is retried every 30 minutes, three times at most, and never stops
+the betting. Set `"scan_enabled": false` in config.json to turn it off.
+
 ## Rules it follows
 
 - 10 per bet, plus 10 for every 100 in the pot: 20 from 100, 30 from 200, and so on.
