@@ -1,96 +1,75 @@
 {
- "generated": "2026-10-30T05:21:02Z",
+ "generated": "2026-10-31T00:53:15Z",
+ "note": "Published at about 01:40 UK on Sat 31 Oct by Don's request (run early, all leagues and sports).",
  "doubles": [
   {
-   "id": "2026-10-30-a",
+   "id": "2026-10-31-a",
    "legs": [
     {
      "sport": "football",
-     "event": "Bielefeld vs Braunschweig",
-     "market": "Match Odds",
-     "runner": "Bielefeld",
-     "kickoff": "2026-10-30T17:30:00Z",
-     "confidence": 62,
-     "odds_seen": 1.75,
-     "min_odds": 1.57,
-     "track": "confidence"
-    },
-    {
-     "sport": "football",
-     "event": "Villarreal vs Espanyol",
-     "market": "Match Odds",
-     "runner": "Villarreal",
-     "kickoff": "2026-10-30T20:00:00Z",
-     "confidence": 70,
-     "odds_seen": 1.42,
-     "min_odds": 1.27,
-     "track": "confidence"
-    }
-   ]
-  },
-  {
-   "id": "2026-10-30-b",
-   "note": "Added by Don's choice at 15:07 UK on 30 Oct: best of the near misses, below the 1.05 value test (2.10 x 46% = 0.96)",
-   "legs": [
-    {
-     "sport": "football",
-     "event": "Elversberg vs Mainz",
-     "market": "Both Teams To Score",
-     "runner": "Yes",
-     "kickoff": "2026-10-30T19:30:00Z",
-     "confidence": 67,
-     "odds_seen": 1.49,
-     "min_odds": 1.34,
-     "track": "rules",
-     "rule": "btts"
-    },
-    {
-     "sport": "football",
-     "event": "Huracan vs Tigre",
+     "event": "Wolfsburg vs Osnabruck",
      "market": [
       "Over/Under 2.5 Goals",
       "Over/Under 2.5",
       "Total Goals",
       "Total"
      ],
-     "runner": "Under 2.5",
-     "kickoff": "2026-10-30T22:00:00Z",
-     "confidence": 68,
-     "odds_seen": 1.41,
+     "runner": "Over 2.5",
+     "kickoff": "2026-10-31T12:00:00Z",
+     "confidence": 71,
+     "odds_seen": 1.4,
      "min_odds": 1.26,
+     "track": "confidence"
+    },
+    {
+     "sport": "football",
+     "event": "PSV vs Willem",
+     "market": "Both Teams To Score",
+     "runner": "Yes",
+     "kickoff": "2026-10-31T17:45:00Z",
+     "confidence": 66,
+     "odds_seen": 1.7,
+     "min_odds": 1.53,
      "track": "confidence"
     }
    ]
   },
   {
-   "id": "2026-10-30-c",
-   "note": "Don's choice at 15:40 UK on 30 Oct: same bet as 2026-10-30-b, forced on. The bot refused -b on its value test (2.28 for a 46% chance = 1.04). Confidence left out so the bot skips that test; honest figures were 67 and 68.",
+   "id": "2026-10-31-b",
    "legs": [
     {
      "sport": "football",
-     "event": "Elversberg vs Mainz",
-     "market": "Both Teams To Score",
-     "runner": "Yes",
-     "kickoff": "2026-10-30T19:30:00Z",
-     "odds_seen": 1.49,
-     "min_odds": 1.34,
-     "track": "rules",
-     "rule": "btts"
-    },
-    {
-     "sport": "football",
-     "event": "Huracan vs Tigre",
+     "event": "Cambuur vs Eagles",
      "market": [
       "Over/Under 2.5 Goals",
       "Over/Under 2.5",
       "Total Goals",
       "Total"
      ],
-     "runner": "Under 2.5",
-     "kickoff": "2026-10-30T22:00:00Z",
-     "odds_seen": 1.41,
-     "min_odds": 1.26,
-     "track": "confidence"
+     "runner": "Over 2.5",
+     "kickoff": "2026-10-31T20:00:00Z",
+     "confidence": 75,
+     "odds_seen": 1.44,
+     "min_odds": 1.29,
+     "track": "rules",
+     "rule": "goals"
+    },
+    {
+     "sport": "football",
+     "event": "Groningen vs Sparta",
+     "market": [
+      "Over/Under 2.5 Goals",
+      "Over/Under 2.5",
+      "Total Goals",
+      "Total"
+     ],
+     "runner": "Over 2.5",
+     "kickoff": "2026-11-01T15:45:00Z",
+     "confidence": 75,
+     "odds_seen": 1.47,
+     "min_odds": 1.32,
+     "track": "rules",
+     "rule": "goals"
     }
    ]
   }
