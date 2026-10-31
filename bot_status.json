@@ -1333,10 +1333,13 @@
      "stake": 10.0
     },
     {
+     "asked_odds": 1.47,
      "event": "Groningen vs Sparta",
      "kickoff": "2026-11-01T15:45:00Z",
      "min_odds": 1.32,
-     "runner": "Over 2.5"
+     "odds": 1.4779,
+     "runner": "Over 2.5",
+     "stake": 14.61
     }
    ],
    "note": "",
@@ -1345,7 +1348,7 @@
    "reserve": false,
    "returned": null,
    "stake": 10.0,
-   "status": "pending"
+   "status": "matched"
   },
   {
    "covers": null,
@@ -1415,6 +1418,6 @@
    "status": "lost"
   }
  ],
- "exchange_balance": 14.61,
- "updated": "2026-10-31T21:40:56Z"
+ "exchange_balance": 0.0,
+ "updated": "2026-10-31T21:48:59Z"
 }
