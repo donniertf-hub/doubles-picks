@@ -1476,8 +1476,68 @@
    "returned": null,
    "stake": null,
    "status": "pending"
+  },
+  {
+   "covers": null,
+   "date": "2026-11-01",
+   "fallback": false,
+   "finished_at": null,
+   "id": "2026-11-01-c",
+   "in_play": 0,
+   "kind": "double",
+   "legs": [
+    {
+     "event": "Charleroi vs Louviere",
+     "kickoff": "2026-11-01T18:15:00Z",
+     "min_odds": 1.45,
+     "runner": "Charleroi"
+    },
+    {
+     "event": "Nashville vs Red Bulls",
+     "kickoff": "2026-11-01T21:30:00Z",
+     "min_odds": 1.38,
+     "runner": "Nashville"
+    }
+   ],
+   "note": "Betfair balance is lower than the bet",
+   "pl": null,
+   "placed": false,
+   "reserve": false,
+   "returned": null,
+   "stake": null,
+   "status": "pending"
+  },
+  {
+   "covers": null,
+   "date": "2026-11-01",
+   "fallback": false,
+   "finished_at": null,
+   "id": "2026-11-01-d",
+   "in_play": 0,
+   "kind": "double",
+   "legs": [
+    {
+     "event": "Palermo vs Vicenza",
+     "kickoff": "2026-11-01T18:30:00Z",
+     "min_odds": 1.4,
+     "runner": "Palermo"
+    },
+    {
+     "event": "Atalanta vs Parma",
+     "kickoff": "2026-11-02T19:45:00Z",
+     "min_odds": 1.39,
+     "runner": "Atalanta"
+    }
+   ],
+   "note": "Betfair balance is lower than the bet",
+   "pl": null,
+   "placed": false,
+   "reserve": false,
+   "returned": null,
+   "stake": null,
+   "status": "pending"
   }
  ],
  "exchange_balance": 0.0,
- "updated": "2026-11-01T12:16:38Z"
+ "updated": "2026-11-01T12:28:55Z"
 }
