@@ -143,3 +143,12 @@ def test_short_saturday_warns():
     p["doubles"] = p["doubles"][:2]
     warns = C.check(p)[1]
     assert any("only 2 bets start today (minimum 4" in w for w in warns)
+
+
+def test_no_goals_bets_on_argentine_football():
+    p = picks(dbl("a", leg("Boca vs River", OU, "Under 2.5", "2026-11-07T12:00:00Z", 1.6, 75, "Argentina"),
+                  leg("C vs D", "Match Odds", "C", "2026-11-07T15:00:00Z", 1.5, 75, "Italy")))
+    assert any("Argentine football" in f for f in C.check(p)[0])
+    p = picks(dbl("a", leg("Lanus vs Gimnasia", "Match Odds", "Lanus", "2026-11-07T12:00:00Z", 1.6, 75, "Argentina"),
+                  leg("C vs D", "Match Odds", "C", "2026-11-07T15:00:00Z", 1.5, 75, "Italy")))
+    assert not any("Argentine" in f for f in C.check(p)[0])        # winner bets are still fine

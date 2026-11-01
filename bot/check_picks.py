@@ -14,7 +14,7 @@ What it checks for each bet whose id has today's UK date:
     doubles on price, so this is the only check doubles get)
   * kick-off timing: leg 1 at least 2 hours after the file was written, leg 2
     long enough after leg 1 for it to finish, and no more than 36 hours after
-  * Brazil: no Both Teams To Score Yes
+  * Brazil: no Both Teams To Score Yes; Argentina: no goals bets of any kind
   * no selection twice, no match twice, at most 4 bets starting today
   * MIX: no more than half of today's legs may be goals bets (over/under,
     both teams to score, goal lines), and no more than half from one country.
@@ -146,6 +146,9 @@ def check(picks, tracking=None, candidates=None, now=None):
             seen_sel[sel], seen_match[match] = bid, bid
             if str(leg["country"]).lower() == "brazil" and leg_type(leg) == "BTTS Yes":
                 fails.append(f"{bid}: no Both Teams To Score Yes on Brazilian football ({leg['event']})")
+            if str(leg["country"]).lower() == "argentina" and leg_type(leg) in GOALS:
+                fails.append(f"{bid}: no goals or both-teams-to-score bets on Argentine football - red cards "
+                             f"are common whoever plays (Don, 1 November 2026) ({leg['event']})")
         odds = [float(l["odds_seen"]) for l in legs]
         conf = [float(l["confidence"]) for l in legs]
         k1 = parse_time(legs[0]["kickoff"])
