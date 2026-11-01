@@ -38,7 +38,7 @@ def good_day():
             leg("Telstar vs Utrecht", "Both Teams To Score", "Yes", "2026-11-07T16:00:00Z", 1.55, 74, "Netherlands")),
         dbl("c", leg("PAOK vs Asteras", "Match Odds", "PAOK", "2026-11-07T13:00:00Z", 1.4, 80, "Greece"),
             leg("Brann vs Molde", "Asian Handicap", "Brann +1.5", "2026-11-07T16:30:00Z", 1.5, 78, "Norway")),
-        dbl("d", leg("Belgrano vs Barracas", OU, "Under 2.5", "2026-11-07T14:00:00Z", 1.55, 74, "Argentina"),
+        dbl("d", leg("Juventus vs Napoli", OU, "Under 2.5", "2026-11-07T14:00:00Z", 1.55, 74, "Italy"),
             leg("Craiova vs Botosani", "Match Odds", "Craiova", "2026-11-07T17:00:00Z", 1.4, 78, "Romania")))
 
 
@@ -112,7 +112,7 @@ def test_timing_brazil_duplicates_and_daily_cap():
     fails = C.check(p)[0]
     assert any("less than 2 hours" in f for f in fails)
     assert any("less than 150 minutes" in f for f in fails)
-    assert any("Brazilian" in f for f in fails)
+    assert any("South American" in f for f in fails)
     p = good_day()
     p["doubles"].append(dbl("e", leg("Lugano vs Basel", OU, "Over 2.5", "2026-11-07T12:00:00Z", 1.5, 74, "Switzerland"),
                             leg("X vs Y", "Match Odds", "X", "2026-11-07T18:00:00Z", 1.5, 76, "Wales")))
@@ -145,10 +145,11 @@ def test_short_saturday_warns():
     assert any("only 2 bets start today (minimum 4" in w for w in warns)
 
 
-def test_no_goals_bets_on_argentine_football():
-    p = picks(dbl("a", leg("Boca vs River", OU, "Under 2.5", "2026-11-07T12:00:00Z", 1.6, 75, "Argentina"),
-                  leg("C vs D", "Match Odds", "C", "2026-11-07T15:00:00Z", 1.5, 75, "Italy")))
-    assert any("Argentine football" in f for f in C.check(p)[0])
+def test_no_goals_bets_on_south_american_football():
+    for country, bet in (("Argentina", "Under 2.5"), ("Brazil", "Over 2.5"), ("Colombia", "Under 2.5")):
+        p = picks(dbl("a", leg("Boca vs River", OU, bet, "2026-11-07T12:00:00Z", 1.6, 75, country),
+                      leg("C vs D", "Match Odds", "C", "2026-11-07T15:00:00Z", 1.5, 75, "Italy")))
+        assert any("South American" in f for f in C.check(p)[0]), country
     p = picks(dbl("a", leg("Lanus vs Gimnasia", "Match Odds", "Lanus", "2026-11-07T12:00:00Z", 1.6, 75, "Argentina"),
                   leg("C vs D", "Match Odds", "C", "2026-11-07T15:00:00Z", 1.5, 75, "Italy")))
-    assert not any("Argentine" in f for f in C.check(p)[0])        # winner bets are still fine
+    assert not any("South American" in f for f in C.check(p)[0])   # winner bets are still fine
