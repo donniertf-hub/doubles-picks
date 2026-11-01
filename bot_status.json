@@ -1,6 +1,6 @@
 {
  "bankroll_start": 50,
- "bot_pot_free": 88.36,
+ "bot_pot_free": 78.36,
  "bot_pot_total": 137.01,
  "doubles": [
   {
@@ -1489,14 +1489,17 @@
    "fallback": false,
    "finished_at": null,
    "id": "2026-11-01-c",
-   "in_play": 0,
+   "in_play": 10.0,
    "kind": "double",
    "legs": [
     {
+     "asked_odds": 1.61,
      "event": "Charleroi vs Louviere",
      "kickoff": "2026-11-01T18:15:00Z",
      "min_odds": 1.45,
-     "runner": "Charleroi"
+     "odds": 1.61,
+     "runner": "Charleroi",
+     "stake": 10.0
     },
     {
      "event": "Nashville vs Red Bulls",
@@ -1505,13 +1508,13 @@
      "runner": "Nashville"
     }
    ],
-   "note": "Betfair balance is lower than the bet",
+   "note": "",
    "pl": null,
-   "placed": false,
+   "placed": true,
    "reserve": false,
    "returned": null,
-   "stake": null,
-   "status": "pending"
+   "stake": 10.0,
+   "status": "matched"
   },
   {
    "covers": null,
@@ -1544,6 +1547,6 @@
    "status": "pending"
   }
  ],
- "exchange_balance": 0.0,
- "updated": "2026-11-01T13:06:14Z"
+ "exchange_balance": 9.05,
+ "updated": "2026-11-01T13:51:03Z"
 }
