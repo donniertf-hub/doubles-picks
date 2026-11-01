@@ -1,7 +1,7 @@
 {
  "bankroll_start": 50,
- "bot_pot_free": 93.89,
- "bot_pot_total": 145.26,
+ "bot_pot_free": 118.48,
+ "bot_pot_total": 153.87,
  "doubles": [
   {
    "covers": null,
@@ -1505,9 +1505,9 @@
    "covers": null,
    "date": "2026-11-01",
    "fallback": false,
-   "finished_at": null,
+   "finished_at": "2026-11-01T23:46:59Z",
    "id": "2026-11-01-c",
-   "in_play": 15.98,
+   "in_play": 0,
    "kind": "double",
    "legs": [
     {
@@ -1527,17 +1527,19 @@
      "kickoff": "2026-11-01T21:30:00Z",
      "min_odds": 1.38,
      "odds": 1.55,
+     "result": "WIN",
+     "returns": 24.59,
      "runner": "Nashville",
      "stake": 15.98
     }
    ],
-   "note": "",
-   "pl": null,
+   "note": "returned 24.59 from a 10.00 stake",
+   "pl": 14.59,
    "placed": true,
    "reserve": false,
-   "returned": null,
+   "returned": 24.59,
    "stake": 10.0,
-   "status": "matched"
+   "status": "won"
   },
   {
    "covers": null,
@@ -1645,5 +1647,5 @@
   }
  ],
  "exchange_balance": 0.0,
- "updated": "2026-11-01T23:16:54Z"
+ "updated": "2026-11-01T23:46:59Z"
 }
