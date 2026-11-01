@@ -1,7 +1,7 @@
 {
  "bankroll_start": 50,
- "bot_pot_free": 68.36,
- "bot_pot_total": 132.57,
+ "bot_pot_free": 89.81,
+ "bot_pot_total": 139.41,
  "doubles": [
   {
    "covers": null,
@@ -1316,9 +1316,9 @@
    "covers": null,
    "date": "2026-10-31",
    "fallback": false,
-   "finished_at": null,
+   "finished_at": "2026-11-01T17:26:03Z",
    "id": "2026-10-31-b",
-   "in_play": 14.61,
+   "in_play": 0,
    "kind": "double",
    "legs": [
     {
@@ -1338,17 +1338,19 @@
      "kickoff": "2026-11-01T15:45:00Z",
      "min_odds": 1.32,
      "odds": 1.4779,
+     "result": "WIN",
+     "returns": 21.45,
      "runner": "Over 2.5",
      "stake": 14.61
     }
    ],
-   "note": "",
-   "pl": null,
+   "note": "returned 21.45 from a 10.00 stake",
+   "pl": 11.45,
    "placed": true,
    "reserve": false,
-   "returned": null,
+   "returned": 21.45,
    "stake": 10.0,
-   "status": "matched"
+   "status": "won"
   },
   {
    "covers": null,
@@ -1440,10 +1442,13 @@
      "stake": 10.0
     },
     {
+     "asked_odds": 1.66,
      "event": "Belgrano vs Barracas",
      "kickoff": "2026-11-01T21:30:00Z",
      "min_odds": 1.43,
-     "runner": "Under 2.5"
+     "odds": 1.66,
+     "runner": "Under 2.5",
+     "stake": 14.8
     }
    ],
    "note": "",
@@ -1452,7 +1457,7 @@
    "reserve": false,
    "returned": null,
    "stake": 10.0,
-   "status": "pending"
+   "status": "matched"
   },
   {
    "covers": null,
@@ -1559,6 +1564,6 @@
    "status": "matched"
   }
  ],
- "exchange_balance": 21.45,
- "updated": "2026-11-01T17:11:59Z"
+ "exchange_balance": 6.65,
+ "updated": "2026-11-01T17:26:03Z"
 }
