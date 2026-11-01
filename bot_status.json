@@ -1,7 +1,7 @@
 {
  "bankroll_start": 50,
  "bot_pot_free": 113.89,
- "bot_pot_total": 148.69,
+ "bot_pot_total": 154.67,
  "doubles": [
   {
    "covers": null,
@@ -1505,7 +1505,7 @@
    "fallback": false,
    "finished_at": null,
    "id": "2026-11-01-c",
-   "in_play": 10.0,
+   "in_play": 15.98,
    "kind": "double",
    "legs": [
     {
@@ -1514,14 +1514,19 @@
      "kickoff": "2026-11-01T18:15:00Z",
      "min_odds": 1.45,
      "odds": 1.61,
+     "result": "WIN",
+     "returns": 15.98,
      "runner": "Charleroi",
      "stake": 10.0
     },
     {
+     "asked_odds": 1.53,
      "event": "Nashville vs Red Bulls",
      "kickoff": "2026-11-01T21:30:00Z",
      "min_odds": 1.38,
-     "runner": "Nashville"
+     "odds": 1.55,
+     "runner": "Nashville",
+     "stake": 15.98
     }
    ],
    "note": "",
@@ -1566,6 +1571,6 @@
    "status": "matched"
   }
  ],
- "exchange_balance": 0.0,
- "updated": "2026-11-01T20:10:22Z"
+ "exchange_balance": 24.08,
+ "updated": "2026-11-01T20:22:27Z"
 }
