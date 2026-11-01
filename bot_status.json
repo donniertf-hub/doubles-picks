@@ -1,6 +1,6 @@
 {
  "bankroll_start": 50,
- "bot_pot_free": 113.89,
+ "bot_pot_free": 93.89,
  "bot_pot_total": 160.06,
  "doubles": [
   {
@@ -1574,8 +1574,74 @@
    "returned": null,
    "stake": 10.0,
    "status": "matched"
+  },
+  {
+   "covers": null,
+   "date": "2026-11-02",
+   "fallback": false,
+   "finished_at": null,
+   "id": "2026-11-02-a",
+   "in_play": 10.0,
+   "kind": "double",
+   "legs": [
+    {
+     "asked_odds": 1.47,
+     "event": "Sonderjyske vs Copenhagen",
+     "kickoff": "2026-11-02T18:00:00Z",
+     "min_odds": 1.32,
+     "odds": 1.47,
+     "runner": "Copenhagen",
+     "stake": 10.0
+    },
+    {
+     "event": "Bodo Glimt vs Lille",
+     "kickoff": "2026-11-03T20:00:00Z",
+     "min_odds": 1.26,
+     "runner": "Bodo Glimt"
+    }
+   ],
+   "note": "",
+   "pl": null,
+   "placed": true,
+   "reserve": false,
+   "returned": null,
+   "stake": 10.0,
+   "status": "matched"
+  },
+  {
+   "covers": null,
+   "date": "2026-11-02",
+   "fallback": false,
+   "finished_at": null,
+   "id": "2026-11-02-b",
+   "in_play": 10.0,
+   "kind": "double",
+   "legs": [
+    {
+     "asked_odds": 1.72,
+     "event": "Gil Vicente vs Guimaraes",
+     "kickoff": "2026-11-02T20:15:00Z",
+     "min_odds": 1.48,
+     "odds": 1.72,
+     "runner": "Under 2.5",
+     "stake": 10.0
+    },
+    {
+     "event": "Barcelona vs Aston Villa",
+     "kickoff": "2026-11-03T20:00:00Z",
+     "min_odds": 1.35,
+     "runner": "Yes"
+    }
+   ],
+   "note": "",
+   "pl": null,
+   "placed": true,
+   "reserve": false,
+   "returned": null,
+   "stake": 10.0,
+   "status": "matched"
   }
  ],
- "exchange_balance": 38.78,
- "updated": "2026-11-01T22:12:41Z"
+ "exchange_balance": 30.0,
+ "updated": "2026-11-01T22:24:47Z"
 }
