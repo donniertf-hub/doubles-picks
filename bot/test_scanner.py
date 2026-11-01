@@ -74,8 +74,9 @@ class FakeBF:
                         rows.append({"marketId": m["id"], "marketStartTime": ev["start"],
                                      "event": {"id": ev["id"], "name": ev["name"], "openDate": ev["start"]},
                                      "competition": {"name": ev["comp"]},
-                                     "runners": [{"selectionId": sid, "runnerName": name, "sortPriority": i + 1}
-                                                 for i, (sid, name, _) in enumerate(m["runners"])]})
+                                     "runners": [{"selectionId": r[0], "runnerName": r[1], "sortPriority": i + 1,
+                                                  "handicap": r[3] if len(r) > 3 else 0.0}
+                                                 for i, r in enumerate(m["runners"])]})
             return rows
         if op == "listMarketBook":
             books = []
@@ -84,9 +85,10 @@ class FakeBF:
                     if m["id"] in body["marketIds"]:
                         books.append({"marketId": m["id"], "status": "OPEN", "inplay": ev.get("inplay", False),
                                       "totalMatched": 1000,
-                                      "runners": [{"selectionId": sid, "status": "ACTIVE",
-                                                   "ex": {"availableToBack": [{"price": price, "size": 250}]}}
-                                                  for sid, _, price in m["runners"]]})
+                                      "runners": [{"selectionId": r[0], "status": "ACTIVE",
+                                                   "handicap": r[3] if len(r) > 3 else 0.0,
+                                                   "ex": {"availableToBack": [{"price": r[2], "size": 250}]}}
+                                                  for r in m["runners"]]})
             return books
         raise AssertionError(op)
 
@@ -99,7 +101,11 @@ def event(eid, name, comp, home_p=2.0, away_p=3.5, over=1.6, under=2.4, yes=1.7,
         {"id": f"1.{eid}2", "type": "OVER_UNDER_25",
          "runners": [(4, "Under 2.5 Goals", under), (5, "Over 2.5 Goals", over)]},
         {"id": f"1.{eid}3", "type": "BOTH_TEAMS_TO_SCORE",
-         "runners": [(6, "Yes", yes), (7, "No", no)]}], **kw)
+         "runners": [(6, "Yes", yes), (7, "No", no)]},
+        {"id": f"1.{eid}4", "type": "ASIAN_HANDICAP",
+         "runners": [(8, home, 1.9, -1.5), (9, away, 1.95, 1.5),
+                     (8, home, 1.3, -0.5), (9, away, 3.2, 0.5),
+                     (8, home, 1.6, -1.0), (9, away, 2.3, 1.0)]}], **kw)
 
 
 # ---------------------------------------------------------------- tests
@@ -243,3 +249,16 @@ def test_failed_scan_does_not_stop_the_bot_and_retries_three_times():
 def test_uk_time_uses_summer_time():
     assert B.uk_time(datetime(2026, 7, 1, 3, 30, tzinfo=timezone.utc)).hour == 4
     assert B.uk_time(datetime(2026, 12, 1, 3, 30, tzinfo=timezone.utc)).hour == 3
+
+
+def test_asian_handicap_prices_and_chances_are_listed():
+    bf = FakeBF([event(1, "Goals Town v Net FC", "Dutch Eredivisie")])
+    res = S.scan(bf, fetch=fetch, now=NOW, log=lambda m: None)
+    m = res["matches"][0]
+    keys = {s["selection"]: s for s in m["selections"]}
+    assert keys["ah_home_-1.5"]["price"] == 1.9 and keys["ah_away_+1.5"]["price"] == 1.95
+    assert "ah_home_-1" not in keys                  # whole lines left out (pushes)
+    assert abs(keys["ah_home_-1.5"]["model"] + keys["ah_away_+1.5"]["model"] - 100) < 0.2
+    assert abs(keys["ah_home_-0.5"]["model"] - keys["home"]["model"]) < 0.2
+    bets = [r["bet"] for r in res["best_value"] + res["rule_qualifiers"]]
+    assert all("ah_" not in b for b in bets)

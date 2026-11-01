@@ -33,6 +33,7 @@ import hashlib
 import json
 import math
 import os
+import re
 import ssl
 import sys
 import time
@@ -168,13 +169,30 @@ def plain(text):
     return " ".join("".join(c.lower() if c.isalnum() else " " for c in text).split())
 
 
+LINE_RE = re.compile(r"^(.*?)\s*([+-]?\d+(?:\.\d+)?)$")
+
+
 def runner_matches(runner_name, wanted, loose=True):
-    """A runner with a number in it is a goals line ("OVER 2.5"), and must match
-    exactly so that "OVER 2.5" never picks up "OVER 2.5/3.0". Other runners
-    match word by word."""
+    """A runner ending in a number is a line: "Over 2.5", "PSV -1.5". The line
+    must be the same number with the same sign, and the words before it must
+    match ("PSV" finds "PSV Eindhoven"); "Over 2.5" never picks up "Over 2.5/3.0"
+    and "PSV -1.5" never picks up "PSV +1.5". Other runners match word by word."""
     if any(c.isdigit() for c in str(wanted)):
+        a, b = LINE_RE.match(str(runner_name).strip()), LINE_RE.match(str(wanted).strip())
+        if a and b:
+            if abs(float(a.group(2)) - float(b.group(2))) > 1e-9:
+                return False
+            if not words(b.group(1)):
+                return not words(a.group(1))
+            return covers(words(a.group(1)), words(b.group(1)), loose)
         return plain(runner_name) == plain(wanted)
     return covers(words(runner_name), words(wanted), loose)
+
+
+def line_text(line, signed=True):
+    """-1.5 -> "-1.5", 1.5 -> "+1.5", 0 -> "0"; unsigned for goal lines."""
+    text = f"{line:g}"
+    return f"+{text}" if signed and line > 0 else text
 
 
 def split_teams(event_text):
@@ -323,6 +341,7 @@ class Matchbook:
 BF_LOGIN = "https://identitysso.betfair.com/api/login"
 BF_CERT_LOGIN = "https://identitysso-cert.betfair.com/api/certlogin"
 BF_API = "https://api.betfair.com/exchange"
+BF_LINE_MARKETS = ("ASIAN_HANDICAP", "ALT_TOTAL_GOALS")   # one runner per line
 BF_SKIP_SPORTS = ("horse racing", "greyhound")   # not head-to-head, and very many events
 BF_LADDER = ((200, 1), (300, 2), (400, 5), (600, 10), (1000, 20), (2000, 50),
              (3000, 100), (5000, 200), (10000, 500), (100000, 1000))
@@ -489,8 +508,15 @@ class Betfair:
                                              .replace(" Away ", f" {sides[1].strip()} ").strip()
                 elif kind.startswith("OVER_UNDER") and name.lower().endswith(" goals"):
                     name = name[:-6]           # "Over 2.5 Goals" -> "Over 2.5"
-                runners.append({"id": f"{row['marketId']}|{r.get('selectionId')}",
-                                "name": name, "selection": r.get("selectionId")})
+                line = float(r.get("handicap") or 0)
+                rid = f"{row['marketId']}|{r.get('selectionId')}"
+                if kind in BF_LINE_MARKETS or (line and not re.search(r"\d", name)):
+                    # Asian handicap and goal-line markets repeat each runner once per
+                    # line: "PSV" at -1.5, -1, ... Show it as "PSV -1.5" and keep the line.
+                    name = f"{name} {line_text(line, signed=kind != 'ALT_TOTAL_GOALS')}"
+                    rid = f"{rid}|{line:g}"
+                runners.append({"id": rid, "name": name, "selection": r.get("selectionId"),
+                                "handicap": line})
             markets.append({"id": row["marketId"], "name": row.get("marketName"),
                             "market-type": kind, "status": "open", "runners": runners})
         ev["markets"] = markets
@@ -510,9 +536,10 @@ class Betfair:
                     continue
                 market["status"] = str(book.get("status", "")).lower() or "unknown"
                 market["in-play"] = bool(book.get("inplay"))
-                offers = {r.get("selectionId"): r for r in book.get("runners", []) or []}
+                offers = {(r.get("selectionId"), float(r.get("handicap") or 0)): r
+                          for r in book.get("runners", []) or []}
                 for runner in market["runners"]:
-                    row = offers.get(runner["selection"], {})
+                    row = offers.get((runner["selection"], float(runner.get("handicap") or 0)), {})
                     active = str(row.get("status", "ACTIVE")).upper() == "ACTIVE"
                     backs = (row.get("ex") or {}).get("availableToBack", []) or []
                     runner["prices"] = [{"side": "back", "decimal-odds": b.get("price"),
@@ -534,13 +561,15 @@ class Betfair:
         return market_id, other
 
     def submit_offer(self, runner_id, odds, stake):
-        market_id, selection = self._split(runner_id)
+        market_id, other = self._split(runner_id)
+        selection, _, line = other.partition("|")
         size = floor2(stake)
         # The same bet sent twice within a minute is refused by Betfair.
         ref = hashlib.sha1(f"{runner_id}:{size}:{int(time.time() // 60)}".encode()).hexdigest()[:32]
         data = self._call("betting", "placeOrders", {
             "marketId": market_id, "customerRef": ref,
-            "instructions": [{"selectionId": int(selection), "handicap": 0, "side": "BACK",
+            "instructions": [{"selectionId": int(selection), "handicap": float(line or 0),
+                              "side": "BACK",
                               "orderType": "LIMIT",
                               "limitOrder": {"size": size, "price": bf_tick(odds),
                                              "persistenceType": "LAPSE"}}]})

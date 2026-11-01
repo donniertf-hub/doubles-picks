@@ -73,7 +73,8 @@ EXTRA_COUNTRY_WORDS = {"usa": "us", "mls": "us", "american": "us", "argentina": 
                        "switzerland": "swiss"}
 SKIP_COMPETITION_WORDS = ("women", "womens", "u17", "u18", "u19", "u20", "u21", "u23",
                           "youth", "reserve", "friendl", "futsal", "virtual", "esoccer")
-MARKET_TYPES = ("MATCH_ODDS", "OVER_UNDER_25", "BOTH_TEAMS_TO_SCORE")
+MARKET_TYPES = ("MATCH_ODDS", "OVER_UNDER_25", "BOTH_TEAMS_TO_SCORE", "ASIAN_HANDICAP")
+AH_LINES = (-2.5, -1.5, -0.5, 0.5, 1.5, 2.5)   # half lines only: no pushes or half wins
 
 NAME_STOP = {"fc", "afc", "cf", "sc", "ac", "cd", "ud", "sv", "fk", "bk", "if", "sk", "club",
              "calcio", "the", "sd", "ca", "cs", "ss", "vfl", "vfb", "tsg", "ssc", "bsc", "fsv",
@@ -306,9 +307,11 @@ def model(home, away, league):
     ph = [poisson(k, xh) for k in range(11)]
     pa = [poisson(k, xa) for k in range(11)]
     win = draw = loss = over = btts = 0.0
+    margin = {}
     for i, p1 in enumerate(ph):
         for j, p2 in enumerate(pa):
             p = p1 * p2
+            margin[i - j] = margin.get(i - j, 0.0) + p
             if i > j:
                 win += p
             elif i == j:
@@ -320,9 +323,14 @@ def model(home, away, league):
             if i and j:
                 btts += p
     total = win + draw + loss or 1.0
-    return {"xg": [round(xh, 2), round(xa, 2)], "home": win / total, "draw": draw / total,
-            "away": loss / total, "over25": over / total, "under25": 1 - over / total,
-            "btts_yes": btts / total, "btts_no": 1 - btts / total}
+    out = {"xg": [round(xh, 2), round(xa, 2)], "home": win / total, "draw": draw / total,
+           "away": loss / total, "over25": over / total, "under25": 1 - over / total,
+           "btts_yes": btts / total, "btts_no": 1 - btts / total}
+    for line in AH_LINES:
+        # home at line h wins when margin + h > 0; away at line h wins when h - margin > 0
+        out[f"ah_home_{line:+g}"] = sum(p for m, p in margin.items() if m + line > 0) / total
+        out[f"ah_away_{line:+g}"] = sum(p for m, p in margin.items() if line - m > 0) / total
+    return out
 
 
 # ------------------------------------------------------------------ Betfair
@@ -352,7 +360,8 @@ def betfair_matches(bf, start, end):
                 "matched": 0.0})
             runners = {}
             for r in row.get("runners", []) or []:
-                runners[r.get("selectionId")] = (str(r.get("runnerName", "")), r.get("sortPriority"))
+                runners[(r.get("selectionId"), float(r.get("handicap") or 0))] = (
+                    str(r.get("runnerName", "")), r.get("sortPriority"))
             markets[row["marketId"]] = (eid, mtype, runners)
     ids = list(markets)
     for i in range(0, len(ids), 40):
@@ -367,19 +376,28 @@ def betfair_matches(bf, start, end):
             m = matches[eid]
             m["matched"] += float(book.get("totalMatched") or 0)
             for r in book.get("runners", []) or []:
-                name, order = runners.get(r.get("selectionId"), ("", None))
+                line = float(r.get("handicap") or 0)
+                name, order = runners.get((r.get("selectionId"), line), ("", None))
                 backs = (r.get("ex") or {}).get("availableToBack") or []
                 if not backs or str(r.get("status", "ACTIVE")).upper() != "ACTIVE":
                     continue
                 price, size = backs[0].get("price"), backs[0].get("size")
-                key = selection_key(mtype, name, order)
+                key = selection_key(mtype, name, order, line, m["event"])
                 if key:
                     m["prices"][key] = [price, round(float(size or 0), 2)]
     return matches
 
 
-def selection_key(mtype, name, order):
+def selection_key(mtype, name, order, line=0.0, event=""):
     low = name.lower()
+    if mtype == "ASIAN_HANDICAP":
+        sides = split_event(event)
+        if not sides or line not in AH_LINES:
+            return None
+        h, a = name_score(name, sides[0]), name_score(name, sides[1])
+        if max(h, a) < 0.6 or h == a:
+            return None
+        return f"ah_{'home' if h > a else 'away'}_{line:+g}"
     if mtype == "MATCH_ODDS":
         if "draw" in low:
             return "draw"
@@ -459,6 +477,8 @@ def assess(match, stats, commission=0.05):
     for key, p in probs.items():
         if key == "xg" or key == "draw":
             continue
+        if key.startswith("ah_") and key not in match["prices"]:
+            continue
         price = (match["prices"].get(key) or [None, 0])
         picks.append({"selection": key, "model": round(p * 100, 1), "price": price[0],
                       "available": price[1], "value": value(p, price[0], commission),
@@ -495,11 +515,18 @@ def scan(bf, fetch=http_text, now=None, hours=36, commission=0.05, log=print, to
                              "prices": {SELECTION_NAMES.get(k, k): v[0] for k, v in m["prices"].items()}})
     rows = []
     for a in assessed:
+        sides = split_event(a["event"]) or ("home", "away")
         for s in a["selections"]:
             if s["price"] is None:
                 continue
+            key = s["selection"]
+            if key.startswith("ah_"):
+                _, side, line = key.split("_")
+                bet = f"{sides[0] if side == 'home' else sides[1]} {line} (Asian Handicap)"
+            else:
+                bet = SELECTION_NAMES[key]
             rows.append({"event": a["event"], "league": a["league"], "kickoff": a["kickoff"],
-                         "bet": SELECTION_NAMES[s["selection"]], "price": s["price"],
+                         "bet": bet, "price": s["price"],
                          "available": s["available"], "model": s["model"],
                          "value": s["value"], "rule": s["rule"]})
     rule_rows = [r for r in rows if r["rule"]]

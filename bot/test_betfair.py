@@ -113,8 +113,10 @@ class FakeBetfair(B.Betfair):
             for m in ev["markets"][:body["maxResults"]]:
                 out.append({"marketId": m["marketId"], "marketName": m["marketName"],
                             "description": {"marketType": m["kind"]},
-                            "runners": [{"selectionId": sel, "runnerName": rn, "handicap": 0.0}
-                                        for rn, (sel, _, _) in m["runners"].items()]})
+                            "runners": ([{"selectionId": sel, "runnerName": rn, "handicap": h}
+                                         for sel, rn, h, _ in m["ah"]] if m.get("ah") else
+                                        [{"selectionId": sel, "runnerName": rn, "handicap": 0.0}
+                                         for rn, (sel, _, _) in m["runners"].items()])})
         return out
 
     def _listMarketBook(self, body):
@@ -124,10 +126,14 @@ class FakeBetfair(B.Betfair):
             _, m = self._market(mid)
             out.append({"marketId": mid, "status": m["status"], "inplay": m["inplay"],
                         "isMarketDataDelayed": True,
-                        "runners": [{"selectionId": sel, "status": "ACTIVE",
-                                     "ex": {"availableToBack": [{"price": price, "size": size}],
-                                            "availableToLay": []}}
-                                    for sel, price, size in m["runners"].values()]})
+                        "runners": ([{"selectionId": sel, "handicap": h, "status": "ACTIVE",
+                                      "ex": {"availableToBack": [{"price": price, "size": 500}],
+                                             "availableToLay": []}}
+                                     for sel, _, h, price in m["ah"]] if m.get("ah") else
+                                    [{"selectionId": sel, "handicap": 0.0, "status": "ACTIVE",
+                                      "ex": {"availableToBack": [{"price": price, "size": size}],
+                                             "availableToLay": []}}
+                                     for sel, price, size in m["runners"].values()])})
         return out
 
     def _placeOrders(self, body):
@@ -148,7 +154,8 @@ class FakeBetfair(B.Betfair):
         self.next_bet += 1
         self.funds -= size
         self.orders[bet_id] = {"betId": bet_id, "marketId": body["marketId"],
-                               "selectionId": ins["selectionId"], "size": size, "price": price,
+                               "selectionId": ins["selectionId"], "handicap": ins["handicap"],
+                               "size": size, "price": price,
                                "matched": matched, "remaining": round(size - matched, 2),
                                "cancelled": 0.0, "state": "live"}
         return {"status": "SUCCESS", "marketId": body["marketId"],
@@ -161,7 +168,7 @@ class FakeBetfair(B.Betfair):
     def settle_all(self):
         """Settle every live order whose selection has a result."""
         for o in self.orders.values():
-            res = self.results.get(o["selectionId"])
+            res = self.results.get((o["selectionId"], o["handicap"])) or self.results.get(o["selectionId"])
             if o["state"] != "live" or not res:
                 continue
             if o["remaining"] > 0:                      # unmatched part lapses at the off
@@ -271,8 +278,11 @@ def bf_settle_due(bf, now):
     due = {}
     for o in bf.orders.values():
         ev, _ = bf._market(o["marketId"])
-        if now >= ev["start"] + timedelta(hours=2) and o["selectionId"] in saved:
-            due[o["selectionId"]] = saved[o["selectionId"]]
+        if now < ev["start"] + timedelta(hours=2):
+            continue
+        for key in ((o["selectionId"], o.get("handicap", 0.0)), o["selectionId"]):
+            if key in saved:
+                due[key] = saved[key]
     bf.results = due
     bf.settle_all()
     bf.results = saved
@@ -491,3 +501,54 @@ if __name__ == "__main__":
         fn()
         print("ok  ", name)
     print(f"\n{len(tests)} tests passed")
+
+
+# ---- Asian handicap and goal lines (one runner per line, Betfair needs the line sent)
+
+def with_handicap(events):
+    """Add an Asian handicap and a goal-lines market to Paris St-G v Le Mans."""
+    ev = events[1]
+    ev["markets"].append({"marketId": "1.207", "marketName": "Asian Handicap", "kind": "ASIAN_HANDICAP",
+                          "status": "OPEN", "inplay": False, "runners": {},
+                          "ah": [(PSG, "Paris St-G", -1.5, 1.8), (22, "Le Mans", 1.5, 2.1),
+                                 (PSG, "Paris St-G", -1.0, 1.5), (22, "Le Mans", 1.0, 2.6),
+                                 (PSG, "Paris St-G", 1.5, 1.05), (22, "Le Mans", -1.5, 9.0)]})
+    ev["markets"].append({"marketId": "1.208", "marketName": "Goal Lines", "kind": "ALT_TOTAL_GOALS",
+                          "status": "OPEN", "inplay": False, "runners": {},
+                          "ah": [(5, "Over", 2.75, 1.7), (6, "Under", 2.75, 2.2),
+                                 (5, "Over", 3.25, 2.3), (6, "Under", 3.25, 1.65)]})
+    return events
+
+
+def test_lines_match_number_and_sign():
+    assert B.runner_matches("Paris St-G -1.5", "Paris -1.5")
+    assert not B.runner_matches("Paris St-G +1.5", "Paris -1.5")
+    assert not B.runner_matches("Paris St-G -1", "Paris -1.5")
+    assert B.runner_matches("Over 2.75", "Over 2.75")
+    assert not B.runner_matches("Under 2.75", "Over 2.75")
+    assert not B.runner_matches("Over 2.5/3.0", "Over 2.5")
+    assert B.runner_matches("Over 2.5", "Over 2.5")
+    assert B.line_text(-1.5) == "-1.5" and B.line_text(1.5) == "+1.5" and B.line_text(0) == "0"
+
+
+def test_asian_handicap_leg_is_placed_with_its_line():
+    bf = FakeBetfair(with_handicap(fixtures()), {MUN: "WON", (PSG, -1.5): "WON"})
+    pick = {"id": "d1", "legs": [leg("Man Utd vs Tottenham", "Man Utd", K1),
+                                 leg("Paris St-G vs Le Mans", "Paris -1.5", K2, market="Asian Handicap")]}
+    bot, clock, _ = make([pick], bf)
+    play(bot, clock, bf)
+    d = bot.state["doubles"]["d1"]
+    ah = [o for o in bf.orders.values() if o["marketId"] == "1.207"]
+    assert len(ah) == 1 and ah[0]["handicap"] == -1.5 and ah[0]["price"] == 1.8, ah
+    assert d["status"] == "won", d
+
+
+def test_goal_line_leg_is_placed_with_its_line():
+    bf = FakeBetfair(with_handicap(fixtures()), {MUN: "WON", (5, 3.25): "WON"})
+    pick = {"id": "d1", "legs": [leg("Man Utd vs Tottenham", "Man Utd", K1),
+                                 leg("Paris St-G vs Le Mans", "Over 3.25", K2, market="Goal Lines")]}
+    bot, clock, _ = make([pick], bf)
+    play(bot, clock, bf)
+    gl = [o for o in bf.orders.values() if o["marketId"] == "1.208"]
+    assert len(gl) == 1 and gl[0]["handicap"] == 3.25 and gl[0]["price"] == 2.3, gl
+    assert bot.state["doubles"]["d1"]["status"] == "won"
