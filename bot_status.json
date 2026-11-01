@@ -1,7 +1,7 @@
 {
  "bankroll_start": 50,
  "bot_pot_free": 68.36,
- "bot_pot_total": 128.86,
+ "bot_pot_total": 127.77,
  "doubles": [
   {
    "covers": null,
@@ -1458,7 +1458,7 @@
    "fallback": false,
    "finished_at": null,
    "id": "2026-11-01-b",
-   "in_play": 15.89,
+   "in_play": 14.8,
    "kind": "double",
    "legs": [
     {
@@ -1473,19 +1473,22 @@
      "stake": 10.0
     },
     {
+     "asked_odds": 1.64,
      "event": "Boca vs River",
      "kickoff": "2026-11-01T18:00:00Z",
      "min_odds": 1.44,
-     "runner": "Under 2.5"
+     "odds": 1.64,
+     "runner": "Under 2.5",
+     "stake": 14.8
     }
    ],
-   "note": "Betfair balance is lower than the bet",
+   "note": "",
    "pl": null,
    "placed": true,
    "reserve": false,
    "returned": null,
    "stake": 10.0,
-   "status": "pending"
+   "status": "matched"
   },
   {
    "covers": null,
@@ -1555,5 +1558,5 @@
   }
  ],
  "exchange_balance": 0.0,
- "updated": "2026-11-01T15:13:31Z"
+ "updated": "2026-11-01T16:09:52Z"
 }
