@@ -4822,6 +4822,54 @@
    "kickoff": "2026-11-02T19:45:00Z",
    "odds": 1.55,
    "in_picks": true
+  },
+  {
+   "date": "2026-11-02",
+   "track": "confidence",
+   "confidence": 70,
+   "league": "Denmark Superliga",
+   "event": "Sonderjyske vs Copenhagen",
+   "market": "Match Odds",
+   "runner": "Copenhagen",
+   "kickoff": "2026-11-02T18:00:00Z",
+   "odds": 1.47,
+   "in_picks": true
+  },
+  {
+   "date": "2026-11-02",
+   "track": "confidence",
+   "confidence": 73,
+   "league": "UEFA Champions League",
+   "event": "Bodo Glimt vs Lille",
+   "market": "Draw No Bet",
+   "runner": "Bodo Glimt",
+   "kickoff": "2026-11-03T20:00:00Z",
+   "odds": 1.41,
+   "in_picks": true
+  },
+  {
+   "date": "2026-11-02",
+   "track": "confidence",
+   "confidence": 68,
+   "league": "Portugal Primeira Liga",
+   "event": "Gil Vicente vs Guimaraes",
+   "market": "Over/Under 2.5 Goals",
+   "runner": "Under 2.5",
+   "kickoff": "2026-11-02T20:15:00Z",
+   "odds": 1.65,
+   "in_picks": true
+  },
+  {
+   "date": "2026-11-02",
+   "track": "confidence",
+   "confidence": 72,
+   "league": "UEFA Champions League",
+   "event": "Barcelona vs Aston Villa",
+   "market": "Both Teams To Score",
+   "runner": "Yes",
+   "kickoff": "2026-11-03T20:00:00Z",
+   "odds": 1.5,
+   "in_picks": true
   }
  ]
 }

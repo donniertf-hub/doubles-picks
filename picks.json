@@ -1,71 +1,71 @@
 {
-  "generated": "2026-11-01T12:23:42Z",
+  "generated": "2026-11-01T22:07:00Z",
   "doubles": [
     {
-      "id": "2026-11-01-c",
+      "id": "2026-11-02-a",
       "tier": 1,
       "legs": [
         {
           "sport": "football",
-          "country": "Belgium",
-          "league": "Pro League",
-          "event": "Charleroi vs Louviere",
+          "country": "Denmark",
+          "league": "Superliga",
+          "event": "Sonderjyske vs Copenhagen",
           "market": "Match Odds",
-          "runner": "Charleroi",
-          "kickoff": "2026-11-01T18:15:00Z",
-          "confidence": 72,
-          "odds_seen": 1.62,
-          "min_odds": 1.45,
+          "runner": "Copenhagen",
+          "kickoff": "2026-11-02T18:00:00Z",
+          "confidence": 70,
+          "odds_seen": 1.47,
+          "min_odds": 1.32,
           "track": "confidence"
         },
         {
           "sport": "football",
-          "country": "USA",
-          "league": "MLS",
-          "event": "Nashville vs Red Bulls",
-          "market": "Match Odds",
-          "runner": "Nashville",
-          "kickoff": "2026-11-01T21:30:00Z",
-          "confidence": 72,
-          "odds_seen": 1.54,
-          "min_odds": 1.38,
+          "country": "Norway",
+          "league": "Champions League",
+          "event": "Bodo Glimt vs Lille",
+          "market": "Draw No Bet",
+          "runner": "Bodo Glimt",
+          "kickoff": "2026-11-03T20:00:00Z",
+          "confidence": 73,
+          "odds_seen": 1.41,
+          "min_odds": 1.26,
           "track": "confidence"
         }
       ]
     },
     {
-      "id": "2026-11-01-d",
+      "id": "2026-11-02-b",
       "tier": 2,
       "legs": [
         {
           "sport": "football",
-          "country": "Italy",
-          "league": "Serie B",
-          "event": "Palermo vs Vicenza",
-          "market": "Match Odds",
-          "runner": "Palermo",
-          "kickoff": "2026-11-01T18:30:00Z",
+          "country": "Portugal",
+          "league": "Primeira Liga",
+          "event": "Gil Vicente vs Guimaraes",
+          "market": "Over/Under 2.5 Goals",
+          "runner": "Under 2.5",
+          "kickoff": "2026-11-02T20:15:00Z",
           "confidence": 68,
-          "odds_seen": 1.56,
-          "min_odds": 1.4,
+          "odds_seen": 1.65,
+          "min_odds": 1.48,
           "track": "confidence"
         },
         {
           "sport": "football",
-          "country": "Italy",
-          "league": "Serie A",
-          "event": "Atalanta vs Parma",
-          "market": "Match Odds",
-          "runner": "Atalanta",
-          "kickoff": "2026-11-02T19:45:00Z",
-          "confidence": 65,
-          "odds_seen": 1.55,
-          "min_odds": 1.39,
+          "country": "Spain",
+          "league": "Champions League",
+          "event": "Barcelona vs Aston Villa",
+          "market": "Both Teams To Score",
+          "runner": "Yes",
+          "kickoff": "2026-11-03T20:00:00Z",
+          "confidence": 72,
+          "odds_seen": 1.5,
+          "min_odds": 1.35,
           "track": "confidence"
         }
       ]
     }
   ],
   "singles": [],
-  "note": "1 Nov midday rebuild (Don asked for today's picks under the new rules). 2026-11-01-a and -b were published at 05:08, never placed (no Betfair balance) and are dropped: they fail the new check (all four legs goals bets). The bot still holds them and skips each at its first kick-off (b at 13:30, a at 15:30) if no money arrives first."
+  "note": "Published 1 Nov 22:07 with Don's approval, at Sunday-night prices: Monday's 2026-11-02-a and -b. Sunday's 2026-11-01-c and -d are already placed and run their course in the bot; they are dropped from this file because their first legs have started. The 5am run keeps a and b; they count towards Monday's 4 and meet Monday's minimum of 2."
 }
