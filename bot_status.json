@@ -1479,7 +1479,7 @@
      "runner": "Under 2.5"
     }
    ],
-   "note": "",
+   "note": "Betfair balance is lower than the bet",
    "pl": null,
    "placed": true,
    "reserve": false,
@@ -1555,5 +1555,5 @@
   }
  ],
  "exchange_balance": 0.0,
- "updated": "2026-11-01T15:11:28Z"
+ "updated": "2026-11-01T15:13:31Z"
 }
