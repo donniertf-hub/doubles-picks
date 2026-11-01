@@ -1,13 +1,12 @@
 {
- "generated": "2026-10-31T04:57:24Z",
- "note": "Published early (00:53 UK) at Don's request; bot placed these at 01:00-04:27. Re-checked at 05:00 UK: no changes.",
+ "generated": "2026-11-01T05:08:06Z",
  "doubles": [
   {
-   "id": "2026-10-31-a",
+   "id": "2026-11-01-a",
    "legs": [
     {
      "sport": "football",
-     "event": "Wolfsburg vs Osnabruck",
+     "event": "Lugano vs Basel",
      "market": [
       "Over/Under 2.5 Goals",
       "Over/Under 2.5",
@@ -15,106 +14,15 @@
       "Total"
      ],
      "runner": "Over 2.5",
-     "kickoff": "2026-10-31T12:00:00Z",
-     "confidence": 71,
-     "odds_seen": 1.4,
-     "min_odds": 1.26,
+     "kickoff": "2026-11-01T15:30:00Z",
+     "confidence": 70,
+     "odds_seen": 1.48,
+     "min_odds": 1.33,
      "track": "confidence"
     },
     {
      "sport": "football",
-     "event": "PSV vs Willem",
-     "market": "Both Teams To Score",
-     "runner": "Yes",
-     "kickoff": "2026-10-31T17:45:00Z",
-     "confidence": 66,
-     "odds_seen": 1.7,
-     "min_odds": 1.53,
-     "track": "confidence"
-    }
-   ]
-  },
-  {
-   "id": "2026-10-31-b",
-   "legs": [
-    {
-     "sport": "football",
-     "event": "Cambuur vs Eagles",
-     "market": [
-      "Over/Under 2.5 Goals",
-      "Over/Under 2.5",
-      "Total Goals",
-      "Total"
-     ],
-     "runner": "Over 2.5",
-     "kickoff": "2026-10-31T20:00:00Z",
-     "confidence": 75,
-     "odds_seen": 1.44,
-     "min_odds": 1.29,
-     "track": "rules",
-     "rule": "goals"
-    },
-    {
-     "sport": "football",
-     "event": "Groningen vs Sparta",
-     "market": [
-      "Over/Under 2.5 Goals",
-      "Over/Under 2.5",
-      "Total Goals",
-      "Total"
-     ],
-     "runner": "Over 2.5",
-     "kickoff": "2026-11-01T15:45:00Z",
-     "confidence": 75,
-     "odds_seen": 1.47,
-     "min_odds": 1.32,
-     "track": "rules",
-     "rule": "goals"
-    }
-   ]
-  },
-  {
-   "id": "2026-10-31-c",
-   "note": "Don's choice at 01:08 UK on 31 Oct (4 bets on Saturdays even if forced): best near miss, below the 1.05 value test (2.03 x 45.5% = 0.93).",
-   "legs": [
-    {
-     "sport": "football",
-     "event": "Middlesbrough vs Charlton",
-     "market": [
-      "Over/Under 2.5 Goals",
-      "Over/Under 2.5",
-      "Total Goals",
-      "Total"
-     ],
-     "runner": "Over 2.5",
-     "kickoff": "2026-10-31T15:00:00Z",
-     "confidence": 69,
-     "odds_seen": 1.4,
-     "min_odds": 1.26,
-     "track": "confidence"
-    },
-    {
-     "sport": "football",
-     "event": "Falkirk vs Celtic",
-     "market": "Match Odds",
-     "runner": "Celtic",
-     "kickoff": "2026-11-01T13:00:00Z",
-     "confidence": 66,
-     "odds_seen": 1.45,
-     "min_odds": 1.3,
-     "track": "confidence"
-    }
-   ]
-  }
- ],
- "singles": [
-  {
-   "id": "2026-10-31-s1",
-   "note": "Don's choice at 01:08 UK on 31 Oct: value bet (2.35 x 54% = 1.27) but 1 point under the 55% singles minimum.",
-   "legs": [
-    {
-     "sport": "football",
-     "event": "Kaiserslautern vs Hertha",
+     "event": "Belgrano vs Barracas",
      "market": [
       "Over/Under 2.5 Goals",
       "Over/Under 2.5",
@@ -122,13 +30,46 @@
       "Total"
      ],
      "runner": "Under 2.5",
-     "kickoff": "2026-10-31T12:00:00Z",
-     "confidence": 54,
-     "odds_seen": 2.35,
-     "min_odds": 2.11,
+     "kickoff": "2026-11-01T21:30:00Z",
+     "confidence": 70,
+     "odds_seen": 1.59,
+     "min_odds": 1.43,
+     "track": "confidence"
+    }
+   ]
+  },
+  {
+   "id": "2026-11-01-b",
+   "legs": [
+    {
+     "sport": "football",
+     "event": "Telstar vs Utrecht",
+     "market": "Both Teams To Score",
+     "runner": "Yes",
+     "kickoff": "2026-11-01T13:30:00Z",
+     "confidence": 68,
+     "odds_seen": 1.53,
+     "min_odds": 1.37,
+     "track": "confidence"
+    },
+    {
+     "sport": "football",
+     "event": "Boca vs River",
+     "market": [
+      "Over/Under 2.5 Goals",
+      "Over/Under 2.5",
+      "Total Goals",
+      "Total"
+     ],
+     "runner": "Under 2.5",
+     "kickoff": "2026-11-01T18:00:00Z",
+     "confidence": 68,
+     "odds_seen": 1.6,
+     "min_odds": 1.44,
      "track": "confidence"
     }
    ]
   }
- ]
+ ],
+ "singles": []
 }

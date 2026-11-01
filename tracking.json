@@ -3853,7 +3853,7 @@
    "kickoff": "2026-10-31T20:00:00Z",
    "odds": 1.44,
    "in_picks": true,
-   "result": null
+   "result": "won"
   },
   {
    "date": "2026-10-31",
@@ -3885,7 +3885,7 @@
    "kickoff": "2026-10-31T20:00:00Z",
    "odds": 1.4,
    "in_picks": false,
-   "result": null
+   "result": "lost"
   },
   {
    "date": "2026-10-31",
@@ -3941,7 +3941,7 @@
    "kickoff": "2026-10-31T17:45:00Z",
    "odds": 1.11,
    "in_picks": false,
-   "result": null
+   "result": "won"
   },
   {
    "date": "2026-10-31",
@@ -3969,7 +3969,7 @@
    "kickoff": "2026-10-31T12:00:00Z",
    "odds": 1.44,
    "in_picks": false,
-   "result": null
+   "result": "lost"
   },
   {
    "date": "2026-10-31",
@@ -4001,7 +4001,7 @@
    "kickoff": "2026-10-31T17:45:00Z",
    "odds": 1.36,
    "in_picks": false,
-   "result": null
+   "result": "lost"
   },
   {
    "date": "2026-10-31",
@@ -4016,7 +4016,7 @@
    "kickoff": "2026-10-31T12:00:00Z",
    "odds": 1.4,
    "in_picks": true,
-   "result": null
+   "result": "lost"
   },
   {
    "date": "2026-10-31",
@@ -4031,7 +4031,7 @@
    "kickoff": "2026-10-31T17:45:00Z",
    "odds": 1.7,
    "in_picks": true,
-   "result": null
+   "result": "lost"
   },
   {
    "date": "2026-10-31",
@@ -4045,7 +4045,7 @@
    "kickoff": "2026-10-31T17:30:00Z",
    "odds": 1.25,
    "in_picks": false,
-   "result": null
+   "result": "won"
   },
   {
    "date": "2026-10-31",
@@ -4059,7 +4059,7 @@
    "kickoff": "2026-10-31T17:30:00Z",
    "odds": 1.3,
    "in_picks": false,
-   "result": null
+   "result": "won"
   },
   {
    "date": "2026-10-31",
@@ -4074,7 +4074,7 @@
    "kickoff": "2026-10-31T12:00:00Z",
    "odds": 2.35,
    "in_picks": true,
-   "result": null
+   "result": "lost"
   },
   {
    "date": "2026-10-31",
@@ -4088,7 +4088,7 @@
    "kickoff": "2026-10-31T15:00:00Z",
    "odds": 1.4,
    "in_picks": true,
-   "result": null
+   "result": "won"
   },
   {
    "date": "2026-10-31",
@@ -4102,6 +4102,609 @@
    "kickoff": "2026-11-01T13:00:00Z",
    "odds": 1.45,
    "in_picks": true,
+   "result": null
+  },
+  {
+   "date": "2026-11-01",
+   "track": "rules",
+   "rule": "btts",
+   "confidence": 78,
+   "gap": 11.8,
+   "league": "Netherlands Eredivisie",
+   "league_goals": 3.8,
+   "played": [
+    10,
+    10
+   ],
+   "scored": [
+    2.4,
+    1.7
+   ],
+   "conceded": [
+    2.1,
+    2.4
+   ],
+   "over25": [
+    90,
+    90
+   ],
+   "event": "Groningen vs Sparta Rotterdam",
+   "market": "Both Teams To Score",
+   "runner": "Yes",
+   "kickoff": "2026-11-01T15:45:00Z",
+   "odds": 1.51,
+   "in_picks": false,
+   "result": null
+  },
+  {
+   "date": "2026-11-01",
+   "track": "rules",
+   "rule": "btts",
+   "confidence": 60,
+   "gap": 1.2,
+   "league": "Denmark Superliga",
+   "league_goals": 3.07,
+   "played": [
+    12,
+    12
+   ],
+   "scored": [
+    1.58,
+    1.92
+   ],
+   "conceded": [
+    1.0,
+    1.67
+   ],
+   "over25": [
+    50,
+    67
+   ],
+   "event": "Viborg vs Horsens",
+   "market": "Both Teams To Score",
+   "runner": "Yes",
+   "kickoff": "2026-11-01T13:00:00Z",
+   "odds": 1.7,
+   "in_picks": false,
+   "result": null
+  },
+  {
+   "date": "2026-11-01",
+   "track": "rules",
+   "rule": "btts",
+   "confidence": 64,
+   "gap": -1.8,
+   "league": "Norway Eliteserien",
+   "league_goals": 3.21,
+   "played": [
+    24,
+    24
+   ],
+   "scored": [
+    1.62,
+    1.79
+   ],
+   "conceded": [
+    1.92,
+    1.42
+   ],
+   "over25": [
+    58,
+    50
+   ],
+   "event": "Valerenga vs Tromso",
+   "market": "Both Teams To Score",
+   "runner": "Yes",
+   "kickoff": "2026-11-01T18:15:00Z",
+   "odds": 1.52,
+   "in_picks": false,
+   "result": null
+  },
+  {
+   "date": "2026-11-01",
+   "track": "rules",
+   "rule": "goals",
+   "confidence": 82,
+   "gap": 0.7,
+   "league": "Switzerland Super League",
+   "league_goals": 3.67,
+   "played": [
+    11,
+    11
+   ],
+   "scored": [
+    3.18,
+    1.82
+   ],
+   "conceded": [
+    1.64,
+    2.09
+   ],
+   "over25": [
+    82,
+    91
+   ],
+   "event": "Young Boys vs FC Zurich",
+   "market": "Over/Under 2.5 Goals",
+   "runner": "Over 2.5",
+   "kickoff": "2026-11-01T13:00:00Z",
+   "odds": 1.23,
+   "in_picks": false,
+   "result": null
+  },
+  {
+   "date": "2026-11-01",
+   "track": "rules",
+   "rule": "btts",
+   "confidence": 62,
+   "gap": -3.8,
+   "league": "China Super League",
+   "league_goals": 3.15,
+   "played": [
+    29,
+    29
+   ],
+   "scored": [
+    1.97,
+    1.59
+   ],
+   "conceded": [
+    2.07,
+    1.48
+   ],
+   "over25": [
+    79,
+    59
+   ],
+   "event": "Yunnan Yukun vs Dalian Yingbo",
+   "market": "Both Teams To Score",
+   "runner": "Yes",
+   "kickoff": "2026-11-01T11:35:00Z",
+   "odds": 1.52,
+   "in_picks": false,
+   "result": null
+  },
+  {
+   "date": "2026-11-01",
+   "track": "rules",
+   "rule": "btts",
+   "confidence": 58,
+   "gap": -4.1,
+   "league": "Switzerland Super League",
+   "league_goals": 3.67,
+   "played": [
+    11,
+    11
+   ],
+   "scored": [
+    3.09,
+    1.55
+   ],
+   "conceded": [
+    0.82,
+    1.82
+   ],
+   "over25": [
+    91,
+    73
+   ],
+   "event": "Lugano vs FC Basel",
+   "market": "Both Teams To Score",
+   "runner": "Yes",
+   "kickoff": "2026-11-01T15:30:00Z",
+   "odds": 1.61,
+   "in_picks": false,
+   "result": null
+  },
+  {
+   "date": "2026-11-01",
+   "track": "rules",
+   "rule": "btts",
+   "confidence": 64,
+   "gap": -5.9,
+   "league": "Italy Serie A",
+   "league_goals": 3.16,
+   "played": [
+    9,
+    9
+   ],
+   "scored": [
+    2.44,
+    1.56
+   ],
+   "conceded": [
+    1.56,
+    1.56
+   ],
+   "over25": [
+    67,
+    78
+   ],
+   "event": "Frosinone vs Torino",
+   "market": "Both Teams To Score",
+   "runner": "Yes",
+   "kickoff": "2026-11-01T14:00:00Z",
+   "odds": 1.43,
+   "in_picks": false,
+   "result": null
+  },
+  {
+   "date": "2026-11-01",
+   "track": "rules",
+   "rule": "btts",
+   "confidence": 73,
+   "gap": -2.8,
+   "league": "Norway Eliteserien",
+   "league_goals": 3.21,
+   "played": [
+    24,
+    24
+   ],
+   "scored": [
+    1.75,
+    2.38
+   ],
+   "conceded": [
+    1.67,
+    1.5
+   ],
+   "over25": [
+    79,
+    71
+   ],
+   "event": "Brann vs Molde",
+   "market": "Both Teams To Score",
+   "runner": "Yes",
+   "kickoff": "2026-11-01T13:30:00Z",
+   "odds": 1.32,
+   "in_picks": false,
+   "result": null
+  },
+  {
+   "date": "2026-11-01",
+   "track": "rules",
+   "rule": "btts",
+   "confidence": 66,
+   "gap": -5.4,
+   "league": "USA MLS",
+   "league_goals": 3.25,
+   "played": [
+    32,
+    32
+   ],
+   "scored": [
+    1.69,
+    2.34
+   ],
+   "conceded": [
+    1.38,
+    1.72
+   ],
+   "over25": [
+    72,
+    75
+   ],
+   "event": "New England Revolution vs Inter Miami",
+   "market": "Both Teams To Score",
+   "runner": "Yes",
+   "kickoff": "2026-11-02T00:00:00Z",
+   "odds": 1.4,
+   "in_picks": false,
+   "result": null
+  },
+  {
+   "date": "2026-11-01",
+   "track": "rules",
+   "rule": "btts",
+   "confidence": 60,
+   "gap": -1.0,
+   "league": "Netherlands Eredivisie",
+   "league_goals": 3.8,
+   "played": [
+    10,
+    10
+   ],
+   "scored": [
+    1.6,
+    1.9
+   ],
+   "conceded": [
+    1.9,
+    1.0
+   ],
+   "over25": [
+    90,
+    50
+   ],
+   "event": "Excelsior vs Twente",
+   "market": "Both Teams To Score",
+   "runner": "Yes",
+   "kickoff": "2026-11-01T13:30:00Z",
+   "odds": 1.64,
+   "in_picks": false,
+   "result": null
+  },
+  {
+   "date": "2026-11-01",
+   "track": "rules",
+   "rule": "btts",
+   "confidence": 52,
+   "gap": -8.6,
+   "league": "Sweden Allsvenskan",
+   "league_goals": 2.89,
+   "played": [
+    26,
+    26
+   ],
+   "scored": [
+    1.58,
+    2.08
+   ],
+   "conceded": [
+    1.31,
+    0.81
+   ],
+   "over25": [
+    58,
+    46
+   ],
+   "event": "Malmo vs Hammarby",
+   "market": "Both Teams To Score",
+   "runner": "Yes",
+   "kickoff": "2026-11-01T13:00:00Z",
+   "odds": 1.65,
+   "in_picks": false,
+   "result": null
+  },
+  {
+   "date": "2026-11-01",
+   "track": "rules",
+   "rule": "btts",
+   "confidence": 54,
+   "gap": -9.3,
+   "league": "USA MLS",
+   "league_goals": 3.25,
+   "played": [
+    32,
+    32
+   ],
+   "scored": [
+    1.56,
+    1.56
+   ],
+   "conceded": [
+    1.09,
+    1.75
+   ],
+   "over25": [
+    50,
+    66
+   ],
+   "event": "Los Angeles FC vs Minnesota United",
+   "market": "Both Teams To Score",
+   "runner": "Yes",
+   "kickoff": "2026-11-02T01:30:00Z",
+   "odds": 1.58,
+   "in_picks": false,
+   "result": null
+  },
+  {
+   "date": "2026-11-01",
+   "track": "rules",
+   "rule": "btts",
+   "confidence": 42,
+   "gap": -17.5,
+   "league": "Greece Super League",
+   "league_goals": 2.76,
+   "played": [
+    8,
+    7
+   ],
+   "scored": [
+    2.25,
+    3.0
+   ],
+   "conceded": [
+    0.5,
+    0.43
+   ],
+   "over25": [
+    50,
+    71
+   ],
+   "event": "Panathinaikos vs AEK Athens",
+   "market": "Both Teams To Score",
+   "runner": "Yes",
+   "kickoff": "2026-11-01T17:30:00Z",
+   "odds": 1.68,
+   "in_picks": false,
+   "result": null
+  },
+  {
+   "date": "2026-11-01",
+   "track": "rules",
+   "rule": "goals",
+   "confidence": 74,
+   "gap": -8.6,
+   "league": "Spain La Liga",
+   "league_goals": 3.01,
+   "played": [
+    10,
+    10
+   ],
+   "scored": [
+    1.5,
+    2.5
+   ],
+   "conceded": [
+    2.6,
+    1.0
+   ],
+   "over25": [
+    80,
+    80
+   ],
+   "event": "Racing Santander vs Real Madrid",
+   "market": "Over/Under 2.5 Goals",
+   "runner": "Over 2.5",
+   "kickoff": "2026-11-01T15:15:00Z",
+   "odds": 1.21,
+   "in_picks": false,
+   "result": null
+  },
+  {
+   "date": "2026-11-01",
+   "track": "confidence",
+   "confidence": 70,
+   "gap": 2.4,
+   "league": "Switzerland Super League",
+   "league_goals": 3.67,
+   "played": [
+    11,
+    11
+   ],
+   "scored": [
+    3.09,
+    1.55
+   ],
+   "conceded": [
+    0.82,
+    1.82
+   ],
+   "over25": [
+    91,
+    73
+   ],
+   "event": "Lugano vs FC Basel",
+   "market": "Over/Under 2.5 Goals",
+   "runner": "Over 2.5",
+   "kickoff": "2026-11-01T15:30:00Z",
+   "odds": 1.48,
+   "in_picks": true,
+   "result": null
+  },
+  {
+   "date": "2026-11-01",
+   "track": "confidence",
+   "confidence": 70,
+   "gap": 7.1,
+   "league": "Argentina Primera",
+   "league_goals": 2.15,
+   "played": [
+    34,
+    30
+   ],
+   "scored": [
+    1.12,
+    0.93
+   ],
+   "conceded": [
+    0.79,
+    0.87
+   ],
+   "over25": [
+    32,
+    30
+   ],
+   "event": "Belgrano vs Barracas Central",
+   "market": "Over/Under 2.5 Goals",
+   "runner": "Under 2.5",
+   "kickoff": "2026-11-01T21:30:00Z",
+   "odds": 1.59,
+   "in_picks": true,
+   "result": null
+  },
+  {
+   "date": "2026-11-01",
+   "track": "confidence",
+   "confidence": 68,
+   "gap": 2.6,
+   "league": "Netherlands Eredivisie",
+   "league_goals": 3.8,
+   "played": [
+    10,
+    10
+   ],
+   "scored": [
+    1.2,
+    1.7
+   ],
+   "conceded": [
+    2.1,
+    2.7
+   ],
+   "over25": [
+    70,
+    90
+   ],
+   "event": "Telstar vs Utrecht",
+   "market": "Both Teams To Score",
+   "runner": "Yes",
+   "kickoff": "2026-11-01T13:30:00Z",
+   "odds": 1.53,
+   "in_picks": true,
+   "result": null
+  },
+  {
+   "date": "2026-11-01",
+   "track": "confidence",
+   "confidence": 68,
+   "gap": 5.5,
+   "league": "Argentina Primera",
+   "league_goals": 2.15,
+   "played": [
+    31,
+    34
+   ],
+   "scored": [
+    1.45,
+    1.38
+   ],
+   "conceded": [
+    0.77,
+    0.85
+   ],
+   "over25": [
+    39,
+    35
+   ],
+   "event": "Boca Juniors vs River Plate",
+   "market": "Over/Under 2.5 Goals",
+   "runner": "Under 2.5",
+   "kickoff": "2026-11-01T18:00:00Z",
+   "odds": 1.6,
+   "in_picks": true,
+   "result": null
+  },
+  {
+   "date": "2026-11-01",
+   "track": "confidence",
+   "confidence": 76,
+   "gap": 1.4,
+   "league": "Romania Liga 1",
+   "league_goals": 2.74,
+   "played": [
+    13,
+    13
+   ],
+   "scored": [
+    2.46,
+    1.31
+   ],
+   "conceded": [
+    0.69,
+    1.31
+   ],
+   "over25": [
+    54,
+    46
+   ],
+   "event": "Universitatea Craiova vs Botosani",
+   "market": "Match Odds",
+   "runner": "Universitatea Craiova",
+   "kickoff": "2026-11-01T15:30:00Z",
+   "odds": 1.34,
+   "in_picks": false,
    "result": null
   }
  ]
