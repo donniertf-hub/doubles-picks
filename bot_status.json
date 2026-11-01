@@ -1,7 +1,7 @@
 {
  "bankroll_start": 50,
  "bot_pot_free": 68.36,
- "bot_pot_total": 137.01,
+ "bot_pot_total": 122.97,
  "doubles": [
   {
    "covers": null,
@@ -1354,9 +1354,9 @@
    "covers": null,
    "date": "2026-10-31",
    "fallback": false,
-   "finished_at": null,
+   "finished_at": "2026-11-01T14:53:24Z",
    "id": "2026-10-31-c",
-   "in_play": 14.04,
+   "in_play": 0,
    "kind": "double",
    "legs": [
     {
@@ -1376,17 +1376,19 @@
      "kickoff": "2026-11-01T13:00:00Z",
      "min_odds": 1.3,
      "odds": 1.47,
+     "result": "LOSE",
+     "returns": 0.0,
      "runner": "Celtic",
      "stake": 14.04
     }
    ],
-   "note": "",
-   "pl": null,
+   "note": "leg 2 lost",
+   "pl": -10.0,
    "placed": true,
    "reserve": false,
-   "returned": null,
+   "returned": 0.0,
    "stake": 10.0,
-   "status": "matched"
+   "status": "lost"
   },
   {
    "covers": null,
@@ -1551,5 +1553,5 @@
   }
  ],
  "exchange_balance": 0.0,
- "updated": "2026-11-01T14:21:20Z"
+ "updated": "2026-11-01T14:53:24Z"
 }
