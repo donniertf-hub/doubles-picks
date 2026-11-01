@@ -952,3 +952,37 @@ def test_always_still_respects_stop_file():
 
 def test_always_is_the_default():
     assert B.DEFAULTS["always_bet_doubles"] is True
+
+
+def write_picks(folder, doubles, withdrawn=()):
+    with open(os.path.join(folder, "picks.json"), "w") as fh:
+        json.dump({"doubles": doubles, "withdrawn": list(withdrawn)}, fh)
+
+
+def test_withdrawn_pick_is_never_placed_even_when_money_arrives():
+    other = {"id": "new", "legs": [
+        {"event": "Dortmund vs Bremen", "runner": "Dortmund", "kickoff": "2026-10-10T11:30:00Z"},
+        {"event": "Monaco vs Toulouse", "runner": "Monaco", "kickoff": "2026-10-10T18:45:00Z"}]}
+    mb = FakeMB(fixtures(), {ARS: "WIN", LIL: "WIN"}, funds=1000)
+    bot, clock, folder = make([], mb)
+    write_picks(folder, [double("old"), other], withdrawn=["old"])
+    play_through(bot, clock)
+    old = bot.state["doubles"]["old"]
+    assert old["status"] == "skipped" and not old.get("placed") and "withdrawn" in old["note"]
+    assert bot.state["doubles"]["new"]["placed"]
+    assert not old["bets"] and len(mb.placed) == len(bot.state["doubles"]["new"]["bets"])
+
+
+def test_withdraw_does_nothing_once_money_is_on():
+    mb = FakeMB(fixtures(), {ARS: "WIN", LIL: "WIN"}, funds=1000)
+    bot, clock, folder = make([double("d1")], mb)
+    clock.at(9, 0)
+    while clock.now <= T0.replace(hour=12):
+        bot.tick()
+        clock.now += timedelta(minutes=10)
+    assert bot.state["doubles"]["d1"]["placed"]
+    write_picks(folder, [double("d1")], withdrawn=["d1"])
+    while clock.now <= T0.replace(hour=23):
+        bot.tick()
+        clock.now += timedelta(minutes=10)
+    assert bot.state["doubles"]["d1"]["status"] == "won"

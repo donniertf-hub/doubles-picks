@@ -139,6 +139,10 @@ the betting. Set `"scan_enabled": false` in config.json to turn it off.
   because the winnings can't be rolled in time.
 - If leg 2 can't be placed, the leg 1 winnings go back into the pot.
 - An empty file named `STOP` in the folder blocks all new bets.
+- To cancel a pick the bot has already loaded, list its id in a top-level
+  `"withdrawn": ["2026-11-01-a"]` list in picks.json. It is dropped (status
+  skipped) only if no money is on it yet; once anything is placed it runs its
+  course. Removing a pick from picks.json does not cancel it (Don, 1 November).
 
 ## Certificate login (only if you keep 2-step verification on)
 

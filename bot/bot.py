@@ -923,6 +923,22 @@ class Bot:
                 d["date"] = parse_time(d["legs"][0]["kickoff"]).strftime("%Y-%m-%d")
                 self.log(f"[{pid}] new pick: " +
                          " + ".join(f"{l['runner']} ({l['event']})" for l in d["legs"]))
+        self.withdraw(picks.get("withdrawn") or [])
+
+    def withdraw(self, ids):
+        """Drop picks listed under "withdrawn" in picks.json (Don, 1 Nov: a deposit
+        must never place bets he no longer wants). Only a pick with no money on
+        it yet can be withdrawn; once anything is placed it runs its course."""
+        for pid in ids:
+            d = self.state["doubles"].get(str(pid))
+            if not d or d["status"] != "pending":
+                continue
+            if d.get("placed") or d.get("bets") or d.get("held") or d.get("leg", 0) != 0:
+                if not d.get("withdraw_refused"):
+                    d["withdraw_refused"] = True
+                    self.log(f"[{pid}] cannot withdraw: money is already on it")
+                continue
+            self.finish(d, "skipped", "withdrawn in picks.json before any money went on")
 
     def check_pick(self, d):
         legs = d["legs"]
