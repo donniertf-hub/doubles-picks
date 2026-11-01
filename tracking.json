@@ -4706,6 +4706,122 @@
    "odds": 1.34,
    "in_picks": false,
    "result": null
+  },
+  {
+   "date": "2026-11-01",
+   "track": "confidence",
+   "confidence": 72,
+   "gap": 10.3,
+   "league": "Belgium Pro League",
+   "league_goals": 3.19,
+   "played": [
+    9,
+    9
+   ],
+   "scored": [
+    1.78,
+    1.22
+   ],
+   "conceded": [
+    1.11,
+    2.0
+   ],
+   "over25": [
+    56,
+    78
+   ],
+   "event": "Charleroi vs La Louviere",
+   "market": "Match Odds",
+   "runner": "Charleroi",
+   "kickoff": "2026-11-01T18:15:00Z",
+   "odds": 1.62,
+   "in_picks": true
+  },
+  {
+   "date": "2026-11-01",
+   "track": "confidence",
+   "confidence": 72,
+   "gap": 7.1,
+   "league": "USA MLS",
+   "league_goals": 3.25,
+   "played": [
+    32,
+    32
+   ],
+   "scored": [
+    2.06,
+    1.34
+   ],
+   "conceded": [
+    0.72,
+    1.84
+   ],
+   "over25": [
+    56,
+    56
+   ],
+   "event": "Nashville SC vs New York Red Bulls",
+   "market": "Match Odds",
+   "runner": "Nashville",
+   "kickoff": "2026-11-01T21:30:00Z",
+   "odds": 1.54,
+   "in_picks": true
+  },
+  {
+   "date": "2026-11-01",
+   "track": "confidence",
+   "confidence": 68,
+   "gap": 3.9,
+   "league": "Italy Serie B",
+   "league_goals": 2.69,
+   "played": [
+    9,
+    9
+   ],
+   "scored": [
+    2.33,
+    1.33
+   ],
+   "conceded": [
+    1.22,
+    1.89
+   ],
+   "over25": [
+    67,
+    78
+   ],
+   "event": "Palermo vs Vicenza",
+   "market": "Match Odds",
+   "runner": "Palermo",
+   "kickoff": "2026-11-01T18:30:00Z",
+   "odds": 1.56,
+   "in_picks": true
+  },
+  {
+   "date": "2026-11-01",
+   "track": "confidence",
+   "confidence": 65,
+   "gap": 0.5,
+   "league": "Italy Serie A",
+   "league_goals": 3.2,
+   "played": [
+    9,
+    9
+   ],
+   "scored": [
+    1.78,
+    0.56
+   ],
+   "conceded": [
+    1.89,
+    1.67
+   ],
+   "event": "Atalanta vs Parma",
+   "market": "Match Odds",
+   "runner": "Atalanta",
+   "kickoff": "2026-11-02T19:45:00Z",
+   "odds": 1.55,
+   "in_picks": true
   }
  ]
 }

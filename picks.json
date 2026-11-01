@@ -1,75 +1,71 @@
 {
- "generated": "2026-11-01T05:08:06Z",
- "doubles": [
-  {
-   "id": "2026-11-01-a",
-   "legs": [
+  "generated": "2026-11-01T12:23:42Z",
+  "doubles": [
     {
-     "sport": "football",
-     "event": "Lugano vs Basel",
-     "market": [
-      "Over/Under 2.5 Goals",
-      "Over/Under 2.5",
-      "Total Goals",
-      "Total"
-     ],
-     "runner": "Over 2.5",
-     "kickoff": "2026-11-01T15:30:00Z",
-     "confidence": 70,
-     "odds_seen": 1.48,
-     "min_odds": 1.33,
-     "track": "confidence"
+      "id": "2026-11-01-c",
+      "tier": 1,
+      "legs": [
+        {
+          "sport": "football",
+          "country": "Belgium",
+          "league": "Pro League",
+          "event": "Charleroi vs Louviere",
+          "market": "Match Odds",
+          "runner": "Charleroi",
+          "kickoff": "2026-11-01T18:15:00Z",
+          "confidence": 72,
+          "odds_seen": 1.62,
+          "min_odds": 1.45,
+          "track": "confidence"
+        },
+        {
+          "sport": "football",
+          "country": "USA",
+          "league": "MLS",
+          "event": "Nashville vs Red Bulls",
+          "market": "Match Odds",
+          "runner": "Nashville",
+          "kickoff": "2026-11-01T21:30:00Z",
+          "confidence": 72,
+          "odds_seen": 1.54,
+          "min_odds": 1.38,
+          "track": "confidence"
+        }
+      ]
     },
     {
-     "sport": "football",
-     "event": "Belgrano vs Barracas",
-     "market": [
-      "Over/Under 2.5 Goals",
-      "Over/Under 2.5",
-      "Total Goals",
-      "Total"
-     ],
-     "runner": "Under 2.5",
-     "kickoff": "2026-11-01T21:30:00Z",
-     "confidence": 70,
-     "odds_seen": 1.59,
-     "min_odds": 1.43,
-     "track": "confidence"
+      "id": "2026-11-01-d",
+      "tier": 2,
+      "legs": [
+        {
+          "sport": "football",
+          "country": "Italy",
+          "league": "Serie B",
+          "event": "Palermo vs Vicenza",
+          "market": "Match Odds",
+          "runner": "Palermo",
+          "kickoff": "2026-11-01T18:30:00Z",
+          "confidence": 68,
+          "odds_seen": 1.56,
+          "min_odds": 1.4,
+          "track": "confidence"
+        },
+        {
+          "sport": "football",
+          "country": "Italy",
+          "league": "Serie A",
+          "event": "Atalanta vs Parma",
+          "market": "Match Odds",
+          "runner": "Atalanta",
+          "kickoff": "2026-11-02T19:45:00Z",
+          "confidence": 65,
+          "odds_seen": 1.55,
+          "min_odds": 1.39,
+          "track": "confidence"
+        }
+      ]
     }
-   ]
-  },
-  {
-   "id": "2026-11-01-b",
-   "legs": [
-    {
-     "sport": "football",
-     "event": "Telstar vs Utrecht",
-     "market": "Both Teams To Score",
-     "runner": "Yes",
-     "kickoff": "2026-11-01T13:30:00Z",
-     "confidence": 68,
-     "odds_seen": 1.53,
-     "min_odds": 1.37,
-     "track": "confidence"
-    },
-    {
-     "sport": "football",
-     "event": "Boca vs River",
-     "market": [
-      "Over/Under 2.5 Goals",
-      "Over/Under 2.5",
-      "Total Goals",
-      "Total"
-     ],
-     "runner": "Under 2.5",
-     "kickoff": "2026-11-01T18:00:00Z",
-     "confidence": 68,
-     "odds_seen": 1.6,
-     "min_odds": 1.44,
-     "track": "confidence"
-    }
-   ]
-  }
- ],
- "singles": []
+  ],
+  "singles": [],
+  "note": "1 Nov midday rebuild (Don asked for today's picks under the new rules). 2026-11-01-a and -b were published at 05:08, never placed (no Betfair balance) and are dropped: they fail the new check (all four legs goals bets). The bot still holds them and skips each at its first kick-off (b at 13:30, a at 15:30) if no money arrives first."
 }
