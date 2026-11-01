@@ -96,10 +96,27 @@ the free football-data.co.uk results files cover (about 38: England 5 divisions,
 Scotland 4, the top two in Germany, Italy, Spain and France, the Netherlands,
 Belgium, Portugal, Turkey, Greece, Argentina, Austria, Brazil, China, Denmark,
 Finland, Ireland, Japan, Mexico, Norway, Poland, Romania, Russia, Sweden,
-Switzerland and the USA) it adds each team's season stats, checks Don's two
-rules and a simple goals model, and writes everything to `../candidates.json`,
-pushed to GitHub with the status file. Matches in other leagues are still listed
-with their prices under `no_stats`.
+Switzerland and the USA) it adds each team's season stats (including points per
+game, home and away), a simple goals model and the Asian handicap and corner
+prices, and writes everything to `../candidates.json`, pushed to GitHub with the
+status file. `best_value` ranks every bet type together; `strength_gaps` lists
+matches where one side is clearly stronger, with its win, handicap and corner
+prices; `rule_qualifiers` (Don's two rules) is for the scoreboard only. Matches
+in other leagues are still listed with their prices under `no_stats`.
+
+## Morning pick check (check_picks.py)
+
+The morning run must run this before it publishes, from the top of the repository:
+
+    python3 bot/check_picks.py
+
+It fails (exit code 1) on any of today's bets that breaks the tier tests, the
+kick-off timing, the Brazil rule, the 4-a-day cap or the never-twice rule; when
+more than half of today's legs are goals bets or from one country (unless a
+`mix_note` says which alternatives were checked and why they are weaker); and
+when a bet type that is losing money on the scoreboard (20+ priced selections)
+lacks 5 extra confidence. It also prints the scoreboard by bet type.
+Tests: `python3 -m pytest -q test_check_picks.py`.
 
 Run it by hand any time (needs the same login as the bot):
 
@@ -110,8 +127,9 @@ the betting. Set `"scan_enabled": false` in config.json to turn it off.
 
 ## Rules it follows
 
-- 10 per bet, plus 10 for every 100 in the pot: 20 from 100, 30 from 200, and so on.
-- A pick must pay evens or better at Betfair's own prices when it is placed.
+- 10 per bet while the pot is under 200, then 10 more for every further 100: 20 from 200, 30 from 300, and so on (Don, 25 October).
+- Doubles: every double in picks.json is placed once it has been announced, with no price checks at all (`always_bet_doubles`, Don, 30 October). The only price and value test a double gets is the morning run's `check_picks.py`.
+- Singles: a single must pay evens or more (`single_min_odds`) and pass the value test (price x confidence of 1.05 or more, `min_edge`) at Betfair's own price.
 - At most 4 picks a day.
 - It never stakes more than its own pot, even if the account holds more.
 - When the pot can't cover a stake and nothing is in play, it stops. After 48
@@ -161,11 +179,13 @@ Each bet fires once per game. The two BTTS triggers make one bet between them.
 
 ## Price checks, singles and the fallback single
 
+These apply to singles only: doubles skip them while `always_bet_doubles` is on.
+
 - **Drift check** (`max_drift_percent`, default 15): each pick carries the price it was made at (`odds_seen`). If the exchange price when the bot is about to bet is more than 15% above it, the bot does not bet, because a price that has moved out like that usually means bad team news. A first leg is skipped; a second leg is not bet and the winnings are kept. Set to 0 to switch off.
 - **Minimum price** (`min_odds` on a leg): the bot will not bet below this price. The morning task sets it so a bet is only placed when the exchange price still beats the pick's confidence by a margin.
 - **Closing price** (`log_closing_price`): just before kick-off the bot notes the exchange price and writes a CLOSING line in `ledger.csv` next to the PLACED line, which also shows the price the pick was made at. If the closing price is usually shorter than the price we backed at, the picks are ahead of the market.
 - **Singles**: `picks.json` may have a `"singles"` list, each with an `id` and one leg. A single may pay under evens and is limited by `max_singles_per_day`. With `singles_profit_only` (default true) a single is only bet when the stake fits inside the profit, that is the pot's total above `bankroll_start`.
-- **Fallback single** (`fallback_singles`, default true): if leg 1 of a double loses and leg 2 has not started, leg 2 is bet as a single (id ends in `-s`), from free money in the pot, still subject to its minimum price and the drift check.
+- **Fallback single** (`fallback_singles`, default false since Don's instruction of 25 October): when on, if leg 1 of a double loses and leg 2 has not started, leg 2 is bet as a single (id ends in `-s`). Off, leg 2 is never bet on its own.
 
 ## Status file (bot_status.json) and reserve doubles
 

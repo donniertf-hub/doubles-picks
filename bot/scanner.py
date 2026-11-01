@@ -227,6 +227,7 @@ def team_stats(rows):
 
     def blank():
         return {"n": 0, "gf": 0, "ga": 0, "o25": 0, "btts": 0, "cs": 0, "fts": 0,
+                "pts": 0, "hpts": 0, "apts": 0, "w": 0, "w2": 0,
                 "hn": 0, "hgf": 0, "hga": 0, "an": 0, "agf": 0, "aga": 0, "form": [],
                 "cn": 0, "cf": 0, "ca": 0, "hcn": 0, "hcf": 0, "hca": 0,
                 "acn": 0, "acf": 0, "aca": 0}
@@ -256,6 +257,11 @@ def team_stats(rows):
             t[p + "gf"] += gf
             t[p + "ga"] += ga
             t["form"].append("W" if gf > ga else "D" if gf == ga else "L")
+            pts = 3 if gf > ga else 1 if gf == ga else 0
+            t["pts"] += pts
+            t[p + "pts"] += pts
+            t["w"] += gf > ga
+            t["w2"] += gf - ga >= 2
             if corners:
                 cf, ca = (r["hc"], r["ac"]) if side == "home" else (r["ac"], r["hc"])
                 t["cn"] += 1
@@ -274,6 +280,12 @@ def summarise(t):
             "clean_sheets": round(100 * t["cs"] / n), "failed_to_score": round(100 * t["fts"] / n),
             "home": [t["hn"], t["hgf"], t["hga"]], "away": [t["an"], t["agf"], t["aga"]],
             "last5": "".join(t["form"][-5:]),
+            "ppg": round(t.get("pts", 0) / n, 2),
+            "home_ppg": round(t.get("hpts", 0) / t["hn"], 2) if t["hn"] else None,
+            "away_ppg": round(t.get("apts", 0) / t["an"], 2) if t["an"] else None,
+            "goal_diff": round((t["gf"] - t["ga"]) / n, 2),
+            "win_pct": round(100 * t.get("w", 0) / n),
+            "win_by_2_pct": round(100 * t.get("w2", 0) / n),
             "corners_for": round(t["cf"] / t["cn"], 2) if t["cn"] else None,
             "corners_against": round(t["ca"] / t["cn"], 2) if t["cn"] else None}
 
@@ -587,6 +599,45 @@ def assess(match, stats, commission=0.05):
             "selections": picks}
 
 
+def strength_gaps(assessed, min_gap=0.8, min_played=5, top=60):
+    """Matches where one side is clearly stronger: points per game this season,
+    the home side's home record against the away side's away record, and goal
+    difference. Lists the stronger side's win, Asian handicap and corner prices so
+    winner and handicap bets are read alongside the goals markets."""
+    out = []
+    for a in assessed:
+        h, w = a["home_team"], a["away_team"]
+        if h["played"] < min_played or w["played"] < min_played:
+            continue
+        gap = h["ppg"] - w["ppg"]
+        side, strong, weak = ("home", h, w) if gap >= 0 else ("away", w, h)
+        if abs(gap) < min_gap:
+            continue
+        venue_gap = None
+        if h.get("home_ppg") is not None and w.get("away_ppg") is not None:
+            venue_gap = round((h["home_ppg"] - w["away_ppg"]) * (1 if side == "home" else -1), 2)
+        sel = {s["selection"]: s for s in a["selections"]}
+        bets = {}
+        for key, label in ((side, "win"), (f"ah_{side}_-1.5", "-1.5"), (f"ah_{side}_-2.5", "-2.5"),
+                           (f"corners_{side}", "most corners")):
+            s = sel.get(key)
+            if s and s.get("price"):
+                bets[label] = {"price": s["price"], "model": s["model"], "value": s["value"],
+                               "available": s["available"], "betfair": s.get("betfair")}
+        if not bets:
+            continue
+        out.append({"event": a["event"], "league": a["league"], "kickoff": a["kickoff"],
+                    "stronger": strong["name"], "side": side, "ppg_gap": round(abs(gap), 2),
+                    "venue_ppg_gap": venue_gap,
+                    "stronger_stats": {k: strong.get(k) for k in ("played", "ppg", "home_ppg", "away_ppg",
+                                       "goal_diff", "win_pct", "win_by_2_pct", "last5")},
+                    "weaker_stats": {k: weak.get(k) for k in ("played", "ppg", "home_ppg", "away_ppg",
+                                     "goal_diff", "win_pct", "last5")},
+                    "bets": bets})
+    out.sort(key=lambda r: -r["ppg_gap"])
+    return out[:top]
+
+
 SELECTION_NAMES = {"home": "home win", "away": "away win", "over25": "Over 2.5",
                    "under25": "Under 2.5", "btts_yes": "BTTS Yes", "btts_no": "BTTS No"}
 
@@ -629,23 +680,26 @@ def scan(bf, fetch=http_text, now=None, hours=36, commission=0.05, log=print, to
                          "available": s["available"], "model": s["model"],
                          "value": s["value"], "rule": s["rule"], "betfair": s.get("betfair")})
     rule_rows = [r for r in rows if r["rule"]]
-    value_rows = sorted((r for r in rows if not r["rule"] and r["model"] >= 50
-                         and 1.25 <= r["price"] <= 4.0),
+    value_rows = sorted((r for r in rows if r["model"] >= 50 and 1.25 <= r["price"] <= 4.0),
                         key=lambda r: -(r["value"] or 0))[:top]
+    gaps = strength_gaps(assessed)
     no_stats.sort(key=lambda m: -m["matched_on_betfair"])
     return {
         "generated": iso(now),
-        "about": ("Every Betfair football match from 30 minutes to %d hours ahead. 'rule_qualifiers' "
-                  "pass Don's rules on season stats; 'best_value' are the best model value among "
-                  "the rest (value = model chance x Betfair price after 5%% commission; above 1.0 "
-                  "beats the price). 'matches' has every match with stats; 'no_stats' are Betfair "
-                  "matches in leagues the free stats feed does not cover, to research by hand. "
+        "about": ("Every Betfair football match from 30 minutes to %d hours ahead. 'best_value' is "
+                  "the best model value across every bet type (value = model chance x Betfair price "
+                  "after 5%% commission; above 1.0 beats the price). 'strength_gaps' are matches "
+                  "where one side is clearly stronger on points per game, with that side's win, "
+                  "Asian handicap and corner prices. 'rule_qualifiers' pass Don's two rules and are "
+                  "for the scoreboard only. 'matches' has every match with stats; 'no_stats' are "
+                  "Betfair matches in leagues the free stats feed does not cover, to research by hand. "
                   "Prices are Betfair back prices at scan time." % hours),
         "counts": {"betfair_matches": len(matches), "with_stats": len(assessed),
                    "no_stats": len(no_stats), "leagues_with_stats": len(stats)},
         "leagues_with_stats": sorted(s["name"] for s in stats.values()),
-        "rule_qualifiers": sorted(rule_rows, key=lambda r: -(r["value"] or 0)),
         "best_value": value_rows,
+        "strength_gaps": gaps,
+        "rule_qualifiers": sorted(rule_rows, key=lambda r: -(r["value"] or 0)),
         "matches": sorted(assessed, key=lambda a: a["kickoff"] or ""),
         "no_stats": no_stats[:400],
     }

@@ -291,3 +291,45 @@ def test_corner_stats_and_markets_are_listed():
     assert keys["corners_home"]["model"] > keys["corners_away"]["model"]
     assert keys["corners_home"]["betfair"] == ["Corner Match Bet", "Goals Town"]
     assert not any(k.startswith("corners_") and "4.5" in k for k in keys)   # first half left out
+
+
+def belgian_csv():
+    """Strong FC win every game 3-0 (home and away); Weak Town lose every game 0-2."""
+    out = ["Div,Date,Time,HomeTeam,AwayTeam,FTHG,FTAG,FTR,HC,AC"]
+    for i in range(6):
+        d = (date(2026, 9, 1) + timedelta(days=7 * i)).strftime("%d/%m/%Y")
+        if i % 2:
+            out.append(f"B1,{d},15:00,Rival {i},Strong FC,0,3,A,4,8")
+            out.append(f"B1,{d},15:00,Weak Town,Rival {i + 10},0,2,A,3,7")
+        else:
+            out.append(f"B1,{d},15:00,Strong FC,Rival {i},3,0,H,9,3")
+            out.append(f"B1,{d},15:00,Rival {i + 10},Weak Town,2,0,H,8,2")
+    return "\n".join(out) + "\n"
+
+
+def test_strength_gaps_list_the_stronger_sides_win_and_handicap_prices():
+    def fetch_be(url):
+        if url.endswith("/2627/B1.csv"):
+            return belgian_csv()
+        return fetch(url)
+    bf = FakeBF([event(1, "Strong FC v Weak Town", "Belgian Pro League", home_p=1.4, away_p=8.0),
+                 event(2, "Goals Town v Net FC", "Dutch Eredivisie")])
+    res = S.scan(bf, fetch=fetch_be, now=NOW, log=lambda m: None)
+    m = next(x for x in res["matches"] if x["event"] == "Strong FC v Weak Town")
+    assert m["home_team"]["ppg"] == 3.0 and m["away_team"]["ppg"] == 0.0
+    assert m["home_team"]["win_by_2_pct"] == 100 and m["home_team"]["home_ppg"] == 3.0
+    gaps = res["strength_gaps"]
+    assert [g["event"] for g in gaps] == ["Strong FC v Weak Town"]   # equal sides are left out
+    g = gaps[0]
+    assert g["stronger"] == "Strong FC" and g["side"] == "home" and g["ppg_gap"] == 3.0
+    assert g["bets"]["win"]["price"] == 1.4 and g["bets"]["-1.5"]["price"] == 1.9
+    assert g["bets"]["win"]["betfair"][1] == "Strong FC"   # market name is Betfair's own
+    assert "most corners" not in g["bets"]       # too few games for the corner model here
+
+
+def test_best_value_includes_rule_picks_too():
+    bf = FakeBF([event(1, "Goals Town v Net FC", "Dutch Eredivisie", over=1.5)])
+    res = S.scan(bf, fetch=fetch, now=NOW, log=lambda m: None)
+    assert any(r["rule"] for r in res["rule_qualifiers"])
+    ranked = [(r["bet"], r["rule"]) for r in res["best_value"]]
+    assert ("Over 2.5", "goals") in ranked          # rule picks compete in the same list

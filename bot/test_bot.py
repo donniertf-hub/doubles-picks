@@ -178,9 +178,20 @@ def test_overlapping_legs_rejected():
 
 
 def test_stake_ladder():
-    for pot, stake in ((30, 10), (99.99, 10), (100, 20), (199, 20), (200, 30), (250, 30), (300, 40)):
+    # Don, 25 Oct: 10 while the pot is under 200, 20 from 200, 30 from 300 (the default)
+    for pot, stake in ((30, 10), (137, 10), (199.99, 10), (200, 20), (299, 20), (300, 30), (450, 40)):
         mb = FakeMB(fixtures(), {ARS: "LOSE"}, funds=1000)
         bot, clock, _ = make([double()], mb)
+        bot.state["bankroll"] = float(pot)
+        play_through(bot, clock)
+        assert close(mb.placed[0][2], stake), (pot, mb.placed)
+        assert close(bot.state["bankroll"], pot - stake)
+
+
+def test_stake_ladder_old_style_when_switched():
+    for pot, stake in ((30, 10), (99.99, 10), (100, 20), (199, 20), (200, 30), (250, 30), (300, 40)):
+        mb = FakeMB(fixtures(), {ARS: "LOSE"}, funds=1000)
+        bot, clock, _ = make([double()], mb, stake_per_step_only=False)
         bot.state["bankroll"] = float(pot)
         play_through(bot, clock)
         assert close(mb.placed[0][2], stake), (pot, mb.placed)

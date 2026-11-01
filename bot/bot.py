@@ -60,7 +60,9 @@ DEFAULTS = {
     "stake_base": 10.0,            # stake per double while the pot is under stake_step_every
     "stake_step": 10.0,            # added to the stake...
     "stake_step_every": 100.0,     # ...for every this much in the pot (100 -> 20, 200 -> 30)
-    "stake_per_step_only": False,  # True: stake = stake_step x steps (50 -> 5, 100 -> 10), never below stake_base
+    "stake_per_step_only": True,   # Don, 25 Oct: 10 while the pot is under 200, 20 from 200, 30 from 300...
+                                   #   (stake = stake_step x whole hundreds in the pot, never below stake_base).
+                                   #   False = stake_base plus stake_step for every stake_step_every.
     "stake_max": 0.0,              # stake never goes above this (0 = no cap)
     "max_bet": 500.0,              # hard ceiling on any single bet, rolled or not
     "picks_url": "",               # optional https address to download picks.json from
@@ -80,9 +82,10 @@ DEFAULTS = {
                                    #   pick was made at (usually bad team news); 0 = off
     "max_singles_per_day": 4,
     "singles_profit_only": True,   # a single may only use money above bankroll_start
-    "fallback_singles": True,      # if leg 1 loses, bet leg 2 as a single instead
+    "fallback_singles": False,     # Don, 25 Oct: if leg 1 loses, leg 2 is never bet on its own.
+                                   #   True = bet leg 2 as a single instead.
     "log_closing_price": True,     # note the price at kick-off, to compare with ours
-    "bet_check": "leg",            # "leg": every leg must reach its own min_odds.
+    "bet_check": "whole",          # Don, 24 Oct: "whole". "leg": every leg must reach its own min_odds.
                                    # "whole": judge the whole bet (Don's rule, see step_pending):
                                    #   a single must pay single_min_odds or more, a double's
                                    #   combined price must reach min_combined_odds, and the
