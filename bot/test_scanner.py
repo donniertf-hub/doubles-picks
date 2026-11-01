@@ -17,9 +17,10 @@ NOW = datetime(2026, 10, 31, 4, 20, tzinfo=timezone.utc)
 # ---------------------------------------------------------------- fake results
 
 def season_csv(rows):
-    out = ["Div,Date,Time,HomeTeam,AwayTeam,FTHG,FTAG,FTR"]
+    out = ["Div,Date,Time,HomeTeam,AwayTeam,FTHG,FTAG,FTR,HC,AC"]
     for d, h, a, hg, ag in rows:
-        out.append(f"N1,{d},15:00,{h},{a},{hg},{ag},X")
+        hc, ac = (9, 3) if h in ("Goals Town", "Net FC") else (5, 5)
+        out.append(f"N1,{d},15:00,{h},{a},{hg},{ag},X,{hc},{ac}")
     return "\n".join(out) + "\n"
 
 
@@ -66,12 +67,19 @@ class FakeBF:
     def _call(self, api, op, body):
         self.calls.append(op)
         if op == "listMarketCatalogue":
-            mtype = body["filter"]["marketTypeCodes"][0]
+            flt = body["filter"]
+            if "textQuery" in flt:
+                def wanted(m):
+                    return flt["textQuery"].lower().rstrip("*") in m.get("name", "").lower()
+            else:
+                def wanted(m):
+                    return m["type"] == flt["marketTypeCodes"][0]
             rows = []
             for ev in self.events:
                 for m in ev["markets"]:
-                    if m["type"] == mtype:
+                    if wanted(m):
                         rows.append({"marketId": m["id"], "marketStartTime": ev["start"],
+                                     "marketName": m.get("name", m["type"]),
                                      "event": {"id": ev["id"], "name": ev["name"], "openDate": ev["start"]},
                                      "competition": {"name": ev["comp"]},
                                      "runners": [{"selectionId": r[0], "runnerName": r[1], "sortPriority": i + 1,
@@ -105,7 +113,13 @@ def event(eid, name, comp, home_p=2.0, away_p=3.5, over=1.6, under=2.4, yes=1.7,
         {"id": f"1.{eid}4", "type": "ASIAN_HANDICAP",
          "runners": [(8, home, 1.9, -1.5), (9, away, 1.95, 1.5),
                      (8, home, 1.3, -0.5), (9, away, 3.2, 0.5),
-                     (8, home, 1.6, -1.0), (9, away, 2.3, 1.0)]}], **kw)
+                     (8, home, 1.6, -1.0), (9, away, 2.3, 1.0)]},
+        {"id": f"1.{eid}5", "type": "OTHER", "name": "Corners Over/Under 10.5",
+         "runners": [(10, "Under 10.5", 1.9), (11, "Over 10.5", 1.9)]},
+        {"id": f"1.{eid}6", "type": "OTHER", "name": "Corner Match Bet",
+         "runners": [(12, home, 1.6), (13, "Tie", 9.0), (14, away, 2.6)]},
+        {"id": f"1.{eid}7", "type": "OTHER", "name": "First Half Corners",
+         "runners": [(15, "Under 4.5", 1.8), (16, "Over 4.5", 2.0)]}], **kw)
 
 
 # ---------------------------------------------------------------- tests
@@ -262,3 +276,18 @@ def test_asian_handicap_prices_and_chances_are_listed():
     assert abs(keys["ah_home_-0.5"]["model"] - keys["home"]["model"]) < 0.2
     bets = [r["bet"] for r in res["best_value"] + res["rule_qualifiers"]]
     assert all("ah_" not in b for b in bets)
+
+
+def test_corner_stats_and_markets_are_listed():
+    bf = FakeBF([event(1, "Goals Town v Net FC", "Dutch Eredivisie")])
+    res = S.scan(bf, fetch=fetch, now=NOW, log=lambda m: None)
+    m = res["matches"][0]
+    assert m["home_team"]["corners_for"] > m["home_team"]["corners_against"]
+    assert m["expected_corners"] and m["expected_corners"][0] > m["expected_corners"][1]
+    keys = {s["selection"]: s for s in m["selections"]}
+    assert keys["corners_over_10.5"]["price"] == 1.9
+    assert keys["corners_over_10.5"]["betfair"] == ["Corners Over/Under 10.5", "Over 10.5"]
+    assert abs(keys["corners_over_10.5"]["model"] + keys["corners_under_10.5"]["model"] - 100) < 0.2
+    assert keys["corners_home"]["model"] > keys["corners_away"]["model"]
+    assert keys["corners_home"]["betfair"] == ["Corner Match Bet", "Goals Town"]
+    assert not any(k.startswith("corners_") and "4.5" in k for k in keys)   # first half left out

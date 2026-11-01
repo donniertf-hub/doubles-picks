@@ -23,6 +23,7 @@ prices, under "no_stats", so they can be researched by hand.
 import csv
 import functools
 import io
+import re
 import json
 import math
 import os
@@ -73,7 +74,7 @@ EXTRA_COUNTRY_WORDS = {"usa": "us", "mls": "us", "american": "us", "argentina": 
                        "switzerland": "swiss"}
 SKIP_COMPETITION_WORDS = ("women", "womens", "u17", "u18", "u19", "u20", "u21", "u23",
                           "youth", "reserve", "friendl", "futsal", "virtual", "esoccer")
-MARKET_TYPES = ("MATCH_ODDS", "OVER_UNDER_25", "BOTH_TEAMS_TO_SCORE", "ASIAN_HANDICAP")
+MARKET_TYPES = ("MATCH_ODDS", "OVER_UNDER_25", "BOTH_TEAMS_TO_SCORE", "ASIAN_HANDICAP", "CORNERS")
 AH_LINES = (-2.5, -1.5, -0.5, 0.5, 1.5, 2.5)   # half lines only: no pushes or half wins
 
 NAME_STOP = {"fc", "afc", "cf", "sc", "ac", "cd", "ud", "sv", "fk", "bk", "if", "sk", "club",
@@ -199,8 +200,13 @@ def parse_results(text, all_seasons=False, today=None):
             hg, ag = int(float(hg)), int(float(ag))
         except ValueError:
             continue
+        try:
+            hc, ac = int(float(r.get("HC"))), int(float(r.get("AC")))
+        except (TypeError, ValueError):
+            hc = ac = None
         rows.append({"date": when, "home": home.strip(), "away": away.strip(),
-                     "hg": hg, "ag": ag, "season": str(r.get("Season", "")).strip()})
+                     "hg": hg, "ag": ag, "hc": hc, "ac": ac,
+                     "season": str(r.get("Season", "")).strip()})
     if all_seasons and rows:
         latest = max(rows, key=lambda x: x["date"])
         season = latest["season"]
@@ -217,11 +223,13 @@ def parse_results(text, all_seasons=False, today=None):
 
 
 def team_stats(rows):
-    teams, league = {}, {"n": 0, "hg": 0, "ag": 0, "o25": 0, "btts": 0}
+    teams, league = {}, {"n": 0, "hg": 0, "ag": 0, "o25": 0, "btts": 0, "cn": 0, "hc": 0, "ac": 0}
 
     def blank():
         return {"n": 0, "gf": 0, "ga": 0, "o25": 0, "btts": 0, "cs": 0, "fts": 0,
-                "hn": 0, "hgf": 0, "hga": 0, "an": 0, "agf": 0, "aga": 0, "form": []}
+                "hn": 0, "hgf": 0, "hga": 0, "an": 0, "agf": 0, "aga": 0, "form": [],
+                "cn": 0, "cf": 0, "ca": 0, "hcn": 0, "hcf": 0, "hca": 0,
+                "acn": 0, "acf": 0, "aca": 0}
     for r in sorted(rows, key=lambda x: x["date"]):
         total, both = r["hg"] + r["ag"], r["hg"] > 0 and r["ag"] > 0
         league["n"] += 1
@@ -229,6 +237,11 @@ def team_stats(rows):
         league["ag"] += r["ag"]
         league["o25"] += total >= 3
         league["btts"] += both
+        corners = r.get("hc") is not None
+        if corners:
+            league["cn"] += 1
+            league["hc"] += r["hc"]
+            league["ac"] += r["ac"]
         for side, gf, ga in (("home", r["hg"], r["ag"]), ("away", r["ag"], r["hg"])):
             t = teams.setdefault(r[side], blank())
             t["n"] += 1
@@ -243,6 +256,14 @@ def team_stats(rows):
             t[p + "gf"] += gf
             t[p + "ga"] += ga
             t["form"].append("W" if gf > ga else "D" if gf == ga else "L")
+            if corners:
+                cf, ca = (r["hc"], r["ac"]) if side == "home" else (r["ac"], r["hc"])
+                t["cn"] += 1
+                t["cf"] += cf
+                t["ca"] += ca
+                t[p + "cn"] += 1
+                t[p + "cf"] += cf
+                t[p + "ca"] += ca
     return teams, league
 
 
@@ -252,7 +273,9 @@ def summarise(t):
             "over25": round(100 * t["o25"] / n), "btts": round(100 * t["btts"] / n),
             "clean_sheets": round(100 * t["cs"] / n), "failed_to_score": round(100 * t["fts"] / n),
             "home": [t["hn"], t["hgf"], t["hga"]], "away": [t["an"], t["agf"], t["aga"]],
-            "last5": "".join(t["form"][-5:])}
+            "last5": "".join(t["form"][-5:]),
+            "corners_for": round(t["cf"] / t["cn"], 2) if t["cn"] else None,
+            "corners_against": round(t["ca"] / t["cn"], 2) if t["cn"] else None}
 
 
 def load_stats(fetch=http_text, today=None, log=print):
@@ -333,11 +356,56 @@ def model(home, away, league):
     return out
 
 
+def corner_model(home, away, league):
+    """Expected corners for each side, the same way as goals; None without
+    enough corner data. Corners vary more than a Poisson model allows, so the
+    chances are a rough guide, best near the middle lines."""
+    if league["cn"] < 20 or home["cn"] < 5 or away["cn"] < 5:
+        return None
+    lh, la = league["hc"] / league["cn"], league["ac"] / league["cn"]
+    lavg = (lh + la) / 2
+
+    def rate(c, n, base):
+        return shrink((c / n) / base, n) if n and base else 1.0
+    att_h = (rate(home["hcf"], home["hcn"], lh) + rate(home["cf"], home["cn"], lavg)) / 2
+    def_a = (rate(away["aca"], away["acn"], lh) + rate(away["ca"], away["cn"], lavg)) / 2
+    att_a = (rate(away["acf"], away["acn"], la) + rate(away["cf"], away["cn"], lavg)) / 2
+    def_h = (rate(home["hca"], home["hcn"], la) + rate(home["ca"], home["cn"], lavg)) / 2
+    xh, xa = lh * att_h * def_a, la * att_a * def_h
+    ph = [poisson(k, xh) for k in range(31)]
+    pa = [poisson(k, xa) for k in range(31)]
+    total = [0.0] * 61
+    more_h = more_a = 0.0
+    for i, p1 in enumerate(ph):
+        for j, p2 in enumerate(pa):
+            total[i + j] += p1 * p2
+            if i > j:
+                more_h += p1 * p2
+            elif j > i:
+                more_a += p1 * p2
+    return {"xc": [round(xh, 2), round(xa, 2)], "total": total, "home": more_h, "away": more_a}
+
+
+def corner_chance(cm, key):
+    if not cm:
+        return None
+    if key in ("corners_home", "corners_away"):
+        return cm[key.split("_")[1]]
+    _, side, line = key.split("_")
+    over = sum(p for n, p in enumerate(cm["total"]) if n > float(line))
+    return over if side == "over" else 1 - over
+
+
 # ------------------------------------------------------------------ Betfair
 
 def catalogue(bf, mtype, start, end, depth=0):
-    body = {"filter": {"eventTypeIds": ["1"], "marketTypeCodes": [mtype], "inPlayOnly": False,
-                       "marketStartTime": {"from": iso(start), "to": iso(end)}},
+    flt = {"eventTypeIds": ["1"], "inPlayOnly": False,
+           "marketStartTime": {"from": iso(start), "to": iso(end)}}
+    if mtype == "CORNERS":
+        flt["textQuery"] = "Corner*"          # Betfair's corner markets go by several names and types
+    else:
+        flt["marketTypeCodes"] = [mtype]
+    body = {"filter": flt,
             "marketProjection": ["EVENT", "COMPETITION", "RUNNER_DESCRIPTION", "MARKET_START_TIME"],
             "sort": "FIRST_TO_START", "maxResults": 1000}
     rows = bf._call("betting", "listMarketCatalogue", body) or []
@@ -357,12 +425,12 @@ def betfair_matches(bf, start, end):
             m = matches.setdefault(eid, {
                 "event_id": eid, "event": ev.get("name", ""), "competition": comp.get("name", ""),
                 "kickoff": row.get("marketStartTime") or ev.get("openDate"), "prices": {},
-                "matched": 0.0})
+                "names": {}, "matched": 0.0})
             runners = {}
             for r in row.get("runners", []) or []:
                 runners[(r.get("selectionId"), float(r.get("handicap") or 0))] = (
                     str(r.get("runnerName", "")), r.get("sortPriority"))
-            markets[row["marketId"]] = (eid, mtype, runners)
+            markets[row["marketId"]] = (eid, mtype, runners, str(row.get("marketName", "")))
     ids = list(markets)
     for i in range(0, len(ids), 40):
         books = bf._call("betting", "listMarketBook", {
@@ -372,7 +440,7 @@ def betfair_matches(bf, start, end):
             info = markets.get(book.get("marketId"))
             if not info or book.get("inplay") or str(book.get("status", "")).upper() != "OPEN":
                 continue
-            eid, mtype, runners = info
+            eid, mtype, runners, market_name = info
             m = matches[eid]
             m["matched"] += float(book.get("totalMatched") or 0)
             for r in book.get("runners", []) or []:
@@ -382,14 +450,36 @@ def betfair_matches(bf, start, end):
                 if not backs or str(r.get("status", "ACTIVE")).upper() != "ACTIVE":
                     continue
                 price, size = backs[0].get("price"), backs[0].get("size")
-                key = selection_key(mtype, name, order, line, m["event"])
-                if key:
+                key = selection_key(mtype, name, order, line, m["event"], market_name)
+                if key and key not in m["prices"]:
                     m["prices"][key] = [price, round(float(size or 0), 2)]
+                    m["names"][key] = [market_name, name]
     return matches
 
 
-def selection_key(mtype, name, order, line=0.0, event=""):
+def selection_key(mtype, name, order, line=0.0, event="", market_name=""):
     low = name.lower()
+    if mtype == "CORNERS":
+        mlow = market_name.lower()
+        if "corner" not in mlow or "half" in mlow or "handicap" in mlow:
+            return None
+        found = re.match(r"^(over|under)\s+(\d+(?:\.\d+)?)", low) or \
+            (re.match(r"^(over|under)\b", low) and re.search(r"(\d+\.5)", mlow))
+        if found:
+            side = "over" if low.startswith("over") else "under"
+            number = found.group(2) if found.re.groups >= 2 else found.group(1)
+            if not number.endswith(".5"):
+                return None
+            return f"corners_{side}_{float(number):g}"
+        if "match bet" in mlow or "most corners" in mlow:
+            sides = split_event(event)
+            if not sides:
+                return None
+            h, a = name_score(name, sides[0]), name_score(name, sides[1])
+            if max(h, a) < 0.6 or h == a:
+                return None
+            return "corners_home" if h > a else "corners_away"
+        return None
     if mtype == "ASIAN_HANDICAP":
         sides = split_event(event)
         if not sides or line not in AH_LINES:
@@ -461,6 +551,7 @@ def assess(match, stats, commission=0.05):
     lg = stats[code]
     home, away = lg["teams"][hname], lg["teams"][aname]
     probs = model(home, away, lg["league"])
+    cm = corner_model(home, away, lg["league"])
     hs, as_ = summarise(home), summarise(away)
     rules = []
     if hs["played"] >= 5 and as_["played"] >= 5:
@@ -474,18 +565,21 @@ def assess(match, stats, commission=0.05):
             rules.append(("goals", "under25"))
     ln = max(lg["league"]["n"], 1)
     picks = []
-    for key, p in probs.items():
-        if key == "xg" or key == "draw":
+    corner_keys = [k for k in match["prices"] if k.startswith("corners_")]
+    for key, p in list(probs.items()) + [(k, corner_chance(cm, k)) for k in corner_keys]:
+        if key == "xg" or key == "draw" or p is None:
             continue
         if key.startswith("ah_") and key not in match["prices"]:
             continue
         price = (match["prices"].get(key) or [None, 0])
         picks.append({"selection": key, "model": round(p * 100, 1), "price": price[0],
                       "available": price[1], "value": value(p, price[0], commission),
-                      "rule": next((r for r, k in rules if k == key), None)})
+                      "rule": next((r for r, k in rules if k == key), None),
+                      "betfair": match["names"].get(key)})
     return {"event": match["event"], "competition": match["competition"],
             "league": lg["name"], "kickoff": match["kickoff"], "event_id": match["event_id"],
             "matched_on_betfair": round(match["matched"]), "xg": probs["xg"],
+            "expected_corners": cm["xc"] if cm else None,
             "home_team": dict(hs, name=hname), "away_team": dict(as_, name=aname),
             "league_avg": {"goals": round((lg["league"]["hg"] + lg["league"]["ag"]) / ln, 2),
                            "over25": round(100 * lg["league"]["o25"] / ln),
@@ -523,12 +617,17 @@ def scan(bf, fetch=http_text, now=None, hours=36, commission=0.05, log=print, to
             if key.startswith("ah_"):
                 _, side, line = key.split("_")
                 bet = f"{sides[0] if side == 'home' else sides[1]} {line} (Asian Handicap)"
+            elif key in ("corners_home", "corners_away"):
+                bet = f"{sides[0] if key == 'corners_home' else sides[1]} most corners"
+            elif key.startswith("corners_"):
+                _, side, line = key.split("_")
+                bet = f"{side.title()} {line} corners"
             else:
                 bet = SELECTION_NAMES[key]
             rows.append({"event": a["event"], "league": a["league"], "kickoff": a["kickoff"],
                          "bet": bet, "price": s["price"],
                          "available": s["available"], "model": s["model"],
-                         "value": s["value"], "rule": s["rule"]})
+                         "value": s["value"], "rule": s["rule"], "betfair": s.get("betfair")})
     rule_rows = [r for r in rows if r["rule"]]
     value_rows = sorted((r for r in rows if not r["rule"] and r["model"] >= 50
                          and 1.25 <= r["price"] <= 4.0),
