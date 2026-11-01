@@ -1416,8 +1416,68 @@
    "returned": 0.0,
    "stake": 10.0,
    "status": "lost"
+  },
+  {
+   "covers": null,
+   "date": "2026-11-01",
+   "fallback": false,
+   "finished_at": null,
+   "id": "2026-11-01-a",
+   "in_play": 0,
+   "kind": "double",
+   "legs": [
+    {
+     "event": "Lugano vs Basel",
+     "kickoff": "2026-11-01T15:30:00Z",
+     "min_odds": 1.33,
+     "runner": "Over 2.5"
+    },
+    {
+     "event": "Belgrano vs Barracas",
+     "kickoff": "2026-11-01T21:30:00Z",
+     "min_odds": 1.43,
+     "runner": "Under 2.5"
+    }
+   ],
+   "note": "Betfair balance is lower than the bet",
+   "pl": null,
+   "placed": false,
+   "reserve": false,
+   "returned": null,
+   "stake": null,
+   "status": "pending"
+  },
+  {
+   "covers": null,
+   "date": "2026-11-01",
+   "fallback": false,
+   "finished_at": null,
+   "id": "2026-11-01-b",
+   "in_play": 0,
+   "kind": "double",
+   "legs": [
+    {
+     "event": "Telstar vs Utrecht",
+     "kickoff": "2026-11-01T13:30:00Z",
+     "min_odds": 1.37,
+     "runner": "Yes"
+    },
+    {
+     "event": "Boca vs River",
+     "kickoff": "2026-11-01T18:00:00Z",
+     "min_odds": 1.44,
+     "runner": "Under 2.5"
+    }
+   ],
+   "note": "Betfair balance is lower than the bet",
+   "pl": null,
+   "placed": false,
+   "reserve": false,
+   "returned": null,
+   "stake": null,
+   "status": "pending"
   }
  ],
  "exchange_balance": 0.0,
- "updated": "2026-11-01T04:33:07Z"
+ "updated": "2026-11-01T05:09:13Z"
 }
