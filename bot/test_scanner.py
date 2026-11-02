@@ -251,7 +251,7 @@ def test_failed_scan_does_not_stop_the_bot_and_retries_three_times():
             raise B.ExchangeError("Betfair down")
     folder = tempfile.mkdtemp()
     clock = {"now": datetime(2026, 10, 31, 4, 20, tzinfo=timezone.utc)}
-    cfg = dict(B.DEFAULTS, dry_run=True, status_file="", status_push=False)
+    cfg = dict(B.DEFAULTS, dry_run=True, status_file="", status_push=False, scan_time="04:15")
     bot = B.Bot(cfg, Broken([]), folder=folder, clock=lambda: clock["now"])
     bot.scan_fetch = fetch
     for _ in range(6):
@@ -333,3 +333,19 @@ def test_best_value_includes_rule_picks_too():
     assert any(r["rule"] for r in res["rule_qualifiers"])
     ranked = [(r["bet"], r["rule"]) for r in res["best_value"]]
     assert ("Over 2.5", "goals") in ranked          # rule picks compete in the same list
+
+
+def test_default_scan_runs_in_the_evening_before_the_night_picks():
+    folder = tempfile.mkdtemp()
+    os.makedirs(os.path.join(folder, "bot"))
+    bf = FakeBF([event(1, "Goals Town v Net FC", "Dutch Eredivisie")])
+    clock = {"now": datetime(2026, 11, 2, 21, 0, tzinfo=timezone.utc)}      # 21:00 UK in winter
+    cfg = dict(B.DEFAULTS, dry_run=True, status_file="", status_push=False)
+    assert cfg["scan_time"] == "21:55"
+    bot = B.Bot(cfg, bf, folder=os.path.join(folder, "bot"), clock=lambda: clock["now"])
+    bot.scan_fetch = fetch
+    bot.maybe_scan()
+    assert bot.state.get("scan_date") is None
+    clock["now"] = datetime(2026, 11, 2, 22, 0, tzinfo=timezone.utc)
+    bot.maybe_scan()
+    assert bot.state.get("scan_date") == "2026-11-02"

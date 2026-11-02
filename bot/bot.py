@@ -94,8 +94,8 @@ DEFAULTS = {
     "min_edge": 1.05,              # "whole" only: price x chance of winning (from the legs'
                                    #   confidence) must be at least this (5% edge, pays commission)
     "scan_enabled": True,          # once a day, list every Betfair football match with prices and
-                                   #   season stats in candidates.json for the morning picks (scanner.py)
-    "scan_time": "04:15",          # UK time to run the scan (before the 04:55 picks run)
+                                   #   season stats in candidates.json for the picks run (scanner.py)
+    "scan_time": "21:55",          # UK time to run the scan (before the 22:25 night picks run)
     "scan_hours_ahead": 36,
     "scan_file": "../candidates.json",
     "always_bet_doubles": True,    # Don, 30 Oct: a double in picks.json has been announced, so it
@@ -984,7 +984,7 @@ class Bot:
         now = self.clock()
         local = uk_time(now)
         today = local.date().isoformat()
-        hh, mm = (int(x) for x in str(c.get("scan_time", "04:15")).split(":"))
+        hh, mm = (int(x) for x in str(c.get("scan_time", "21:55")).split(":"))
         if (local.hour, local.minute) < (hh, mm) or self.state.get("scan_date") == today:
             return
         tries = self.state.get("scan_tries", {})

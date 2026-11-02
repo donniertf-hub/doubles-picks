@@ -1,4 +1,4 @@
-"""Checks today's bets in picks.json before the morning run publishes them.
+"""Checks the bets for one day in picks.json before the picks run publishes them.
 
 Run from the top of the repository:  python3 bot/check_picks.py
 Exit code 0 = publish. Exit code 1 = do not publish until every FAIL is fixed.
@@ -8,11 +8,15 @@ kind of bet (goals) and one country at a time, and the written instructions
 did not stop it because the run judged itself. These checks are code, so they
 apply every day whatever the run thinks.
 
+Which day: the file's "day" (YYYY-MM-DD) if it has one - the night run (22:25 UK,
+Don, 2 November 2026) writes the next day's bets and sets it - otherwise the UK
+date of "generated". Below, "today" means that day.
+
 What it checks for each bet whose id has today's UK date:
   * every leg has odds_seen, confidence, kickoff, track and country
   * the price and confidence tests for its tier (the bot no longer re-checks
     doubles on price, so this is the only check doubles get)
-  * kick-off timing: leg 1 at least 2 hours after the file was written, leg 2
+  * kick-off timing: leg 1 on that day and at least 2 hours after the file was written, leg 2
     long enough after leg 1 for it to finish, and no more than 36 hours after
   * South America: no goals or both-teams-to-score bets (red cards, Don 1 November 2026)
   * no selection twice, no match twice, at most 4 bets starting today
@@ -105,7 +109,7 @@ def check(picks, tracking=None, candidates=None, now=None):
     """Returns (fails, warnings, report_lines)."""
     tracking = tracking or {}
     generated = parse_time(picks["generated"]) if picks.get("generated") else (now or datetime.now(timezone.utc))
-    today = uk_date(now or generated)
+    today = str(picks["day"]) if picks.get("day") else uk_date(now or generated)
     fails, warns, lines = [], [], []
     bets = [(b, "double") for b in picks.get("doubles", [])] + [(b, "single") for b in picks.get("singles", [])]
     todays = [(b, k) for b, k in bets if str(b.get("id", "")).startswith(today)]
@@ -152,6 +156,8 @@ def check(picks, tracking=None, candidates=None, now=None):
         odds = [float(l["odds_seen"]) for l in legs]
         conf = [float(l["confidence"]) for l in legs]
         k1 = parse_time(legs[0]["kickoff"])
+        if uk_date(k1) != today:
+            fails.append(f"{bid}: first leg kicks off on {uk_date(k1)}, not on {today} (the bets' day)")
         if k1 < generated + timedelta(hours=2):
             fails.append(f"{bid}: first leg kicks off less than 2 hours after the file was written")
         if kind == "double":

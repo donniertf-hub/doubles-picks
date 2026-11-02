@@ -153,3 +153,25 @@ def test_no_goals_bets_on_south_american_football():
     p = picks(dbl("a", leg("Lanus vs Gimnasia", "Match Odds", "Lanus", "2026-11-07T12:00:00Z", 1.6, 75, "Argentina"),
                   leg("C vs D", "Match Odds", "C", "2026-11-07T15:00:00Z", 1.5, 75, "Italy")))
     assert not any("South American" in f for f in C.check(p)[0])   # winner bets are still fine
+
+
+def test_night_run_checks_the_next_day_named_in_the_file():
+    # the 22:25 night run writes Saturday's bets on Friday evening and sets "day"
+    p = good_day()
+    p["generated"] = "2026-11-06T22:40:00Z"
+    p["day"] = "2026-11-07"
+    fails, warns, lines = C.check(p, {}, {})
+    assert fails == [] and warns == []
+    assert sum("(double, tier 1)" in l for l in lines) == 4
+    # without "day" the same file would be checked for Friday and find nothing
+    del p["day"]
+    fails, warns, lines = C.check(p, {}, {})
+    assert not any("(double" in l for l in lines)
+
+
+def test_first_leg_must_be_on_the_bets_day():
+    p = good_day()
+    p["generated"], p["day"] = "2026-11-06T10:00:00Z", "2026-11-07"
+    p["doubles"][0]["legs"][0]["kickoff"] = "2026-11-06T22:00:00Z"     # Friday night
+    fails, _, _ = C.check(p, {}, {})
+    assert any("2026-11-07-a: first leg kicks off on 2026-11-06" in f for f in fails)

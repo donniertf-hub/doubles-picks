@@ -89,7 +89,7 @@ Two legs is a rolled double. One leg is a plain single. A leg looks like this:
 
 ## Daily market scan (candidates.json)
 
-Once a day at 04:15 UK time (`scan_time`), before the 04:55 picks run, the bot
+Once a day at 21:55 UK time (`scan_time`), before the 22:25 night picks run, the bot
 lists every football match Betfair has from 30 minutes to 36 hours ahead, with
 the Match Odds, Over/Under 2.5 and Both Teams To Score back prices. For leagues
 the free football-data.co.uk results files cover (about 38: England 5 divisions,
@@ -104,14 +104,16 @@ matches where one side is clearly stronger, with its win, handicap and corner
 prices; `rule_qualifiers` (Don's two rules) is for the scoreboard only. Matches
 in other leagues are still listed with their prices under `no_stats`.
 
-## Morning pick check (check_picks.py)
+## Pick check (check_picks.py)
 
-The morning run must run this before it publishes, from the top of the repository:
+The picks run must run this before it publishes, from the top of the repository:
 
     python3 bot/check_picks.py
 
-It fails (exit code 1) on any of today's bets that breaks the tier tests, the
-kick-off timing, the Brazil rule, the 4-a-day cap or the never-twice rule; when
+It checks the day named in picks.json's `"day"` (the night run, 22:25 UK, writes
+the next day's bets and sets it), or else the UK date of `"generated"`.
+It fails (exit code 1) on any of that day's bets that breaks the tier tests, the
+kick-off timing (leg 1 must start on that day), the Brazil rule, the 4-a-day cap or the never-twice rule; when
 more than half of today's legs are goals bets or from one country (unless a
 `mix_note` says which alternatives were checked and why they are weaker); and
 when a bet type that is losing money on the scoreboard (20+ priced selections)
@@ -128,7 +130,7 @@ the betting. Set `"scan_enabled": false` in config.json to turn it off.
 ## Rules it follows
 
 - 10 per bet while the pot is under 200, then 10 more for every further 100: 20 from 200, 30 from 300, and so on (Don, 25 October).
-- Doubles: every double in picks.json is placed once it has been announced, with no price checks at all (`always_bet_doubles`, Don, 30 October). The only price and value test a double gets is the morning run's `check_picks.py`.
+- Doubles: every double in picks.json is placed once it has been announced, with no price checks at all (`always_bet_doubles`, Don, 30 October). The only price and value test a double gets is the picks run's `check_picks.py`.
 - Singles: a single must pay evens or more (`single_min_odds`) and pass the value test (price x confidence of 1.05 or more, `min_edge`) at Betfair's own price.
 - At most 4 picks a day.
 - It never stakes more than its own pot, even if the account holds more.
