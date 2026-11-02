@@ -1,7 +1,7 @@
 {
  "bankroll_start": 50,
  "bot_pot_free": 108.48,
- "bot_pot_total": 158.48,
+ "bot_pot_total": 148.48,
  "doubles": [
   {
    "covers": null,
@@ -1654,9 +1654,9 @@
    "covers": null,
    "date": "2026-11-02",
    "fallback": false,
-   "finished_at": null,
+   "finished_at": "2026-11-02T21:35:29Z",
    "id": "2026-11-02-s1",
-   "in_play": 10.0,
+   "in_play": 0,
    "kind": "single",
    "legs": [
     {
@@ -1665,19 +1665,21 @@
      "kickoff": "2026-11-02T19:30:00Z",
      "min_odds": 2.61,
      "odds": 3.3,
+     "result": "LOSE",
+     "returns": 0.0,
      "runner": "Pogon",
      "stake": 10.0
     }
    ],
-   "note": "",
-   "pl": null,
+   "note": "leg 1 lost",
+   "pl": -10.0,
    "placed": true,
    "reserve": false,
-   "returned": null,
+   "returned": 0.0,
    "stake": 10.0,
-   "status": "matched"
+   "status": "lost"
   }
  ],
  "exchange_balance": 0.0,
- "updated": "2026-11-02T21:05:24Z"
+ "updated": "2026-11-02T21:35:29Z"
 }
