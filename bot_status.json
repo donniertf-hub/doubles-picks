@@ -1644,8 +1644,32 @@
    "returned": null,
    "stake": 10.0,
    "status": "matched"
+  },
+  {
+   "covers": null,
+   "date": "2026-11-02",
+   "fallback": false,
+   "finished_at": null,
+   "id": "2026-11-02-s1",
+   "in_play": 0,
+   "kind": "single",
+   "legs": [
+    {
+     "event": "Rakow vs Pogon",
+     "kickoff": "2026-11-02T19:30:00Z",
+     "min_odds": 2.61,
+     "runner": "Pogon"
+    }
+   ],
+   "note": "Pogon Szczecin has drifted to 3.35 from 2.9 (over 15% out), team news perhaps, not betting",
+   "pl": null,
+   "placed": false,
+   "reserve": false,
+   "returned": null,
+   "stake": null,
+   "status": "pending"
   }
  ],
  "exchange_balance": 24.59,
- "updated": "2026-11-02T04:53:50Z"
+ "updated": "2026-11-02T05:21:53Z"
 }
