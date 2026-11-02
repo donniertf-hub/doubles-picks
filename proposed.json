@@ -1,5 +1,5 @@
 {
- "generated": "2026-11-02T23:20:00Z",
+ "generated": "2026-11-02T22:50:00Z",
  "day": "2026-11-03",
  "doubles": [
   {
@@ -8,20 +8,15 @@
    "legs": [
     {
      "sport": "football",
-     "country": "England",
-     "league": "League One",
-     "event": "Huddersfield vs Luton",
-     "market": [
-      "Over/Under 2.5 Goals",
-      "Over/Under 2.5",
-      "Total Goals",
-      "Total"
-     ],
-     "runner": "Over 2.5",
-     "kickoff": "2026-11-03T19:45:00Z",
-     "confidence": 67,
-     "odds_seen": 1.6,
-     "min_odds": 1.44,
+     "country": "Europe",
+     "league": "Champions League",
+     "event": "Villarreal vs Paris St-G",
+     "market": "Match Odds",
+     "runner": "Paris",
+     "kickoff": "2026-11-03T20:00:00Z",
+     "confidence": 66,
+     "odds_seen": 1.58,
+     "min_odds": 1.42,
      "track": "confidence"
     },
     {
@@ -61,5 +56,5 @@
    ]
   }
  ],
- "mix_note": "2 of 3 legs are English (Huddersfield v Luton, Preston v Sheffield Utd). Every alternative check_picks.py lists is weaker for tomorrow: Rakow v Pogon (Pogon -2.5, -1.5, win), Sonderjyske v Copenhagen (Copenhagen -2.5, -1.5, win) and Mallorca v Cadiz (Mallorca win, -1.5) all kick off on 2 Nov, so they are not tomorrow's bets and cannot be used. Tomorrow's non-English options were weaker: other Champions League winners were too short or lacked a pairing (PSG 1.58 x Real Madrid 1.27 = 2.01, under 2.05), and the J2 under 2.5 games had no price I could confirm."
+ "mix_note": "2 of 3 legs are Champions League ('Europe': PSG at Villarreal, Arsenal at Slavia Prague), 1 is English (Preston v Sheffield Utd). Every alternative check_picks.py lists is weaker for tomorrow: Rakow v Pogon (Pogon -2.5, -1.5, win), Sonderjyske v Copenhagen (Copenhagen -2.5, -1.5, win) and Mallorca v Cadiz (Mallorca win, -1.5) all kick off on 2 Nov, so they are not tomorrow's bets and cannot be used. Tomorrow's non-Champions-League options were weaker: Huddersfield Over 2.5 (about 1.55 on most books) x Arsenal 1.31 = 2.03, under the 2.05 minimum, and goals-over is a LOSING bet type needing extra confidence; Sirius (Sweden) to win is only 1.26 (-385) so it cannot reach 2.05 in any double; the J2 under 2.5 games had no price I could confirm; Norwich at Derby fell under the 55 single-confidence minimum."
 }
