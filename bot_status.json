@@ -1,7 +1,7 @@
 {
  "bankroll_start": 50,
  "bot_pot_free": 108.48,
- "bot_pot_total": 148.48,
+ "bot_pot_total": 133.09,
  "doubles": [
   {
    "covers": null,
@@ -1545,9 +1545,9 @@
    "covers": null,
    "date": "2026-11-01",
    "fallback": false,
-   "finished_at": null,
+   "finished_at": "2026-11-02T21:43:33Z",
    "id": "2026-11-01-d",
-   "in_play": 15.39,
+   "in_play": 0,
    "kind": "double",
    "legs": [
     {
@@ -1567,17 +1567,19 @@
      "kickoff": "2026-11-02T19:45:00Z",
      "min_odds": 1.39,
      "odds": 1.56,
+     "result": "LOSE",
+     "returns": 0.0,
      "runner": "Atalanta",
      "stake": 15.39
     }
    ],
-   "note": "",
-   "pl": null,
+   "note": "leg 2 lost",
+   "pl": -10.0,
    "placed": true,
    "reserve": false,
-   "returned": null,
+   "returned": 0.0,
    "stake": 10.0,
-   "status": "matched"
+   "status": "lost"
   },
   {
    "covers": null,
@@ -1681,5 +1683,5 @@
   }
  ],
  "exchange_balance": 0.0,
- "updated": "2026-11-02T21:35:29Z"
+ "updated": "2026-11-02T21:43:33Z"
 }
