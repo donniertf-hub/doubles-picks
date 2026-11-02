@@ -4909,6 +4909,130 @@
    "odds": 2.9,
    "in_picks": true,
    "result": null
+  },
+  {
+   "date": "2026-11-03",
+   "track": "confidence",
+   "confidence": 67,
+   "gap": 4.5,
+   "league": "England League One",
+   "league_goals": 2.82,
+   "played": [
+    13,
+    13
+   ],
+   "scored": [
+    2.08,
+    2.0
+   ],
+   "conceded": [
+    0.85,
+    1.54
+   ],
+   "over25": [
+    69,
+    69
+   ],
+   "event": "Huddersfield vs Luton",
+   "market": "Over/Under 2.5 Goals",
+   "runner": "Over 2.5",
+   "kickoff": "2026-11-03T19:45:00Z",
+   "odds": 1.6,
+   "in_picks": true,
+   "result": null
+  },
+  {
+   "date": "2026-11-03",
+   "track": "confidence",
+   "confidence": 78,
+   "gap": 1.7,
+   "league": "Europe Champions League",
+   "league_goals": null,
+   "played": [
+    3,
+    3
+   ],
+   "scored": [
+    null,
+    null
+   ],
+   "conceded": [
+    null,
+    null
+   ],
+   "over25": [
+    null,
+    null
+   ],
+   "event": "Slavia Prague vs Arsenal",
+   "market": "Match Odds",
+   "runner": "Arsenal",
+   "kickoff": "2026-11-04T20:00:00Z",
+   "odds": 1.31,
+   "in_picks": true,
+   "result": null
+  },
+  {
+   "date": "2026-11-03",
+   "track": "confidence",
+   "confidence": 56,
+   "gap": 8.4,
+   "league": "England Championship",
+   "league_goals": 2.93,
+   "played": [
+    13,
+    13
+   ],
+   "scored": [
+    0.77,
+    1.46
+   ],
+   "conceded": [
+    2.08,
+    1.15
+   ],
+   "over25": [
+    62,
+    54
+   ],
+   "event": "Preston vs Sheffield Utd",
+   "market": "Match Odds",
+   "runner": "Sheffield Utd",
+   "kickoff": "2026-11-03T19:45:00Z",
+   "odds": 2.1,
+   "in_picks": true,
+   "result": null
+  },
+  {
+   "date": "2026-11-03",
+   "track": "confidence",
+   "confidence": 70,
+   "gap": 6.7,
+   "league": "Europe Champions League",
+   "league_goals": null,
+   "played": [
+    null,
+    null
+   ],
+   "scored": [
+    null,
+    null
+   ],
+   "conceded": [
+    null,
+    null
+   ],
+   "over25": [
+    null,
+    null
+   ],
+   "event": "Villarreal vs PSG",
+   "market": "Match Odds",
+   "runner": "PSG",
+   "kickoff": "2026-11-03T20:00:00Z",
+   "odds": 1.58,
+   "in_picks": false,
+   "result": null
   }
  ]
 }
