@@ -2,8 +2,8 @@
  "note": "Pot from Fri 16 Oct 2026 (start 50). Reset on 17 Oct to the real record: only bets the bot actually placed count. Ids in 'skipped' were never bet. When bot_status.json is fresh it is the source. 17 Oct: Don confirmed 2026-10-17-b and -c count as placed (5 each, both leg 1 won, leg 2 on Sun 18 Oct, still open); 2026-10-17-a was not bet. 24 Oct: Don set the pot to 91.18 free with 2026-10-24-a (5.00, Porto leg) the only open bet; stored pot 96.18 includes that 5.00 stake. 25 Oct: Don confirmed 24-b and 24-d won, 24-c lost (Heidenheim drew); Rangers was not bet on its own. 27 Oct: Don's rule - the pot only moves when a bet finishes: pot = bot_pot_free plus the stake of each open placed bet (leg 1 winnings riding on leg 2 not counted until leg 2 settles). 27 Oct: posts use the bot's settled pot minus a fixed 5.42 posting offset (entry adjustment-posting-offset), so they continue from 85.55. 29 Oct: pot set to the bot's real figure 115.90 (no posting offset), matching the posts since 27 Oct night.",
  "start_date": "2026-10-16",
  "starting_pot": 50.0,
- "pot": 143.89,
- "updated": "2026-11-01T22:50:00Z",
+ "pot": 148.48,
+ "updated": "2026-11-02T05:30:00Z",
  "settled": [
   {
    "id": "2026-10-16-c",
@@ -462,6 +462,34 @@
    "pl": 14.08,
    "pot_after": 143.89,
    "source": "bot: bot_status.json updated 2026-11-01T22:24:47Z (free 93.89 + open stakes 50.00 on 11-01-a, -c, -d, 11-02-a, -b)"
+  },
+  {
+   "id": "2026-11-01-a",
+   "settled_on": "2026-11-01",
+   "stake": 10.0,
+   "legs": "Lugano v Basel Over 2.5 2-1 won > Belgrano v Barracas Under 2.5 2-2 lost",
+   "prices": [
+    1.49,
+    1.66
+   ],
+   "result": "lost",
+   "pl": -10.0,
+   "pot_after": 133.89,
+   "source": "bot_status.json"
+  },
+  {
+   "id": "2026-11-01-c",
+   "settled_on": "2026-11-01",
+   "stake": 10.0,
+   "legs": "Charleroi v La Louviere Charleroi 5-2 won > Nashville v Red Bulls Nashville 3-2 won",
+   "prices": [
+    1.61,
+    1.55
+   ],
+   "result": "won",
+   "pl": 14.59,
+   "pot_after": 148.48,
+   "source": "bot_status.json"
   }
  ],
  "skipped": [

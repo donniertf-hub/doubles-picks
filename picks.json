@@ -1,5 +1,5 @@
 {
-  "generated": "2026-11-01T22:07:00Z",
+  "generated": "2026-11-02T05:03:59Z",
   "doubles": [
     {
       "id": "2026-11-02-a",
@@ -66,6 +66,26 @@
       ]
     }
   ],
-  "singles": [],
-  "note": "Published 1 Nov 22:07 with Don's approval, at Sunday-night prices: Monday's 2026-11-02-a and -b. Sunday's 2026-11-01-c and -d are already placed and run their course in the bot; they are dropped from this file because their first legs have started. The 5am run keeps a and b; they count towards Monday's 4 and meet Monday's minimum of 2."
+  "singles": [
+    {
+      "id": "2026-11-02-s1",
+      "tier": 1,
+      "legs": [
+        {
+          "sport": "football",
+          "country": "Poland",
+          "league": "Ekstraklasa",
+          "event": "Rakow vs Pogon",
+          "market": "Match Odds",
+          "runner": "Pogon",
+          "kickoff": "2026-11-02T19:30:00Z",
+          "confidence": 55,
+          "odds_seen": 2.9,
+          "min_odds": 2.61,
+          "track": "confidence"
+        }
+      ]
+    }
+  ],
+  "note": "5am run 2 Nov: 2026-11-02-a and -b kept (already placed by the bot at Sunday-night prices); added single s1 (Pogon at bottom-club Rakow)."
 }
