@@ -87,5 +87,8 @@
       ]
     }
   ],
-  "note": "5am run 2 Nov: 2026-11-02-a and -b kept (already placed by the bot at Sunday-night prices); added single s1 (Pogon at bottom-club Rakow)."
+  "note": "5am run 2 Nov: 2026-11-02-a and -b kept (already placed by the bot at Sunday-night prices); added single s1 (Pogon at bottom-club Rakow).",
+  "hold": [
+    "2026-11-02-b"
+  ]
 }

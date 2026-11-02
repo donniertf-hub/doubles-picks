@@ -53,7 +53,7 @@ def approve(picks, proposed, tracking, wanted, now):
     new = {"generated": iso(now), "doubles": [], "singles": []}
     if proposed.get("day"):
         new["day"] = proposed["day"]
-    for key in ("withdrawn",):
+    for key in ("withdrawn", "hold"):
         if picks.get(key):
             new[key] = picks[key]
     for b, kind in bets_of(picks):          # keep bets whose first leg has not started

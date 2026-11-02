@@ -924,6 +924,10 @@ class Bot:
                 self.log(f"[{pid}] new pick: " +
                          " + ".join(f"{l['runner']} ({l['event']})" for l in d["legs"]))
         self.withdraw(picks.get("withdrawn") or [])
+        # "hold": doubles whose next leg must wait for Don's OK (Don, 2 November 2026).
+        # Leg 1's winnings stay in the account; taking the id out of the list releases
+        # the next leg; if its kick-off comes while held, the double is banked.
+        self.state["hold"] = [str(x) for x in (picks.get("hold") or [])]
 
     def withdraw(self, ids):
         """Drop picks listed under "withdrawn" in picks.json (Don, 1 Nov: a deposit
@@ -1057,6 +1061,9 @@ class Bot:
             else:
                 self.finish(d, "banked", f"leg {i + 1} not placed ({reason}), winnings kept")
             return
+        if not first and d["id"] in self.state.get("hold", []):
+            return self.note(d, f"leg {i + 1} on hold in picks.json: waiting for Don's OK, "
+                                f"{d['held']:.2f} kept back")
         if now < kickoff - timedelta(minutes=c["place_minutes_before"]):
             return
         if self.stopped():

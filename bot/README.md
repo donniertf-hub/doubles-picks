@@ -121,6 +121,13 @@ it fails. Bets not named are turned down and never placed. Then commit
 `picks.json`, `proposed.json` and `tracking.json` and push; the bot places the
 okayed bets within minutes. Tests: `python3 -m pytest -q test_approve.py`.
 
+## Holding a roll-over (hold)
+
+List a double's id in a top-level `"hold"` list in picks.json and, once leg 1
+wins, the bot keeps the winnings back instead of placing leg 2 (Don, 2 November
+2026). Taking the id out of the list releases leg 2. If leg 2 kicks off while
+the double is still held, the bot banks it: the winnings stay in the pot.
+
 ## Pick check (check_picks.py)
 
 The picks run must run this before it publishes, from the top of the repository:

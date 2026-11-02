@@ -954,9 +954,9 @@ def test_always_is_the_default():
     assert B.DEFAULTS["always_bet_doubles"] is True
 
 
-def write_picks(folder, doubles, withdrawn=()):
+def write_picks(folder, doubles, withdrawn=(), hold=()):
     with open(os.path.join(folder, "picks.json"), "w") as fh:
-        json.dump({"doubles": doubles, "withdrawn": list(withdrawn)}, fh)
+        json.dump({"doubles": doubles, "withdrawn": list(withdrawn), "hold": list(hold)}, fh)
 
 
 def test_withdrawn_pick_is_never_placed_even_when_money_arrives():
@@ -986,3 +986,30 @@ def test_withdraw_does_nothing_once_money_is_on():
         bot.tick()
         clock.now += timedelta(minutes=10)
     assert bot.state["doubles"]["d1"]["status"] == "won"
+
+
+def test_held_double_keeps_leg_one_winnings_until_released():
+    mb = FakeMB(fixtures(), {ARS: "WIN", LIL: "WIN"}, funds=1000)
+    bot, clock, folder = make([], mb)
+    write_picks(folder, [double("d1")], hold=["d1"])
+    clock.at(9, 0)
+    while clock.now <= T0.replace(hour=14, minute=30):     # leg 1 settles about 13:10
+        bot.tick()
+        clock.now += timedelta(minutes=10)
+    d = bot.state["doubles"]["d1"]
+    assert d["leg"] == 1 and d["status"] == "pending" and len(d["bets"]) == 1
+    assert "on hold" in d["note"]
+    write_picks(folder, [double("d1")])                      # Don okays the roll-over
+    while clock.now <= T0.replace(hour=23):
+        bot.tick()
+        clock.now += timedelta(minutes=10)
+    assert len(d["bets"]) == 2 and d["status"] == "won"
+
+
+def test_held_double_is_banked_if_never_released():
+    mb = FakeMB(fixtures(), {ARS: "WIN", LIL: "WIN"}, funds=1000)
+    bot, clock, folder = make([], mb)
+    write_picks(folder, [double("d1")], hold=["d1"])
+    play_through(bot, clock)
+    d = bot.state["doubles"]["d1"]
+    assert d["status"] == "banked" and len(d["bets"]) == 1 and d["returned"] > d["stake"]
