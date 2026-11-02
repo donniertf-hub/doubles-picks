@@ -1640,10 +1640,13 @@
      "stake": 10.0
     },
     {
+     "asked_odds": 1.5,
      "event": "Barcelona vs Aston Villa",
      "kickoff": "2026-11-03T20:00:00Z",
      "min_odds": 1.35,
-     "runner": "Yes"
+     "odds": 1.5007,
+     "runner": "Yes",
+     "stake": 17.06
     }
    ],
    "note": "",
@@ -1652,7 +1655,7 @@
    "reserve": false,
    "returned": null,
    "stake": 10.0,
-   "status": "pending"
+   "status": "matched"
   },
   {
    "covers": null,
@@ -1685,5 +1688,5 @@
   }
  ],
  "exchange_balance": 0.0,
- "updated": "2026-11-02T22:13:37Z"
+ "updated": "2026-11-02T22:15:41Z"
 }
