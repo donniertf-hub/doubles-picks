@@ -1,7 +1,7 @@
 {
  "bankroll_start": 50,
  "bot_pot_free": 108.48,
- "bot_pot_total": 153.87,
+ "bot_pot_total": 158.48,
  "doubles": [
   {
    "covers": null,
@@ -1585,7 +1585,7 @@
    "fallback": false,
    "finished_at": null,
    "id": "2026-11-02-a",
-   "in_play": 10.0,
+   "in_play": 14.61,
    "kind": "double",
    "legs": [
     {
@@ -1594,6 +1594,8 @@
      "kickoff": "2026-11-02T18:00:00Z",
      "min_odds": 1.32,
      "odds": 1.47,
+     "result": "WIN",
+     "returns": 14.61,
      "runner": "Copenhagen",
      "stake": 10.0
     },
@@ -1610,7 +1612,7 @@
    "reserve": false,
    "returned": null,
    "stake": 10.0,
-   "status": "matched"
+   "status": "pending"
   },
   {
    "covers": null,
@@ -1674,5 +1676,5 @@
   }
  ],
  "exchange_balance": 0.0,
- "updated": "2026-11-02T18:55:08Z"
+ "updated": "2026-11-02T19:53:15Z"
 }
