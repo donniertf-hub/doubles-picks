@@ -104,11 +104,28 @@ matches where one side is clearly stronger, with its win, handicap and corner
 prices; `rule_qualifiers` (Don's two rules) is for the scoreboard only. Matches
 in other leagues are still listed with their prices under `no_stats`.
 
+## Don okays every bet first (proposed.json and approve.py)
+
+Don, 2 November 2026: no bet goes to the bot until he has okayed it. The night
+picks run (22:25 UK) writes the next day's bets to `proposed.json`, which the
+bot never reads, and lists them for Don. When Don says which to place, run from
+the top of the repository:
+
+    python3 bot/approve.py all                          # every proposed bet
+    python3 bot/approve.py 2026-11-03-a 2026-11-03-s1   # only these
+    python3 bot/approve.py none                         # turn them all down
+
+It moves only the okayed bets into `picks.json` (keeping bets there whose first
+leg has not started), runs the pick check on the result and writes nothing if
+it fails. Bets not named are turned down and never placed. Then commit
+`picks.json`, `proposed.json` and `tracking.json` and push; the bot places the
+okayed bets within minutes. Tests: `python3 -m pytest -q test_approve.py`.
+
 ## Pick check (check_picks.py)
 
 The picks run must run this before it publishes, from the top of the repository:
 
-    python3 bot/check_picks.py
+    python3 bot/check_picks.py proposed.json     # or with no file name: picks.json
 
 It checks the day named in picks.json's `"day"` (the night run, 22:25 UK, writes
 the next day's bets and sets it), or else the UK date of `"generated"`.

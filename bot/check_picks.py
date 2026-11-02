@@ -1,6 +1,6 @@
 """Checks the bets for one day in picks.json before the picks run publishes them.
 
-Run from the top of the repository:  python3 bot/check_picks.py
+Run from the top of the repository:  python3 bot/check_picks.py  (or: python3 bot/check_picks.py proposed.json)
 Exit code 0 = publish. Exit code 1 = do not publish until every FAIL is fixed.
 
 Why this exists (Don, 1 November 2026): the morning picks kept leaning on one
@@ -268,10 +268,16 @@ def load(path):
 
 
 def main(argv):
-    root = argv[1] if len(argv) > 1 else "."
-    picks = load(os.path.join(root, "picks.json"))
+    # python3 bot/check_picks.py                -> ./picks.json
+    # python3 bot/check_picks.py proposed.json  -> that file (the night run's proposal)
+    arg = argv[1] if len(argv) > 1 else "."
+    if arg.endswith(".json"):
+        path, root = arg, os.path.dirname(arg) or "."
+    else:
+        path, root = os.path.join(arg, "picks.json"), arg
+    picks = load(path)
     if picks is None:
-        print("FAIL: picks.json is missing or not valid JSON")
+        print(f"FAIL: {os.path.basename(path)} is missing or not valid JSON")
         return 1
     fails, warns, lines = check(picks, load(os.path.join(root, "tracking.json")),
                                 load(os.path.join(root, "candidates.json")))
