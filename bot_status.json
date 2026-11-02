@@ -1,6 +1,6 @@
 {
  "bankroll_start": 50,
- "bot_pot_free": 118.48,
+ "bot_pot_free": 108.48,
  "bot_pot_total": 153.87,
  "doubles": [
   {
@@ -1651,25 +1651,28 @@
    "fallback": false,
    "finished_at": null,
    "id": "2026-11-02-s1",
-   "in_play": 0,
+   "in_play": 10.0,
    "kind": "single",
    "legs": [
     {
+     "asked_odds": 3.3,
      "event": "Rakow vs Pogon",
      "kickoff": "2026-11-02T19:30:00Z",
      "min_odds": 2.61,
-     "runner": "Pogon"
+     "odds": 3.3,
+     "runner": "Pogon",
+     "stake": 10.0
     }
    ],
-   "note": "Pogon Szczecin has drifted to 3.35 from 2.9 (over 15% out), team news perhaps, not betting",
+   "note": "",
    "pl": null,
-   "placed": false,
+   "placed": true,
    "reserve": false,
    "returned": null,
-   "stake": null,
-   "status": "pending"
+   "stake": 10.0,
+   "status": "matched"
   }
  ],
  "exchange_balance": 24.59,
- "updated": "2026-11-02T05:21:53Z"
+ "updated": "2026-11-02T06:12:09Z"
 }
