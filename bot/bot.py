@@ -98,9 +98,12 @@ DEFAULTS = {
     "scan_time": "21:55",          # UK time to run the scan (before the 22:25 night picks run)
     "scan_hours_ahead": 36,
     "scan_file": "../candidates.json",
-    "always_bet_doubles": True,    # Don, 30 Oct: a double in picks.json has been announced, so it
-                                   #   goes on whatever the price. Skips min_odds, min_combined_odds,
-                                   #   min_edge and the drift check for doubles. False = checks back on.
+    "always_bet_doubles": True,    # Leg 1 of an announced double goes on whatever the price (skips
+                                   #   min_odds, min_combined_odds, min_edge and the drift check).
+                                   #   Leg 2 is always checked (see leg2_minutes_before). False = checks back on.
+    "leg2_minutes_before": 90,     # Don, 2 Nov: leg 2 goes on only from this long before its own kick-off,
+                                   #   and only if price x confidence is 1.0 or more and it has not drifted;
+                                   #   leg 1's winnings stay in the account until then (banked if never placed).
     "status_file": "../bot_status.json",  # written after every pass; "" = off
     "status_push": False,          # True: commit and push the status file to GitHub
     "status_push_minutes": 15,     # push at most this often, and only when it changed
@@ -1064,7 +1067,13 @@ class Bot:
         if not first and d["id"] in self.state.get("hold", []):
             return self.note(d, f"leg {i + 1} on hold in picks.json: waiting for Don's OK, "
                                 f"{d['held']:.2f} kept back")
-        if now < kickoff - timedelta(minutes=c["place_minutes_before"]):
+        # Leg 2 waits until shortly before its own kick-off, with leg 1's winnings kept
+        # in the account until then (Don, 2 November 2026).
+        window = c["place_minutes_before"] if first else c.get("leg2_minutes_before", 90)
+        if now < kickoff - timedelta(minutes=window):
+            if not first:
+                self.note(d, f"leg {i + 1} goes on from {window} minutes before its kick-off; "
+                             f"{d['held']:.2f} kept in the account until then")
             return
         if self.stopped():
             return self.note(d, "STOP file present, not betting")
@@ -1098,7 +1107,7 @@ class Bot:
         if not priced:
             return self.note(d, f"not enough money on offer for {info['runner']}")
         odds, best = priced
-        always = not single and bool(c.get("always_bet_doubles"))
+        always = not single and first and bool(c.get("always_bet_doubles"))
         whole = c.get("bet_check") == "whole" and all(
             l.get("confidence") is not None for l in d["legs"])
         if always:
@@ -1112,8 +1121,11 @@ class Bot:
                 if odds * chance + 1e-9 < float(c["min_edge"]):
                     return self.note(d, f"{info['runner']} is {odds}, too short for a "
                                         f"{leg['confidence']}% pick")
-            # Leg 2 of a double is always placed once leg 1 has won: a bet that
-            # was announced goes on (Don, 30 Oct). No value re-check here.
+            elif not first and odds * chance + 1e-9 < 1.0:
+                # Leg 1 has won: the rolled bet must still be worth more than it costs,
+                # otherwise the winnings stay in the account (Don, 2 November 2026).
+                return self.note(d, f"{info['runner']} is {odds}, too short for a "
+                                    f"{leg['confidence']}% pick, winnings kept if it stays there")
         else:
             floor = float(leg.get("min_odds") or 1.01) * (1 - float(c.get("min_odds_slack_percent") or 0) / 100)
             if odds + 1e-9 < floor:
