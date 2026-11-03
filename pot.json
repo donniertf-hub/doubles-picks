@@ -2,8 +2,8 @@
   "note": "Pot from Fri 16 Oct 2026 (start 50). Reset on 17 Oct to the real record: only bets the bot actually placed count. Ids in 'skipped' were never bet. When bot_status.json is fresh it is the source. 17 Oct: Don confirmed 2026-10-17-b and -c count as placed (5 each, both leg 1 won, leg 2 on Sun 18 Oct, still open); 2026-10-17-a was not bet. 24 Oct: Don set the pot to 91.18 free with 2026-10-24-a (5.00, Porto leg) the only open bet; stored pot 96.18 includes that 5.00 stake. 25 Oct: Don confirmed 24-b and 24-d won, 24-c lost (Heidenheim drew); Rangers was not bet on its own. 27 Oct: Don's rule - the pot only moves when a bet finishes: pot = bot_pot_free plus the stake of each open placed bet (leg 1 winnings riding on leg 2 not counted until leg 2 settles). 27 Oct: posts use the bot's settled pot minus a fixed 5.42 posting offset (entry adjustment-posting-offset), so they continue from 85.55. 29 Oct: pot set to the bot's real figure 115.90 (no posting offset), matching the posts since 27 Oct night.",
   "start_date": "2026-10-16",
   "starting_pot": 50.0,
-  "pot": 128.48,
-  "updated": "2026-11-02T22:45:00Z",
+  "pot": 123.09,
+  "updated": "2026-11-03T22:50:00Z",
   "settled": [
     {
       "id": "2026-10-16-c",
@@ -516,6 +516,35 @@
       "result": "lost",
       "pl": -10.0,
       "pot_after": 128.48,
+      "source": "bot_status.json"
+    },
+    {
+      "id": "2026-11-02-a",
+      "settled_on": "2026-11-03",
+      "stake": 10.0,
+      "legs": "Sonderjyske v Copenhagen Copenhagen won > Bodo Glimt v Lille Draw No Bet 0-0 void",
+      "prices": [
+        1.47,
+        1.42
+      ],
+      "result": "won",
+      "pl": 4.61,
+      "pot_after": 133.09,
+      "source": "bot_status.json",
+      "note": "leg 2 void (0-0 draw), leg 1 winnings returned"
+    },
+    {
+      "id": "2026-11-02-b",
+      "settled_on": "2026-11-03",
+      "stake": 10.0,
+      "legs": "Gil Vicente v Guimaraes Under 2.5 won > Barcelona v Aston Villa BTTS 3-0 lost",
+      "prices": [
+        1.72,
+        1.5007
+      ],
+      "result": "lost",
+      "pl": -10.0,
+      "pot_after": 123.09,
       "source": "bot_status.json"
     }
   ],
