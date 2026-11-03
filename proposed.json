@@ -1,60 +1,6 @@
 {
- "generated": "2026-11-02T22:50:00Z",
- "day": "2026-11-03",
- "doubles": [
-  {
-   "id": "2026-11-03-a",
-   "tier": 2,
-   "legs": [
-    {
-     "sport": "football",
-     "country": "Europe",
-     "league": "Champions League",
-     "event": "Villarreal vs Paris St-G",
-     "market": "Match Odds",
-     "runner": "Paris",
-     "kickoff": "2026-11-03T20:00:00Z",
-     "confidence": 66,
-     "odds_seen": 1.58,
-     "min_odds": 1.42,
-     "track": "confidence"
-    },
-    {
-     "sport": "football",
-     "country": "Europe",
-     "league": "Champions League",
-     "event": "Slavia vs Arsenal",
-     "market": "Match Odds",
-     "runner": "Arsenal",
-     "kickoff": "2026-11-04T20:00:00Z",
-     "confidence": 78,
-     "odds_seen": 1.31,
-     "min_odds": 1.17,
-     "track": "confidence"
-    }
-   ]
-  }
- ],
- "singles": [
-  {
-   "id": "2026-11-03-s1",
-   "tier": 1,
-   "legs": [
-    {
-     "sport": "football",
-     "country": "England",
-     "league": "Championship",
-     "event": "Preston vs Sheffield Utd",
-     "market": "Match Odds",
-     "runner": "Sheffield Utd",
-     "kickoff": "2026-11-03T19:45:00Z",
-     "confidence": 56,
-     "odds_seen": 2.1,
-     "min_odds": 1.89,
-     "track": "confidence"
-    }
-   ]
-  }
- ],
- "mix_note": "2 of 3 legs are Champions League ('Europe': PSG at Villarreal, Arsenal at Slavia Prague), 1 is English (Preston v Sheffield Utd). Every alternative check_picks.py lists is weaker for tomorrow: Rakow v Pogon (Pogon -2.5, -1.5, win), Sonderjyske v Copenhagen (Copenhagen -2.5, -1.5, win) and Mallorca v Cadiz (Mallorca win, -1.5) all kick off on 2 Nov, so they are not tomorrow's bets and cannot be used. Tomorrow's non-Champions-League options were weaker: Huddersfield Over 2.5 (about 1.55 on most books) x Arsenal 1.31 = 2.03, under the 2.05 minimum, and goals-over is a LOSING bet type needing extra confidence; Sirius (Sweden) to win is only 1.26 (-385) so it cannot reach 2.05 in any double; the J2 under 2.5 games had no price I could confirm; Norwich at Derby fell under the 55 single-confidence minimum."
+ "generated": "2026-11-03T22:37:15Z",
+ "day": "2026-11-04",
+ "doubles": [],
+ "singles": []
 }
