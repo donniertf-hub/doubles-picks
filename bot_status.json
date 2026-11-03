@@ -1,6 +1,6 @@
 {
  "bankroll_start": 50,
- "bot_pot_free": 108.48,
+ "bot_pot_free": 123.09,
  "bot_pot_total": 140.15,
  "doubles": [
   {
@@ -1585,9 +1585,9 @@
    "covers": null,
    "date": "2026-11-02",
    "fallback": false,
-   "finished_at": null,
+   "finished_at": "2026-11-03T21:53:57Z",
    "id": "2026-11-02-a",
-   "in_play": 14.61,
+   "in_play": 0,
    "kind": "double",
    "legs": [
     {
@@ -1607,17 +1607,19 @@
      "kickoff": "2026-11-03T20:00:00Z",
      "min_odds": 1.26,
      "odds": 1.42,
+     "result": "PUSH",
+     "returns": 14.61,
      "runner": "Bodo Glimt",
      "stake": 14.61
     }
    ],
-   "note": "",
-   "pl": null,
+   "note": "returned 14.61 from a 10.00 stake",
+   "pl": 4.61,
    "placed": true,
    "reserve": false,
-   "returned": null,
+   "returned": 14.61,
    "stake": 10.0,
-   "status": "matched"
+   "status": "won"
   },
   {
    "covers": null,
@@ -1688,5 +1690,5 @@
   }
  ],
  "exchange_balance": 0.0,
- "updated": "2026-11-03T21:37:54Z"
+ "updated": "2026-11-03T21:53:57Z"
 }
