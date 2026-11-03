@@ -14,7 +14,7 @@
   "picks_refresh_minutes": 15,
   "place_minutes_before": 90,
   "match_wait_seconds": 180,
-  "min_gap_minutes": 150,
+  "min_gap_minutes": 133,
   "settle_after_minutes": 100,
   "settle_poll_seconds": 300,
   "poll_seconds": 120,

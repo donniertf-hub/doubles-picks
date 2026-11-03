@@ -39,7 +39,7 @@ except Exception:                       # pragma: no cover
     UK = timezone.utc
 
 GOALS = ("Goals Over", "Goals Under", "BTTS Yes", "BTTS No", "Goal Lines")
-LEG2_GAP_MINUTES = {"football": 150, "soccer": 150, "rugby": 150, "basketball": 180,
+LEG2_GAP_MINUTES = {"football": 133, "soccer": 133, "rugby": 150, "basketball": 180,
                     "ice hockey": 190, "hockey": 190, "american football": 240, "baseball": 240}
 NOT_LEG_ONE = ("tennis", "cricket", "darts", "snooker", "boxing", "mma")
 TIER_LEG_MIN = {1: 70, 2: 62, "saturday": 62}
@@ -164,7 +164,7 @@ def check(picks, tracking=None, candidates=None, now=None):
             if str(legs[0].get("sport", "")).lower() in NOT_LEG_ONE:
                 fails.append(f"{bid}: {legs[0]['sport']} can only be leg 2 (start times are unpredictable)")
             k2 = parse_time(legs[1]["kickoff"])
-            gap = LEG2_GAP_MINUTES.get(str(legs[0].get("sport", "football")).lower(), 150)
+            gap = LEG2_GAP_MINUTES.get(str(legs[0].get("sport", "football")).lower(), 133)
             if k2 < k1 + timedelta(minutes=gap):
                 fails.append(f"{bid}: leg 2 starts less than {gap} minutes after leg 1, so leg 1 may not be settled")
             if k2 > k1 + timedelta(hours=36):

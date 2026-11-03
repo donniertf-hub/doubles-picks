@@ -161,7 +161,7 @@ the betting. Set `"scan_enabled": false` in config.json to turn it off.
 - When the pot can't cover a stake and nothing is in play, it stops. After 48
   hours it reads the Betfair balance. If money has been added it restarts with
   that balance as the new pot. If not, it looks again 48 hours later.
-- Leg 2 must kick off at least 150 minutes after leg 1, or the double is skipped,
+- Leg 2 must kick off at least 133 minutes (2h13m) after leg 1 (Don, 3 November), or the double is skipped,
   because the winnings can't be rolled in time.
 - If leg 2 can't be placed, the leg 1 winnings go back into the pot.
 - An empty file named `STOP` in the folder blocks all new bets.

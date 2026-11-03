@@ -111,7 +111,7 @@ def test_timing_brazil_duplicates_and_daily_cap():
                   leg("C vs D", "Both Teams To Score", "Yes", "2026-11-07T07:00:00Z", 1.5, 75, "Brazil")))
     fails = C.check(p)[0]
     assert any("less than 2 hours" in f for f in fails)
-    assert any("less than 150 minutes" in f for f in fails)
+    assert any("less than 133 minutes" in f for f in fails)
     assert any("South American" in f for f in fails)
     p = good_day()
     p["doubles"].append(dbl("e", leg("Lugano vs Basel", OU, "Over 2.5", "2026-11-07T12:00:00Z", 1.5, 74, "Switzerland"),
@@ -175,3 +175,12 @@ def test_first_leg_must_be_on_the_bets_day():
     p["doubles"][0]["legs"][0]["kickoff"] = "2026-11-06T22:00:00Z"     # Friday night
     fails, _, _ = C.check(p, {}, {})
     assert any("2026-11-07-a: first leg kicks off on 2026-11-06" in f for f in fails)
+
+
+def test_a_1745_leg_can_roll_onto_a_2000_leg():
+    # Don, 3 Nov: the gap can be 2h13m, so 17:45 -> 20:00 (2h15m) is fine; 2h10m is not
+    p = picks(dbl("a", leg("Fenerbahce vs Liverpool", "Match Odds", "Liverpool", "2026-11-07T17:45:00Z", 1.5, 75, "Europe"),
+                  leg("Slavia vs Arsenal", "Match Odds", "Arsenal", "2026-11-07T20:00:00Z", 1.45, 78, "England")))
+    assert not any("minutes after leg 1" in f for f in C.check(p)[0])
+    p["doubles"][0]["legs"][1]["kickoff"] = "2026-11-07T19:55:00Z"
+    assert any("less than 133 minutes" in f for f in C.check(p)[0])

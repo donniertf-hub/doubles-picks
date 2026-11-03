@@ -73,7 +73,8 @@ DEFAULTS = {
     "min_combined_odds": 2.0,      # a double must pay evens or better
     "place_minutes_before": 90,    # start trying this long before kick-off
     "match_wait_seconds": 180,     # cancel an unmatched bet after this and retry
-    "min_gap_minutes": 150,        # leg 2 must kick off this long after leg 1
+    "min_gap_minutes": 133,        # leg 2 must kick off this long after leg 1 (Don, 3 Nov: 2h13m,
+                                   #   so a 17:45 leg 1 can roll onto a 20:00 leg 2)
     "settle_after_minutes": 100,   # start checking for a result this long after kick-off
     "settle_poll_seconds": 300,
     "poll_seconds": 120,
