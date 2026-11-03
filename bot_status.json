@@ -1,7 +1,7 @@
 {
  "bankroll_start": 50,
  "bot_pot_free": 123.09,
- "bot_pot_total": 140.15,
+ "bot_pot_total": 123.09,
  "doubles": [
   {
    "covers": null,
@@ -1625,9 +1625,9 @@
    "covers": null,
    "date": "2026-11-02",
    "fallback": false,
-   "finished_at": null,
+   "finished_at": "2026-11-03T22:00:01Z",
    "id": "2026-11-02-b",
-   "in_play": 17.06,
+   "in_play": 0,
    "kind": "double",
    "legs": [
     {
@@ -1647,17 +1647,19 @@
      "kickoff": "2026-11-03T20:00:00Z",
      "min_odds": 1.35,
      "odds": 1.5007,
+     "result": "LOSE",
+     "returns": 0.0,
      "runner": "Yes",
      "stake": 17.06
     }
    ],
-   "note": "",
-   "pl": null,
+   "note": "leg 2 lost",
+   "pl": -10.0,
    "placed": true,
    "reserve": false,
-   "returned": null,
+   "returned": 0.0,
    "stake": 10.0,
-   "status": "matched"
+   "status": "lost"
   },
   {
    "covers": null,
@@ -1689,6 +1691,6 @@
    "status": "lost"
   }
  ],
- "exchange_balance": 0.0,
- "updated": "2026-11-03T21:53:57Z"
+ "exchange_balance": 0.11,
+ "updated": "2026-11-03T22:00:01Z"
 }
