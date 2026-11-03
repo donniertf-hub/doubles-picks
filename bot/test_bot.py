@@ -856,7 +856,7 @@ def test_whole_double_still_needs_evens():
     assert bot.state["doubles"]["d1"]["status"] == "skipped" and not mb.placed
 
 
-def test_whole_leg_two_kept_back_if_too_short():
+def test_whole_leg_two_always_placed_even_if_short():
     evs = fixtures()
     mb = FakeMB(evs, {ARS: "WIN", LIL: "WIN"})
     bot, clock, _ = make([conf_double(75, 75)], mb, bet_check="whole")
@@ -873,8 +873,7 @@ def test_whole_leg_two_kept_back_if_too_short():
         bot.tick()
         clock.now += B.timedelta(minutes=10)
     d = bot.state["doubles"]["d1"]
-    # Don, 2 Nov: 1.20 x 75% is under 1.0, so the winnings stay in the account
-    assert d["status"] == "banked" and len(mb.placed) == 1 and d["returned"] > d["stake"], d
+    assert d["status"] == "won" and len(mb.placed) == 2, d
 
 
 def test_whole_single_needs_evens():
@@ -912,12 +911,11 @@ if __name__ == "__main__":
 
 # ---- always_bet_doubles (Don, 30 Oct): an announced double goes on whatever the price
 
-def test_always_double_leg_one_goes_on_without_edge_leg_two_only_if_worth_it():
+def test_always_double_bets_without_edge():
     mb = FakeMB(fixtures(), {ARS: "WIN", LIL: "WIN"})
     bot, clock, _ = make([conf_double(65, 65)], mb, bet_check="whole", always_bet_doubles=True)
     play_through(bot, clock)
-    d = bot.state["doubles"]["d1"]
-    assert d["placed"] and len(mb.placed) == 1 and d["status"] == "banked"   # 1.46 x 65% < 1.0
+    assert bot.state["doubles"]["d1"]["status"] == "won" and len(mb.placed) == 2
 
 
 def test_always_double_bets_under_evens():
@@ -932,8 +930,7 @@ def test_always_double_bets_after_drift():
     pick = with_odds_seen(double(), first=1.20, second=1.10)           # both drifted out
     bot, clock, _ = make([pick], mb, always_bet_doubles=True)
     play_through(bot, clock)
-    d = bot.state["doubles"]["d1"]
-    assert d["placed"] and len(mb.placed) == 1 and d["status"] == "banked"   # leg 2 drifted: kept back
+    assert bot.state["doubles"]["d1"]["status"] == "won" and len(mb.placed) == 2
 
 
 def test_always_double_bets_below_min_odds():
@@ -942,8 +939,7 @@ def test_always_double_bets_below_min_odds():
     p["legs"][0]["min_odds"] = p["legs"][1]["min_odds"] = 1.90
     bot, clock, _ = make([p], mb, always_bet_doubles=True)
     play_through(bot, clock)
-    d = bot.state["doubles"]["d1"]
-    assert d["placed"] and len(mb.placed) == 1 and d["status"] == "banked"   # leg 2 under its minimum
+    assert bot.state["doubles"]["d1"]["status"] == "won" and len(mb.placed) == 2
 
 
 def test_always_still_respects_stop_file():
@@ -1017,22 +1013,3 @@ def test_held_double_is_banked_if_never_released():
     play_through(bot, clock)
     d = bot.state["doubles"]["d1"]
     assert d["status"] == "banked" and len(d["bets"]) == 1 and d["returned"] > d["stake"]
-
-
-def test_leg_two_waits_until_shortly_before_its_kickoff():
-    # leg 2 (Monaco) kicks off at 18:45; leg 1 wins about 13:10; leg 2 must not go on before 17:15
-    pick = {"id": "d1", "legs": [
-        {"event": "Arsenal vs Leeds", "runner": "Arsenal", "kickoff": "2026-10-10T11:30:00Z"},
-        {"event": "Monaco vs Toulouse", "runner": "Monaco", "kickoff": "2026-10-10T18:45:00Z"}]}
-    mb = FakeMB(fixtures(), {ARS: "WIN", MON: "WIN"}, funds=1000)
-    bot, clock, _ = make([pick], mb)
-    clock.at(9, 0)
-    while clock.now <= T0.replace(hour=17, minute=5):
-        bot.tick()
-        clock.now += timedelta(minutes=10)
-    d = bot.state["doubles"]["d1"]
-    assert d["leg"] == 1 and len(d["bets"]) == 1 and "kept in the account" in d["note"]
-    while clock.now <= T0.replace(hour=18, minute=0):
-        bot.tick()
-        clock.now += timedelta(minutes=10)
-    assert len(d["bets"]) == 2

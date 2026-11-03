@@ -154,7 +154,7 @@ the betting. Set `"scan_enabled": false` in config.json to turn it off.
 ## Rules it follows
 
 - 10 per bet while the pot is under 200, then 10 more for every further 100: 20 from 200, 30 from 300, and so on (Don, 25 October).
-- Doubles: leg 1 of every double in picks.json goes on once it has been announced, with no price checks (`always_bet_doubles`). Leg 2 is different (Don, 2 November): after leg 1 wins, the winnings stay in the account until 90 minutes before leg 2's own kick-off (`leg2_minutes_before`), and leg 2 goes on only if its price x confidence is 1.0 or more and it has not drifted out; otherwise the winnings are kept (the double is banked at leg 2's kick-off).
+- Doubles: every double in picks.json is placed once it has been announced, with no price checks at all (`always_bet_doubles`, Don, 30 October). The only price and value test a double gets is the picks run's `check_picks.py`.
 - Singles: a single must pay evens or more (`single_min_odds`) and pass the value test (price x confidence of 1.05 or more, `min_edge`) at Betfair's own price.
 - At most 4 picks a day.
 - It never stakes more than its own pot, even if the account holds more.
@@ -199,7 +199,7 @@ Each bet fires once per game. The two BTTS triggers make one bet between them.
 
 ## Things to know
 
-- Rolling does not lock leg 2's price. It is taken from 90 minutes before leg 2's kick-off, and only if it is still fair.
+- Rolling does not lock leg 2's price. It is taken when leg 1 has settled.
 - Two bets in the same match can't be rolled, because they finish together.
 - Betfair takes commission on winnings (2% to 5% depending on your plan), so
   returns are a little under the raw odds.
@@ -209,7 +209,7 @@ Each bet fires once per game. The two BTTS triggers make one bet between them.
 
 ## Price checks, singles and the fallback single
 
-These apply to singles and to leg 2 of a double: leg 1 of a double skips them while `always_bet_doubles` is on.
+These apply to singles only: doubles skip them while `always_bet_doubles` is on.
 
 - **Drift check** (`max_drift_percent`, default 15): each pick carries the price it was made at (`odds_seen`). If the exchange price when the bot is about to bet is more than 15% above it, the bot does not bet, because a price that has moved out like that usually means bad team news. A first leg is skipped; a second leg is not bet and the winnings are kept. Set to 0 to switch off.
 - **Minimum price** (`min_odds` on a leg): the bot will not bet below this price. The morning task sets it so a bet is only placed when the exchange price still beats the pick's confidence by a margin.
