@@ -1,5 +1,5 @@
 {
- "generated": "2026-11-06T17:45:00Z",
+ "generated": "2026-11-06T18:05:00Z",
  "day": "2026-11-07",
  "doubles": [
   {
@@ -65,8 +65,61 @@
      "track": "confidence"
     }
    ]
+  },
+  {
+   "id": "2026-11-07-c",
+   "tier": 2,
+   "legs": [
+    {
+     "sport": "football",
+     "country": "Japan",
+     "league": "J2 League",
+     "event": "Sagan Tosu v Kataller Toyama",
+     "market": "Double Chance",
+     "runner": "Toyama or Draw",
+     "kickoff": "2026-11-07T05:00:00Z",
+     "confidence": 65,
+     "odds_seen": 1.6,
+     "min_odds": 1.44,
+     "track": "confidence"
+    },
+    {
+     "sport": "football",
+     "country": "Switzerland",
+     "league": "Super League",
+     "event": "Vaduz v Sion",
+     "market": "Over/Under 2.5 Goals",
+     "runner": "Over 2.5",
+     "kickoff": "2026-11-07T17:00:00Z",
+     "confidence": 76,
+     "odds_seen": 1.35,
+     "min_odds": 1.21,
+     "track": "confidence"
+    }
+   ]
   }
  ],
- "singles": [],
- "note": "Saturday 7 Nov, built by hand on Fri 6 Nov from FootyStats (live pages) across Serbia, Romania, Greece, Belgium, Switzerland, Czechia, Poland, Turkey, Croatia, Hungary, Scotland Championship and Liga MX, plus NHL/NBA. Prices are bookmaker prices from FootyStats/Covers (Odds API out of credits, bot scan stale). Only 2 bets: every other pairing either fell under 62 confidence on a leg, under 2.05 combined (Carolina is only 1.26, -395), under 1.05 value, or broke the half-goals mix rule. Second pass (Fri 18:30): 21 more leagues checked - Slovakia, Slovenia, Bulgaria, Cyprus, Israel, Ukraine, Scotland Premiership/League One/League Two, Norway, Sweden Superettan, Japan J1/J2, Korea K1, A-League, Turkey 1.Lig, Swiss Challenge League, Belgium First Div B, Czech FNL, Poland 1 Liga, USL. Every results-based edge (Hamilton, Winterthur, Arka, Avispa, Bravo, Warta, Toyama, St Mirren+draw) shrank to the market price or under 62% once expected goals were checked; nothing added."
+ "singles": [
+  {
+   "id": "2026-11-07-s1",
+   "tier": 1,
+   "legs": [
+    {
+     "sport": "football",
+     "country": "Scotland",
+     "league": "League One",
+     "event": "Cove Rangers v Hamilton",
+     "market": "Over/Under 2.5 Goals",
+     "runner": "Under 2.5",
+     "kickoff": "2026-11-07T15:00:00Z",
+     "confidence": 55,
+     "odds_seen": 2.1,
+     "min_odds": 1.89,
+     "track": "confidence"
+    }
+   ]
+  }
+ ],
+ "note": "Saturday 7 Nov, built by hand on Fri 6 Nov from FootyStats (live pages) across Serbia, Romania, Greece, Belgium, Switzerland, Czechia, Poland, Turkey, Croatia, Hungary, Scotland Championship and Liga MX, plus NHL/NBA. Prices are bookmaker prices from FootyStats/Covers (Odds API out of credits, bot scan stale). Only 2 bets: every other pairing either fell under 62 confidence on a leg, under 2.05 combined (Carolina is only 1.26, -395), under 1.05 value, or broke the half-goals mix rule. Second pass (Fri 18:30): 21 more leagues checked - Slovakia, Slovenia, Bulgaria, Cyprus, Israel, Ukraine, Scotland Premiership/League One/League Two, Norway, Sweden Superettan, Japan J1/J2, Korea K1, A-League, Turkey 1.Lig, Swiss Challenge League, Belgium First Div B, Czech FNL, Poland 1 Liga, USL. Every results-based edge (Hamilton, Winterthur, Arka, Avispa, Bravo, Warta, Toyama, St Mirren+draw) shrank to the market price or under 62% once expected goals were checked; nothing added. Third pass (Fri 18:05, after Don asked for over/unders and 4 bets): added Cove v Hamilton Under 2.5 single and Toyama-or-draw -> Vaduz v Sion Over 2.5.",
+ "mix_note": "4 of 7 legs are goals bets (Cukaricki BTTS No, Antwerp Over 2.5, Cove v Hamilton Under 2.5, Vaduz Over 2.5). Don asked on 6 Nov for over/unders to be used and for 4 bets on a Saturday. The non-goals legs checked instead were either too short to reach 2.05 in any pairing (Carolina 1.26, Rosenborg 1.22, Ross County 1.17, Beitar 1.30) or under 62% once expected goals were checked (Hamilton, Winterthur, Arka, Avispa, Warta, Bravo or draw, Galatasaray 64% has no partner after 18:13)."
 }
