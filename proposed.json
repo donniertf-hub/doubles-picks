@@ -1,6 +1,72 @@
 {
- "generated": "2026-11-03T22:37:15Z",
- "day": "2026-11-04",
- "doubles": [],
- "singles": []
+ "generated": "2026-11-06T17:45:00Z",
+ "day": "2026-11-07",
+ "doubles": [
+  {
+   "id": "2026-11-07-a",
+   "tier": 2,
+   "legs": [
+    {
+     "sport": "football",
+     "country": "Serbia",
+     "league": "SuperLiga",
+     "event": "Cukaricki v Radnicki Nis",
+     "market": "Both Teams To Score",
+     "runner": "No",
+     "kickoff": "2026-11-07T14:00:00Z",
+     "confidence": 66,
+     "odds_seen": 1.8,
+     "min_odds": 1.62,
+     "track": "confidence"
+    },
+    {
+     "sport": "football",
+     "country": "Greece",
+     "league": "Super League",
+     "event": "Aris v Panaitolikos",
+     "market": "Match Odds",
+     "runner": "Aris",
+     "kickoff": "2026-11-07T17:30:00Z",
+     "confidence": 69,
+     "odds_seen": 1.36,
+     "min_odds": 1.22,
+     "track": "confidence"
+    }
+   ]
+  },
+  {
+   "id": "2026-11-07-b",
+   "tier": 2,
+   "legs": [
+    {
+     "sport": "football",
+     "country": "Romania",
+     "league": "Liga I",
+     "event": "Farul v Rapid",
+     "market": "Double Chance",
+     "runner": "Farul or Draw",
+     "kickoff": "2026-11-07T15:30:00Z",
+     "confidence": 63,
+     "odds_seen": 1.65,
+     "min_odds": 1.48,
+     "track": "confidence"
+    },
+    {
+     "sport": "football",
+     "country": "Belgium",
+     "league": "Pro League",
+     "event": "Antwerp v Lommel",
+     "market": "Over/Under 2.5 Goals",
+     "runner": "Over 2.5",
+     "kickoff": "2026-11-07T19:45:00Z",
+     "confidence": 67,
+     "odds_seen": 1.52,
+     "min_odds": 1.36,
+     "track": "confidence"
+    }
+   ]
+  }
+ ],
+ "singles": [],
+ "note": "Saturday 7 Nov, built by hand on Fri 6 Nov from FootyStats (live pages) across Serbia, Romania, Greece, Belgium, Switzerland, Czechia, Poland, Turkey, Croatia, Hungary, Scotland Championship and Liga MX, plus NHL/NBA. Prices are bookmaker prices from FootyStats/Covers (Odds API out of credits, bot scan stale). Only 2 bets: every other pairing either fell under 62 confidence on a leg, under 2.05 combined (Carolina is only 1.26, -395), under 1.05 value, or broke the half-goals mix rule."
 }
