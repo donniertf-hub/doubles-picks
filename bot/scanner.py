@@ -4,10 +4,15 @@ Finds every football match Betfair lists in the next day and a half, with the
 Match Odds, Over/Under 2.5 Goals and Both Teams To Score prices, adds each
 team's season stats where a free results feed covers the league, checks Don's
 two rules and a simple goals model against every match, and writes the lot to
-candidates.json for the morning picks run.
+candidates.json for the night picks run. It also lists every head-to-head event
+in every other sport Betfair offers (tennis, basketball, ice hockey, American
+football, baseball, rugby, darts, snooker, boxing, MMA, cricket and the rest)
+with Betfair's winner, handicap and total prices, under "other_sports".
 
 Why: picks were being found by reading websites one page at a time, so what got
-covered depended on which pages loaded. This sees everything Betfair offers.
+covered depended on which pages loaded, and other sports were hardly ever priced
+(Don, 3 November 2026: any bet, on any sport, in any league). This sees
+everything Betfair offers.
 
 Run once by hand:   python3 scanner.py            (writes ../candidates.json)
                     python3 scanner.py --no-push
@@ -410,8 +415,8 @@ def corner_chance(cm, key):
 
 # ------------------------------------------------------------------ Betfair
 
-def catalogue(bf, mtype, start, end, depth=0):
-    flt = {"eventTypeIds": ["1"], "inPlayOnly": False,
+def catalogue(bf, mtype, start, end, depth=0, sport="1"):
+    flt = {"eventTypeIds": [str(sport)], "inPlayOnly": False,
            "marketStartTime": {"from": iso(start), "to": iso(end)}}
     if mtype == "CORNERS":
         flt["textQuery"] = "Corner*"          # Betfair's corner markets go by several names and types
@@ -423,7 +428,8 @@ def catalogue(bf, mtype, start, end, depth=0):
     rows = bf._call("betting", "listMarketCatalogue", body) or []
     if len(rows) >= 1000 and depth < 6 and end - start > timedelta(minutes=30):
         mid = start + (end - start) / 2
-        return catalogue(bf, mtype, start, mid, depth + 1) + catalogue(bf, mtype, mid, end, depth + 1)
+        return (catalogue(bf, mtype, start, mid, depth + 1, sport) +
+                catalogue(bf, mtype, mid, end, depth + 1, sport))
     return rows
 
 
@@ -509,6 +515,168 @@ def selection_key(mtype, name, order, line=0.0, event="", market_name=""):
     if mtype == "BOTH_TEAMS_TO_SCORE":
         return "btts_yes" if low.startswith("yes") else "btts_no" if low.startswith("no") else None
     return None
+
+
+# ------------------------------------------------------------------ other sports
+
+# Every head-to-head sport Betfair lists, not only football (Don, 3 and 6 November
+# 2026: any bet, on any sport, in any league). Football is scanned above, with its
+# season stats. The other sports get Betfair's own prices for their winner,
+# handicap and total markets, so the picks run can price them as easily as
+# football; their form comes from the picks run's own research.
+OTHER_SKIP_SPORTS = ("soccer", "horse racing", "greyhound", "golf", "motor", "cycling", "politic",
+                     "special", "financial", "poker", "lotter", "esport", "e sport", "virtual",
+                     "winter sport", "athletics", "swimming")
+OTHER_SKIP_WORDS = ("virtual", "esport", "simulated", "srl", "specials", "outright", "futures")
+OTHER_WINNER_CODES = ("MATCH_ODDS", "MONEY_LINE", "MONEYLINE", "MATCH_BET", "MATCH_WINNER",
+                      "HEAD_TO_HEAD", "TO_WIN_MATCH")
+# markets for part of a game, one team or one player, or anything but the main result
+OTHER_PART_WORDS = ("HALF", "QUARTER", "PERIOD", "SET", "FRAME", "INNING", "1ST", "2ND", "3RD",
+                    "4TH", "5TH", "FIRST", "SECOND", "THIRD", "ROUND", "LEG", "OVERS", "TEAM",
+                    "HOME", "AWAY", "PLAYER", "CORRECT", "METHOD", "ODD_EVEN", "RACE_TO", "MAP",
+                    "MARGIN", "DRAW_NO_BET")
+OTHER_FALLBACK_CODES = ("MATCH_ODDS", "MONEY_LINE", "HANDICAP", "ASIAN_HANDICAP", "TOTAL_POINTS",
+                        "TOTAL_GAMES")
+OTHER_CODES_PER_KIND = {"winner": 2, "handicap": 2, "total": 3}
+OTHER_LINES_KEPT = 2            # handicap and total lines nearest evens, per event
+OTHER_SPORT_NAMES = {"mixed martial arts": "mma", "rugby union": "rugby", "rugby league": "rugby"}
+EVENT_SEPS = (" v ", " vs ", " vs. ", " @ ", " - ")
+
+
+def other_kind(code):
+    """"winner", "handicap" or "total" for a full-game market type, else None."""
+    c = str(code).upper()
+    if any(w in c for w in OTHER_PART_WORDS):
+        return None
+    if c in OTHER_WINNER_CODES:
+        return "winner"
+    if "HANDICAP" in c or "SPREAD" in c:
+        return "handicap"
+    if c.startswith("TOTAL") or "OVER_UNDER" in c or "TOTAL_" in c or c.endswith("_TOTAL"):
+        return "total"
+    return None
+
+
+def line_text(line, signed=True):
+    text = f"{line:g}"
+    return f"+{text}" if signed and line > 0 else text
+
+
+def bot_runner_name(name, line, code):
+    """The runner's name as the bot shows it (bot.Betfair.load_markets), so a
+    pick copied from candidates.json matches when the bot places it."""
+    if str(code).startswith("OVER_UNDER") and name.lower().endswith(" goals"):
+        name = name[:-6]
+    if code in ("ASIAN_HANDICAP", "ALT_TOTAL_GOALS") or (line and not re.search(r"\d", name)):
+        name = f"{name} {line_text(line, signed=code != 'ALT_TOTAL_GOALS')}"
+    return name
+
+
+def other_sport_types(bf, start, end):
+    """[(Betfair sport id, name)] for every sport with markets in the window,
+    apart from football and the sports that are not head-to-head."""
+    rows = bf._call("betting", "listEventTypes", {"filter": {
+        "marketStartTime": {"from": iso(start), "to": iso(end)}}}) or []
+    out = []
+    for r in rows:
+        et = r.get("eventType") or {}
+        name = str(et.get("name", ""))
+        if et.get("id") is None or str(et["id"]) == "1" or not int(r.get("marketCount") or 0):
+            continue
+        if any(s in plain(name) for s in OTHER_SKIP_SPORTS):
+            continue
+        out.append((str(et["id"]), name))
+    return out
+
+
+def market_codes(bf, sport_id, start, end):
+    """The sport's full-game winner, handicap and total market types, the
+    commonest first. Falls back to the usual codes if Betfair will not list them."""
+    try:
+        rows = bf._call("betting", "listMarketTypes", {"filter": {
+            "eventTypeIds": [sport_id], "inPlayOnly": False,
+            "marketStartTime": {"from": iso(start), "to": iso(end)}}}) or []
+        counted = [(str(r.get("marketType", "")), int(r.get("marketCount") or 0)) for r in rows]
+    except Exception:                  # noqa: BLE001 - any failure: use the usual codes
+        counted = [(c, 0) for c in OTHER_FALLBACK_CODES]
+    chosen, per = [], {}
+    for code, _ in sorted(counted, key=lambda x: -x[1]):
+        kind = other_kind(code)
+        if kind and per.get(kind, 0) < OTHER_CODES_PER_KIND[kind]:
+            per[kind] = per.get(kind, 0) + 1
+            chosen.append((code, kind))
+    return chosen
+
+
+def other_sports(bf, start, end, top=400):
+    """Every head-to-head event in the other sports, with Betfair's back prices
+    for the winner market(s) and the handicap and total lines nearest evens."""
+    events, markets = {}, {}
+    for sid, sname in other_sport_types(bf, start, end):
+        sport = OTHER_SPORT_NAMES.get(sname.lower(), sname.lower())
+        for code, kind in market_codes(bf, sid, start, end):
+            for row in catalogue(bf, code, start, end, sport=sid):
+                ev, comp = row.get("event") or {}, row.get("competition") or {}
+                name, cname = str(ev.get("name", "")), str(comp.get("name", ""))
+                if not any(s in f" {name.lower()} " for s in EVENT_SEPS):
+                    continue                    # outrights and specials, not a match
+                if any(t.startswith(w) for t in plain(f"{name} {cname}").split() for w in OTHER_SKIP_WORDS):
+                    continue
+                runners = row.get("runners") or []
+                if kind == "winner" and not 2 <= len(runners) <= 3:
+                    continue
+                eid = str(ev.get("id"))
+                events.setdefault(eid, {
+                    "sport": sport, "betfair_sport": sname, "event": name, "event_id": eid,
+                    "competition": cname, "start": row.get("marketStartTime") or ev.get("openDate"),
+                    "matched": 0.0, "options": []})
+                names = {(r.get("selectionId"), float(r.get("handicap") or 0)): str(r.get("runnerName", ""))
+                         for r in runners}
+                markets[row["marketId"]] = (eid, kind, code, str(row.get("marketName", "")), names)
+    ids = list(markets)
+    for i in range(0, len(ids), 40):
+        books = bf._call("betting", "listMarketBook", {
+            "marketIds": ids[i:i + 40],
+            "priceProjection": {"priceData": ["EX_BEST_OFFERS"], "virtualise": True}}) or []
+        for book in books:
+            info = markets.get(book.get("marketId"))
+            if not info or book.get("inplay") or str(book.get("status", "")).upper() != "OPEN":
+                continue
+            eid, kind, code, market_name, names = info
+            e = events[eid]
+            e["matched"] += float(book.get("totalMatched") or 0)
+            groups = {}
+            for r in book.get("runners", []) or []:
+                line = float(r.get("handicap") or 0)
+                backs = (r.get("ex") or {}).get("availableToBack") or []
+                raw = names.get((r.get("selectionId"), line), "")
+                if not raw or not backs or str(r.get("status", "ACTIVE")).upper() != "ACTIVE":
+                    continue
+                groups.setdefault(abs(line), []).append({
+                    "runner": bot_runner_name(raw, line, code), "price": backs[0].get("price"),
+                    "available": round(float(backs[0].get("size") or 0), 2)})
+            for line, rs in groups.items():
+                if kind == "winner" and len(rs) == len(names):
+                    total = sum(1 / float(x["price"]) for x in rs)
+                    for x in rs:
+                        x["fair_chance"] = round(100 / float(x["price"]) / total, 1)
+                e["options"].append({"kind": kind, "market": market_name, "market_type": code,
+                                     "line": line or None, "runners": rs})
+    out = []
+    for e in events.values():
+        keep = [o for o in e["options"] if o["kind"] == "winner"]
+        for kind in ("handicap", "total"):
+            pairs = [o for o in e["options"] if o["kind"] == kind and len(o["runners"]) == 2]
+            pairs.sort(key=lambda o: abs(1 / float(o["runners"][0]["price"]) -
+                                         1 / float(o["runners"][1]["price"])))
+            keep += pairs[:OTHER_LINES_KEPT]
+        if not keep:
+            continue
+        out.append({"sport": e["sport"], "betfair_sport": e["betfair_sport"], "event": e["event"],
+                    "event_id": e["event_id"], "competition": e["competition"], "start": e["start"],
+                    "matched_on_betfair": round(e["matched"]), "markets": keep})
+    out.sort(key=lambda e: -e["matched_on_betfair"])
+    return out[:top]
 
 
 # ------------------------------------------------------------------ joining
@@ -684,6 +852,14 @@ def scan(bf, fetch=http_text, now=None, hours=36, commission=0.05, log=print, to
                         key=lambda r: -(r["value"] or 0))[:top]
     gaps = strength_gaps(assessed)
     no_stats.sort(key=lambda m: -m["matched_on_betfair"])
+    try:
+        others, other_error = other_sports(bf, now + timedelta(minutes=30), now + timedelta(hours=hours)), None
+    except Exception as err:            # noqa: BLE001 - the football scan must still be written
+        others, other_error = [], f"{type(err).__name__}: {err}"
+        log(f"scan: other sports failed: {other_error}")
+    by_sport = {}
+    for e in others:
+        by_sport[e["sport"]] = by_sport.get(e["sport"], 0) + 1
     return {
         "generated": iso(now),
         "about": ("Every Betfair football match from 30 minutes to %d hours ahead. 'best_value' is "
@@ -693,15 +869,24 @@ def scan(bf, fetch=http_text, now=None, hours=36, commission=0.05, log=print, to
                   "Asian handicap and corner prices. 'rule_qualifiers' pass Don's two rules and are "
                   "for the scoreboard only. 'matches' has every match with stats; 'no_stats' are "
                   "Betfair matches in leagues the free stats feed does not cover, to research by hand. "
-                  "Prices are Betfair back prices at scan time." % hours),
+                  "'other_sports' has every head-to-head event in every other sport Betfair lists "
+                  "(tennis, basketball, ice hockey, American football, baseball, rugby, darts, "
+                  "snooker, boxing, MMA, cricket and the rest), busiest first, with Betfair's "
+                  "winner market(s) and the two handicap and total lines nearest evens; "
+                  "'fair_chance' is the winner market's price with Betfair's margin taken out. "
+                  "'runner' and 'market' are Betfair's exact names and 'event_id' its event: copy "
+                  "all three into a pick. Prices are Betfair back prices at scan time." % hours),
         "counts": {"betfair_matches": len(matches), "with_stats": len(assessed),
-                   "no_stats": len(no_stats), "leagues_with_stats": len(stats)},
+                   "no_stats": len(no_stats), "leagues_with_stats": len(stats),
+                   "other_sports": len(others), "other_sports_by_sport": by_sport},
+        "other_sports_error": other_error,
         "leagues_with_stats": sorted(s["name"] for s in stats.values()),
         "best_value": value_rows,
         "strength_gaps": gaps,
         "rule_qualifiers": sorted(rule_rows, key=lambda r: -(r["value"] or 0)),
         "matches": sorted(assessed, key=lambda a: a["kickoff"] or ""),
         "no_stats": no_stats[:400],
+        "other_sports": others,
     }
 
 
@@ -729,7 +914,10 @@ def main(argv):
     c = result["counts"]
     print(f"Scanned {c['betfair_matches']} Betfair matches in {time.time() - started:.0f}s: "
           f"{c['with_stats']} with stats from {c['leagues_with_stats']} leagues, "
-          f"{len(result['rule_qualifiers'])} rule qualifiers. Wrote {path}")
+          f"{len(result['rule_qualifiers'])} rule qualifiers, "
+          f"{c['other_sports']} events in other sports {c['other_sports_by_sport']}. Wrote {path}")
+    if result.get("other_sports_error"):
+        print(f"Other sports failed: {result['other_sports_error']}")
     if "--no-push" not in argv and cfg.get("status_push"):
         err = B.push_file(path, "Scanner candidates")
         print("Pushed." if not err else f"Could not push: {err}")

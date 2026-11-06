@@ -1010,7 +1010,8 @@ class Bot:
             scanner.write(result, path)
             n = result["counts"]
             self.log(f"scan: {n['betfair_matches']} Betfair matches, {n['with_stats']} with stats, "
-                     f"{len(result['rule_qualifiers'])} rule qualifiers")
+                     f"{len(result['rule_qualifiers'])} rule qualifiers, "
+                     f"{n.get('other_sports', 0)} events in other sports")
             self.state["scan_date"] = today
             if c.get("status_push"):
                 err = push_file(path, "Scanner candidates")

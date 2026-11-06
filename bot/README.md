@@ -104,6 +104,20 @@ matches where one side is clearly stronger, with its win, handicap and corner
 prices; `rule_qualifiers` (Don's two rules) is for the scoreboard only. Matches
 in other leagues are still listed with their prices under `no_stats`.
 
+Every other sport too (Don, 6 November 2026: any bet, on any sport, in any
+league): `other_sports` lists every head-to-head event Betfair has in the same
+window in tennis, basketball, ice hockey, American football, baseball, rugby,
+darts, snooker, boxing, MMA, cricket and the rest (not horse racing,
+greyhounds, golf, motor racing or e-sports), busiest first, with Betfair's
+prices for the winner market and the two handicap and total lines nearest
+evens. Each gives Betfair's exact market and runner names and the event id, so
+a pick copied from it is found exactly when the bot places it. If this part
+fails, the football scan is still written and `other_sports_error` says why.
+
+Run the scan by hand at any time, in a second tab, without stopping the bot:
+
+    python3 bot.py scan
+
 ## Don okays every bet first (proposed.json and approve.py)
 
 Don, 2 November 2026: no bet goes to the bot until he has okayed it. The night

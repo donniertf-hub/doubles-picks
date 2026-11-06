@@ -60,12 +60,30 @@ def fetch(url):
 
 # ---------------------------------------------------------------- fake Betfair
 
+SPORTS = {"1": "Soccer", "2": "Tennis", "3": "Golf", "7": "Horse Racing", "7522": "Basketball",
+          "7524": "Ice Hockey"}
+
+
 class FakeBF:
+    """Events carry a Betfair sport id in "sport" (football, "1", if left out)."""
     def __init__(self, events):
         self.events, self.calls = events, []
 
     def _call(self, api, op, body):
         self.calls.append(op)
+        if op == "listEventTypes":
+            counts = {}
+            for ev in self.events:
+                sid = ev.get("sport", "1")
+                counts[sid] = counts.get(sid, 0) + len(ev["markets"])
+            return [{"eventType": {"id": sid, "name": SPORTS[sid]}, "marketCount": n} for sid, n in counts.items()]
+        if op == "listMarketTypes":
+            counts = {}
+            for ev in self.events:
+                if ev.get("sport", "1") in body["filter"]["eventTypeIds"]:
+                    for m in ev["markets"]:
+                        counts[m["type"]] = counts.get(m["type"], 0) + 1
+            return [{"marketType": t, "marketCount": n} for t, n in counts.items()]
         if op == "listMarketCatalogue":
             flt = body["filter"]
             if "textQuery" in flt:
@@ -73,9 +91,11 @@ class FakeBF:
                     return flt["textQuery"].lower().rstrip("*") in m.get("name", "").lower()
             else:
                 def wanted(m):
-                    return m["type"] == flt["marketTypeCodes"][0]
+                    return m["type"] in flt["marketTypeCodes"]
             rows = []
             for ev in self.events:
+                if ev.get("sport", "1") not in flt.get("eventTypeIds", ["1"]):
+                    continue
                 for m in ev["markets"]:
                     if wanted(m):
                         rows.append({"marketId": m["id"], "marketStartTime": ev["start"],
@@ -349,3 +369,126 @@ def test_default_scan_runs_in_the_evening_before_the_night_picks():
     clock["now"] = datetime(2026, 11, 2, 22, 0, tzinfo=timezone.utc)
     bot.maybe_scan()
     assert bot.state.get("scan_date") == "2026-11-02"
+
+
+# ---------------------------------------------------------------- other sports
+
+def nba_game(eid="50", **kw):
+    return dict(id=eid, name="Minnesota Timberwolves @ Houston Rockets", comp="NBA", sport="7522",
+                start="2026-10-31T23:30:00Z", markets=[
+                    {"id": f"1.{eid}1", "type": "MATCH_ODDS", "name": "Moneyline",
+                     "runners": [(1, "Minnesota Timberwolves", 3.85), (2, "Houston Rockets", 1.33)]},
+                    {"id": f"1.{eid}2", "type": "HANDICAP", "name": "Handicap",
+                     "runners": [(1, "Minnesota Timberwolves", 1.95, 9.5), (2, "Houston Rockets", 1.92, -9.5),
+                                 (1, "Minnesota Timberwolves", 1.6, 12.5), (2, "Houston Rockets", 2.5, -12.5),
+                                 (1, "Minnesota Timberwolves", 2.3, 6.5), (2, "Houston Rockets", 1.7, -6.5)]},
+                    {"id": f"1.{eid}3", "type": "TOTAL_POINTS", "name": "Total Points",
+                     "runners": [(3, "Over", 1.9, 224.5), (4, "Under", 1.95, 224.5),
+                                 (3, "Over", 1.5, 218.5), (4, "Under", 2.8, 218.5),
+                                 (3, "Over", 2.6, 230.5), (4, "Under", 1.55, 230.5)]},
+                    {"id": f"1.{eid}4", "type": "FIRST_HALF_HANDICAP", "name": "1st Half Handicap",
+                     "runners": [(1, "Minnesota Timberwolves", 1.9, 5.5), (2, "Houston Rockets", 1.9, -5.5)]},
+                    {"id": f"1.{eid}5", "type": "QUARTER_1_MONEY_LINE", "name": "1st Quarter Moneyline",
+                     "runners": [(1, "Minnesota Timberwolves", 2.5), (2, "Houston Rockets", 1.6)]}], **kw)
+
+
+def other_sports_events():
+    return [
+        event(1, "Goals Town v Net FC", "Dutch Eredivisie"),
+        nba_game(),
+        nba_game("51", inplay=True),
+        dict(id="52", name="Virtual Lakers @ Virtual Celtics", comp="Virtual Basketball", sport="7522",
+             start="2026-10-31T20:00:00Z", markets=[
+                 {"id": "1.521", "type": "MATCH_ODDS", "name": "Moneyline",
+                  "runners": [(1, "Virtual Lakers", 1.9), (2, "Virtual Celtics", 1.9)]}]),
+        dict(id="60", name="Lehecka v Borges", comp="ATP Paris 2026", sport="2",
+             start="2026-10-31T13:00:00Z", markets=[
+                 {"id": "1.601", "type": "MATCH_ODDS", "name": "Match Odds",
+                  "runners": [(1, "Jiri Lehecka", 1.6), (2, "Nuno Borges", 2.4)]},
+                 {"id": "1.602", "type": "SET_BETTING", "name": "Set Betting",
+                  "runners": [(5, "2 - 0", 2.5), (6, "2 - 1", 4.0), (7, "0 - 2", 5.0), (8, "1 - 2", 6.0)]}]),
+        dict(id="61", name="ATP Paris 2026", comp="ATP Paris 2026", sport="2",
+             start="2026-10-31T13:00:00Z", markets=[
+                 {"id": "1.611", "type": "MATCH_ODDS", "name": "Winner",
+                  "runners": [(1, "Sinner", 2.0), (2, "Alcaraz", 2.5), (3, "Zverev", 9.0)]}]),
+        dict(id="70", name="Kempton 2m Hcap", comp="", sport="7", start="2026-10-31T14:00:00Z", markets=[
+            {"id": "1.701", "type": "MATCH_ODDS", "name": "Match Odds", "runners": [(1, "Horse A", 3.0),
+                                                                                (2, "Horse B", 2.0)]}]),
+        dict(id="80", name="Fleetwood v McIlroy", comp="DP World", sport="3", start="2026-10-31T09:00:00Z",
+             markets=[{"id": "1.801", "type": "MATCH_ODDS", "name": "Match Odds",
+                       "runners": [(1, "Fleetwood", 2.0), (2, "McIlroy", 1.9)]}]),
+    ]
+
+
+def test_other_sports_are_listed_with_betfair_prices():
+    res = S.scan(FakeBF(other_sports_events()), fetch=fetch, now=NOW, log=lambda m: None)
+    assert res["counts"]["with_stats"] == 1                 # football is still scanned as before
+    assert res["other_sports_error"] is None
+    assert res["counts"]["other_sports_by_sport"] == {"basketball": 1, "tennis": 1}
+    nba, tennis = res["other_sports"]                       # busiest first
+    assert nba["event"] == "Minnesota Timberwolves @ Houston Rockets" and nba["event_id"] == "50"
+    assert nba["competition"] == "NBA" and nba["sport"] == "basketball"
+    kinds = {}
+    for m in nba["markets"]:
+        kinds.setdefault(m["kind"], []).append(m)
+    (winner,) = kinds["winner"]
+    assert winner["market"] == "Moneyline"
+    prices = {r["runner"]: r for r in winner["runners"]}
+    assert prices["Houston Rockets"]["price"] == 1.33
+    assert abs(sum(r["fair_chance"] for r in winner["runners"]) - 100) < 0.2
+    assert prices["Houston Rockets"]["fair_chance"] > 70
+    assert sorted(m["line"] for m in kinds["handicap"]) == [6.5, 9.5]          # nearest evens
+    names = {r["runner"] for m in kinds["handicap"] for r in m["runners"]}
+    assert {"Houston Rockets -9.5", "Minnesota Timberwolves +9.5"} <= names
+    assert sorted(m["line"] for m in kinds["total"]) == [224.5, 230.5]
+    assert not any("HALF" in m["market_type"] or "QUARTER" in m["market_type"] for m in nba["markets"])
+    assert tennis["event"] == "Lehecka v Borges" and tennis["sport"] == "tennis"
+    assert [m["market"] for m in tennis["markets"]] == ["Match Odds"]         # set betting left out
+    events = [e["event"] for e in res["other_sports"]]
+    assert "ATP Paris 2026" not in events                                     # an outright, not a match
+    assert not any("Virtual" in e or "Kempton" in e or "McIlroy" in e for e in events)
+    json.dumps(res)
+
+
+def test_other_sports_runner_names_match_what_the_bot_places():
+    """A pick copied from other_sports must resolve when the bot loads the same
+    market from Betfair: the scanner names runners the way the bot does."""
+    game = nba_game()
+
+    class Client(B.Betfair):
+        def _call(self, api, op, body, retry=True):
+            return [{"marketId": m["id"], "marketName": m["name"], "description": {"marketType": m["type"]},
+                     "runners": [{"selectionId": r[0], "runnerName": r[1],
+                                  "handicap": r[3] if len(r) > 3 else 0.0} for r in m["runners"]]}
+                    for m in game["markets"]]
+    bot_names = {r["name"] for m in Client("u", "p", "k").load_markets(
+        {"id": "50", "name": game["name"]})["markets"] for r in m["runners"]}
+    res = S.scan(FakeBF([game]), fetch=fetch, now=NOW, log=lambda m: None)
+    scan_names = {r["runner"] for m in res["other_sports"][0]["markets"] for r in m["runners"]}
+    assert scan_names <= bot_names
+    assert B.runner_matches("Houston Rockets -9.5", "Rockets -9.5")
+    assert not B.runner_matches("Houston Rockets -9.5", "Rockets +9.5")
+    over = next(n for n in scan_names if n.startswith("Over") and "224.5" in n)
+    assert B.runner_matches(over, "Over 224.5")
+
+
+def test_other_sports_failure_still_writes_the_football_scan():
+    class NoOthers(FakeBF):
+        def _call(self, api, op, body):
+            if op == "listEventTypes":
+                raise B.ExchangeError("listEventTypes failed: HTTP 503")
+            return super()._call(api, op, body)
+    logged = []
+    res = S.scan(NoOthers(other_sports_events()), fetch=fetch, now=NOW, log=logged.append)
+    assert res["counts"]["with_stats"] == 1 and res["other_sports"] == []
+    assert "503" in res["other_sports_error"] and any("other sports failed" in m for m in logged)
+
+
+def test_market_types_are_sorted_into_winner_handicap_and_total():
+    k = S.other_kind
+    assert [k(c) for c in ("MATCH_ODDS", "MONEY_LINE", "HANDICAP", "ASIAN_HANDICAP",
+                           "TOTAL_POINTS", "OVER_UNDER_55", "TOTAL_GAMES")] == \
+        ["winner", "winner", "handicap", "handicap", "total", "total", "total"]
+    assert not any(k(c) for c in ("FIRST_HALF_HANDICAP", "SET_BETTING", "QUARTER_1_TOTAL",
+                                  "HOME_TEAM_TOTAL", "CORRECT_SCORE", "ROUND_BETTING", "WINNER",
+                                  "PERIOD_1_MONEY_LINE"))
