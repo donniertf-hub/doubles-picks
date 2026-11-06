@@ -4970,7 +4970,7 @@
    "kickoff": "2026-11-04T20:00:00Z",
    "odds": 1.31,
    "in_picks": true,
-   "result": null
+   "result": "won"
   },
   {
    "date": "2026-11-03",
@@ -5063,7 +5063,7 @@
    "kickoff": "2026-11-04T17:45:00Z",
    "odds": 1.26,
    "in_picks": false,
-   "result": null
+   "result": "won"
   },
   {
    "date": "2026-11-04",
@@ -5094,7 +5094,7 @@
    "kickoff": "2026-11-04T20:00:00Z",
    "odds": 1.55,
    "in_picks": false,
-   "result": null
+   "result": "won"
   },
   {
    "date": "2026-11-04",
@@ -5125,7 +5125,7 @@
    "kickoff": "2026-11-04T17:45:00Z",
    "odds": 1.53,
    "in_picks": false,
-   "result": null
+   "result": "lost"
   },
   {
    "date": "2026-11-04",
@@ -5156,7 +5156,7 @@
    "kickoff": "2026-11-04T20:00:00Z",
    "odds": 1.67,
    "in_picks": false,
-   "result": null
+   "result": "won"
   },
   {
    "date": "2026-11-04",
@@ -5187,6 +5187,223 @@
    "kickoff": "2026-11-04T22:30:00Z",
    "odds": 1.17,
    "in_picks": false,
+   "result": "won"
+  },
+  {
+   "date": "2026-11-07",
+   "track": "confidence",
+   "confidence": 66,
+   "gap": 10.4,
+   "league": "Serbia SuperLiga",
+   "league_goals": null,
+   "played": [
+    null,
+    null
+   ],
+   "scored": [
+    null,
+    null
+   ],
+   "conceded": [
+    null,
+    null
+   ],
+   "over25": [
+    null,
+    null
+   ],
+   "event": "Cukaricki v Radnicki Nis",
+   "market": "Both Teams To Score",
+   "runner": "No",
+   "kickoff": "2026-11-07T14:00:00Z",
+   "odds": 1.8,
+   "in_picks": true,
+   "result": null
+  },
+  {
+   "date": "2026-11-07",
+   "track": "confidence",
+   "confidence": 69,
+   "gap": -4.5,
+   "league": "Greece Super League",
+   "league_goals": null,
+   "played": [
+    null,
+    null
+   ],
+   "scored": [
+    null,
+    null
+   ],
+   "conceded": [
+    null,
+    null
+   ],
+   "over25": [
+    null,
+    null
+   ],
+   "event": "Aris v Panaitolikos",
+   "market": "Match Odds",
+   "runner": "Aris",
+   "kickoff": "2026-11-07T17:30:00Z",
+   "odds": 1.36,
+   "in_picks": true,
+   "result": null
+  },
+  {
+   "date": "2026-11-07",
+   "track": "confidence",
+   "confidence": 63,
+   "gap": 2.4,
+   "league": "Romania Liga I",
+   "league_goals": null,
+   "played": [
+    null,
+    null
+   ],
+   "scored": [
+    null,
+    null
+   ],
+   "conceded": [
+    null,
+    null
+   ],
+   "over25": [
+    null,
+    null
+   ],
+   "event": "Farul v Rapid",
+   "market": "Double Chance",
+   "runner": "Farul or Draw",
+   "kickoff": "2026-11-07T15:30:00Z",
+   "odds": 1.65,
+   "in_picks": true,
+   "result": null
+  },
+  {
+   "date": "2026-11-07",
+   "track": "confidence",
+   "confidence": 67,
+   "gap": 1.2,
+   "league": "Belgium Pro League",
+   "league_goals": null,
+   "played": [
+    null,
+    null
+   ],
+   "scored": [
+    null,
+    null
+   ],
+   "conceded": [
+    null,
+    null
+   ],
+   "over25": [
+    null,
+    null
+   ],
+   "event": "Antwerp v Lommel",
+   "market": "Over/Under 2.5 Goals",
+   "runner": "Over 2.5",
+   "kickoff": "2026-11-07T19:45:00Z",
+   "odds": 1.52,
+   "in_picks": true,
+   "result": null
+  },
+  {
+   "date": "2026-11-07",
+   "track": "confidence",
+   "confidence": 65,
+   "gap": 2.5,
+   "league": "Japan J2 League",
+   "league_goals": null,
+   "played": [
+    null,
+    null
+   ],
+   "scored": [
+    null,
+    null
+   ],
+   "conceded": [
+    null,
+    null
+   ],
+   "over25": [
+    null,
+    null
+   ],
+   "event": "Sagan Tosu v Kataller Toyama",
+   "market": "Double Chance",
+   "runner": "Toyama or Draw",
+   "kickoff": "2026-11-07T05:00:00Z",
+   "odds": 1.6,
+   "in_picks": true,
+   "result": null
+  },
+  {
+   "date": "2026-11-07",
+   "track": "confidence",
+   "confidence": 76,
+   "gap": 1.9,
+   "league": "Switzerland Super League",
+   "league_goals": null,
+   "played": [
+    null,
+    null
+   ],
+   "scored": [
+    null,
+    null
+   ],
+   "conceded": [
+    null,
+    null
+   ],
+   "over25": [
+    null,
+    null
+   ],
+   "event": "Vaduz v Sion",
+   "market": "Over/Under 2.5 Goals",
+   "runner": "Over 2.5",
+   "kickoff": "2026-11-07T17:00:00Z",
+   "odds": 1.35,
+   "in_picks": true,
+   "result": null
+  },
+  {
+   "date": "2026-11-07",
+   "track": "confidence",
+   "confidence": 55,
+   "gap": 7.4,
+   "league": "Scotland League One",
+   "league_goals": null,
+   "played": [
+    null,
+    null
+   ],
+   "scored": [
+    null,
+    null
+   ],
+   "conceded": [
+    null,
+    null
+   ],
+   "over25": [
+    null,
+    null
+   ],
+   "event": "Cove Rangers v Hamilton",
+   "market": "Over/Under 2.5 Goals",
+   "runner": "Under 2.5",
+   "kickoff": "2026-11-07T15:00:00Z",
+   "odds": 2.1,
+   "in_picks": true,
    "result": null
   }
  ]
