@@ -5218,7 +5218,7 @@
    "kickoff": "2026-11-07T14:00:00Z",
    "odds": 1.8,
    "in_picks": true,
-   "result": null
+   "result": "lost"
   },
   {
    "date": "2026-11-07",
@@ -5249,7 +5249,7 @@
    "kickoff": "2026-11-07T17:30:00Z",
    "odds": 1.36,
    "in_picks": true,
-   "result": null
+   "result": "won"
   },
   {
    "date": "2026-11-07",
@@ -5280,7 +5280,7 @@
    "kickoff": "2026-11-07T15:30:00Z",
    "odds": 1.65,
    "in_picks": true,
-   "result": null
+   "result": "won"
   },
   {
    "date": "2026-11-07",
@@ -5311,7 +5311,7 @@
    "kickoff": "2026-11-07T19:45:00Z",
    "odds": 1.52,
    "in_picks": true,
-   "result": null
+   "result": "won"
   },
   {
    "date": "2026-11-07",
@@ -5342,7 +5342,7 @@
    "kickoff": "2026-11-07T05:00:00Z",
    "odds": 1.6,
    "in_picks": true,
-   "result": null
+   "result": "won"
   },
   {
    "date": "2026-11-07",
@@ -5373,7 +5373,7 @@
    "kickoff": "2026-11-07T17:00:00Z",
    "odds": 1.35,
    "in_picks": true,
-   "result": null
+   "result": "won"
   },
   {
    "date": "2026-11-07",
@@ -5404,6 +5404,192 @@
    "kickoff": "2026-11-07T15:00:00Z",
    "odds": 2.1,
    "in_picks": true,
+   "result": "lost"
+  },
+  {
+   "date": "2026-11-08",
+   "track": "confidence",
+   "confidence": 87,
+   "gap": 1.5,
+   "league": "Scotland Premiership",
+   "league_goals": null,
+   "played": [
+    null,
+    null
+   ],
+   "scored": [
+    null,
+    null
+   ],
+   "conceded": [
+    null,
+    null
+   ],
+   "over25": [
+    null,
+    null
+   ],
+   "event": "Celtic vs Kilmarnock",
+   "market": "Match Odds",
+   "runner": "Celtic",
+   "kickoff": "2026-11-08T16:00:00Z",
+   "odds": 1.17,
+   "in_picks": false,
+   "result": null
+  },
+  {
+   "date": "2026-11-08",
+   "track": "confidence",
+   "confidence": 85,
+   "gap": 1.0,
+   "league": "Turkey Super Lig",
+   "league_goals": null,
+   "played": [
+    null,
+    null
+   ],
+   "scored": [
+    null,
+    null
+   ],
+   "conceded": [
+    null,
+    null
+   ],
+   "over25": [
+    null,
+    null
+   ],
+   "event": "Besiktas vs Genclerbirligi",
+   "market": "Match Odds",
+   "runner": "Besiktas",
+   "kickoff": "2026-11-08T18:00:00Z",
+   "odds": 1.19,
+   "in_picks": false,
+   "result": null
+  },
+  {
+   "date": "2026-11-08",
+   "track": "confidence",
+   "confidence": 84,
+   "gap": 2.0,
+   "league": "Portugal Primeira Liga",
+   "league_goals": null,
+   "played": [
+    null,
+    null
+   ],
+   "scored": [
+    null,
+    null
+   ],
+   "conceded": [
+    null,
+    null
+   ],
+   "over25": [
+    null,
+    null
+   ],
+   "event": "Estrela Amadora vs Benfica",
+   "market": "Match Odds",
+   "runner": "Benfica",
+   "kickoff": "2026-11-08T20:30:00Z",
+   "odds": 1.22,
+   "in_picks": false,
+   "result": null
+  },
+  {
+   "date": "2026-11-08",
+   "track": "confidence",
+   "confidence": 75,
+   "gap": 1.5,
+   "league": "Netherlands Eredivisie",
+   "league_goals": null,
+   "played": [
+    null,
+    null
+   ],
+   "scored": [
+    null,
+    null
+   ],
+   "conceded": [
+    null,
+    null
+   ],
+   "over25": [
+    null,
+    null
+   ],
+   "event": "Cambuur vs PSV",
+   "market": "Match Odds",
+   "runner": "PSV",
+   "kickoff": "2026-11-08T15:45:00Z",
+   "odds": 1.36,
+   "in_picks": true,
+   "result": null
+  },
+  {
+   "date": "2026-11-08",
+   "track": "confidence",
+   "confidence": 68,
+   "gap": 2.6,
+   "league": "Portugal Primeira Liga",
+   "league_goals": null,
+   "played": [
+    null,
+    null
+   ],
+   "scored": [
+    null,
+    null
+   ],
+   "conceded": [
+    null,
+    null
+   ],
+   "over25": [
+    null,
+    null
+   ],
+   "event": "Guimaraes vs Porto",
+   "market": "Match Odds",
+   "runner": "Porto",
+   "kickoff": "2026-11-08T18:00:00Z",
+   "odds": 1.53,
+   "in_picks": true,
+   "result": null
+  },
+  {
+   "date": "2026-11-08",
+   "track": "confidence",
+   "confidence": 60,
+   "gap": 2.2,
+   "league": "Netherlands Eredivisie",
+   "league_goals": null,
+   "played": [
+    null,
+    null
+   ],
+   "scored": [
+    null,
+    null
+   ],
+   "conceded": [
+    null,
+    null
+   ],
+   "over25": [
+    null,
+    null
+   ],
+   "event": "Heerenveen vs Feyenoord",
+   "market": "Match Odds",
+   "runner": "Feyenoord",
+   "kickoff": "2026-11-08T11:15:00Z",
+   "odds": 1.73,
+   "in_picks": false,
    "result": null
   }
  ]
