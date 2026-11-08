@@ -1,39 +1,6 @@
 {
- "generated": "2026-11-07T22:34:55Z",
- "day": "2026-11-08",
- "doubles": [
-  {
-   "id": "2026-11-08-a",
-   "tier": 2,
-   "legs": [
-    {
-     "sport": "football",
-     "country": "Netherlands",
-     "league": "Eredivisie",
-     "event": "Cambuur vs PSV",
-     "market": "Match Odds",
-     "runner": "PSV",
-     "kickoff": "2026-11-08T15:45:00Z",
-     "confidence": 75,
-     "odds_seen": 1.36,
-     "min_odds": 1.22,
-     "track": "confidence"
-    },
-    {
-     "sport": "football",
-     "country": "Portugal",
-     "league": "Primeira Liga",
-     "event": "Guimaraes vs Porto",
-     "market": "Match Odds",
-     "runner": "Porto",
-     "kickoff": "2026-11-08T18:00:00Z",
-     "confidence": 68,
-     "odds_seen": 1.53,
-     "min_odds": 1.37,
-     "track": "confidence"
-    }
-   ]
-  }
- ],
+ "generated": "2026-11-08T22:26:27Z",
+ "day": "2026-11-09",
+ "doubles": [],
  "singles": []
 }
