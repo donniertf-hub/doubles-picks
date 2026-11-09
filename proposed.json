@@ -1,6 +1,7 @@
 {
- "generated": "2026-11-08T22:26:27Z",
- "day": "2026-11-09",
+ "generated": "2026-11-09T22:50:00Z",
+ "day": "2026-11-10",
  "doubles": [],
- "singles": []
+ "singles": [],
+ "note": "International break; candidates.json stale (3 Nov). Nothing passes the tests for Tue 10 Nov."
 }
