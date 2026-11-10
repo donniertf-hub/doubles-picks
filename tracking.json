@@ -5609,7 +5609,7 @@
    "kickoff": "2026-11-10T00:00:00Z",
    "odds": 1.22,
    "in_picks": false,
-   "result": null
+   "result": "won"
   },
   {
    "date": "2026-11-10",
@@ -5628,7 +5628,7 @@
    "kickoff": "2026-11-10T03:00:00Z",
    "odds": 1.21,
    "in_picks": false,
-   "result": null
+   "result": "won"
   },
   {
    "date": "2026-11-10",
@@ -5647,7 +5647,7 @@
    "kickoff": "2026-11-10T01:30:00Z",
    "odds": 1.29,
    "in_picks": false,
-   "result": null
+   "result": "won"
   },
   {
    "date": "2026-11-10",
@@ -5666,7 +5666,7 @@
    "kickoff": "2026-11-10T19:00:00Z",
    "odds": 1.33,
    "in_picks": false,
-   "result": null
+   "result": "won"
   }
  ]
 }
