@@ -1,7 +1,7 @@
 {
- "generated": "2026-11-11T22:26:46Z",
- "day": "2026-11-12",
+ "generated": "2026-11-12T22:26:50Z",
+ "day": "2026-11-13",
  "doubles": [],
  "singles": [],
- "note": "International break (Nations League, AFCON qualifiers, friendlies). Candidates.json is stale (3 Nov, 8 days old); bot_status.json stale (6 Nov); API-Football suspended and The Odds API out of credits per last night's run; no Betfair prices or event ids available. Club games on 12 Nov UK date are Copa del Rey (Navalcarnero v Betis, Tarancon v Levante), Coupe de France (Chambery v Grenoble), Brazil Serie B, Colombia Primera A, Uruguay, CONCACAF/Bolivia cups: no current form stats or exact-market prices could be checked, and the Copa del Rey favourites are too short for a 2.05 double. Nothing proposed. US sport games on the 12 Nov UK date tip off from 00:00Z, too soon to be okayed."
+ "note": "International break. Fri 13 Nov UK-date football is Nations League and friendlies (no club-league bet allowed for them in the rules, no Betfair prices or event ids), Northern Ireland Premiership and non-league. candidates.json stale (3 Nov), bot_status.json stale (6 Nov), API-Football rejects requests, The Odds API out of credits per earlier runs: no checked exact-market prices. US games for 13 Nov UK date start 00:00Z onward, too soon to be okayed. Nothing proposed."
 }
