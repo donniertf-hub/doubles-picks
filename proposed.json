@@ -1,7 +1,7 @@
 {
- "generated": "2026-11-12T22:26:50Z",
- "day": "2026-11-13",
+ "generated": "2026-11-13T22:35:00Z",
+ "day": "2026-11-14",
  "doubles": [],
  "singles": [],
- "note": "International break. Fri 13 Nov UK-date football is Nations League and friendlies (no club-league bet allowed for them in the rules, no Betfair prices or event ids), Northern Ireland Premiership and non-league. candidates.json stale (3 Nov), bot_status.json stale (6 Nov), API-Football rejects requests, The Odds API out of credits per earlier runs: no checked exact-market prices. US games for 13 Nov UK date start 00:00Z onward, too soon to be okayed. Nothing proposed."
+ "note": "International break: Sat 14 Nov UK-date football is Nations League and internationals (not allowed by the rules, no Betfair event ids). Price sources all down: candidates.json stale (3 Nov), bot_status.json stale (6 Nov), API-Football account suspended, The Odds API quota used up on one account and key invalid on the other, SoccerStats list pages 404. US sports have no real prices to check. No exact-market prices could be confirmed, so nothing is proposed."
 }
