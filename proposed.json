@@ -1,7 +1,7 @@
 {
-  "generated": "2026-11-14T22:26:34Z",
-  "day": "2026-11-15",
+  "generated": "2026-11-15T22:26:27Z",
+  "day": "2026-11-16",
   "doubles": [],
   "singles": [],
-  "note": "International break continues (Sun 15 Nov): European club football is off and the internationals are not allowed by the rules. No usable prices: candidates.json is stale (3 Nov), bot_status.json stale (6 Nov), The Odds API returns no events on one account and an invalid key on the other, API-Football suspended. Nothing proposed."
+  "note": "Mon 16 Nov: nothing proposed. No fresh Betfair prices or event ids: candidates.json is from 3 Nov, bot_status.json from 6 Nov (the bot looks to be offline), API-Football rejects requests, The Odds API was unusable on earlier nights. Football is on the international break. NBA bookmaker prices exist (Oddschecker) but the legs are short favourites with no Betfair event_id, and the early-hours games start too soon for approval. Nothing is safe to propose."
 }
