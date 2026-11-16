@@ -1,7 +1,7 @@
 {
-  "generated": "2026-11-15T22:26:27Z",
-  "day": "2026-11-16",
+  "generated": "2026-11-16T22:26:04Z",
+  "day": "2026-11-17",
   "doubles": [],
   "singles": [],
-  "note": "Mon 16 Nov: nothing proposed. No fresh Betfair prices or event ids: candidates.json is from 3 Nov, bot_status.json from 6 Nov (the bot looks to be offline), API-Football rejects requests, The Odds API was unusable on earlier nights. Football is on the international break. NBA bookmaker prices exist (Oddschecker) but the legs are short favourites with no Betfair event_id, and the early-hours games start too soon for approval. Nothing is safe to propose."
+  "note": "Tue 17 Nov: nothing proposed. Club football is on the international break (only Nations League games tomorrow: Denmark v Norway, Wales v Portugal, Hungary v N Ireland, Ukraine v Georgia, Israel v Austria, Ireland v Kosovo, Bosnia v Romania, Poland v Sweden, none covered by club stats). candidates.json is from 3 Nov and bot_status.json from 6 Nov (the bot looks offline), so there are no fresh Betfair prices or event ids for NBA/NHL. SoccerStats list pages returned 404. Nothing is safe to propose."
 }
