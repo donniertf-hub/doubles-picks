@@ -1,7 +1,7 @@
 {
-  "generated": "2026-11-16T22:26:04Z",
-  "day": "2026-11-17",
+  "generated": "2026-11-17T22:50:00Z",
+  "day": "2026-11-18",
   "doubles": [],
   "singles": [],
-  "note": "Tue 17 Nov: nothing proposed. Club football is on the international break (only Nations League games tomorrow: Denmark v Norway, Wales v Portugal, Hungary v N Ireland, Ukraine v Georgia, Israel v Austria, Ireland v Kosovo, Bosnia v Romania, Poland v Sweden, none covered by club stats). candidates.json is from 3 Nov and bot_status.json from 6 Nov (the bot looks offline), so there are no fresh Betfair prices or event ids for NBA/NHL. SoccerStats list pages returned 404. Nothing is safe to propose."
+  "note": "Wed 18 Nov: nothing proposed. Almost no club football the day after the international break (a few Copa del Rey ties and four Brazilian Serie A games). No double reaches 2.05 with legs of 62+ confidence, and no single reaches 2.05. candidates.json (3 Nov) and bot_status.json (6 Nov) are stale, so there are no Betfair prices; prices used are Betfred's. picks.json has not changed since 2 Nov, so no bets are being kept."
 }
