@@ -1,7 +1,7 @@
 {
-  "generated": "2026-11-18T22:28:00Z",
-  "day": "2026-11-19",
-  "doubles": [],
-  "singles": [],
-  "note": "Thu 19 Nov: nothing proposed. Best pairs by confidence all fail the value test (see report). candidates.json (3 Nov) and bot_status.json (6 Nov) are stale, so no Betfair prices; prices used are UK bookmaker prices. picks.json unchanged since 2 Nov, so no bets kept."
+ "generated": "2026-11-19T22:28:00Z",
+ "day": "2026-11-20",
+ "doubles": [],
+ "singles": [],
+ "note": "Fri 20 Nov: nothing proposed. No double or single clears the tests on honest confidence (see report: closest misses). candidates.json (3 Nov) and bot_status.json (6 Nov) are stale, so no Betfair prices; prices used are UK bookmaker prices. picks.json unchanged since 2 Nov, so no bets kept."
 }
