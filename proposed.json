@@ -1,136 +1,39 @@
 {
- "generated": "2026-11-20T22:55:00Z",
- "day": "2026-11-21",
+ "generated": "2026-11-21T22:45:00Z",
+ "day": "2026-11-22",
  "doubles": [
   {
-   "id": "2026-11-21-a",
-   "tier": "saturday",
+   "id": "2026-11-22-a",
+   "tier": 2,
    "legs": [
     {
      "sport": "football",
-     "country": "England",
-     "league": "Championship",
-     "event": "Southampton vs Derby",
+     "country": "Italy",
+     "league": "Serie A",
+     "event": "Bologna vs Udinese",
      "market": "Match Odds",
-     "runner": "Southampton",
-     "kickoff": "2026-11-21T12:30:00Z",
-     "confidence": 70,
-     "odds_seen": 1.37,
-     "min_odds": 1.23,
-     "track": "confidence"
-    },
-    {
-     "sport": "football",
-     "country": "England",
-     "league": "Championship",
-     "event": "Sheffield Utd vs Watford",
-     "market": "Match Odds",
-     "runner": "Sheffield Utd",
-     "kickoff": "2026-11-21T15:00:00Z",
-     "confidence": 62,
-     "odds_seen": 1.59,
-     "min_odds": 1.43,
-     "track": "confidence"
-    }
-   ]
-  },
-  {
-   "id": "2026-11-21-b",
-   "tier": "saturday",
-   "legs": [
-    {
-     "sport": "football",
-     "country": "Germany",
-     "league": "Bundesliga",
-     "event": "Mgladbach vs Dortmund",
-     "market": "Match Odds",
-     "runner": "Dortmund",
-     "kickoff": "2026-11-21T14:30:00Z",
+     "runner": "Bologna",
+     "kickoff": "2026-11-22T14:00:00Z",
      "confidence": 64,
-     "odds_seen": 1.6,
-     "min_odds": 1.44,
+     "odds_seen": 1.74,
+     "min_odds": 1.56,
      "track": "confidence"
     },
     {
      "sport": "football",
-     "country": "Italy",
-     "league": "Serie A",
-     "event": "Parma vs Roma",
+     "country": "France",
+     "league": "Ligue 1",
+     "event": "Marseille vs Le Mans",
      "market": "Match Odds",
-     "runner": "Roma",
-     "kickoff": "2026-11-21T17:00:00Z",
-     "confidence": 72,
-     "odds_seen": 1.31,
-     "min_odds": 1.17,
-     "track": "confidence"
-    }
-   ]
-  },
-  {
-   "id": "2026-11-21-c",
-   "tier": "saturday",
-   "legs": [
-    {
-     "sport": "football",
-     "country": "England",
-     "league": "Premier League",
-     "event": "Man City vs Fulham",
-     "market": "Match Odds",
-     "runner": "Man City",
-     "kickoff": "2026-11-21T12:30:00Z",
-     "confidence": 66,
-     "odds_seen": 1.42,
-     "min_odds": 1.27,
-     "track": "confidence"
-    },
-    {
-     "sport": "football",
-     "country": "Turkey",
-     "league": "Super Lig",
-     "event": "Kocaelispor vs Fenerbahce",
-     "market": "Match Odds",
-     "runner": "Fenerbahce",
-     "kickoff": "2026-11-21T16:00:00Z",
-     "confidence": 62,
-     "odds_seen": 1.55,
-     "min_odds": 1.39,
-     "track": "confidence"
-    }
-   ]
-  },
-  {
-   "id": "2026-11-21-d",
-   "tier": "saturday",
-   "legs": [
-    {
-     "sport": "football",
-     "country": "Italy",
-     "league": "Serie A",
-     "event": "Lazio vs Lecce",
-     "market": "Match Odds",
-     "runner": "Lazio",
-     "kickoff": "2026-11-21T14:00:00Z",
+     "runner": "Marseille",
+     "kickoff": "2026-11-22T19:45:00Z",
      "confidence": 68,
-     "odds_seen": 1.4,
-     "min_odds": 1.26,
-     "track": "confidence"
-    },
-    {
-     "sport": "football",
-     "country": "Italy",
-     "league": "Serie A",
-     "event": "Napoli vs Torino",
-     "market": "Match Odds",
-     "runner": "Napoli",
-     "kickoff": "2026-11-21T19:45:00Z",
-     "confidence": 62,
-     "odds_seen": 1.51,
-     "min_odds": 1.35,
+     "odds_seen": 1.49,
+     "min_odds": 1.34,
      "track": "confidence"
     }
    ]
   }
  ],
- "singles": [],
- "note": "Sat 21 Nov: 4 Saturday-filler doubles, all match-winner bets. Prices are UK bookmaker prices (Oddschecker, cached 14:34-17:52 on 20 Nov), NOT Betfair; candidates.json (3 Nov) and bot_status.json (6 Nov) are stale. No over/under or BTTS prices found, so no goals bets. Confidence is roughly the market's own view: expect no real edge, these are forced by the Saturday-4 rule. Team news not found for any match."
+ "singles": []
 }

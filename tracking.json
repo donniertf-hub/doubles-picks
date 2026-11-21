@@ -5918,7 +5918,7 @@
    "kickoff": "2026-11-21T20:00:00Z",
    "odds": 1.18,
    "in_picks": false,
-   "result": null,
+   "result": "won",
    "note": "price is a UK bookmaker price (Oddschecker, cached 20 Nov), not Betfair; no Betfair scan available"
   },
   {
@@ -5938,7 +5938,7 @@
    "kickoff": "2026-11-21T17:45:00Z",
    "odds": 1.2,
    "in_picks": false,
-   "result": null,
+   "result": "lost",
    "note": "price is a UK bookmaker price (Oddschecker, cached 20 Nov), not Betfair; no Betfair scan available"
   },
   {
@@ -5958,7 +5958,7 @@
    "kickoff": "2026-11-21T14:30:00Z",
    "odds": 1.3,
    "in_picks": false,
-   "result": null,
+   "result": "won",
    "note": "price is a UK bookmaker price (Oddschecker, cached 20 Nov), not Betfair; no Betfair scan available"
   },
   {
@@ -5978,7 +5978,7 @@
    "kickoff": "2026-11-21T17:00:00Z",
    "odds": 1.31,
    "in_picks": true,
-   "result": null,
+   "result": "won",
    "note": "price is a UK bookmaker price (Oddschecker, cached 20 Nov), not Betfair; no Betfair scan available"
   },
   {
@@ -5998,7 +5998,7 @@
    "kickoff": "2026-11-21T12:30:00Z",
    "odds": 1.37,
    "in_picks": true,
-   "result": null,
+   "result": "won",
    "note": "price is a UK bookmaker price (Oddschecker, cached 20 Nov), not Betfair; no Betfair scan available"
   },
   {
@@ -6018,8 +6018,48 @@
    "kickoff": "2026-11-21T14:00:00Z",
    "odds": 1.4,
    "in_picks": true,
-   "result": null,
+   "result": "won",
    "note": "price is a UK bookmaker price (Oddschecker, cached 20 Nov), not Betfair; no Betfair scan available"
+  },
+  {
+   "date": "2026-11-22",
+   "track": "confidence",
+   "confidence": 64,
+   "gap": null,
+   "league": "Italy Serie A",
+   "league_goals": null,
+   "played": null,
+   "scored": null,
+   "conceded": null,
+   "over25": null,
+   "event": "Bologna vs Udinese",
+   "market": "Match Odds",
+   "runner": "Bologna",
+   "kickoff": "2026-11-22T14:00:00Z",
+   "odds": 1.74,
+   "in_picks": true,
+   "result": null,
+   "note": "price is a UK bookmaker price (Oddschecker, 21 Nov), not Betfair; no Betfair scan available"
+  },
+  {
+   "date": "2026-11-22",
+   "track": "confidence",
+   "confidence": 68,
+   "gap": null,
+   "league": "France Ligue 1",
+   "league_goals": null,
+   "played": null,
+   "scored": null,
+   "conceded": null,
+   "over25": null,
+   "event": "Marseille vs Le Mans",
+   "market": "Match Odds",
+   "runner": "Marseille",
+   "kickoff": "2026-11-22T19:45:00Z",
+   "odds": 1.49,
+   "in_picks": true,
+   "result": null,
+   "note": "price is a UK bookmaker price (Oddschecker, 21 Nov), not Betfair; no Betfair scan available"
   }
  ]
 }
