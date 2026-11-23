@@ -1,7 +1,7 @@
 {
-  "generated": "2026-11-22T22:45:00Z",
-  "day": "2026-11-23",
-  "doubles": [],
-  "singles": [],
-  "note": "No bets proposed: no selection passed the value test on honest confidences (see report)."
+ "generated": "2026-11-23T22:27:22Z",
+ "day": "2026-11-24",
+ "doubles": [],
+ "singles": [],
+ "note": "No bets proposed: Tuesday is a Champions League night and every favourite is priced at or shorter than my honest chance. Best double (Bodo/Glimt + Arsenal, 2.11) has value about 0.92, below the 1.05 test. NBA/NHL looked at price level only. candidates.json was 20 days old, so no bot master list was used."
 }
