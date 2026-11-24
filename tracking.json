@@ -6078,7 +6078,7 @@
    "kickoff": "2026-11-24T01:15:00Z",
    "odds": 1.36,
    "in_picks": false,
-   "result": null,
+   "result": "lost",
    "note": "UK bookmaker price (Oddschecker 4/11), not Betfair; no Betfair scan; market fair chance about 71%, so no edge"
   },
   {
@@ -6139,7 +6139,7 @@
    "kickoff": "2026-11-23T22:30:00Z",
    "odds": 1.61,
    "in_picks": false,
-   "result": null,
+   "result": "lost",
    "note": "Betfred 8/13, not Betfair; model win 54%, Vitoria 0 away wins in 17"
   },
   {
@@ -6159,7 +6159,7 @@
    "kickoff": "2026-11-24T20:00:00Z",
    "odds": 1.18,
    "in_picks": false,
-   "result": null,
+   "result": "won",
    "note": "UK bookmaker price (Oddschecker), not Betfair; no edge over market, not proposed"
   },
   {
@@ -6179,7 +6179,7 @@
    "kickoff": "2026-11-24T20:00:00Z",
    "odds": 1.29,
    "in_picks": false,
-   "result": null,
+   "result": "won",
    "note": "UK bookmaker price (Oddschecker), not Betfair; no edge over market, not proposed"
   },
   {
@@ -6199,7 +6199,7 @@
    "kickoff": "2026-11-24T20:00:00Z",
    "odds": 1.25,
    "in_picks": false,
-   "result": null,
+   "result": "won",
    "note": "UK bookmaker price (Oddschecker), not Betfair; no edge over market, not proposed"
   },
   {
@@ -6219,7 +6219,7 @@
    "kickoff": "2026-11-24T20:00:00Z",
    "odds": 1.3,
    "in_picks": false,
-   "result": null,
+   "result": "lost",
    "note": "UK bookmaker price (Oddschecker), not Betfair; no edge over market, not proposed"
   },
   {
@@ -6239,7 +6239,7 @@
    "kickoff": "2026-11-24T20:00:00Z",
    "odds": 1.43,
    "in_picks": false,
-   "result": null,
+   "result": "lost",
    "note": "UK bookmaker price (Oddschecker), not Betfair; no edge over market, not proposed"
   },
   {
@@ -6259,8 +6259,194 @@
    "kickoff": "2026-11-24T20:00:00Z",
    "odds": 1.4,
    "in_picks": false,
-   "result": null,
+   "result": "won",
    "note": "UK bookmaker price (Oddschecker), not Betfair; no edge over market, not proposed"
+  },
+  {
+   "date": "2026-11-25",
+   "track": "confidence",
+   "confidence": 57,
+   "gap": 11.5,
+   "league": "Japan J1 League",
+   "league_goals": null,
+   "played": [
+    15,
+    15
+   ],
+   "scored": [
+    2.4,
+    2.27
+   ],
+   "conceded": [
+    0.53,
+    0.8
+   ],
+   "over25": [
+    43,
+    63
+   ],
+   "event": "Tokyo vs Hiroshima",
+   "market": "Both Teams To Score",
+   "runner": "No",
+   "kickoff": "2026-11-25T10:00:00Z",
+   "odds": 2.2,
+   "in_picks": true,
+   "result": null
+  },
+  {
+   "date": "2026-11-25",
+   "track": "confidence",
+   "confidence": 90,
+   "gap": -0.9,
+   "league": "Europe Champions League",
+   "league_goals": null,
+   "played": [
+    null,
+    null
+   ],
+   "scored": [
+    null,
+    null
+   ],
+   "conceded": [
+    null,
+    null
+   ],
+   "over25": [
+    null,
+    null
+   ],
+   "event": "Sabah vs Barcelona",
+   "market": "Match Odds",
+   "runner": "Barcelona",
+   "kickoff": "2026-11-25T17:45:00Z",
+   "odds": 1.1,
+   "in_picks": false,
+   "result": null
+  },
+  {
+   "date": "2026-11-25",
+   "track": "confidence",
+   "confidence": 88,
+   "gap": -1.3,
+   "league": "Europe Champions League",
+   "league_goals": null,
+   "played": [
+    null,
+    null
+   ],
+   "scored": [
+    null,
+    null
+   ],
+   "conceded": [
+    null,
+    null
+   ],
+   "over25": [
+    null,
+    null
+   ],
+   "event": "Atletico Madrid vs Viking",
+   "market": "Match Odds",
+   "runner": "Atletico Madrid",
+   "kickoff": "2026-11-25T20:00:00Z",
+   "odds": 1.12,
+   "in_picks": false,
+   "result": null
+  },
+  {
+   "date": "2026-11-25",
+   "track": "confidence",
+   "confidence": 80,
+   "gap": -5.5,
+   "league": "England National League",
+   "league_goals": null,
+   "played": [
+    18,
+    18
+   ],
+   "scored": [
+    2.72,
+    1.22
+   ],
+   "conceded": [
+    1.17,
+    1.17
+   ],
+   "over25": [
+    89,
+    39
+   ],
+   "event": "Boreham Wood vs Aldershot",
+   "market": "Match Odds",
+   "runner": "Boreham Wood",
+   "kickoff": "2026-11-25T19:00:00Z",
+   "odds": 1.17,
+   "in_picks": false,
+   "result": null
+  },
+  {
+   "date": "2026-11-25",
+   "track": "confidence",
+   "confidence": 70,
+   "gap": 1.0,
+   "league": "Europe Champions League",
+   "league_goals": null,
+   "played": [
+    null,
+    null
+   ],
+   "scored": [
+    null,
+    null
+   ],
+   "conceded": [
+    null,
+    null
+   ],
+   "over25": [
+    null,
+    null
+   ],
+   "event": "PSG vs Roma",
+   "market": "Match Odds",
+   "runner": "PSG",
+   "kickoff": "2026-11-25T20:00:00Z",
+   "odds": 1.45,
+   "in_picks": false,
+   "result": null
+  },
+  {
+   "date": "2026-11-25",
+   "track": "confidence",
+   "confidence": 75,
+   "gap": -0.2,
+   "league": "EuroLeague",
+   "league_goals": null,
+   "played": [
+    null,
+    null
+   ],
+   "scored": [
+    null,
+    null
+   ],
+   "conceded": [
+    null,
+    null
+   ],
+   "over25": [
+    null,
+    null
+   ],
+   "event": "Olympiacos vs Hapoel Tel Aviv",
+   "market": "Moneyline",
+   "runner": "Olympiacos",
+   "kickoff": "2026-11-25T19:15:00Z",
+   "odds": 1.33,
+   "in_picks": false,
+   "result": null
   }
  ]
 }
