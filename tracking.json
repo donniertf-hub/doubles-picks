@@ -6291,7 +6291,7 @@
    "kickoff": "2026-11-25T10:00:00Z",
    "odds": 2.2,
    "in_picks": true,
-   "result": null
+   "result": "lost"
   },
   {
    "date": "2026-11-25",
@@ -6322,7 +6322,7 @@
    "kickoff": "2026-11-25T17:45:00Z",
    "odds": 1.1,
    "in_picks": false,
-   "result": null
+   "result": "won"
   },
   {
    "date": "2026-11-25",
@@ -6353,7 +6353,7 @@
    "kickoff": "2026-11-25T20:00:00Z",
    "odds": 1.12,
    "in_picks": false,
-   "result": null
+   "result": "won"
   },
   {
    "date": "2026-11-25",
@@ -6415,7 +6415,7 @@
    "kickoff": "2026-11-25T20:00:00Z",
    "odds": 1.45,
    "in_picks": false,
-   "result": null
+   "result": "lost"
   },
   {
    "date": "2026-11-25",
@@ -6446,7 +6446,127 @@
    "kickoff": "2026-11-25T19:15:00Z",
    "odds": 1.33,
    "in_picks": false,
-   "result": null
+   "result": "won"
+  },
+  {
+   "date": "2026-11-26",
+   "track": "confidence",
+   "confidence": 55,
+   "gap": 6.2,
+   "league": "Europe Conference League",
+   "league_goals": null,
+   "played": null,
+   "scored": null,
+   "conceded": null,
+   "over25": null,
+   "event": "Jablonec vs Lugano",
+   "market": "Match Odds",
+   "runner": "Lugano",
+   "kickoff": "2026-11-26T17:45:00Z",
+   "odds": 2.05,
+   "in_picks": true,
+   "result": null,
+   "note": "UK/European bookmaker price, not Betfair"
+  },
+  {
+   "date": "2026-11-26",
+   "track": "confidence",
+   "confidence": 88,
+   "gap": -1.3,
+   "league": "Europe Conference League",
+   "league_goals": null,
+   "played": null,
+   "scored": null,
+   "conceded": null,
+   "over25": null,
+   "event": "Brighton vs Universitatea Craiova",
+   "market": "Match Odds",
+   "runner": "Brighton",
+   "kickoff": "2026-11-26T17:45:00Z",
+   "odds": 1.12,
+   "in_picks": false,
+   "result": null,
+   "note": "bookmaker price (BetMGM), not Betfair"
+  },
+  {
+   "date": "2026-11-26",
+   "track": "confidence",
+   "confidence": 84,
+   "gap": -1.5,
+   "league": "Europe Europa League",
+   "league_goals": null,
+   "played": null,
+   "scored": null,
+   "conceded": null,
+   "over25": null,
+   "event": "Juventus vs Omonia",
+   "market": "Match Odds",
+   "runner": "Juventus",
+   "kickoff": "2026-11-26T20:00:00Z",
+   "odds": 1.17,
+   "in_picks": false,
+   "result": null,
+   "note": "bookmaker price (bet365), not Betfair"
+  },
+  {
+   "date": "2026-11-26",
+   "track": "confidence",
+   "confidence": 83,
+   "gap": 1.0,
+   "league": "Europe Conference League",
+   "league_goals": null,
+   "played": null,
+   "scored": null,
+   "conceded": null,
+   "over25": null,
+   "event": "Escaldes vs Copenhagen",
+   "market": "Match Odds",
+   "runner": "Copenhagen",
+   "kickoff": "2026-11-26T20:00:00Z",
+   "odds": 1.22,
+   "in_picks": false,
+   "result": null,
+   "note": "bookmaker price (Betfred), not Betfair"
+  },
+  {
+   "date": "2026-11-26",
+   "track": "confidence",
+   "confidence": 78,
+   "gap": -4.0,
+   "league": "NFL",
+   "league_goals": null,
+   "played": null,
+   "scored": null,
+   "conceded": null,
+   "over25": null,
+   "event": "Eagles vs Cowboys",
+   "market": "Moneyline",
+   "runner": "Cowboys",
+   "kickoff": "2026-11-26T21:30:00Z",
+   "odds": 1.22,
+   "in_picks": false,
+   "result": null,
+   "note": "bookmaker price (bet365), not Betfair"
+  },
+  {
+   "date": "2026-11-26",
+   "track": "confidence",
+   "confidence": 70,
+   "gap": 1.0,
+   "league": "Europe Europa League",
+   "league_goals": null,
+   "played": null,
+   "scored": null,
+   "conceded": null,
+   "over25": null,
+   "event": "Viktoria Plzen vs Benfica",
+   "market": "Match Odds",
+   "runner": "Benfica",
+   "kickoff": "2026-11-26T17:45:00Z",
+   "odds": 1.45,
+   "in_picks": false,
+   "result": null,
+   "note": "Football Whispers price, bookmaker not named"
   }
  ]
 }
