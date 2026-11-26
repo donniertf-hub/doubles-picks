@@ -6384,7 +6384,7 @@
    "kickoff": "2026-11-25T19:00:00Z",
    "odds": 1.17,
    "in_picks": false,
-   "result": null
+   "result": "won"
   },
   {
    "date": "2026-11-25",
@@ -6465,7 +6465,7 @@
    "kickoff": "2026-11-26T17:45:00Z",
    "odds": 2.05,
    "in_picks": true,
-   "result": null,
+   "result": "lost",
    "note": "UK/European bookmaker price, not Betfair"
   },
   {
@@ -6485,7 +6485,7 @@
    "kickoff": "2026-11-26T17:45:00Z",
    "odds": 1.12,
    "in_picks": false,
-   "result": null,
+   "result": "won",
    "note": "bookmaker price (BetMGM), not Betfair"
   },
   {
@@ -6505,7 +6505,7 @@
    "kickoff": "2026-11-26T20:00:00Z",
    "odds": 1.17,
    "in_picks": false,
-   "result": null,
+   "result": "won",
    "note": "bookmaker price (bet365), not Betfair"
   },
   {
@@ -6565,8 +6565,232 @@
    "kickoff": "2026-11-26T17:45:00Z",
    "odds": 1.45,
    "in_picks": false,
-   "result": null,
+   "result": "lost",
    "note": "Football Whispers price, bookmaker not named"
+  },
+  {
+   "date": "2026-11-27",
+   "track": "confidence",
+   "confidence": 85,
+   "gap": -4.3,
+   "league": "Wales Cymru Premier",
+   "league_goals": null,
+   "played": [
+    17,
+    17
+   ],
+   "scored": [
+    1.12,
+    3.35
+   ],
+   "conceded": [
+    1.71,
+    0.35
+   ],
+   "over25": [
+    47,
+    59
+   ],
+   "event": "Flint vs TNS",
+   "market": "Match Odds",
+   "runner": "TNS",
+   "kickoff": "2026-11-27T19:45:00Z",
+   "odds": 1.12,
+   "in_picks": false,
+   "result": null,
+   "note": "bookmaker price, not Betfair"
+  },
+  {
+   "date": "2026-11-27",
+   "track": "confidence",
+   "confidence": 80,
+   "gap": -4.7,
+   "league": "Saudi Pro League",
+   "league_goals": null,
+   "played": [
+    12,
+    12
+   ],
+   "scored": [
+    2.67,
+    1.33
+   ],
+   "conceded": [
+    1.0,
+    1.67
+   ],
+   "over25": [
+    67,
+    67
+   ],
+   "event": "Qadsiah vs Fayha",
+   "market": "Match Odds",
+   "runner": "Qadsiah",
+   "kickoff": "2026-11-27T14:20:00Z",
+   "odds": 1.18,
+   "in_picks": false,
+   "result": null,
+   "note": "bookmaker price, not Betfair"
+  },
+  {
+   "date": "2026-11-27",
+   "track": "confidence",
+   "confidence": 77,
+   "gap": 0.1,
+   "league": "Austria Bundesliga",
+   "league_goals": null,
+   "played": [
+    13,
+    13
+   ],
+   "scored": [
+    1.23,
+    3.23
+   ],
+   "conceded": [
+    2.31,
+    0.69
+   ],
+   "over25": [
+    69,
+    77
+   ],
+   "event": "Lustenau vs Rapid",
+   "market": "Match Odds",
+   "runner": "Rapid",
+   "kickoff": "2026-11-28T18:30:00Z",
+   "odds": 1.3,
+   "in_picks": true,
+   "result": null,
+   "note": "bookmaker price, not Betfair"
+  },
+  {
+   "date": "2026-11-27",
+   "track": "confidence",
+   "confidence": 75,
+   "gap": 3.6,
+   "league": "Germany 2. Bundesliga",
+   "league_goals": null,
+   "played": [
+    12,
+    12
+   ],
+   "scored": [
+    2.2,
+    1.0
+   ],
+   "conceded": [
+    0.8,
+    2.6
+   ],
+   "over25": [
+    null,
+    null
+   ],
+   "event": "Hertha vs Karlsruhe",
+   "market": "Match Odds",
+   "runner": "Hertha",
+   "kickoff": "2026-11-28T12:00:00Z",
+   "odds": 1.4,
+   "in_picks": true,
+   "result": null,
+   "note": "bookmaker price, not Betfair; goals figures are home/away splits"
+  },
+  {
+   "date": "2026-11-27",
+   "track": "confidence",
+   "confidence": 67,
+   "gap": 2.9,
+   "league": "Wales Cymru Premier",
+   "league_goals": null,
+   "played": [
+    17,
+    17
+   ],
+   "scored": [
+    1.06,
+    2.24
+   ],
+   "conceded": [
+    1.65,
+    0.71
+   ],
+   "over25": [
+    53,
+    59
+   ],
+   "event": "Briton Ferry vs Penybont",
+   "market": "Match Odds",
+   "runner": "Penybont",
+   "kickoff": "2026-11-27T19:45:00Z",
+   "odds": 1.56,
+   "in_picks": true,
+   "result": null,
+   "note": "bookmaker price, not Betfair"
+  },
+  {
+   "date": "2026-11-27",
+   "track": "confidence",
+   "confidence": 62,
+   "gap": 3.2,
+   "league": "Germany Bundesliga",
+   "league_goals": null,
+   "played": [
+    10,
+    10
+   ],
+   "scored": [
+    2.1,
+    1.2
+   ],
+   "conceded": [
+    1.5,
+    2.6
+   ],
+   "over25": [
+    70,
+    80
+   ],
+   "event": "Bremen vs Mgladbach",
+   "market": "Match Odds",
+   "runner": "Bremen",
+   "kickoff": "2026-11-27T19:30:00Z",
+   "odds": 1.7,
+   "in_picks": true,
+   "result": null,
+   "note": "bookmaker price, not Betfair"
+  },
+  {
+   "date": "2026-11-27",
+   "track": "confidence",
+   "confidence": 65,
+   "gap": null,
+   "league": "Switzerland Challenge League",
+   "league_goals": null,
+   "played": [
+    14,
+    14
+   ],
+   "scored": [
+    1.0,
+    2.21
+   ],
+   "conceded": [
+    1.43,
+    0.5
+   ],
+   "over25": [
+    50,
+    50
+   ],
+   "event": "Carouge vs Lausanne-Ouchy",
+   "market": "Match Odds",
+   "runner": "Lausanne-Ouchy",
+   "kickoff": "2026-11-27T19:15:00Z",
+   "odds": null,
+   "in_picks": false,
+   "result": null,
+   "note": "no match-winner price found"
   }
  ]
 }
