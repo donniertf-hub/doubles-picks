@@ -6525,7 +6525,7 @@
    "kickoff": "2026-11-26T20:00:00Z",
    "odds": 1.22,
    "in_picks": false,
-   "result": null,
+   "result": "lost",
    "note": "bookmaker price (Betfred), not Betfair"
   },
   {
@@ -6545,7 +6545,7 @@
    "kickoff": "2026-11-26T21:30:00Z",
    "odds": 1.22,
    "in_picks": false,
-   "result": null,
+   "result": "lost",
    "note": "bookmaker price (bet365), not Betfair"
   },
   {
@@ -6597,7 +6597,7 @@
    "kickoff": "2026-11-27T19:45:00Z",
    "odds": 1.12,
    "in_picks": false,
-   "result": null,
+   "result": "won",
    "note": "bookmaker price, not Betfair"
   },
   {
@@ -6629,7 +6629,7 @@
    "kickoff": "2026-11-27T14:20:00Z",
    "odds": 1.18,
    "in_picks": false,
-   "result": null,
+   "result": "won",
    "note": "bookmaker price, not Betfair"
   },
   {
@@ -6725,7 +6725,7 @@
    "kickoff": "2026-11-27T19:45:00Z",
    "odds": 1.56,
    "in_picks": true,
-   "result": null,
+   "result": "won",
    "note": "bookmaker price, not Betfair"
   },
   {
@@ -6757,7 +6757,7 @@
    "kickoff": "2026-11-27T19:30:00Z",
    "odds": 1.7,
    "in_picks": true,
-   "result": null,
+   "result": "lost",
    "note": "bookmaker price, not Betfair"
   },
   {
@@ -6789,8 +6789,182 @@
    "kickoff": "2026-11-27T19:15:00Z",
    "odds": null,
    "in_picks": false,
-   "result": null,
+   "result": "won",
    "note": "no match-winner price found"
+  },
+  {
+   "date": "2026-11-28",
+   "track": "confidence",
+   "confidence": 90,
+   "gap": 2.3,
+   "league": "Spain La Liga",
+   "league_goals": null,
+   "played": [
+    13,
+    13
+   ],
+   "scored": [
+    2.54,
+    1.38
+   ],
+   "conceded": [
+    0.85,
+    1.38
+   ],
+   "over25": [
+    83,
+    50
+   ],
+   "event": "Real Madrid vs Alaves",
+   "market": "Match Odds",
+   "runner": "Real Madrid",
+   "kickoff": "2026-11-28T20:00:00Z",
+   "odds": 1.14,
+   "in_picks": false,
+   "result": null
+  },
+  {
+   "date": "2026-11-28",
+   "track": "confidence",
+   "confidence": 82,
+   "gap": 0.0,
+   "league": "Netherlands Eredivisie",
+   "league_goals": null,
+   "played": [
+    13,
+    13
+   ],
+   "scored": [
+    3.38,
+    1.85
+   ],
+   "conceded": [
+    1.23,
+    2.15
+   ],
+   "over25": [
+    67,
+    71
+   ],
+   "event": "PSV vs Go Ahead Eagles",
+   "market": "Match Odds",
+   "runner": "PSV",
+   "kickoff": "2026-11-28T17:45:00Z",
+   "odds": 1.22,
+   "in_picks": false,
+   "result": null
+  },
+  {
+   "date": "2026-11-28",
+   "track": "confidence",
+   "confidence": 80,
+   "gap": 3.1,
+   "league": "Italy Serie A",
+   "league_goals": null,
+   "played": [
+    12,
+    12
+   ],
+   "scored": [
+    2.67,
+    1.08
+   ],
+   "conceded": [
+    1.42,
+    1.33
+   ],
+   "over25": [
+    83,
+    40
+   ],
+   "event": "Inter vs Genoa",
+   "market": "Match Odds",
+   "runner": "Inter",
+   "kickoff": "2026-11-28T19:45:00Z",
+   "odds": 1.3,
+   "in_picks": false,
+   "result": null
+  },
+  {
+   "date": "2026-11-28",
+   "track": "confidence",
+   "confidence": 74,
+   "gap": 0.5,
+   "league": "Germany 2. Bundesliga",
+   "league_goals": null,
+   "played": [
+    12,
+    12
+   ],
+   "scored": [
+    2.42,
+    1.25
+   ],
+   "conceded": [
+    0.75,
+    2.0
+   ],
+   "over25": [
+    80,
+    60
+   ],
+   "event": "Hertha vs Karlsruhe",
+   "market": "Match Odds",
+   "runner": "Hertha",
+   "kickoff": "2026-11-28T12:00:00Z",
+   "odds": 1.36,
+   "in_picks": true,
+   "result": null
+  },
+  {
+   "date": "2026-11-28",
+   "track": "confidence",
+   "confidence": 73,
+   "gap": 4.0,
+   "league": "Spain La Liga",
+   "league_goals": null,
+   "played": [
+    13,
+    13
+   ],
+   "scored": [
+    1.15,
+    2.0
+   ],
+   "conceded": [
+    1.62,
+    0.77
+   ],
+   "over25": [
+    50,
+    71
+   ],
+   "event": "Elche vs Atletico",
+   "market": "Match Odds",
+   "runner": "Atletico",
+   "kickoff": "2026-11-28T17:30:00Z",
+   "odds": 1.45,
+   "in_picks": true,
+   "result": null
+  },
+  {
+   "date": "2026-11-28",
+   "track": "confidence",
+   "confidence": 68,
+   "gap": -1.4,
+   "league": "England League Two",
+   "league_goals": null,
+   "played": null,
+   "scored": null,
+   "conceded": null,
+   "over25": null,
+   "event": "Salford vs Gillingham",
+   "market": "Match Odds",
+   "runner": "Salford",
+   "kickoff": "2026-11-28T15:00:00Z",
+   "odds": 1.44,
+   "in_picks": true,
+   "result": null
   }
  ]
 }

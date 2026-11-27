@@ -1,24 +1,43 @@
 {
-  "generated": "2026-11-26T22:51:14Z",
-  "day": "2026-11-27",
+  "generated": "2026-11-27T22:41:33Z",
+  "day": "2026-11-28",
   "doubles": [
     {
-      "id": "2026-11-27-a",
+      "id": "2026-11-28-a",
       "tier": 2,
       "legs": [
         {
           "sport": "football",
-          "country": "Wales",
-          "league": "Cymru Premier",
-          "event": "Briton Ferry vs Penybont",
+          "country": "Spain",
+          "league": "La Liga",
+          "event": "Betis vs Vallecano",
           "market": "Match Odds",
-          "runner": "Penybont",
-          "kickoff": "2026-11-27T19:45:00Z",
-          "confidence": 67,
-          "odds_seen": 1.56,
-          "min_odds": 1.4,
+          "runner": "Betis",
+          "kickoff": "2026-11-28T13:00:00Z",
+          "confidence": 64,
+          "odds_seen": 1.57,
+          "min_odds": 1.41,
           "track": "confidence"
         },
+        {
+          "sport": "football",
+          "country": "Spain",
+          "league": "La Liga",
+          "event": "Elche vs Atletico",
+          "market": "Match Odds",
+          "runner": "Atletico",
+          "kickoff": "2026-11-28T17:30:00Z",
+          "confidence": 73,
+          "odds_seen": 1.45,
+          "min_odds": 1.3,
+          "track": "confidence"
+        }
+      ]
+    },
+    {
+      "id": "2026-11-28-b",
+      "tier": "saturday",
+      "legs": [
         {
           "sport": "football",
           "country": "Germany",
@@ -27,48 +46,81 @@
           "market": "Match Odds",
           "runner": "Hertha",
           "kickoff": "2026-11-28T12:00:00Z",
-          "confidence": 75,
-          "odds_seen": 1.4,
-          "min_odds": 1.26,
+          "confidence": 74,
+          "odds_seen": 1.36,
+          "min_odds": 1.22,
+          "track": "confidence"
+        },
+        {
+          "sport": "football",
+          "country": "Portugal",
+          "league": "Primeira Liga",
+          "event": "Arouca vs Rio Ave",
+          "market": "Match Odds",
+          "runner": "Arouca",
+          "kickoff": "2026-11-28T15:30:00Z",
+          "confidence": 62,
+          "odds_seen": 1.61,
+          "min_odds": 1.44,
           "track": "confidence"
         }
       ]
     },
     {
-      "id": "2026-11-27-b",
-      "tier": 2,
+      "id": "2026-11-28-c",
+      "tier": "saturday",
       "legs": [
         {
           "sport": "football",
-          "country": "Germany",
-          "league": "Bundesliga",
-          "event": "Bremen vs Mgladbach",
+          "country": "England",
+          "league": "Championship",
+          "event": "Lincoln vs Wolves",
           "market": "Match Odds",
-          "runner": "Bremen",
-          "kickoff": "2026-11-27T19:30:00Z",
-          "confidence": 62,
-          "odds_seen": 1.7,
-          "min_odds": 1.53,
+          "runner": "Wolves",
+          "kickoff": "2026-11-28T12:30:00Z",
+          "confidence": 67,
+          "odds_seen": 1.54,
+          "min_odds": 1.38,
           "track": "confidence"
         },
         {
           "sport": "football",
-          "country": "Austria",
-          "league": "Bundesliga",
-          "event": "Lustenau vs Rapid",
+          "country": "England",
+          "league": "League Two",
+          "event": "Salford vs Gillingham",
           "market": "Match Odds",
-          "runner": "Rapid",
-          "kickoff": "2026-11-28T18:30:00Z",
-          "confidence": 77,
-          "odds_seen": 1.3,
-          "min_odds": 1.17,
+          "runner": "Salford",
+          "kickoff": "2026-11-28T15:00:00Z",
+          "confidence": 68,
+          "odds_seen": 1.44,
+          "min_odds": 1.29,
           "track": "confidence"
         }
       ]
     }
   ],
-  "singles": [],
-  "note": "Two Tier 2 doubles; nothing passed Tier 1. candidates.json (3 Nov) and bot_status.json (6 Nov) are out of date; prices are bookmaker prices, not Betfair.",
+  "singles": [
+    {
+      "id": "2026-11-28-s1",
+      "tier": 1,
+      "legs": [
+        {
+          "sport": "football",
+          "country": "Italy",
+          "league": "Serie A",
+          "event": "Torino vs Lazio",
+          "market": "Match Odds",
+          "runner": "Lazio",
+          "kickoff": "2026-11-28T17:00:00Z",
+          "confidence": 57,
+          "odds_seen": 2.05,
+          "min_odds": 1.84,
+          "track": "confidence"
+        }
+      ]
+    }
+  ],
+  "note": "One Tier 1 single, one Tier 2 double, two Saturday fillers. candidates.json (3 Nov) and bot_status.json (6 Nov) are out of date; prices are bookmaker prices, not Betfair.",
   "hold": [
     "2026-11-02-b"
   ]
